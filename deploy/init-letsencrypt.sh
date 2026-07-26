@@ -18,6 +18,12 @@ if [ -d "$data_path" ]; then
   fi
 fi
 
+echo "### Downloading recommended TLS parameters ..."
+docker compose -f docker-compose.prod.yml run --rm --entrypoint "sh -c '\
+  wget -qO /etc/letsencrypt/options-ssl-nginx.conf https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf && \
+  wget -qO /etc/letsencrypt/ssl-dhparams.pem https://raw.githubusercontent.com/certbot/certbot/master/certbot/certbot/ssl-dhparams.pem'" certbot
+echo
+
 echo "### Creating dummy certificate for $domains ..."
 path="/etc/letsencrypt/live/$domains"
 mkdir -p "$data_path/conf/live/$domains"
