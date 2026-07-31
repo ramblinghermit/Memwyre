@@ -1,11 +1,10 @@
 <template>
   <div class="flex justify-start my-2">
     <div class="max-w-[85%] min-w-0">
-      <div class="bg-white/90 dark:bg-surface-2/70 backdrop-blur-md dark:text-gray-100 px-5 py-4 rounded-2xl rounded-tl-xs text-sm md:text-base leading-relaxed text-gray-800 border border-gray-200/80 dark:border-gray-700/80 shadow-xs">
+      <div class="bg-transparent dark:bg-transparent dark:text-gray-100 px-1 py-1 rounded-2xl text-sm md:text-base leading-relaxed text-gray-800 border-none shadow-none">
         <ReasoningPanel :thinking-text="thinkingText" />
 
         <section class="mb-4">
-          <p class="text-[11px] uppercase tracking-wider text-gray-400 dark:text-gray-400 mb-2 font-semibold font-mono">Answer</p>
           <div
             class="prose prose-sm max-w-none dark:prose-invert prose-headings:mb-2 prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-0.5 prose-pre:my-3 prose-pre:p-3 prose-pre:rounded-xl prose-code:text-[0.9em] prose-table:block prose-table:overflow-x-auto"
             v-html="renderChatMarkdown(answerText)"

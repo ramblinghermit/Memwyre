@@ -76,8 +76,7 @@ export const useChatStore = defineStore('chat', () => {
     }
 
     const availableModels = [
-        { id: 'moonshotai.kimi-k2.5', name: 'Kimi K2.5 (Bedrock)' },
-        { id: 'apac.amazon.nova-pro-v1:0', name: 'Amazon Nova Pro' }
+        { id: 'moonshotai.kimi-k2.5', name: 'Kimi K2.5 (Bedrock)' }
     ];
 
     const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
