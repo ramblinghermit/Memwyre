@@ -166,6 +166,14 @@ import { writeScopedBoolean } from '../utils/onboardingState';
 
 import LoadingLogo from '@/components/common/LoadingLogo.vue';
 
+import cursorDarkIcon from '@/assets/cursor_CUBE_2D_DARK.svg';
+import claudeIcon from '@/assets/claude-color.svg';
+import openaiIcon from '@/assets/openai.svg';
+import vscodeIcon from '@/assets/vscode.svg';
+import openclawIcon from '@/assets/openclaw-color.svg';
+import gdriveIcon from '@/assets/google-drive.svg';
+import notionIcon from '@/assets/notion-svgrepo-com.svg';
+
 const authStore = useAuthStore();
 const router = useRouter();
 const toast = useToast();
@@ -184,26 +192,26 @@ const integrationCategories = ref([
   {
     name: 'MCP',
     items: [
-      { id: 'cursor', name: 'Cursor', desc: 'One-click MCP install in Cursor', btnText: 'Connect', hasDocs: true, bgColor: 'bg-black dark:bg-black', icon: '/src/assets/cursor_CUBE_2D_DARK.svg', invert: true },
-      { id: 'claude-desktop', name: 'Claude Desktop', desc: 'Connect supermemory in Claude Desktop', btnText: 'Connect', hasDocs: true, bgColor: 'bg-[#D97757]/10 dark:bg-[#D97757]/20', icon: '/src/assets/claude-color.svg' },
-      { id: 'chatgpt', name: 'ChatGPT', desc: 'Apps via ChatGPT developer mode', btnText: 'Connect', hasDocs: true, bgColor: 'bg-[#10A37F]/10 dark:bg-white', icon: '/src/assets/openai.svg' },
-      { id: 'vscode', name: 'VS Code', desc: 'Native MCP support for VS Code', btnText: 'Connect', bgColor: 'bg-blue-500/10 dark:bg-blue-500/20' }
+      { id: 'cursor', name: 'Cursor', desc: 'One-click MCP install in Cursor', btnText: 'Connect', hasDocs: true, bgColor: 'bg-black dark:bg-black', icon: cursorDarkIcon, invert: true },
+      { id: 'claude-desktop', name: 'Claude Desktop', desc: 'Connect supermemory in Claude Desktop', btnText: 'Connect', hasDocs: true, bgColor: 'bg-[#D97757]/10 dark:bg-[#D97757]/20', icon: claudeIcon },
+      { id: 'chatgpt', name: 'ChatGPT', desc: 'Apps via ChatGPT developer mode', btnText: 'Connect', hasDocs: true, bgColor: 'bg-[#10A37F]/10 dark:bg-white', icon: openaiIcon },
+      { id: 'vscode', name: 'VS Code', desc: 'Native MCP support for VS Code', btnText: 'Connect', bgColor: 'bg-blue-500/10 dark:bg-blue-500/20', icon: vscodeIcon }
     ]
   },
   {
     name: 'Plugins',
     items: [
-      { id: 'claude-code', name: 'Claude Code', isPro: true, desc: 'Remembers your conventions, decisions, and project context', btnText: 'Upgrade', isLightning: true, bgColor: 'bg-[#D97757]/10 dark:bg-[#D97757]/20', icon: '/src/assets/claude-color.svg' },
+      { id: 'claude-code', name: 'Claude Code', isPro: true, desc: 'Remembers your conventions, decisions, and project context', btnText: 'Upgrade', isLightning: true, bgColor: 'bg-[#D97757]/10 dark:bg-[#D97757]/20', icon: claudeIcon },
       { id: 'codex', name: 'Codex', desc: 'Persistent memory for the Codex CLI — free on every plan', btnText: 'Connect', hasDocs: true, bgColor: 'bg-blue-500/10 dark:bg-blue-500/20' },
       { id: 'opencode', name: 'OpenCode', isPro: true, desc: 'Long-term memory for your OpenCode sessions', btnText: 'Upgrade', isLightning: true, hasDocs: true, bgColor: 'bg-gray-200 dark:bg-gray-700' },
-      { id: 'openclaw', name: 'OpenClaw', isPro: true, desc: 'Add persistent memory to autonomous OpenClaw agent sessions', btnText: 'Upgrade', isLightning: true, hasDocs: true, bgColor: 'bg-[#FF3366]/10 dark:bg-[#FF3366]/20', icon: '/src/assets/openclaw-color.svg' }
+      { id: 'openclaw', name: 'OpenClaw', isPro: true, desc: 'Add persistent memory to autonomous OpenClaw agent sessions', btnText: 'Upgrade', isLightning: true, hasDocs: true, bgColor: 'bg-[#FF3366]/10 dark:bg-[#FF3366]/20', icon: openclawIcon }
     ]
   },
   {
     name: 'Knowledge bases',
     items: [
-      { id: 'gdrive', name: 'Google Drive', isPro: true, desc: 'Sync Docs, Sheets and Slides into your memory', btnText: 'Upgrade', isLightning: true, bgColor: 'bg-gray-100 dark:bg-white/10' },
-      { id: 'notion', name: 'Notion', isPro: true, desc: 'Import Notion pages and databases', btnText: 'Upgrade', isLightning: true, bgColor: 'bg-white dark:bg-black', icon: '/src/assets/notion-svgrepo-com.svg' }
+      { id: 'gdrive', name: 'Google Drive', isPro: true, desc: 'Sync Docs, Sheets and Slides into your memory', btnText: 'Upgrade', isLightning: true, bgColor: 'bg-gray-100 dark:bg-white/10', icon: gdriveIcon },
+      { id: 'notion', name: 'Notion', isPro: true, desc: 'Import Notion pages and databases', btnText: 'Upgrade', isLightning: true, bgColor: 'bg-white dark:bg-black', icon: notionIcon }
     ]
   }
 ]);

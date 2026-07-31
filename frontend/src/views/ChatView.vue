@@ -285,7 +285,7 @@ function handleOpenSource(source) {
             <div class="mb-6 text-center">
               <span class="px-3 py-1 rounded-full text-xs font-medium bg-[#D97757]/10 text-[#D97757] border border-[#D97757]/20 inline-block mb-3">Memwyre Agent</span>
               <h1 class="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
-                Hello, <span class="text-[#D97757]">{{ authStore.user?.name || authStore.user?.email?.split('@')[0] || 'Traveler' }}</span>
+                Hello, <span class="text-gray-900 dark:text-white font-bold">{{ authStore.user?.name || authStore.user?.email?.split('@')[0] || 'Traveler' }}</span>
               </h1>
               <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">What would you like to explore or search across your memories?</p>
             </div>
