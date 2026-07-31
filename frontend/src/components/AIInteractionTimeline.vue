@@ -6,27 +6,34 @@
         <p class="text-xs text-gray-400 mt-1">Your interaction timeline across memories.</p>
       </div>
       <div class="flex items-center gap-2">
+        <!-- Source Selector -->
         <div class="relative source-selector">
           <button
             @click.stop="toggleSourceMenu"
             ref="sourceButtonRef"
-            class="inline-flex items-center justify-between gap-1.5 min-w-[132px] text-xs border border-gray-200 dark:border-gray-700 rounded-md px-2.5 py-1.5 bg-white dark:bg-surface hover:bg-gray-50 dark:hover:bg-gray-800"
+            class="inline-flex items-center justify-between gap-1.5 min-w-[124px] text-xs font-medium border border-gray-200 dark:border-gray-700 rounded-md px-2.5 py-1.5 bg-white dark:bg-surface text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-2xs"
           >
             <span>{{ activeSourceLabel }}</span>
-            <svg class="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-3 h-3 text-gray-400 dark:text-gray-500 transition-transform duration-200" :class="{ 'rotate-180': sourceMenuOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
         </div>
-        <select
-          v-model="activeType"
-          @change="fetchTimeline"
-          class="text-xs border border-gray-200 dark:border-gray-700 rounded-md px-2.5 py-1.5 bg-white dark:bg-surface hover:bg-gray-50 dark:hover:bg-gray-800"
-        >
-          <option v-for="option in typeOptions" :key="option.value" :value="option.value">
-            {{ option.label }}
-          </option>
-        </select>
+
+        <!-- Type Selector -->
+        <div class="relative type-selector">
+          <button
+            @click.stop="toggleTypeMenu"
+            ref="typeButtonRef"
+            class="inline-flex items-center justify-between gap-1.5 min-w-[114px] text-xs font-medium border border-gray-200 dark:border-gray-700 rounded-md px-2.5 py-1.5 bg-white dark:bg-surface text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-2xs"
+          >
+            <span>{{ activeTypeLabel }}</span>
+            <svg class="w-3 h-3 text-gray-400 dark:text-gray-500 transition-transform duration-200" :class="{ 'rotate-180': typeMenuOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+        </div>
+
         <button
           @click="fetchTimeline"
           :disabled="loading"
@@ -167,7 +174,30 @@
           :class="[
             'w-full text-left px-2.5 py-1.5 text-xs rounded-md transition-colors',
             activeSource === option.value
-              ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white'
+              ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold'
+              : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
+          ]"
+        >
+          {{ option.label }}
+        </button>
+      </div>
+    </Teleport>
+
+    <Teleport to="body">
+      <div
+        v-if="typeMenuOpen"
+        class="type-selector-menu overflow-y-auto custom-scrollbar rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-surface shadow-lg z-[1100] p-1"
+        :style="typeMenuStyle"
+        @click.stop
+      >
+        <button
+          v-for="option in typeOptions"
+          :key="option.value"
+          @click="selectType(option.value)"
+          :class="[
+            'w-full text-left px-2.5 py-1.5 text-xs rounded-md transition-colors',
+            activeType === option.value
+              ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold'
               : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
           ]"
         >
@@ -238,9 +268,12 @@ const activeSource = ref('');
 const activeType = ref('');
 const projects = ref([]);
 const sourceMenuOpen = ref(false);
+const typeMenuOpen = ref(false);
 const projectMenuForId = ref(null);
 const sourceButtonRef = ref(null);
+const typeButtonRef = ref(null);
 const sourceMenuStyle = ref({});
+const typeMenuStyle = ref({});
 const projectMenuStyle = ref({});
 const projectButtonRefs = new Map();
 
@@ -260,6 +293,7 @@ const typeOptions = [
 ];
 
 const activeSourceLabel = computed(() => sourceOptions.find((x) => x.value === activeSource.value)?.label || 'All Sources');
+const activeTypeLabel = computed(() => typeOptions.find((x) => x.value === activeType.value)?.label || 'All Types');
 const activeProjectItem = computed(() => items.value.find((item) => item.id === projectMenuForId.value) || null);
 
 const formatDateKey = (dateLike) => {
@@ -379,7 +413,16 @@ const buildPopoverStyle = (anchorEl, options = {}) => {
 const updateSourceMenuPosition = () => {
   sourceMenuStyle.value = buildPopoverStyle(sourceButtonRef.value, {
     matchButtonWidth: true,
-    minWidth: 132,
+    minWidth: 124,
+    align: 'right',
+    estimatedHeight: 180,
+  });
+};
+
+const updateTypeMenuPosition = () => {
+  typeMenuStyle.value = buildPopoverStyle(typeButtonRef.value, {
+    matchButtonWidth: true,
+    minWidth: 114,
     align: 'right',
     estimatedHeight: 180,
   });
@@ -401,24 +444,46 @@ const updateProjectMenuPosition = () => {
 
 const updateOpenMenuPositions = () => {
   if (sourceMenuOpen.value) updateSourceMenuPosition();
+  if (typeMenuOpen.value) updateTypeMenuPosition();
   if (projectMenuForId.value !== null) updateProjectMenuPosition();
 };
 
 const toggleSourceMenu = () => {
   sourceMenuOpen.value = !sourceMenuOpen.value;
-  if (sourceMenuOpen.value) projectMenuForId.value = null;
-  if (sourceMenuOpen.value) updateSourceMenuPosition();
+  if (sourceMenuOpen.value) {
+    typeMenuOpen.value = false;
+    projectMenuForId.value = null;
+    updateSourceMenuPosition();
+  }
+};
+
+const toggleTypeMenu = () => {
+  typeMenuOpen.value = !typeMenuOpen.value;
+  if (typeMenuOpen.value) {
+    sourceMenuOpen.value = false;
+    projectMenuForId.value = null;
+    updateTypeMenuPosition();
+  }
 };
 
 const toggleProjectMenu = (item) => {
   projectMenuForId.value = projectMenuForId.value === item.id ? null : item.id;
-  if (projectMenuForId.value) sourceMenuOpen.value = false;
-  if (projectMenuForId.value) updateProjectMenuPosition();
+  if (projectMenuForId.value) {
+    sourceMenuOpen.value = false;
+    typeMenuOpen.value = false;
+    updateProjectMenuPosition();
+  }
 };
 
 const selectSource = async (source) => {
   activeSource.value = source;
   sourceMenuOpen.value = false;
+  await fetchTimeline();
+};
+
+const selectType = async (typeVal) => {
+  activeType.value = typeVal;
+  typeMenuOpen.value = false;
   await fetchTimeline();
 };
 
@@ -432,6 +497,7 @@ const handleGlobalClick = (event) => {
   const target = event.target;
   if (!(target instanceof Element)) return;
   if (!target.closest('.source-selector') && !target.closest('.source-selector-menu')) sourceMenuOpen.value = false;
+  if (!target.closest('.type-selector') && !target.closest('.type-selector-menu')) typeMenuOpen.value = false;
   if (!target.closest('.project-selector') && !target.closest('.project-selector-menu')) projectMenuForId.value = null;
 };
 

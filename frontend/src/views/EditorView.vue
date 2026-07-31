@@ -161,7 +161,7 @@
                         </div>
                         <div class="grid grid-cols-[80px_1fr] items-center gap-2">
                             <label class="text-[11px] text-gray-500 font-medium">Project</label>
-                            <select v-model="selectedProjectId" :disabled="isViewMode" class="text-xs border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1.5 bg-white dark:bg-surface disabled:opacity-80">
+                            <select v-model="selectedProjectId" :disabled="isViewMode" class="text-xs border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1.5 bg-white dark:bg-surface text-gray-900 dark:text-gray-200 disabled:opacity-80">
                                 <option :value="null">Unassigned</option>
                                 <option v-for="project in projects" :key="project.id" :value="project.id">{{ project.name }}</option>
                             </select>
@@ -206,7 +206,7 @@
                               @keydown.down.prevent="navigateSuggestions(1)"
                               @keydown.up.prevent="navigateSuggestions(-1)"
                               @keydown.enter.prevent="selectActiveSuggestion"
-                              class="w-full bg-gray-50 dark:border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2.5 text-xs focus:ring-1 focus:ring-[#D97757] focus:border-[#D97757] outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600 resize-none h-28 leading-relaxed"
+                              class="w-full bg-gray-50 dark:bg-surface border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-200 rounded-lg px-3 py-2.5 text-xs focus:ring-1 focus:ring-[#D97757] focus:border-[#D97757] outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 resize-none h-28 leading-relaxed"
                               placeholder="Enter tags separated by commas..."
                             ></textarea>
                             

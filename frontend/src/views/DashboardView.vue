@@ -107,268 +107,7 @@
     <QuickActions @open-review="showDailyReview = true" />
     <DailyReviewModal v-if="showDailyReview" @close="showDailyReview = false" />
 
-    <Teleport to="body">
-      <transition enter-active-class="transition duration-300 ease-out" enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100" leave-active-class="transition duration-200 ease-in" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
-        <div v-if="showOnboardingModal" class="fixed inset-0 z-[1200] flex items-center justify-center p-4 sm:p-6">
-          <!-- Backdrop -->
-          <div class="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity"></div>
-
-          <!-- Modal Content -->
-          <div class="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-surface rounded-[2rem] shadow-2xl overflow-hidden flex flex-col border border-gray-100 dark:border-border">
-            
-            <!-- Header -->
-            <div class="px-8 sm:px-10 py-6 border-b border-gray-100 dark:border-border bg-gray-50/50 dark:bg-surface-2/30 flex items-center justify-between shrink-0">
-              <div class="flex items-center gap-4">
-                <img src="/image.svg" alt="Memwyre" class="w-10 h-10 rounded-xl shadow-sm" />
-                <div>
-                  <h2 class="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Welcome to Memwyre</h2>
-                  <p class="text-sm text-gray-500 dark:text-text-secondary font-medium">
-                    {{ isVerified ? `Step ${onboardingStep} of 3` : 'Account Verification' }}
-                  </p>
-                </div>
-              </div>
-              
-              <!-- Simple Stepper -->
-              <div v-if="isVerified" class="hidden sm:flex items-center gap-2">
-                <div v-for="step in 3" :key="step" class="flex items-center">
-                  <div 
-                    class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300"
-                    :class="[
-                      onboardingStep === step ? 'bg-primary text-white shadow-md' : 
-                      step < onboardingStep ? 'bg-primary/20 text-primary dark:bg-primary/10' : 
-                      'bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-600'
-                    ]"
-                  >
-                    {{ step < onboardingStep ? '✓' : step }}
-                  </div>
-                  <div v-if="step < 3" class="w-6 h-[2px] mx-1 rounded-full" :class="step < onboardingStep ? 'bg-primary/30' : 'bg-gray-100 dark:bg-gray-800'"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Scrollable Body -->
-            <div class="flex-1 overflow-y-auto px-6 sm:px-12 py-8 custom-scrollbar">
-              
-              <!-- Verification Step -->
-              <template v-if="!isVerified">
-                <div class="max-w-2xl mx-auto text-center py-8">
-                  <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h3 class="text-3xl font-bold text-gray-900 dark:text-white tracking-tight mb-4">Check your inbox</h3>
-                  <p class="text-lg text-gray-600 dark:text-text-secondary mb-8 leading-relaxed">
-                    We've sent a secure verification link to <strong class="text-gray-900 dark:text-white">{{ user?.email }}</strong>. 
-                    Please verify your email to unlock your workspace and secure your vault.
-                  </p>
-
-                  <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <button
-                      @click="checkVerificationStatus"
-                      :disabled="checkingVerification"
-                      class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-primary text-white font-semibold shadow-lg shadow-primary/30 hover:bg-primary-600 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:hover:translate-y-0"
-                    >
-                      <span class="flex items-center justify-center gap-2">
-                        <svg v-if="checkingVerification" class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                        {{ checkingVerification ? 'Checking...' : "I've verified my email" }}
-                      </span>
-                    </button>
-                    <button
-                      @click="resendVerification"
-                      :disabled="resendingVerification"
-                      class="w-full sm:w-auto px-6 py-3.5 rounded-xl border border-gray-200 dark:border-border text-gray-700 dark:text-text-primary font-semibold hover:bg-gray-50 dark:hover:bg-surface-2 transition-colors disabled:opacity-50"
-                    >
-                      {{ resendingVerification ? 'Sending...' : 'Resend link' }}
-                    </button>
-                  </div>
-
-                  <p v-if="verificationPollActive" class="mt-8 text-sm text-gray-400 font-medium flex items-center justify-center gap-2">
-                    <span class="relative flex h-2.5 w-2.5">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
-                    </span>
-                    Waiting for verification...
-                  </p>
-                </div>
-              </template>
-
-              <!-- Step 1: Work Type -->
-              <template v-else-if="onboardingStep === 1">
-                <div class="text-center max-w-2xl mx-auto mb-10">
-                  <h3 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">What's your primary AI workflow?</h3>
-                  <p class="mt-3 text-lg text-gray-500 dark:text-text-secondary">
-                    Select the type of context you capture most often. This helps us tailor your default editor view.
-                  </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-                  <button
-                    v-for="option in aiWorkTypes"
-                    :key="option.id"
-                    @click="selectType(option.id)"
-                    class="group relative p-6 rounded-2xl border-2 text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1 overflow-hidden"
-                    :class="[
-                      selectedType === option.id
-                        ? 'border-primary bg-primary/5 shadow-lg shadow-primary/10 dark:bg-primary/10'
-                        : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-surface hover:border-primary/40'
-                    ]"
-                  >
-                    <!-- Selection Indicator -->
-                    <div class="absolute top-6 right-6">
-                      <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors"
-                        :class="selectedType === option.id ? 'border-primary bg-primary' : 'border-gray-300 dark:border-gray-600'">
-                        <svg class="w-3.5 h-3.5 text-white opacity-0 transition-opacity" :class="{'opacity-100': selectedType === option.id}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                    </div>
-
-                    <div class="flex items-start gap-5">
-                      <div class="w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center transition-colors"
-                        :class="selectedType === option.id ? 'bg-primary text-white shadow-inner' : 'bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 group-hover:text-primary'">
-                        <svg v-if="option.id === 'conversation'" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 10h8M8 14h5M5 5h14a2 2 0 012 2v8a2 2 0 01-2 2H9l-4 4v-4H5a2 2 0 01-2-2V7a2 2 0 012-2z" />
-                        </svg>
-                        <svg v-else-if="option.id === 'prompt'" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18l8-8m0 0l2-2a2.828 2.828 0 114 4l-2 2m-4-4l4 4M5 20h4l9-9" />
-                        </svg>
-                        <svg v-else-if="option.id === 'webpage'" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 6h18M8 3v3m8-3v3M5 6h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 11h4m-4 4h7" />
-                        </svg>
-                        <svg v-else class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 3h10a2 2 0 012 2v16l-7-4-7 4V5a2 2 0 012-2z" />
-                        </svg>
-                      </div>
-                      <div class="pr-8">
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{{ option.label }}</h4>
-                        <p class="text-sm text-gray-500 dark:text-text-secondary leading-relaxed">{{ option.description }}</p>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              </template>
-
-              <!-- Step 2: Extension -->
-              <template v-else-if="onboardingStep === 2">
-                <div class="text-center max-w-2xl mx-auto mb-10">
-                  <h3 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Install the Browser Extension</h3>
-                  <p class="mt-3 text-lg text-gray-500 dark:text-text-secondary">
-                    The extension is the core of the Memwyre experience, enabling one-click capture from ChatGPT, Claude, and any webpage.
-                  </p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-                  <button
-                    v-for="choice in extensionOptions"
-                    :key="choice.id"
-                    @click="handleExtensionChoice(choice)"
-                    class="group relative p-8 rounded-[2rem] border-2 border-gray-100 dark:border-gray-800 bg-white dark:bg-surface hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center text-center overflow-hidden"
-                  >
-                    <!-- Background Glow -->
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-800/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-
-                    <div class="w-24 h-24 mb-6 relative z-10">
-                      <div class="absolute inset-0 bg-gray-100 dark:bg-gray-800 rounded-3xl rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
-                      <div class="absolute inset-0 bg-white dark:bg-surface border border-gray-200 dark:border-gray-700 rounded-3xl -rotate-3 group-hover:-rotate-6 transition-transform duration-300 flex items-center justify-center shadow-lg">
-                        <img :src="choice.logo" :alt="choice.label" class="w-12 h-12 object-contain drop-shadow-sm" />
-                      </div>
-                    </div>
-                    
-                    <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-2 relative z-10">{{ choice.label }}</h4>
-                    <p class="text-gray-500 dark:text-text-secondary relative z-10">{{ choice.description }}</p>
-                  </button>
-                </div>
-              </template>
-
-              <!-- Step 3: First Action -->
-              <template v-else>
-                <div class="text-center max-w-2xl mx-auto mb-8">
-                  <h3 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Create your first {{ selectedTypeLabel.toLowerCase() }}</h3>
-                  <p class="mt-3 text-lg text-gray-500 dark:text-text-secondary">
-                    You're almost done. Click the button below to add your first piece of context to the vault.
-                  </p>
-                </div>
-
-                <div class="max-w-2xl mx-auto">
-                  <div class="bg-gray-50 dark:bg-surface-2 rounded-3xl p-8 border border-gray-100 dark:border-border relative overflow-hidden">
-                    <!-- Status Ring -->
-                    <div class="absolute top-0 right-0 p-8 hidden sm:block">
-                      <div class="w-16 h-16 rounded-full flex items-center justify-center border-4 transition-colors duration-500"
-                        :class="firstActionDone ? 'border-green-500 bg-green-50 text-green-600 dark:bg-green-900/30' : 'border-gray-200 dark:border-gray-700 text-gray-400 bg-white dark:bg-surface'">
-                        <svg v-if="firstActionDone" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <svg v-else class="w-8 h-8 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                        </svg>
-                      </div>
-                    </div>
-
-                    <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Workflow Selected: {{ selectedTypeLabel }}</h4>
-                    <p class="text-gray-600 dark:text-text-secondary max-w-md mb-8">{{ selectedTypeHint }}</p>
-
-                    <div v-if="firstActionDone" class="bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 px-5 py-4 rounded-xl border border-green-200 dark:border-green-800/50 flex items-center gap-3 font-medium">
-                      <svg class="w-6 h-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      First action successfully recorded! You're ready to proceed.
-                    </div>
-                    <div v-else>
-                      <button @click="startFirstAction" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold shadow-lg hover:scale-[1.02] transition-transform">
-                        <span>Capture your first {{ selectedTypeLabel.toLowerCase() }}</span>
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                      </button>
-                    </div>
-
-                    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-border">
-                      <p class="text-sm font-semibold text-gray-900 dark:text-white mb-2">Want to learn the ropes?</p>
-                      <button
-                        @click="startTour"
-                        class="text-primary font-medium hover:text-primary-600 flex items-center gap-1 transition-colors"
-                      >
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        {{ hasCompletedTour ? 'Restart interactive tour' : 'Start interactive tour' }}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </div>
-
-            <!-- Footer / Actions -->
-            <div class="px-8 sm:px-10 py-5 border-t border-gray-100 dark:border-border bg-gray-50/50 dark:bg-surface-2/30 flex items-center justify-between shrink-0">
-              <button
-                v-if="isVerified && onboardingStep > 1"
-                @click="previousStep"
-                class="px-6 py-2.5 rounded-xl text-gray-600 dark:text-text-secondary font-semibold hover:bg-gray-200 dark:hover:bg-surface-2 transition-colors"
-              >
-                Back
-              </button>
-              <div v-else></div>
-
-              <button
-                v-if="isVerified"
-                @click="handlePrimaryAction"
-                :disabled="!canRunPrimaryAction"
-                class="flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:bg-primary-600 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:hover:translate-y-0 disabled:shadow-none"
-              >
-                {{ primaryActionLabel }}
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </transition>
-    </Teleport>
+    <OnboardingOverlay v-if="showOnboardingModal" />
   </div>
 </template>
 
@@ -381,6 +120,7 @@ import QuickActions from '../components/QuickActions.vue';
 import DashboardInboxList from '../components/DashboardInboxList.vue';
 import DailyReviewModal from '../components/DailyReviewModal.vue';
 import AIInteractionTimeline from '../components/AIInteractionTimeline.vue';
+import OnboardingOverlay from '../components/OnboardingOverlay.vue';
 import { createTour } from '../tour';
 import { useInboxStore } from '../stores/inbox';
 import { useAuthStore } from '../stores/auth';
@@ -429,23 +169,23 @@ const slides = [
     desc: 'Capture convention changes, codebase decisions, and context directly from your workspace.',
     items: [
       { id: 'cursor', name: 'Cursor', desc: 'One-click MCP install in Cursor', icon: 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg', darkInvert: true },
-      { id: 'vscode', name: 'VS Code', desc: 'Native MCP support for VS Code', icon: '/src/assets/vscode.svg' }
+      { id: 'vscode', name: 'VS Code', desc: 'Native MCP support for VS Code', icon: vscodeIcon }
     ]
   },
   {
     title: 'CLI & Agents',
     desc: 'Integrate persistent context into autonomous developers and terminal runtimes.',
     items: [
-      { id: 'claude-code', name: 'Claude Code', desc: 'Convention-aware context retrieval for Claude Code', icon: '/src/assets/claudecode-color.svg' },
-      { id: 'openclaw', name: 'OpenClaw', desc: 'Agent memory backplane for OpenClaw session loops', icon: '/src/assets/openclaw-color.svg' }
+      { id: 'claude-code', name: 'Claude Code', desc: 'Convention-aware context retrieval for Claude Code', icon: claudeCodeIcon },
+      { id: 'openclaw', name: 'OpenClaw', desc: 'Agent memory backplane for OpenClaw session loops', icon: openclawIcon }
     ]
   },
   {
     title: 'Knowledge Bases',
     desc: 'Sync collaborative documentation and pages to your memory index.',
     items: [
-      { id: 'notion', name: 'Notion Workspace', desc: 'Sync docs, databases, and page indexes', icon: '/src/assets/notion-svgrepo-com.svg', darkInvert: true },
-      { id: 'gdrive', name: 'Google Drive', desc: 'Index your Docs, Sheets, and Slides', icon: '/src/assets/google-drive.svg' }
+      { id: 'notion', name: 'Notion Workspace', desc: 'Sync docs, databases, and page indexes', icon: notionIcon, darkInvert: true },
+      { id: 'gdrive', name: 'Google Drive', desc: 'Index your Docs, Sheets, and Slides', icon: gdriveIcon }
     ]
   }
 ];
@@ -504,7 +244,7 @@ const extensionOptions = [
 ];
 
 const focusToday = computed(() => route.query.view === 'today');
-const showOnboardingModal = computed(() => authStore.isAuthenticated && !authStore.hasCompletedOnboarding);
+const showOnboardingModal = computed(() => authStore.isAuthenticated && (!authStore.hasCompletedOnboarding || route.query.onboarding === 'true'));
 
 const selectedTypeLabel = computed(
   () => aiWorkTypes.find((item) => item.id === selectedType.value)?.label || 'AI work',
