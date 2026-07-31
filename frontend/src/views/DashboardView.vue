@@ -128,6 +128,11 @@ import { useProjectStore } from '../stores/project';
 import api from '../services/api';
 import chromeLogo from '../assets/chrome-logo-svgrepo-com.svg';
 import edgeLogo from '../assets/microsoft-edge-logo.svg';
+import vscodeIcon from '../assets/vscode.svg';
+import claudeCodeIcon from '../assets/claudecode-color.svg';
+import openclawIcon from '../assets/openclaw-color.svg';
+import notionIcon from '../assets/notion-svgrepo-com.svg';
+import gdriveIcon from '../assets/google-drive.svg';
 import {
   migrateOnboardingLegacyState,
   readScopedBoolean,
