@@ -2,7 +2,7 @@
     "id": "openclaw-plugin",
     "name": "Memwyre",
     "description": "Persistent memory and context retrieval for OpenClaw, powered by Memwyre.",
-    "version": "2.0.5",
+    "version": "2.0.16",
     "configSchema": {
         "type": "object",
         "properties": {
@@ -13,7 +13,7 @@
             "hostUrl": {
                 "type": "string",
                 "description": "Memwyre server URL",
-                "default": "https://server.memwyre.tech"
+                "default": "https://api.memwyre.tech"
             }
         },
         "required": [
@@ -29,7 +29,7 @@
         },
         "hostUrl": {
             "label": "Server URL",
-            "placeholder": "https://server.memwyre.tech"
+            "placeholder": "https://api.memwyre.tech"
         }
     }
 }

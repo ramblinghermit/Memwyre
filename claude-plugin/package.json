@@ -1,5 +1,5 @@
 {
-  "name": "claude-memwyre",
+  "name": "@memwyre/claude-code-plugin",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

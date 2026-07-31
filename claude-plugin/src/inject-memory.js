@@ -1,21 +1,25 @@
 const axios = require('axios');
-const fs = require('fs');
 
 async function readStdin() {
   return new Promise((resolve) => {
     let data = '';
+    let resolved = false;
+    const fallback = setTimeout(() => {
+      if (!resolved) { resolved = true; resolve({}); }
+    }, 1000);
     process.stdin.on('data', (chunk) => {
       data += chunk;
     });
     process.stdin.on('end', () => {
+      clearTimeout(fallback);
+      if (resolved) return;
+      resolved = true;
       try {
         resolve(JSON.parse(data));
       } catch (e) {
         resolve({});
       }
     });
-    // Fallback if stdin is empty or closed
-    setTimeout(() => resolve({}), 1000);
   });
 }
 
@@ -42,7 +46,7 @@ async function main() {
     }
 
     // Call the FastAPI backend to fetch project context
-    const apiUrl = process.env.MEMWYRE_API_URL || 'http://127.0.0.1:8000';
+    const apiUrl = process.env.MEMWYRE_API_URL || 'https://api.memwyre.tech';
     
     let contextText = '';
     try {
