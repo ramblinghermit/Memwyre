@@ -49,34 +49,40 @@
                                <svg v-else class="w-6 h-6 text-gray-500 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                            </div>
                            
-                           <!-- Title & PRO badge -->
-                           <div class="flex items-center gap-2 mb-2">
-                               <h3 class="font-semibold text-gray-900 dark:text-gray-100 text-sm">{{ item.name }}</h3>
-                               <span v-if="item.isPro" class="px-1.5 py-0.5 text-[10px] uppercase font-bold tracking-wider rounded border border-[#0066FF] text-[#0066FF] dark:text-[#3388FF] dark:border-[#3388FF]">PRO</span>
-                           </div>
-                           
-                           <!-- Description -->
-                           <p class="text-xs text-gray-500 dark:text-gray-400 mb-6 flex-grow line-clamp-3 leading-relaxed">
-                               {{ item.desc }}
-                           </p>
-                           
-                            <!-- Action Button -->
-                            <div class="flex justify-end items-center gap-2 mt-auto">
-                                <button 
-                                  v-if="item.showDisconnect"
-                                  class="px-3 py-1.5 text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400 font-medium transition-colors"
-                                  @click.stop="handleDisconnectConnector(item)"
-                                >
-                                  Disconnect
-                                </button>
-                                <button 
-                                  class="px-4 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center shadow-sm"
-                                  :class="(item.btnText === 'Connect' || item.btnText === 'Sync Now') ? 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700' : 'bg-[#0F172A] dark:bg-black border border-transparent text-white hover:bg-gray-800 dark:hover:bg-gray-900'"
-                                  @click.stop="handleConnectClientClick(item)"
-                                >
-                                    <svg v-if="item.isLightning && item.btnText !== 'Sync Now'" class="w-3.5 h-3.5 mr-1 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" clip-rule="evenodd" /></svg>
-                                    {{ item.btnText }}
-                                </button>
+                            <!-- Title & PRO / COMING SOON badge -->
+                            <div class="flex items-center gap-2 mb-2">
+                                <h3 class="font-semibold text-gray-900 dark:text-gray-100 text-sm">{{ item.name }}</h3>
+                                <span v-if="item.isComingSoon" class="px-1.5 py-0.5 text-[10px] uppercase font-bold tracking-wider rounded border border-amber-500/40 text-amber-600 dark:text-amber-400 bg-amber-500/10">COMING SOON</span>
+                                <span v-else-if="item.isPro" class="px-1.5 py-0.5 text-[10px] uppercase font-bold tracking-wider rounded border border-[#0066FF] text-[#0066FF] dark:text-[#3388FF] dark:border-[#3388FF]">PRO</span>
+                            </div>
+                            
+                            <!-- Description -->
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-6 flex-grow line-clamp-3 leading-relaxed">
+                                {{ item.desc }}
+                            </p>
+                            
+                             <!-- Action Button -->
+                             <div class="flex justify-end items-center gap-2 mt-auto">
+                                 <button 
+                                   v-if="item.showDisconnect"
+                                   class="px-3 py-1.5 text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400 font-medium transition-colors"
+                                   @click.stop="handleDisconnectConnector(item)"
+                                 >
+                                   Disconnect
+                                 </button>
+                                 <button 
+                                   class="px-4 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center shadow-sm"
+                                   :class="[
+                                     item.isComingSoon ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border border-gray-200 dark:border-gray-700 cursor-not-allowed opacity-75' :
+                                     (item.btnText === 'Connect' || item.btnText === 'Sync Now') ? 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700' : 
+                                     'bg-[#0F172A] dark:bg-black border border-transparent text-white hover:bg-gray-800 dark:hover:bg-gray-900'
+                                   ]"
+                                   :disabled="item.isComingSoon"
+                                   @click.stop="handleConnectClientClick(item)"
+                                 >
+                                     <svg v-if="item.isLightning && item.btnText !== 'Sync Now' && !item.isComingSoon" class="w-3.5 h-3.5 mr-1 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" clip-rule="evenodd" /></svg>
+                                     {{ item.btnText }}
+                                 </button>
                             </div>
                        </div>
                    </div>
@@ -260,8 +266,8 @@ const integrationCategories = ref([
   {
     name: 'Knowledge bases',
     items: [
-      { id: 'gdrive', name: 'Google Drive', isPro: true, desc: 'Sync Docs, Sheets and Slides into your memory', btnText: 'Upgrade', isLightning: true, docsLink: 'https://docs.memwyre.tech/integrations/connectors', bgColor: 'bg-gray-100 dark:bg-white/10', icon: gdriveIcon },
-      { id: 'notion', name: 'Notion', isPro: true, desc: 'Import Notion pages and databases', btnText: 'Upgrade', isLightning: true, docsLink: 'https://docs.memwyre.tech/integrations/connectors', bgColor: 'bg-white dark:bg-black', icon: 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/notion.svg', darkInvert: true }
+      { id: 'gdrive', name: 'Google Drive', isComingSoon: true, desc: 'Sync Docs, Sheets and Slides into your memory index', btnText: 'Coming Soon', docsLink: 'https://docs.memwyre.tech/integrations/connectors', bgColor: 'bg-gray-100 dark:bg-white/10', icon: gdriveIcon },
+      { id: 'notion', name: 'Notion', isComingSoon: true, desc: 'Import Notion pages, databases, and workspace docs', btnText: 'Coming Soon', docsLink: 'https://docs.memwyre.tech/integrations/connectors', bgColor: 'bg-white dark:bg-black', icon: 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/notion.svg', darkInvert: true }
     ]
   }
 ]);
@@ -370,6 +376,7 @@ const handleNotionConnect = () => {
 };
 
 const handleConnectClientClick = async (item) => {
+    if (item.isComingSoon) return;
     if (item.id === 'notion') {
         const status = connectionsStatus.value.notion;
         if (status && status.connected) {
