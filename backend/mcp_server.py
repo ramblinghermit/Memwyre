@@ -73,7 +73,7 @@ mcp = FastMCP(
     "Memwyre",
     stateless_http=True,
     transport_security=TransportSecuritySettings(
-        allowed_hosts=["server.memwyre.tech", "localhost", "127.0.0.1"],
+        allowed_hosts=["api.memwyre.tech", "server.memwyre.tech", "localhost", "127.0.0.1"],
     ),
 )
 

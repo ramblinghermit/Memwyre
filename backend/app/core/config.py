@@ -113,6 +113,7 @@ class Settings(BaseSettings):
     
     # Dual Index Support
     PINECONE_SPARSE_HOST: Optional[str] = None
+    PINECONE_RERANK_MODEL: str = "bge-reranker-v2-m3"
 
     # Memory Engine Feature Flag
     MEMORY_ENGINE_VERSION: str = "v1"
