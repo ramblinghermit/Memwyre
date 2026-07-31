@@ -10,7 +10,7 @@
     "contextMenus"
   ],
   "host_permissions": [
-    "https://server.memwyre.tech/*",
+    "https://api.memwyre.tech/*",
     "https://memwyre.tech/*"
   ],
   "background": {
@@ -48,7 +48,7 @@
     },
     {
       "matches": [
-        "https://server.memwyre.tech/*",
+        "https://api.memwyre.tech/*",
         "https://memwyre.tech/*"
       ],
       "js": [
@@ -60,7 +60,7 @@
   ],
   "externally_connectable": {
     "matches": [
-      "https://server.memwyre.tech/*",
+      "https://api.memwyre.tech/*",
       "https://memwyre.tech/*"
     ]
   },

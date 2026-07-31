@@ -5,7 +5,7 @@ const ENV = 'prod';
 
 const CONFIG = {
     prod: {
-        API_BASE_URL: 'https://server.memwyre.tech/api/v1',
+        API_BASE_URL: 'https://api.memwyre.tech/api/v1',
         WEB_APP_URL: 'https://memwyre.tech'
     }
 };

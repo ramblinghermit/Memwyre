@@ -8,7 +8,7 @@ import open from 'open';
 import express from 'express';
 import toml from '@iarna/toml';
 
-const MEMWYRE_MCP_URL_NATIVE = 'https://server.memwyre.tech/mcp';
+const MEMWYRE_MCP_URL_NATIVE = 'https://api.memwyre.tech/mcp';
 
 // Helper to determine paths
 const getAppData = () => process.env.APPDATA || (process.platform === 'darwin' ? path.join(os.homedir(), 'Library', 'Application Support') : path.join(os.homedir(), '.config'));
@@ -74,6 +74,65 @@ const IDE_CONFIGS = {
       command: 'npx',
       args: ['-y', 'mcp-remote', MEMWYRE_MCP_URL_NATIVE, '--header', `Authorization:Bearer ${token}`]
     })
+  },
+  'openclaw': {
+    name: 'OpenClaw',
+    clientName: 'OpenClaw',
+    customUpdate: async (token) => {
+      const configPath = path.join(os.homedir(), '.openclaw', 'openclaw.json');
+      let config = { plugins: { entries: {} } };
+      if (fs.existsSync(configPath)) {
+        try {
+          config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        } catch (e) {
+          p.log.warn(`Could not parse ${configPath}, creating new config.`);
+        }
+      } else {
+        const dir = path.dirname(configPath);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      }
+      if (!config.plugins) config.plugins = {};
+      if (!config.plugins.entries) config.plugins.entries = {};
+      
+      const hostUrl = process.env.MEMWYRE_HOST_URL || 'http://127.0.0.1:8000';
+      config.plugins.entries['@memwyre/openclaw-plugin'] = {
+        enabled: true,
+        config: {
+          apiKey: token,
+          hostUrl: hostUrl
+        }
+      };
+      fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
+      p.log.success(`Successfully configured ${pc.cyan('OpenClaw')} at ${configPath}`);
+    }
+  },
+  'opencode': {
+    name: 'OpenCode',
+    clientName: 'OpenCode',
+    customUpdate: async (token) => {
+      const configPath = path.join(os.homedir(), '.opencode', 'opencode.json');
+      let config = { plugins: {} };
+      if (fs.existsSync(configPath)) {
+        try {
+          config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        } catch (e) {
+          p.log.warn(`Could not parse ${configPath}, creating new config.`);
+        }
+      } else {
+        const dir = path.dirname(configPath);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      }
+      if (!config.plugins) config.plugins = {};
+      
+      const hostUrl = process.env.MEMWYRE_HOST_URL || 'http://127.0.0.1:8000';
+      config.plugins['@memwyre/opencode-plugin'] = {
+        enabled: true,
+        apiKey: token,
+        hostUrl: hostUrl
+      };
+      fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
+      p.log.success(`Successfully configured ${pc.cyan('OpenCode')} at ${configPath}`);
+    }
   }
 };
 
@@ -110,7 +169,13 @@ async function authenticate(clientName) {
 
 async function updateMcpConfig(ideKey, token) {
   const ide = IDE_CONFIGS[ideKey];
-  
+
+  if (ide.customUpdate) {
+    p.log.info(`Configuring ${ide.name}...`);
+    await ide.customUpdate(token);
+    return;
+  }
+
   if (ide.execute) {
     p.log.info(`Executing CLI installation for ${ide.name}...`);
     try {
@@ -162,43 +227,49 @@ async function updateMcpConfig(ideKey, token) {
 }
 
 async function main() {
-  p.intro(pc.bgCyan(pc.black(' Memwyre MCP Installer ')));
+  p.intro(pc.bgCyan(pc.black(' Memwyre Auto Installer ')));
 
   const args = process.argv.slice(2);
   let selectedIde = null;
+  let suppliedToken = process.env.MEMWYRE_API_KEY || null;
 
-  // Simple argument parsing, e.g., --cursor, --claude, --vscode, --codex
+  // Simple argument parsing
   const argMap = {
     '--cursor': 'cursor',
     '--claude': 'claude',
     '--vscode': 'vscode',
     '--codex': 'codex',
     '--claudecode': 'claudecode',
-    '--antigravity': 'antigravity'
+    '--antigravity': 'antigravity',
+    '--openclaw': 'openclaw',
+    '--opencode': 'opencode'
   };
 
   for (const arg of args) {
     if (argMap[arg.toLowerCase()]) {
       selectedIde = argMap[arg.toLowerCase()];
-      break;
     } else if (arg.startsWith('--client=')) {
       selectedIde = arg.split('=')[1].toLowerCase();
-      break;
+    } else if (arg.startsWith('--token=')) {
+      suppliedToken = arg.split('=')[1];
+    } else if (arg.startsWith('--api-key=')) {
+      suppliedToken = arg.split('=')[1];
     } else if (arg === '-codex') {
       selectedIde = 'codex';
-      break;
     }
   }
 
   if (!selectedIde || !IDE_CONFIGS[selectedIde]) {
     selectedIde = await p.select({
-      message: 'Which IDE would you like to configure?',
+      message: 'Which agent / IDE would you like to configure?',
       options: [
-        { value: 'cursor', label: 'Cursor', hint: 'recommended' },
-        { value: 'claude', label: 'Claude Desktop' },
-        { value: 'vscode', label: 'VS Code' },
+        { value: 'openclaw', label: 'OpenClaw', hint: 'AI Agent' },
+        { value: 'opencode', label: 'OpenCode', hint: 'AI Agent' },
+        { value: 'claudecode', label: 'Claude Code', hint: 'AI Agent' },
+        { value: 'cursor', label: 'Cursor', hint: 'IDE' },
+        { value: 'vscode', label: 'VS Code', hint: 'IDE' },
+        { value: 'claude', label: 'Claude Desktop', hint: 'Desktop App' },
         { value: 'codex', label: 'Codex' },
-        { value: 'claudecode', label: 'Claude Code' },
         { value: 'antigravity', label: 'Antigravity' }
       ],
     });
@@ -208,20 +279,25 @@ async function main() {
       process.exit(0);
     }
   } else {
-    p.log.step(`Auto-selected IDE: ${IDE_CONFIGS[selectedIde].name}`);
+    p.log.step(`Auto-selected IDE/Agent: ${IDE_CONFIGS[selectedIde].name}`);
   }
 
   const s = p.spinner();
   const ideInfo = IDE_CONFIGS[selectedIde];
 
   try {
-    s.start(`Waiting for authentication for ${ideInfo.name}...`);
-    const token = await authenticate(ideInfo.clientName);
-    s.stop(`Authenticated successfully!`);
+    let token = suppliedToken;
+    if (!token) {
+      s.start(`Waiting for authentication for ${ideInfo.name}...`);
+      token = await authenticate(ideInfo.clientName);
+      s.stop(`Authenticated successfully!`);
+    } else {
+      p.log.info(`Using provided API token.`);
+    }
 
     await updateMcpConfig(selectedIde, token);
     
-    p.outro(pc.green('Memwyre is now connected! Please restart your IDE.'));
+    p.outro(pc.green('Memwyre is now connected! Please restart your agent / IDE.'));
     process.exit(0);
   } catch (err) {
     s.stop(`Installation failed.`);
