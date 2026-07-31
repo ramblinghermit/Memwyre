@@ -1,4 +1,4 @@
 from mcp_server import mcp
 
-# Create the ASGI app for the dedicated MCP server
+# Export the FastMCP Streamable HTTP ASGI app for Gunicorn / Uvicorn
 app = mcp.streamable_http_app()

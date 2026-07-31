@@ -863,5 +863,9 @@ async def get_all_tags(ctx: Context, workspace_name: Optional[str] = None) -> st
         except Exception as e:
             return f"Error getting tags: {str(e)}"
 
+# Export ASGI app instance for Gunicorn / Uvicorn server deployments
+app = mcp.streamable_http_app()
+
 if __name__ == "__main__":
     mcp.run()
+
