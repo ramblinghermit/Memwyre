@@ -58,7 +58,7 @@ async def mcp_server_card():
         },
         "transport": {
             "type": "streamable-http",
-            "url": "https://server.memwyre.tech/mcp/",
+            "url": f"{settings.BACKEND_URL}/mcp/",
         },
         "authentication": {
             "type": "bearer",
@@ -96,10 +96,10 @@ async def oauth_authorization_server():
     Describes Memwyre's auth endpoints so agents know how to authenticate.
     """
     return JSONResponse(content={
-        "issuer": "https://server.memwyre.tech",
-        "authorization_endpoint": f"https://server.memwyre.tech{settings.API_V1_STR}/auth/oauth/google/login",
-        "token_endpoint": f"https://server.memwyre.tech{settings.API_V1_STR}/auth/login",
-        "registration_endpoint": f"https://server.memwyre.tech{settings.API_V1_STR}/auth/register",
+        "issuer": f"{settings.BACKEND_URL}",
+        "authorization_endpoint": f"{settings.BACKEND_URL}{settings.API_V1_STR}/auth/oauth/google/login",
+        "token_endpoint": f"{settings.BACKEND_URL}{settings.API_V1_STR}/auth/login",
+        "registration_endpoint": f"{settings.BACKEND_URL}{settings.API_V1_STR}/auth/register",
         "scopes_supported": ["mcp:read", "mcp:write"],
         "response_types_supported": ["code"],
         "grant_types_supported": ["authorization_code", "password"],
@@ -126,10 +126,10 @@ async def openid_configuration():
     understand the auth flow.
     """
     return JSONResponse(content={
-        "issuer": "https://server.memwyre.tech",
-        "authorization_endpoint": f"https://server.memwyre.tech{settings.API_V1_STR}/auth/oauth/google/login",
-        "token_endpoint": f"https://server.memwyre.tech{settings.API_V1_STR}/auth/login",
-        "userinfo_endpoint": f"https://server.memwyre.tech{settings.API_V1_STR}/auth/verify",
+        "issuer": f"{settings.BACKEND_URL}",
+        "authorization_endpoint": f"{settings.BACKEND_URL}{settings.API_V1_STR}/auth/oauth/google/login",
+        "token_endpoint": f"{settings.BACKEND_URL}{settings.API_V1_STR}/auth/login",
+        "userinfo_endpoint": f"{settings.BACKEND_URL}{settings.API_V1_STR}/auth/verify",
         "scopes_supported": ["openid", "email", "profile"],
         "response_types_supported": ["code"],
         "grant_types_supported": ["authorization_code", "password"],
@@ -146,8 +146,8 @@ async def oauth_protected_resource():
     Tells agents this resource requires auth and how to obtain tokens.
     """
     return JSONResponse(content={
-        "resource": "https://server.memwyre.tech",
-        "authorization_servers": ["https://server.memwyre.tech"],
+        "resource": f"{settings.BACKEND_URL}",
+        "authorization_servers": [f"{settings.BACKEND_URL}"],
         "scopes_supported": ["mcp:read", "mcp:write"],
         "bearer_methods_supported": ["header"],
         "resource_documentation": "https://memwyre.tech",
@@ -170,25 +170,25 @@ async def agent_skills_index():
                 "name": "semantic-search",
                 "type": "mcp-tool",
                 "description": "Search across saved memories and documents using natural language queries.",
-                "url": "https://server.memwyre.tech/mcp/",
+                "url": f"{settings.BACKEND_URL}/mcp/",
             },
             {
                 "name": "memory-management",
                 "type": "mcp-tool",
                 "description": "Save, update, delete, and list personal knowledge memories.",
-                "url": "https://server.memwyre.tech/mcp/",
+                "url": f"{settings.BACKEND_URL}/mcp/",
             },
             {
                 "name": "document-retrieval",
                 "type": "mcp-tool",
                 "description": "Retrieve full content of uploaded documents (PDF, text, web pages).",
-                "url": "https://server.memwyre.tech/mcp/",
+                "url": f"{settings.BACKEND_URL}/mcp/",
             },
             {
                 "name": "context-generation",
                 "type": "mcp-tool",
                 "description": "Generate prompts enriched with personal knowledge context.",
-                "url": "https://server.memwyre.tech/mcp/",
+                "url": f"{settings.BACKEND_URL}/mcp/",
             },
         ],
     })

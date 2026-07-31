@@ -1,0 +1,5 @@
+model_list:
+  - model_name: "moonshotai.kimi-k2.5"
+    litellm_params:
+      model: "bedrock/moonshotai.kimi-k2.5"
+      aws_region_name: "us-east-1"

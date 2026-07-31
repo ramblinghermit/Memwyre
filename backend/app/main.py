@@ -74,6 +74,17 @@ else:
         expose_headers=["X-Requires-Subscription"],
     )
 
+# Security Headers Middleware (Clickjacking Protection)
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Content-Security-Policy"] = "frame-ancestors 'none';"
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    return response
+
 # Rate Limiter
 from app.core.rate_limiter import init_rate_limiter
 init_rate_limiter(app)
@@ -121,7 +132,7 @@ async def root(request: Request):
             "# Memwyre API\n\n"
             "Personal Knowledge Base & Memory Layer for AI Agents.\n\n"
             "## MCP Server\n\n"
-            "Connect via Streamable HTTP at `https://server.memwyre.tech/mcp/`\n\n"
+            f"Connect via Streamable HTTP at `{settings.BACKEND_URL}/mcp/`\n\n"
             "See [/.well-known/mcp.json](/.well-known/mcp.json) for full capabilities.\n\n"
             "## API Documentation\n\n"
             f"OpenAPI spec: [{settings.API_V1_STR}/openapi.json]({settings.API_V1_STR}/openapi.json)\n"

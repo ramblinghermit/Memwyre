@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from sqlalchemy.orm import selectinload
 from app.models.document import Chunk
 from app.services.vector_store_v2 import vector_store_v2 as vector_store
+from app.core.config import settings
 
 class RetrievalService:
     async def search_memories(
@@ -79,17 +80,29 @@ class RetrievalService:
                 
                 # Attempt 1: Pinecone Inference Rerank API
                 if hasattr(vector_store, "pc") and vector_store.pc:
-                    try:
-                        res = vector_store.pc.inference.rerank(
-                            model="bge-reranker-large",
-                            query=query,
-                            documents=documents,
-                            top_n=len(results)
-                        )
-                        if hasattr(res, "data") and res.data:
-                            reranked_data = [(item.index, item.score) for item in res.data]
-                    except Exception as pc_e:
-                        print(f"RetrievalV2: Pinecone Rerank API info/fallback: {pc_e}")
+                    candidate_models = [
+                        getattr(settings, "PINECONE_RERANK_MODEL", "bge-reranker-v2-m3"),
+                        "bge-reranker-v2-m3",
+                        "pinecone-rerank-v0",
+                        "cohere-rerank-v3.5"
+                    ]
+                    # Deduplicate preserving order
+                    seen = set()
+                    models_to_try = [m for m in candidate_models if not (m in seen or seen.add(m))]
+
+                    for pc_model in models_to_try:
+                        try:
+                            res = vector_store.pc.inference.rerank(
+                                model=pc_model,
+                                query=query,
+                                documents=documents,
+                                top_n=len(results)
+                            )
+                            if hasattr(res, "data") and res.data:
+                                reranked_data = [(item.index, item.score) for item in res.data]
+                                break
+                        except Exception as pc_e:
+                            print(f"RetrievalV2: Pinecone Rerank API model '{pc_model}' failed/fallback: {pc_e}")
 
                 # Attempt 2: NVIDIA NIM Rerank API
                 if not reranked_data:
