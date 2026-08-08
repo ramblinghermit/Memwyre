@@ -110,7 +110,7 @@ async def oauth_authorization_server():
         "x_api_key_info": {
             "description": (
                 "For programmatic / MCP access, generate a persistent API key "
-                "from your dashboard at https://memwyre.tech/dashboard/settings. "
+                "from your dashboard at https://app.memwyre.tech/settings. "
                 "API keys use the prefix 'bv_sk_' and support Bearer auth."
             ),
             "prefix": "bv_sk_",

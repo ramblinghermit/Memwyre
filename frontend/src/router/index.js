@@ -263,6 +263,18 @@ export function createAppRouter({ ssr = false } = {}) {
                         name: 'mcp-memory',
                         component: () => import('../views/integrations/McpMemoryView.vue'),
                         meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/mcp-memory'] }
+                    },
+                    {
+                        path: 'openclaw-memory',
+                        name: 'openclaw-memory',
+                        component: () => import('../views/integrations/OpenClawMemoryView.vue'),
+                        meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/openclaw-memory'] }
+                    },
+                    {
+                        path: 'opencode-memory',
+                        name: 'opencode-memory',
+                        component: () => import('../views/integrations/OpenCodeMemoryView.vue'),
+                        meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/opencode-memory'] }
                     }
                 ]
             },
@@ -419,6 +431,50 @@ export function createAppRouter({ ssr = false } = {}) {
     });
 
     router.beforeEach((to, from, next) => {
+        if (typeof window !== 'undefined') {
+            const hostname = window.location.hostname;
+            const APP_HOST = 'app.memwyre.tech';
+            const MAIN_HOST = 'memwyre.tech';
+
+            const APP_ROUTES = [
+                '/login', '/signup', '/verify-email', '/forgot-password', '/reset-password',
+                '/dashboard', '/inbox', '/projects', '/settings', '/integrations',
+                '/editor', '/prompts', '/map', '/chat', '/billing', '/admin',
+                '/retrieval-visualizer', '/redeem', '/slides', '/export-slide', '/demo'
+            ];
+
+            const isAppPath = APP_ROUTES.some(path => 
+                to.path === path || 
+                to.path === path + '/' || 
+                to.path.startsWith(path + '/')
+            );
+
+            // 1. On main domain (memwyre.tech / www.memwyre.tech), ONLY redirect app routes
+            if (hostname === MAIN_HOST || hostname === `www.${MAIN_HOST}`) {
+                if (isAppPath) {
+                    window.location.href = `https://${APP_HOST}${to.fullPath}`;
+                    return;
+                }
+            }
+
+            // 2. On app domain (app.memwyre.tech)
+            if (hostname === APP_HOST) {
+                if (to.path === '/' || to.path === '') {
+                    const authStore = useAuthStore();
+                    if (authStore.isAuthenticated) {
+                        next('/dashboard');
+                    } else {
+                        next('/login');
+                    }
+                    return;
+                }
+                if (!isAppPath) {
+                    window.location.href = `https://${MAIN_HOST}${to.fullPath}`;
+                    return;
+                }
+            }
+        }
+
         const authStore = useAuthStore();
 
         // If accessing a protected route and not authenticated, redirect to login

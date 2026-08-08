@@ -56,16 +56,6 @@ const IDE_CONFIGS = {
       }
     })
   },
-  'claudecode': {
-    name: 'Claude Code',
-    clientName: 'Claude Code',
-    execute: async (token) => {
-      const { exec } = await import('child_process');
-      const util = await import('util');
-      const execAsync = util.promisify(exec);
-      await execAsync(`claude mcp add memwyre -- npx -y mcp-remote ${MEMWYRE_MCP_URL_NATIVE} --header "Authorization:Bearer ${token}"`);
-    }
-  },
   'antigravity': {
     name: 'Antigravity',
     clientName: 'Antigravity',
@@ -74,65 +64,6 @@ const IDE_CONFIGS = {
       command: 'npx',
       args: ['-y', 'mcp-remote', MEMWYRE_MCP_URL_NATIVE, '--header', `Authorization:Bearer ${token}`]
     })
-  },
-  'openclaw': {
-    name: 'OpenClaw',
-    clientName: 'OpenClaw',
-    customUpdate: async (token) => {
-      const configPath = path.join(os.homedir(), '.openclaw', 'openclaw.json');
-      let config = { plugins: { entries: {} } };
-      if (fs.existsSync(configPath)) {
-        try {
-          config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-        } catch (e) {
-          p.log.warn(`Could not parse ${configPath}, creating new config.`);
-        }
-      } else {
-        const dir = path.dirname(configPath);
-        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      }
-      if (!config.plugins) config.plugins = {};
-      if (!config.plugins.entries) config.plugins.entries = {};
-      
-      const hostUrl = process.env.MEMWYRE_HOST_URL || 'http://127.0.0.1:8000';
-      config.plugins.entries['@memwyre/openclaw-plugin'] = {
-        enabled: true,
-        config: {
-          apiKey: token,
-          hostUrl: hostUrl
-        }
-      };
-      fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
-      p.log.success(`Successfully configured ${pc.cyan('OpenClaw')} at ${configPath}`);
-    }
-  },
-  'opencode': {
-    name: 'OpenCode',
-    clientName: 'OpenCode',
-    customUpdate: async (token) => {
-      const configPath = path.join(os.homedir(), '.opencode', 'opencode.json');
-      let config = { plugins: {} };
-      if (fs.existsSync(configPath)) {
-        try {
-          config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-        } catch (e) {
-          p.log.warn(`Could not parse ${configPath}, creating new config.`);
-        }
-      } else {
-        const dir = path.dirname(configPath);
-        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      }
-      if (!config.plugins) config.plugins = {};
-      
-      const hostUrl = process.env.MEMWYRE_HOST_URL || 'http://127.0.0.1:8000';
-      config.plugins['@memwyre/opencode-plugin'] = {
-        enabled: true,
-        apiKey: token,
-        hostUrl: hostUrl
-      };
-      fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
-      p.log.success(`Successfully configured ${pc.cyan('OpenCode')} at ${configPath}`);
-    }
   }
 };
 
@@ -158,7 +89,7 @@ async function authenticate(clientName) {
       const port = server.address().port;
       const redirectUri = `http://localhost:${port}/callback`;
       // Use production URL or fallback to localhost for development
-      const frontendUrl = process.env.MEMWYRE_FRONTEND_URL || 'https://memwyre.tech';
+      const frontendUrl = process.env.MEMWYRE_FRONTEND_URL || 'https://app.memwyre.tech';
       const authUrl = `${frontendUrl}/login?cli_port=${port}&client=${encodeURIComponent(clientName)}`;
       
       p.log.info(`Opening your browser to authenticate with Memwyre...`);

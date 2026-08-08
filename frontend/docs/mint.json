@@ -14,7 +14,7 @@
   "topbarLinks": [
     {
       "name": "Dashboard",
-      "url": "https://memwyre.tech/dashboard/"
+      "url": "https://app.memwyre.tech/dashboard"
     },
     {
       "name": "Blog",
@@ -23,7 +23,7 @@
   ],
   "topbarCtaButton": {
     "name": "Get Started",
-    "url": "https://memwyre.tech/signup"
+    "url": "https://app.memwyre.tech/signup"
   },
   "navigation": [
     {

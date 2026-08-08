@@ -12,8 +12,8 @@
 
 <p align="center">
   <a href="https://memwyre.tech">Website</a> ·
-  <a href="https://memwyre.tech/docs/">Documentation</a> ·
-  <a href="https://memwyre.tech/login">Console / App</a> ·
+  <a href="https://docs.memwyre.tech/">Documentation</a> ·
+  <a href="https://app.memwyre.tech/login">Console / App</a> ·
   <a href="https://x.com/Memwyre">Twitter / X</a>
 </p>
 
@@ -92,7 +92,7 @@ Interface with the unified memory vault, custom vector searches, and profile-bas
 
 Memwyre provides multiple ways to ingest and retrieve information:
 
-*   **1. Web Application & Dashboard** ([Deployed on memwyre.tech](https://memwyre.tech/login)): The main web app written in Vue 3 (Vite + Tailwind CSS), incorporating an onboarding tour, Monaco Editor for document management, billing integration, and a visual retrieval simulator to debug and verify vector rankings.
+*   **1. Web Application & Dashboard** ([Deployed on app.memwyre.tech](https://app.memwyre.tech/login)): The main web app written in Vue 3 (Vite + Tailwind CSS), incorporating an onboarding tour, Monaco Editor for document management, billing integration, and a visual retrieval simulator to debug and verify vector rankings.
 *   **2. Chrome Extension (Manifest V3)** ([Available on Chrome Web Store](https://chromewebstore.google.com/detail/memwyre/biplnkodgfdgejgblohhjeckiclfpekn)): Auto-injects context into web chat clients, maps authentication tokens, and allows users to save articles, code snippets, or conversational logs directly to their vault with a single click.
 *   **3. Model Context Protocol (MCP) Server**: A Python server mapping memory tools (`search_memory`, `save_memory`, `get_document`) directly into IDEs like Cursor and VS Code, or desktop assistants like Claude Desktop.
 *   **4. CLI Tool**: A Node-based Command Line Interface (`cli/`) providing terminal-level interaction, query testing, and batch document uploads.

@@ -1,23 +1,23 @@
 // Background script for Brain Vault Extension
 
-// Default to production, but allow easy switch for local dev
 importScripts('config.js');
-const API_BASE_URL = CONFIG[ENV].API_BASE_URL;
 
 // --- Auth Helper ---
 
 async function fetchWithAuth(endpoint, options = {}) {
-    // 1. Get Tokens
-    const { token, refreshToken } = await chrome.storage.local.get(['token', 'refreshToken']);
+    // 1. Get Tokens and Selected Project
+    const { token, refreshToken, selectedProjectId } = await chrome.storage.local.get(['token', 'refreshToken', 'selectedProjectId']);
 
     if (!token) {
         throw new Error('Not authenticated. Please login via the side panel.');
     }
 
-    const url = `${API_BASE_URL}${endpoint}`;
+    const apiBaseUrl = await getApiBaseUrl();
+    const url = `${apiBaseUrl}${endpoint}`;
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
+        ...(selectedProjectId ? { 'X-Project-Id': String(selectedProjectId) } : {}),
         ...options.headers
     };
 
@@ -35,7 +35,7 @@ async function fetchWithAuth(endpoint, options = {}) {
 
         try {
             // Try explicit refresh
-            const refreshResp = await fetch(`${API_BASE_URL}/auth/refresh`, {
+            const refreshResp = await fetch(`${apiBaseUrl}/auth/refresh`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ refresh_token: refreshToken }) // Backend schema expected
@@ -82,22 +82,23 @@ async function fetchWithAuth(endpoint, options = {}) {
 
 async function logout() {
     await chrome.storage.local.remove(['token', 'refreshToken', 'user']);
-    // Optional: Notify sidepanel to show login screen
-    // runtime.sendMessage not reliable if popup closed, but storage listener handles UI
 }
 
 async function generatePrompt(data) {
+    const { selectedProjectId } = await chrome.storage.local.get('selectedProjectId');
     return await fetchWithAuth('/prompts/generate', {
         method: 'POST',
         body: JSON.stringify({
             query: data.query,
             template_id: data.templateId || 'standard',
-            context_size: 2000
+            context_size: 2000,
+            ...(selectedProjectId ? { project_id: selectedProjectId } : {})
         })
     });
 }
 
 async function saveMemory(data) {
+    const { selectedProjectId } = await chrome.storage.local.get('selectedProjectId');
     const userTags = Array.isArray(data.tags) ? data.tags : [];
     const allTags = [...new Set(['extension', ...userTags])];
 
@@ -108,18 +109,21 @@ async function saveMemory(data) {
             content: data.content,
             tags: allTags,
             source_llm: data.source || 'user',
-            interaction_type: data.interaction_type || 'conversation'
+            interaction_type: data.interaction_type || 'conversation',
+            ...(selectedProjectId ? { project_id: selectedProjectId } : {})
         })
     });
 }
 
 async function searchMemory(data) {
+    const { selectedProjectId } = await chrome.storage.local.get('selectedProjectId');
     return await fetchWithAuth('/retrieval/search', {
         method: 'POST',
         body: JSON.stringify({
             query: data.query,
             top_k: data.top_k || 5,
-            view: "auto"
+            view: "auto",
+            ...(selectedProjectId ? { project_id: selectedProjectId } : {})
         })
     });
 }
@@ -136,7 +140,23 @@ async function getMemories() {
     });
 }
 
+async function listProjects() {
+    return await fetchWithAuth('/projects/', {
+        method: 'GET'
+    });
+}
+
+async function createProject(data) {
+    return await fetchWithAuth('/projects/', {
+        method: 'POST',
+        body: JSON.stringify({
+            name: data.name
+        })
+    });
+}
+
 async function saveLLMMemory(data) {
+    const { selectedProjectId } = await chrome.storage.local.get('selectedProjectId');
     return await fetchWithAuth('/llm/save_memory', {
         method: 'POST',
         body: JSON.stringify({
@@ -144,27 +164,32 @@ async function saveLLMMemory(data) {
             source_llm: data.source || 'extension_content_script',
             model_name: data.model || 'unknown',
             tags: ['extension', data.source],
-            url: data.url
+            url: data.url,
+            ...(selectedProjectId ? { project_id: selectedProjectId } : {})
         })
     });
 }
 
 async function ingestUrl(data) {
+    const { selectedProjectId } = await chrome.storage.local.get('selectedProjectId');
     return await fetchWithAuth('/ingest/url', {
         method: 'POST',
         body: JSON.stringify({
             url: data.url,
-            tags: ['extension', 'web-clip']
+            tags: ['extension', 'web-clip'],
+            ...(selectedProjectId ? { project_id: selectedProjectId } : {})
         })
     });
 }
 
 async function ingestYouTube(data) {
+    const { selectedProjectId } = await chrome.storage.local.get('selectedProjectId');
     return await fetchWithAuth('/documents/upload-youtube', {
         method: 'POST',
         body: JSON.stringify({
             url: data.url,
-            tags: ['extension']
+            tags: ['extension'],
+            ...(selectedProjectId ? { project_id: selectedProjectId } : {})
         })
     });
 }
@@ -202,7 +227,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 case 'ingestPage':
                     result = await ingestUrl(request.data);
                     break;
-                case 'ingestYouTube': // NEW Special handler for YouTube
+                case 'ingestYouTube':
                     result = await ingestYouTube(request.data);
                     break;
                 case 'searchMemory':
@@ -220,6 +245,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 case 'getMemories':
                     result = await getMemories();
                     break;
+                case 'listProjects':
+                    result = await listProjects();
+                    break;
+                case 'createProject':
+                    result = await createProject(request.data);
+                    break;
                 default:
                     throw new Error(`Unknown action: ${request.action}`);
             }
@@ -231,7 +262,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     };
 
     // Trigger async handler for data actions
-    if (['saveLLMMemory', 'ingestPage', 'ingestYouTube', 'searchMemory', 'generatePrompt', 'saveMemory', 'getDocuments', 'getMemories'].includes(request.action)) {
+    if (['saveLLMMemory', 'ingestPage', 'ingestYouTube', 'searchMemory', 'generatePrompt', 'saveMemory', 'getDocuments', 'getMemories', 'listProjects', 'createProject'].includes(request.action)) {
         handleAsync();
         return true; // Keep channel open
     }

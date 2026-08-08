@@ -1,6 +1,6 @@
 {
-  "name": "@memwyre/cli",
-  "version": "1.0.1",
+  "name": "install-memwyre",
+  "version": "1.0.7",
   "description": "Zero-friction MCP installer for Memwyre",
   "main": "index.js",
   "type": "module",

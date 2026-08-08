@@ -13,7 +13,7 @@
   },
   "authentication": {
     "type": "bearer",
-    "description": "Generate an API key from your Memwyre dashboard at https://memwyre.tech/dashboard/settings. Pass it as a Bearer token in the Authorization header.",
+    "description": "Generate an API key from your Memwyre dashboard at https://app.memwyre.tech/settings. Pass it as a Bearer token in the Authorization header.",
     "token_prefix": "bv_sk_"
   },
   "capabilities": {

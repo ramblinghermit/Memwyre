@@ -56,23 +56,23 @@
       
       <!-- One-Line Mode -->
       <div v-show="setupMode === 'oneline'" class="space-y-4 animate-fade-in">
-        <p v-if="activeTab !== 'openclaw'" class="text-sm text-gray-600 dark:text-gray-300">
+        <p v-if="!['openclaw', 'claudecode'].includes(activeTab)" class="text-sm text-gray-600 dark:text-gray-300">
           The easiest way to connect. Just run this command in your terminal. It will automatically detect your IDE, log you in, and inject the configuration securely.
         </p>
         <p v-else class="text-sm text-gray-600 dark:text-gray-300">
-          Install the Memwyre plugin directly through the OpenClaw CLI.
+          Install the Memwyre plugin directly through the {{ activeTab === 'claudecode' ? 'Claude Code' : 'OpenClaw' }} CLI. Then, click "Manual Configuration" to set your API key.
         </p>
         <div class="bg-gray-50 dark:bg-gray-800/60 p-3 rounded-lg border border-gray-200 dark:border-gray-700">
            <div class="mb-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 font-mono">
             <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-            <span>{{ activeTab === 'openclaw' ? 'OpenClaw Plugin Install' : 'Interactive CLI Installer' }}</span>
+            <span>{{ ['openclaw', 'claudecode'].includes(activeTab) ? 'Plugin Install' : 'Interactive CLI Installer' }}</span>
           </div>
           <div class="relative group">
             <div class="overflow-x-auto custom-scrollbar bg-white dark:bg-gray-900 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm p-3.5 pr-12">
-               <code class="text-[11px] sm:text-xs text-gray-800 dark:text-gray-200 font-mono whitespace-nowrap select-all">{{ activeTab === 'openclaw' ? 'openclaw plugins install @memwyre/openclaw-plugin' : `npx -y install-memwyre --${activeTab}` }}</code>
+               <code class="text-[11px] sm:text-xs text-gray-800 dark:text-gray-200 font-mono whitespace-nowrap select-all">{{ activeTab === 'openclaw' ? 'openclaw plugins install @memwyre/openclaw-plugin' : (activeTab === 'claudecode' ? 'claude plugin install @memwyre/claude-code-plugin' : `npx -y install-memwyre --${activeTab}`) }}</code>
             </div>
-            <button @click="copy(activeTab === 'openclaw' ? 'openclaw plugins install @memwyre/openclaw-plugin' : `npx -y install-memwyre --${activeTab}`, 'oneline')" class="absolute top-[50%] -translate-y-[50%] right-2.5 p-1.5 bg-white dark:bg-gray-800 text-gray-400 hover:text-gray-800 dark:hover:text-white rounded-md opacity-0 group-hover:opacity-100 transition-all border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow">
-               <svg v-if="!copied.oneline" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
+            <button @click="copy(activeTab === 'openclaw' ? 'openclaw plugins install @memwyre/openclaw-plugin' : (activeTab === 'claudecode' ? 'claude plugin install @memwyre/claude-code-plugin' : `npx -y install-memwyre --${activeTab}`), 'oneline')" class="absolute top-[50%] -translate-y-[50%] right-2.5 p-1.5 bg-white dark:bg-gray-800 text-gray-400 hover:text-gray-800 dark:hover:text-white rounded-md opacity-0 group-hover:opacity-100 transition-all border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow">
+               <svg v-if="!copied.oneline" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
                <svg v-else class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             </button>
           </div>
@@ -145,20 +145,19 @@
       <!-- Claude Code (CLI) -->
       <div v-show="activeTab === 'claudecode'" class="space-y-4 animate-fade-in">
         <p class="text-sm text-gray-600 dark:text-gray-300">
-          Run the following command in your terminal where you use <a href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview" target="_blank" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-medium">Claude Code</a> to automatically inject the Memwyre MCP configuration.
+          Export your Memwyre API key in your terminal before starting <a href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview" target="_blank" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-medium">Claude Code</a> so the plugin can authenticate. You can add this to your <code>~/.bashrc</code> or <code>~/.zshrc</code> file for persistence.
         </p>
         <div class="bg-gray-50 dark:bg-gray-800/60 p-3 rounded-lg border border-gray-200 dark:border-gray-700">
            <div class="mb-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 font-mono">
             <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-            <span>Terminal Command</span>
+            <span>Environment Variable</span>
           </div>
           <div class="relative group">
             <div class="overflow-x-auto custom-scrollbar bg-white dark:bg-gray-900 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm p-3.5 pr-12">
-               <code class="text-[11px] sm:text-xs text-gray-800 dark:text-gray-200 font-mono whitespace-nowrap select-all">{{ `claude mcp add memwyre -- npx -y mcp-remote https://server.memwyre.tech/mcp --header "Authorization:Bearer ${apiKey}"` }}</code>
+               <code class="text-[11px] sm:text-xs text-gray-800 dark:text-gray-200 font-mono whitespace-nowrap select-all">{{ `export MEMWYRE_API_KEY="${apiKey}"` }}</code>
             </div>
-            <button @click="copy(`claude mcp add memwyre -- npx -y mcp-remote https://server.memwyre.tech/mcp --header \&#34;Authorization:Bearer ${apiKey}\&#34;`, 'claudecode')" class="absolute top-[50%] -translate-y-[50%] right-2.5 p-1.5 bg-white dark:bg-gray-800 text-gray-400 hover:text-gray-800 dark:hover:text-white rounded-md opacity-0 group-hover:opacity-100 transition-all border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow">
+            <button @click="copy(`export MEMWYRE_API_KEY=\&#34;${apiKey}\&#34;`, 'claudecode')" class="absolute top-[50%] -translate-y-[50%] right-2.5 p-1.5 bg-white dark:bg-gray-800 text-gray-400 hover:text-gray-800 dark:hover:text-white rounded-md opacity-0 group-hover:opacity-100 transition-all border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow">
                <svg v-if="!copied.claudecode" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
-               <svg v-if="!copied.claudecode" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
                <svg v-else class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             </button>
           </div>
@@ -172,7 +171,7 @@
           <br><br>
           • Name the server: <strong>Memwyre</strong><br>
           • Select: <strong>Streamable HTTP</strong><br>
-          • Enter Server URL: <code>https://server.memwyre.tech/mcp</code>
+          • Enter Server URL: <code>https://api.memwyre.tech/mcp</code>
         </p>
         <div class="bg-gray-50 dark:bg-gray-800/60 p-3 rounded-lg border border-gray-200 dark:border-gray-700">
            <div class="mb-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 font-mono">
@@ -277,11 +276,11 @@ const tabs = [
 
 // Computed JSON config for OpenClaw
 const openclawConfig = computed(() => {
-  return `"openclaw-plugin": {
+  return `"@memwyre/openclaw-plugin": {
   "enabled": true,
   "config": {
     "apiKey": "${props.apiKey}",
-    "hostUrl": "https://server.memwyre.tech"
+    "hostUrl": "https://api.memwyre.tech"
   }
 }`;
 });
@@ -294,7 +293,7 @@ const cursorConfig = computed(() => {
     "args": [
       "-y",
       "mcp-remote",
-      "https://server.memwyre.tech/mcp",
+      "https://api.memwyre.tech/mcp",
       "--header",
       "Authorization:Bearer ${props.apiKey}"
     ]
@@ -309,7 +308,7 @@ const claudeConfig = computed(() => {
   "args": [
     "-y",
     "mcp-remote",
-    "https://server.memwyre.tech/mcp",
+    "https://api.memwyre.tech/mcp",
     "--header",
     "Authorization:Bearer ${props.apiKey}"
   ]
@@ -323,7 +322,7 @@ const antigravityConfig = computed(() => {
   "args": [
     "-y",
     "mcp-remote",
-    "https://server.memwyre.tech/mcp",
+    "https://api.memwyre.tech/mcp",
     "--header",
     "Authorization:Bearer ${props.apiKey}"
   ]
@@ -338,7 +337,7 @@ const vscodeConfig = computed(() => {
   "args": [
     "-y",
     "mcp-remote",
-    "https://server.memwyre.tech/mcp",
+    "https://api.memwyre.tech/mcp",
     "--header",
     "Authorization:Bearer ${props.apiKey}"
   ]

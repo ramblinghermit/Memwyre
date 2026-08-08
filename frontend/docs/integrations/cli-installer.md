@@ -27,14 +27,14 @@ The installer handles the OAuth handshake securely using a local loopback handle
        │                                             ▲
        │ 2. Open Web Browser                         │ 4. HTTP POST
        ▼                                             │    Bearer Token
-┌──────────────┐      3. User logs in         ┌──────┴───────┐
-│ memwyre.tech │─────────────────────────────►│ Web App Auth │
-│ /login       │                              │ Dashboard    │
-└──────────────┘                              └──────────────┘
+┌──────────────────┐      3. User logs in         ┌──────────────┐
+│ app.memwyre.tech │─────────────────────────────►│ Web App Auth │
+│ /login           │                              │ Dashboard    │
+└──────────────────┘                              └──────────────┘
 ```
 
 1. **Local Server Start**: The script starts a temporary, lightweight Express server on an ephemeral port (e.g. `http://localhost:50310`).
-2. **Browser Redirection**: The script opens your default web browser and redirects you to the authentication page: `https://memwyre.tech/login?cli_port=50310`
+2. **Browser Redirection**: The script opens your default web browser and redirects you to the authentication page: `https://app.memwyre.tech/login?cli_port=50310`
 3. **Authentication**: You sign in with Google, GitHub, or email.
 4. **Token Delivery**: Once authenticated, the web application sends the secure Bearer Token to the local loopback address (`http://localhost:50310/callback`).
 5. **Config Write**: The CLI captures the token, writes it to your global configurations (like `mcp.json` and `claude_desktop_config.json`), and shuts down the loopback listener.
@@ -54,7 +54,7 @@ For each application, it writes the following configuration:
   ```json
   "memwyre": {
     "command": "npx",
-    "args": ["-y", "mcp-remote", "https://server.memwyre.tech/mcp", "--header", "Authorization:Bearer <token>"]
+    "args": ["-y", "mcp-remote", "https://api.memwyre.tech/mcp", "--header", "Authorization:Bearer <token>"]
   }
   ```
 
@@ -66,7 +66,7 @@ For each application, it writes the following configuration:
   "memwyre": {
     "type": "stdio",
     "command": "npx",
-    "args": ["-y", "mcp-remote", "https://server.memwyre.tech/mcp", "--header", "Authorization:Bearer <token>"]
+    "args": ["-y", "mcp-remote", "https://api.memwyre.tech/mcp", "--header", "Authorization:Bearer <token>"]
   }
   ```
 
@@ -78,7 +78,7 @@ For each application, it writes the following configuration:
   "mcpServers": {
     "memwyre": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://server.memwyre.tech/mcp", "--header", "Authorization:Bearer <token>"]
+      "args": ["-y", "mcp-remote", "https://api.memwyre.tech/mcp", "--header", "Authorization:Bearer <token>"]
     }
   }
   ```
@@ -90,25 +90,18 @@ For each application, it writes the following configuration:
   ```toml
   [mcp_servers.memwyre]
   enabled = true
-  url = "https://server.memwyre.tech/mcp"
+  url = "https://api.memwyre.tech/mcp"
   http_headers = { Authorization = "Bearer <token>" }
   ```
 
-### 5. Claude Code
-
-- **Action**: Executes the Claude CLI registration command directly in your shell:
-  ```bash
-  claude mcp add memwyre -- npx -y mcp-remote https://server.memwyre.tech/mcp --header "Authorization:Bearer <token>"
-  ```
-
-### 6. Antigravity
+### 5. Antigravity
 
 - **Configuration Path**: `~/.gemini/config/mcp_config.json`
 - **JSON Structure**:
   ```json
   "memwyre": {
     "command": "npx",
-    "args": ["-y", "mcp-remote", "https://server.memwyre.tech/mcp", "--header", "Authorization:Bearer <token>"]
+    "args": ["-y", "mcp-remote", "https://api.memwyre.tech/mcp", "--header", "Authorization:Bearer <token>"]
   }
   ```
 

@@ -4,7 +4,7 @@ Use this exact text in your store submission **Test instructions** field (replac
 
 1. Install the extension and pin it to the toolbar.
 2. Click the extension icon. The Memwyre side panel opens.
-3. In the side panel, click **Login**. This opens: `https://memwyre.tech/login?source=extension`.
+3. In the side panel, click **Login**. This opens: `https://app.memwyre.tech/login?source=extension`.
 4. Sign in with this reviewer test account:
    - Email: `{{REVIEWER_TEST_EMAIL}}`
    - Password: `{{REVIEWER_TEST_PASSWORD}}`

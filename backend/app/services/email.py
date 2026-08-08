@@ -316,7 +316,7 @@ async def send_welcome_email(to_email: str, name: str):
                     <p class="text">Welcome to a smarter way of remembering.</p>
                     
                     <div class="btn-wrap">
-                        <a href="https://memwyre.tech/login" class="btn" style="color: #ffffff; text-decoration: none;">Log in to Memwyre</a>
+                        <a href="{settings.FRONTEND_URL}/login" class="btn" style="color: #ffffff; text-decoration: none;">Log in to Memwyre</a>
                     </div>
                     
                     <div class="signoff">

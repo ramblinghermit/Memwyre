@@ -10,7 +10,7 @@
   "service_documentation": "https://memwyre.tech",
   "ui_locales_supported": ["en"],
   "x_api_key_info": {
-    "description": "For programmatic / MCP access, generate a persistent API key from your dashboard at https://memwyre.tech/dashboard/settings. API keys use the prefix 'bv_sk_' and support Bearer auth.",
+    "description": "For programmatic / MCP access, generate a persistent API key from your dashboard at https://app.memwyre.tech/settings. API keys use the prefix 'bv_sk_' and support Bearer auth.",
     "prefix": "bv_sk_"
   }
 }

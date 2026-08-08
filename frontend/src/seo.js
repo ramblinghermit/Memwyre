@@ -22,6 +22,8 @@ export const PRERENDER_ROUTES = [
   '/claude-memory',
   '/cursor-memory',
   '/mcp-memory',
+  '/openclaw-memory',
+  '/opencode-memory',
   '/privacy-policy',
   '/terms',
   '/login',
@@ -200,8 +202,9 @@ export const PUBLIC_ROUTE_SEO = {
     description: 'Connect ChatGPT to a unified, long-term memory graph. Save developer guidelines, schemas, and context across all your browser chat sessions.',
   },
   '/claude-memory': {
-    title: 'Claude Memory | Persistent long-term memory for Claude Desktop & Code',
-    description: 'Setup persistent long-term memory for Anthropic Claude Desktop and Claude Code CLI. Secure, private context updates via remote MCP server gateway.',
+    title: 'Claude Code Memory | Persistent Long-Term Memory Plugin for Claude Code',
+    description: 'Give Claude Code persistent memory across sessions. Install the Memwyre plugin in one command — auto-inject project context on start, auto-capture decisions on exit. Works across Claude Desktop, Cursor, and VS Code.',
+    ogImage: '/blog-covers/claude-code-memory-ingestion.png',
   },
   '/cursor-memory': {
     title: 'Cursor Memory | Long-Term Codebase Context for Cursor AI IDE',
@@ -210,6 +213,14 @@ export const PUBLIC_ROUTE_SEO = {
   '/mcp-memory': {
     title: 'MCP Memory Server | Universal Context Layer for All MCP Clients',
     description: 'Link any Model Context Protocol (MCP) client to your personal memory layer. Secure, remote context gateway supporting Cursor, Claude, VS Code, and Windsurf.',
+  },
+  '/openclaw-memory': {
+    title: 'OpenClaw Memory | Persistent Long-Term Memory Plugin for OpenClaw Agents',
+    description: 'Give OpenClaw autonomous agents persistent memory across every run. Install the Memwyre plugin in one command — auto-inject project context on start, auto-capture decisions on exit. Works across Claude Code, Cursor, and VS Code.',
+  },
+  '/opencode-memory': {
+    title: 'OpenCode Memory | Persistent Long-Term Memory Plugin for OpenCode',
+    description: 'Give OpenCode persistent memory across sessions. Install the Memwyre plugin — auto-inject project context on start, auto-capture decisions on exit. Works across Claude Code, Cursor, and VS Code.',
   },
 };
 
@@ -419,7 +430,118 @@ export function getSeoForPath(path = '/') {
       },
       'url': canonical
     });
-  } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory'].includes(normalizedPath)) {
+  } else if (normalizedPath === '/claude-memory') {
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Himansh Shivhare',
+      'jobTitle': 'Founder & Lead Architect',
+      'worksFor': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'sameAs': [
+        'https://linkedin.com/in/himansh-shivhare',
+        'https://github.com/ramblinghermit0403'
+      ]
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      'name': 'Memwyre Claude Code Memory Plugin',
+      'applicationCategory': 'DeveloperApplication',
+      'operatingSystem': 'Windows, macOS, Linux',
+      'image': socialImageUrl,
+      'author': {
+        '@type': 'Person',
+        'name': 'Himansh Shivhare',
+        'url': 'https://linkedin.com/in/himansh-shivhare'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+        'availability': 'https://schema.org/InStock'
+      },
+      'description': routeSeo.description || DEFAULT_SEO.description
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'Does Claude Code have built-in memory?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes — Claude Code has two built-in memory mechanisms: CLAUDE.md (a Markdown file loaded on startup) and auto-memory (saves notes to ~/.claude/projects/.../memory/). Both are useful for static rules but limited for dynamic, searchable, cross-tool memory.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How do I give Claude Code persistent memory across sessions?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Install the Memwyre Claude Code plugin: claude plugin install @memwyre/claude-code-plugin. Set your MEMWYRE_API_KEY environment variable, and every session will automatically load relevant past context on start and save new insights on exit.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How is Memwyre different from claude-mem?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'claude-mem stores observations locally in SQLite + ChromaDB — great for single-machine use. Memwyre uses a shared cloud vault with entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync across Claude Code, Cursor, VS Code, and Claude Desktop without SSH setup. License-wise, claude-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). On retrieval quality, Memwyre scores 73.5% on LoCoMo-10 vs. 43.7% for flat vector baselines, using 88.5% fewer context tokens.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What license is Memwyre released under?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Apache-2.0. No copyleft obligations. You can use, modify, and deploy Memwyre in proprietary environments without open-sourcing your changes.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What happens if Memwyre captures something wrong?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Every memory is individually addressable. You can view, edit, or delete any observation from the Memwyre dashboard or via API (DELETE /api/v1/memories/:id). The Ebbinghaus decay model also automatically deprioritizes stale facts over time.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Can Claude Code remember things across sessions?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'By default, Claude Code context resets between sessions. You can add persistence through CLAUDE.md (manual), auto-memory (limited automatic), or the Memwyre plugin (fully automatic with semantic search across Claude Code, Claude Desktop, Cursor, and VS Code).'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Does the Memwyre plugin work with Claude Desktop?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. Claude Code (via plugin hooks) and Claude Desktop (via MCP server) both read from and write to the same memory vault. Context saved in a terminal session is instantly available in Claude Desktop — same API key, same vault, zero sync configuration.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Is my memory data private?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Fully private and encrypted. Memwyre uses zero-retention processing — transcripts are extracted in memory and immediately discarded. For full data sovereignty, you can self-host the entire backend behind your firewall.'
+          }
+        }
+      ]
+    });
+  } else if (['/chatgpt-memory', '/cursor-memory', '/mcp-memory'].includes(normalizedPath)) {
     jsonLdData.push({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
@@ -434,6 +556,110 @@ export function getSeoForPath(path = '/') {
         'availability': 'https://schema.org/InStock'
       },
       'description': routeSeo.description || DEFAULT_SEO.description
+    });
+  } else if (['/openclaw-memory', '/opencode-memory'].includes(normalizedPath)) {
+    const pluginName = normalizedPath === '/openclaw-memory' ? 'OpenClaw' : 'OpenCode';
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Himansh Shivhare',
+      'jobTitle': 'Founder & Lead Architect',
+      'worksFor': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'sameAs': [
+        'https://linkedin.com/in/himansh-shivhare',
+        'https://github.com/ramblinghermit0403'
+      ]
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      'name': `Memwyre ${pluginName} Memory Plugin`,
+      'applicationCategory': 'DeveloperApplication',
+      'operatingSystem': 'Windows, macOS, Linux',
+      'image': socialImageUrl,
+      'author': {
+        '@type': 'Person',
+        'name': 'Himansh Shivhare',
+        'url': 'https://linkedin.com/in/himansh-shivhare'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+        'availability': 'https://schema.org/InStock'
+      },
+      'description': routeSeo.description || DEFAULT_SEO.description
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': `Does ${pluginName} have built-in memory?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': `No — ${pluginName} does not ship with built-in persistent memory. You need an external plugin like Memwyre for cross-session context retention.`
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': `How do I give ${pluginName} persistent memory across sessions?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': `Install the Memwyre ${pluginName} plugin and set your MEMWYRE_API_KEY environment variable. Every session will automatically load relevant past context on start and save new insights on exit.`
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How is Memwyre different from claude-mem?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'claude-mem stores observations locally in SQLite + ChromaDB — great for single-machine use. Memwyre uses a shared cloud vault with entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync across Claude Code, Cursor, VS Code, and more without SSH setup. License-wise, claude-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). Memwyre scores 73.5% on LoCoMo-10 vs. 43.7% for flat vector baselines.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What license is Memwyre released under?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Apache-2.0. No copyleft obligations. You can use, modify, and deploy Memwyre in proprietary environments without open-sourcing your changes.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What happens if Memwyre captures something wrong?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Every memory is individually addressable. You can view, edit, or delete any observation from the Memwyre dashboard or via API. The Ebbinghaus decay model also automatically deprioritizes stale facts over time.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': `Does the plugin work with Claude Code and Cursor too?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. All Memwyre plugins and MCP connections share the same cloud vault. Context captured in an ' + pluginName + ' session is instantly available in Claude Code, Cursor, VS Code, and Claude Desktop — same API key, same vault.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Is my memory data private?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Fully private and encrypted. Memwyre uses zero-retention processing — transcripts are extracted in memory and immediately discarded. For full data sovereignty, you can self-host the entire backend behind your firewall.'
+          }
+        }
+      ]
     });
   } else if (['/memwyre-vs-mem0', '/memwyre-vs-supermemory', '/memwyre-vs-zep'].includes(normalizedPath)) {
     jsonLdData.push({

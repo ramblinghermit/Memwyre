@@ -13,6 +13,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     const viewSettings = document.getElementById('view-settings');
     const tabsContainer = document.getElementById('tabs-container');
 
+    // Workspace Switcher Elements
+    const workspaceDropdownBtn = document.getElementById('workspace-dropdown-btn');
+    const workspaceDropdownMenu = document.getElementById('workspace-dropdown-menu');
+    const currentWorkspaceName = document.getElementById('current-workspace-name');
+    const workspaceList = document.getElementById('workspace-list');
+    const newWorkspaceInput = document.getElementById('new-workspace-input');
+    const addWorkspaceBtn = document.getElementById('add-workspace-btn');
+
+    // Settings API Server Link Elements
+    const apiServerUrlInput = document.getElementById('api-server-url-input');
+    const saveApiUrlBtn = document.getElementById('save-api-url-btn');
+    const resetApiUrlBtn = document.getElementById('reset-api-url-btn');
+
     // Tabs
     const tabs = document.querySelectorAll('.tab-segment');
     const views = document.querySelectorAll('.view');
@@ -70,7 +83,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // --- Settings Navigation ---
+    // --- Settings Navigation & API Server Link ---
+
+    async function initSettingsView() {
+        if (apiServerUrlInput) {
+            const currentUrl = await getApiBaseUrl();
+            apiServerUrlInput.value = currentUrl;
+        }
+    }
 
     if (settingsBtn) {
         settingsBtn.addEventListener('click', () => {
@@ -78,8 +98,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             views.forEach(v => v.classList.remove('active'));
             tabsContainer.classList.add('hidden');
 
-            // Show settings
+            // Show settings & load current server URL
             viewSettings.classList.add('active');
+            initSettingsView();
         });
     }
 
@@ -95,8 +116,148 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const targetId = activeTab.getAttribute('data-tab');
                 document.getElementById(`view-${targetId}`).classList.add('active');
             } else {
-                document.getElementById('view-memories').classList.add('active');
+                document.getElementById('view-timeline').classList.add('active');
             }
+        });
+    }
+
+    if (saveApiUrlBtn && apiServerUrlInput) {
+        saveApiUrlBtn.addEventListener('click', async () => {
+            const newUrl = apiServerUrlInput.value.trim();
+            if (!newUrl) return;
+            try {
+                new URL(newUrl); // Validate URL format
+                await chrome.storage.local.set({ customApiBaseUrl: newUrl });
+                showToast('API Server Link saved successfully!', 'success');
+            } catch (e) {
+                showToast('Invalid URL format. Please include http:// or https://', 'error');
+            }
+        });
+    }
+
+    if (resetApiUrlBtn && apiServerUrlInput) {
+        resetApiUrlBtn.addEventListener('click', async () => {
+            await chrome.storage.local.remove('customApiBaseUrl');
+            apiServerUrlInput.value = CONFIG[ENV].API_BASE_URL;
+            showToast('API Server Link reset to default.', 'info');
+        });
+    }
+
+    // --- Workspace Switcher Handlers ---
+
+    if (workspaceDropdownBtn && workspaceDropdownMenu) {
+        workspaceDropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isHidden = workspaceDropdownMenu.classList.contains('hidden');
+            if (isHidden) {
+                workspaceDropdownMenu.classList.remove('hidden');
+                workspaceDropdownBtn.classList.add('active');
+                loadWorkspaces();
+            } else {
+                workspaceDropdownMenu.classList.add('hidden');
+                workspaceDropdownBtn.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!workspaceDropdownMenu.contains(e.target) && !workspaceDropdownBtn.contains(e.target)) {
+                workspaceDropdownMenu.classList.add('hidden');
+                workspaceDropdownBtn.classList.remove('active');
+            }
+        });
+    }
+
+    async function loadWorkspaces() {
+        if (!workspaceList) return;
+        try {
+            const res = await sendMessage('listProjects');
+            if (res.success && Array.isArray(res.data)) {
+                renderWorkspaces(res.data);
+            } else {
+                if (currentWorkspaceName) currentWorkspaceName.textContent = 'Default';
+                workspaceList.innerHTML = '<div class="workspace-loading">Default Workspace</div>';
+            }
+        } catch (err) {
+            console.error("Failed to list workspaces:", err);
+            if (currentWorkspaceName) currentWorkspaceName.textContent = 'Default';
+        }
+    }
+
+    async function renderWorkspaces(projects) {
+        if (!workspaceList) return;
+        workspaceList.innerHTML = '';
+
+        const { selectedProjectId } = await chrome.storage.local.get('selectedProjectId');
+        let activeProj = projects.find(p => p.id === selectedProjectId);
+
+        if (!activeProj) {
+            activeProj = projects.find(p => p.name === 'default') || projects[0];
+            if (activeProj) {
+                await chrome.storage.local.set({ selectedProjectId: activeProj.id });
+            }
+        }
+
+        if (activeProj && currentWorkspaceName) {
+            currentWorkspaceName.textContent = activeProj.name;
+        }
+
+        projects.forEach(proj => {
+            const item = document.createElement('div');
+            item.className = `workspace-item ${activeProj && proj.id === activeProj.id ? 'selected' : ''}`;
+            item.innerHTML = `
+                <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${proj.name}</span>
+                ${activeProj && proj.id === activeProj.id ? '<i class="fas fa-check" style="font-size: 10px;"></i>' : ''}
+            `;
+            item.addEventListener('click', async () => {
+                await selectWorkspace(proj);
+            });
+            workspaceList.appendChild(item);
+        });
+    }
+
+    async function selectWorkspace(proj) {
+        await chrome.storage.local.set({ selectedProjectId: proj.id });
+        if (currentWorkspaceName) currentWorkspaceName.textContent = proj.name;
+        if (workspaceDropdownMenu) workspaceDropdownMenu.classList.add('hidden');
+        if (workspaceDropdownBtn) workspaceDropdownBtn.classList.remove('active');
+
+        showToast(`Workspace: ${proj.name}`, 'success');
+
+        // Reload content in active tab
+        const activeTab = document.querySelector('.tab-segment.active');
+        if (activeTab) {
+            const targetId = activeTab.getAttribute('data-tab');
+            if (targetId === 'inbox') loadInbox();
+            else if (targetId === 'timeline') loadTimeline();
+        }
+    }
+
+    if (addWorkspaceBtn && newWorkspaceInput) {
+        const handleAddWorkspace = async () => {
+            const name = newWorkspaceInput.value.trim();
+            if (!name) return;
+            addWorkspaceBtn.disabled = true;
+            addWorkspaceBtn.textContent = '...';
+            try {
+                const res = await sendMessage('createProject', { name });
+                if (res.success && res.data) {
+                    newWorkspaceInput.value = '';
+                    await selectWorkspace(res.data);
+                    await loadWorkspaces();
+                } else {
+                    showToast(res.error || 'Could not create workspace', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                addWorkspaceBtn.disabled = false;
+                addWorkspaceBtn.textContent = 'Add';
+            }
+        };
+
+        addWorkspaceBtn.addEventListener('click', handleAddWorkspace);
+        newWorkspaceInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleAddWorkspace();
         });
     }
 
@@ -108,6 +269,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     function showMain() {
         loginView.classList.add('hidden');
         mainApp.classList.remove('hidden');
+
+        // Initialize active workspace
+        loadWorkspaces();
 
         // Ensure settings are closed and tabs are visible
         if (viewSettings) viewSettings.classList.remove('active');
@@ -259,11 +423,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function loadInbox() {
         inboxContainer.innerHTML = '<div class="status-msg"><i class="fas fa-spinner fa-spin"></i> Loading inbox...</div>';
         try {
-            const { token: freshToken } = await chrome.storage.local.get('token');
+            const { token: freshToken, selectedProjectId } = await chrome.storage.local.get(['token', 'selectedProjectId']);
             if (!freshToken) { renderSessionExpired(inboxContainer); return; }
-            const response = await fetch(`${CONFIG[ENV].API_BASE_URL}/inbox/`, {
-                headers: { 'Authorization': `Bearer ${freshToken}` }
-            });
+            const apiBaseUrl = await getApiBaseUrl();
+            const headers = { 'Authorization': `Bearer ${freshToken}` };
+            if (selectedProjectId) headers['X-Project-Id'] = String(selectedProjectId);
+
+            const response = await fetch(`${apiBaseUrl}/inbox/`, { headers });
             if (response.ok) {
                 const data = await response.json();
                 renderInbox(data || []);
@@ -343,15 +509,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function loadTimeline() {
         timelineContainer.innerHTML = '<div class="status-msg"><i class="fas fa-spinner fa-spin"></i> Loading timeline...</div>';
         try {
-            const { token: freshToken } = await chrome.storage.local.get('token');
+            const { token: freshToken, selectedProjectId } = await chrome.storage.local.get(['token', 'selectedProjectId']);
             if (!freshToken) { renderSessionExpired(timelineContainer); return; }
-            let url = `${CONFIG[ENV].API_BASE_URL}/memory/?view=timeline&limit=50`;
+            const apiBaseUrl = await getApiBaseUrl();
+            let url = `${apiBaseUrl}/memory/?view=timeline&limit=50`;
+            if (selectedProjectId) url += `&project_id=${selectedProjectId}`;
             const source = timelineSource.value;
             if (source) url += `&source_app=${encodeURIComponent(source)}`;
 
-            const response = await fetch(url, {
-                headers: { 'Authorization': `Bearer ${freshToken}` }
-            });
+            const headers = { 'Authorization': `Bearer ${freshToken}` };
+            if (selectedProjectId) headers['X-Project-Id'] = String(selectedProjectId);
+
+            const response = await fetch(url, { headers });
 
             if (response.ok) {
                 const data = await response.json();
