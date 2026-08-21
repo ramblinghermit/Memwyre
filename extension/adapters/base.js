@@ -128,7 +128,7 @@ export function createErrorIcon() {
  * @returns {string}
  */
 export function getLogoUrl() {
-    return chrome.runtime.getURL('logo.png');
+    return chrome.runtime.getURL('icon48.png');
 }
 
 /**

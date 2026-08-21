@@ -67,15 +67,6 @@
         <!-- Setup/Code Column -->
         <div class="lg:col-span-5">
           <div class="border border-dashed border-gray-300 rounded p-6 bg-[#FDFCFB] relative space-y-6">
-            <!-- Corner Brackets -->
-            <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none">
-              <div class="absolute top-1.5 left-0 w-full h-px bg-gray-400"></div>
-              <div class="absolute left-1.5 top-0 h-full w-px bg-gray-400"></div>
-            </div>
-            <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none">
-              <div class="absolute top-1.5 left-0 w-full h-px bg-gray-400"></div>
-              <div class="absolute left-1.5 top-0 h-full w-px bg-gray-400"></div>
-            </div>
 
             <h4 class="text-xs uppercase font-mono font-bold text-gray-400">Cursor MCP Setup</h4>
             <p class="text-xs text-gray-500">

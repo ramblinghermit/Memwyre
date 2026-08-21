@@ -212,7 +212,7 @@ function createErrorIcon() {
 }
 
 function getLogoUrl() {
-    return chrome.runtime.getURL('logo.png');
+    return chrome.runtime.getURL('icon48.png');
 }
 
 function createLogoImage(options = {}) {

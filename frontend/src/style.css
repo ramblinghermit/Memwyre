@@ -185,12 +185,6 @@ body {
   color: #000000 !important;
 }
 
-
-
-.font-zalando {
-  font-family: var(--font-body);
-}
-
 /* Animations */
 @keyframes fadeInUp {
   from {

@@ -25,25 +25,8 @@
               Pull from Notion, Google Drive, Gmail, S3, and more. Configure once — your AI agent's context stays fresh automatically.
             </p>
             
-            <!-- Buttons with technical grid brackets -->
+            <!-- Buttons -->
             <div class="relative inline-flex p-3 mt-4 sm:mt-6 border border-dashed border-gray-300 rounded max-w-max z-20">
-              <!-- Corner Brackets (Crosshairs) -->
-              <div class="absolute -top-2 -left-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
-              <div class="absolute -top-2 -right-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
-              <div class="absolute -bottom-2 -left-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
-              <div class="absolute -bottom-2 -right-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
 
               <!-- Content (Buttons) -->
               <div class="flex flex-row items-center justify-start gap-3 sm:gap-4">

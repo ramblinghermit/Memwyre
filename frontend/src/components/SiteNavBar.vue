@@ -1,42 +1,8 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const isHidden = ref(false);
-const isAtTop = ref(true);
-let lastScrollY = 0;
-let ticking = false;
-
-const handleScroll = () => {
-  if (ticking) return;
-  ticking = true;
-
-  requestAnimationFrame(() => {
-    const currentScrollY = window.scrollY;
-
-    // Hide/show based on scroll direction
-    if (currentScrollY > lastScrollY && currentScrollY > 80) {
-      isHidden.value = true;
-    } else {
-      isHidden.value = false;
-    }
-
-    isAtTop.value = currentScrollY < 10;
-
-    lastScrollY = currentScrollY;
-    ticking = false;
-  });
-};
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
 
 const isProductsOpen = ref(false);
 const products = [
@@ -70,21 +36,15 @@ const vClickOutside = {
   }
 };
 
-// Reset scroll state on route change
+// Reset menu states on route change
 watch(() => route.path, () => {
-  lastScrollY = 0;
-  isHidden.value = false;
-  isAtTop.value = true;
   isProductsOpen.value = false;
   isMobileMenuOpen.value = false;
 });
 </script>
 
 <template>
-  <header :class="[
-    'fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out bg-white border-b border-black/5 shadow-sm',
-    isHidden ? '-translate-y-full' : 'translate-y-0'
-  ]">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/5 shadow-sm">
     <div class="w-full px-6 sm:px-8 lg:px-12">
       <div class="flex justify-between items-center h-16">
         <router-link to="/" class="flex items-center group">
@@ -142,7 +102,6 @@ watch(() => route.path, () => {
           </div>
 
           <template v-for="link in [
-            { name: 'Ecosystem', to: '/#ecosystem' },
             { name: 'Pricing', to: '/#pricing' }
           ]" :key="link.name">
             <router-link :to="link.to"
@@ -223,7 +182,7 @@ watch(() => route.path, () => {
               v-for="product in products" 
               :key="product.name" 
               :to="product.to" 
-              class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97757] transition-colors"
+              class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97756] transition-colors"
               @click="isMobileMenuOpen = false"
             >
               {{ product.name }}
@@ -236,12 +195,11 @@ watch(() => route.path, () => {
         <!-- Main Links -->
         <div class="space-y-3">
           <template v-for="link in [
-            { name: 'Ecosystem', to: '/#ecosystem' },
             { name: 'Pricing', to: '/#pricing' }
           ]" :key="link.name">
             <router-link 
               :to="link.to"
-              class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97757] transition-colors"
+              class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97756] transition-colors"
               @click="isMobileMenuOpen = false"
             >
               {{ link.name }}
@@ -249,21 +207,21 @@ watch(() => route.path, () => {
           </template>
           <router-link 
             to="/research/"
-            class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97757] transition-colors"
+            class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97756] transition-colors"
             @click="isMobileMenuOpen = false"
           >
             Research
           </router-link>
           <router-link 
             to="/blog/"
-            class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97757] transition-colors"
+            class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97756] transition-colors"
             @click="isMobileMenuOpen = false"
           >
             Blog
           </router-link>
           <a 
             href="https://docs.memwyre.tech" target="_blank"
-            class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97757] transition-colors"
+            class="block py-1.5 text-[15px] font-normal text-black hover:text-[#D97756] transition-colors"
             @click="isMobileMenuOpen = false"
           >
             Docs

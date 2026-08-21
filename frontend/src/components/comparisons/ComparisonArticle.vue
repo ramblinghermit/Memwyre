@@ -28,14 +28,6 @@
 
       <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 my-10 text-left">
         <div class="lg:col-span-2 border border-dashed border-gray-300 rounded p-6 bg-[#FDFCFB] relative">
-          <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none">
-            <div class="absolute top-1.5 left-0 w-full h-px bg-gray-400"></div>
-            <div class="absolute left-1.5 top-0 h-full w-px bg-gray-400"></div>
-          </div>
-          <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none">
-            <div class="absolute top-1.5 left-0 w-full h-px bg-gray-400"></div>
-            <div class="absolute left-1.5 top-0 h-full w-px bg-gray-400"></div>
-          </div>
 
           <h2 class="hero-serif text-xl sm:text-2xl text-gray-900 mb-4">Short Verdict</h2>
           <p class="text-sm text-gray-600 leading-relaxed mb-5">{{ article.verdict }}</p>
