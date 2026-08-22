@@ -1036,15 +1036,14 @@
           </div>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          <!-- Left Column: Title, Subtitle, and Metrics -->
+             <!-- Left Column: Title, Subtitle, and Metrics -->
           <div class="lg:col-span-5 text-center lg:text-left flex flex-col items-center lg:items-start">
             <h2 class="hero-serif text-3xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] mb-3">
               The <span class="italic font-medium text-[#D97756]">LoCoMo</span> Benchmark.
             </h2>
             <p class="text-gray-500 text-sm sm:text-base font-medium mb-4">1,540 questions &bull; 5 categories</p>
             <p class="text-base text-gray-500 leading-relaxed font-normal mb-6 max-w-xl text-center lg:text-left">
-              If your memory platform returns noisy facts or misses key details, your AI writes broken code. Retrieval quality dictates the quality of your AI outcomes. Here is how Memwyre's accuracy compares on the MemoryBench long-context evaluation dataset:
+              If your memory platform returns noisy facts or misses key details, your AI writes broken code. Retrieval quality dictates the quality of your AI outcomes. Here is how Memwyre's accuracy compares on the LoCoMo long-context benchmark dataset:
             </p>
             
             <div class="mb-8">
@@ -1058,14 +1057,14 @@
             
             <!-- Metric Cards stacked vertically -->
             <div class="space-y-4 w-full max-w-md">
-              <div class="relative flex items-center gap-5 bg-white border border-dashed border-gray-300 rounded-md p-5 shadow-sm transition-all duration-300 hover:border-gray-400 hover:shadow-md">
+              <div class="relative flex items-center gap-5 bg-white border border-gray-200 rounded-xl p-5 shadow-xs transition-all duration-300 hover:border-gray-300 hover:shadow-sm">
                 <div class="text-[#D97756] text-4xl font-extrabold font-mono tracking-tight">70.5%</div>
                 <div class="text-left">
                   <div class="text-gray-900 font-bold text-base leading-tight">Non-Adversarial Recall</div>
-                  <div class="text-gray-500 text-xs tracking-widest uppercase font-semibold mt-0.5">Full 1,986 Benchmark Suite</div>
+                  <div class="text-gray-500 text-xs tracking-widest uppercase font-semibold mt-0.5">Full 1,540 Benchmark Suite</div>
                 </div>
               </div>
-              <div class="relative flex items-center gap-5 bg-white border border-dashed border-gray-300 rounded-md p-5 shadow-sm transition-all duration-300 hover:border-gray-400 hover:shadow-md">
+              <div class="relative flex items-center gap-5 bg-white border border-gray-200 rounded-xl p-5 shadow-xs transition-all duration-300 hover:border-gray-300 hover:shadow-sm">
                 <div class="text-gray-900 text-4xl font-extrabold font-mono tracking-tight">4.9k</div>
                 <div class="text-left">
                   <div class="text-gray-900 font-bold text-base leading-tight">Mean Context Tokens</div>
@@ -1077,23 +1076,21 @@
 
           <!-- Right Column: Bar Chart -->
           <div class="lg:col-span-7 w-full">
-            <div class="relative p-3 border border-dashed border-gray-300 rounded bg-gray-50/50">
-
-
-              <div class="hidden md:block p-4 sm:p-8 relative w-full bg-white border border-gray-250 rounded shadow-sm">
-                <!-- Horizontal dashed gridlines -->
-                <div class="absolute inset-x-8 sm:inset-x-12 top-4 bottom-20 flex flex-col justify-between pointer-events-none z-0">
-                  <div class="w-full border-t border-dashed border-gray-200"></div>
-                  <div class="w-full border-t border-dashed border-gray-200"></div>
-                  <div class="w-full border-t border-dashed border-gray-200"></div>
-                  <div class="w-full border-t border-dashed border-gray-200"></div>
-                  <div class="w-full border-t border-dashed border-gray-200"></div>
-                </div>
-
+            <div class="bg-white border border-gray-200/90 rounded-2xl p-6 sm:p-8 shadow-xs">
+              <div class="hidden md:block relative w-full">
                 <!-- Chart Area -->
-                <div class="relative z-10 h-72 sm:h-96 flex items-end justify-between px-2 sm:px-6">
+                <div class="relative z-10 h-72 sm:h-96 flex items-end justify-between px-2 sm:px-6 mb-6">
+                  <!-- Horizontal subtle gridlines perfectly contained in chart area -->
+                  <div class="absolute inset-x-2 sm:inset-x-6 inset-y-0 flex flex-col justify-between pointer-events-none z-0">
+                    <div class="w-full border-t border-dashed border-gray-200/80"></div>
+                    <div class="w-full border-t border-dashed border-gray-200/80"></div>
+                    <div class="w-full border-t border-dashed border-gray-200/80"></div>
+                    <div class="w-full border-t border-dashed border-gray-200/80"></div>
+                    <div class="w-full border-t border-gray-200"></div>
+                  </div>
+
                   <!-- Category 1: Single-hop -->
-                  <div class="flex flex-col items-center flex-1 h-full justify-end group">
+                  <div class="flex flex-col items-center flex-1 h-full justify-end group z-10">
                     <div class="flex items-end justify-center gap-1.5 sm:gap-4 h-[85%] w-full">
                       <!-- Old Bar -->
                       <div class="flex flex-col items-center justify-end h-full w-7 sm:w-12 relative">
@@ -1117,7 +1114,7 @@
                   </div>
 
                   <!-- Category 2: Multi-hop -->
-                  <div class="flex flex-col items-center flex-1 h-full justify-end group">
+                  <div class="flex flex-col items-center flex-1 h-full justify-end group z-10">
                     <div class="flex items-end justify-center gap-1.5 sm:gap-4 h-[85%] w-full">
                       <!-- Old Bar -->
                       <div class="flex flex-col items-center justify-end h-full w-7 sm:w-12 relative">
@@ -1141,7 +1138,7 @@
                   </div>
 
                   <!-- Category 3: Adversarial -->
-                  <div class="flex flex-col items-center flex-1 h-full justify-end group">
+                  <div class="flex flex-col items-center flex-1 h-full justify-end group z-10">
                     <div class="flex items-end justify-center gap-1.5 sm:gap-4 h-[85%] w-full">
                       <!-- Old Bar -->
                       <div class="flex flex-col items-center justify-end h-full w-7 sm:w-12 relative">
@@ -1165,7 +1162,7 @@
                   </div>
 
                   <!-- Category 4: Temporal -->
-                  <div class="flex flex-col items-center flex-1 h-full justify-end group">
+                  <div class="flex flex-col items-center flex-1 h-full justify-end group z-10">
                     <div class="flex items-end justify-center gap-1.5 sm:gap-4 h-[85%] w-full">
                       <!-- Old Bar -->
                       <div class="flex flex-col items-center justify-end h-full w-7 sm:w-12 relative">
@@ -1190,36 +1187,36 @@
                 </div>
 
                 <!-- Bottom labels (X-axis) with Interactive Category Buttons -->
-                <div class="flex justify-between px-2 sm:px-6 border-t border-gray-200 pt-3 relative z-10 text-xs sm:text-sm font-medium gap-1 sm:gap-2">
+                <div class="grid grid-cols-4 gap-1.5 sm:gap-2 border-t border-gray-200/80 pt-4 relative z-10 text-xs sm:text-sm font-medium">
                   <button 
                     @click="activeBenchmarkCategory = activeBenchmarkCategory === 'single' ? 'all' : 'single'" 
-                    :class="activeBenchmarkCategory === 'single' ? 'bg-[#D97756]/10 text-[#D97756] font-bold border-[#D97756]/30' : 'text-gray-600 hover:text-gray-900 border-transparent hover:bg-gray-100/50'"
-                    class="flex-1 py-1.5 px-1 text-center rounded border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/40">
+                    :class="activeBenchmarkCategory === 'single' ? 'bg-[#D97756]/10 text-[#D97756] font-bold border-[#D97756]/30 shadow-xs' : 'text-gray-600 hover:text-gray-900 border-gray-200/70 hover:bg-gray-50 hover:border-gray-300'"
+                    class="py-2 px-1 text-center rounded-lg border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/40">
                     Single-hop
                   </button>
                   <button 
                     @click="activeBenchmarkCategory = activeBenchmarkCategory === 'multi' ? 'all' : 'multi'" 
-                    :class="activeBenchmarkCategory === 'multi' ? 'bg-[#D97756]/10 text-[#D97756] font-bold border-[#D97756]/30' : 'text-gray-600 hover:text-gray-900 border-transparent hover:bg-gray-100/50'"
-                    class="flex-1 py-1.5 px-1 text-center rounded border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/40">
+                    :class="activeBenchmarkCategory === 'multi' ? 'bg-[#D97756]/10 text-[#D97756] font-bold border-[#D97756]/30 shadow-xs' : 'text-gray-600 hover:text-gray-900 border-gray-200/70 hover:bg-gray-50 hover:border-gray-300'"
+                    class="py-2 px-1 text-center rounded-lg border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/40">
                     Multi-hop
                   </button>
                   <button 
                     @click="activeBenchmarkCategory = activeBenchmarkCategory === 'adversarial' ? 'all' : 'adversarial'" 
-                    :class="activeBenchmarkCategory === 'adversarial' ? 'bg-[#D97756]/10 text-[#D97756] font-bold border-[#D97756]/30' : 'text-gray-600 hover:text-gray-900 border-transparent hover:bg-gray-100/50'"
-                    class="flex-1 py-1.5 px-1 text-center rounded border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/40">
+                    :class="activeBenchmarkCategory === 'adversarial' ? 'bg-[#D97756]/10 text-[#D97756] font-bold border-[#D97756]/30 shadow-xs' : 'text-gray-600 hover:text-gray-900 border-gray-200/70 hover:bg-gray-50 hover:border-gray-300'"
+                    class="py-2 px-1 text-center rounded-lg border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/40">
                     Adversarial
                   </button>
                   <button 
                     @click="activeBenchmarkCategory = activeBenchmarkCategory === 'temporal' ? 'all' : 'temporal'" 
-                    :class="activeBenchmarkCategory === 'temporal' ? 'bg-[#D97756]/10 text-[#D97756] font-bold border-[#D97756]/30' : 'text-gray-600 hover:text-gray-900 border-transparent hover:bg-gray-100/50'"
-                    class="flex-1 py-1.5 px-1 text-center rounded border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/40">
+                    :class="activeBenchmarkCategory === 'temporal' ? 'bg-[#D97756]/10 text-[#D97756] font-bold border-[#D97756]/30 shadow-xs' : 'text-gray-600 hover:text-gray-900 border-gray-200/70 hover:bg-gray-50 hover:border-gray-300'"
+                    class="py-2 px-1 text-center rounded-lg border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/40">
                     Temporal
                   </button>
                 </div>
 
                 <!-- Interactive Category Insight Card -->
-                <div class="mx-2 sm:mx-6 mt-4 p-3.5 bg-gray-50 border border-dashed border-gray-300 rounded-md text-left transition-all duration-300">
-                  <div class="flex items-center justify-between text-xs font-mono font-bold text-gray-800 mb-1">
+                <div class="mt-4 p-4 bg-gray-50/80 border border-gray-200/80 rounded-xl text-left transition-all duration-300">
+                  <div class="flex items-center justify-between text-xs font-mono font-bold text-gray-800 mb-1.5">
                     <span class="text-[#D97756]">{{ benchmarkInsights[activeBenchmarkCategory].title }}</span>
                     <span class="text-[10px] text-gray-400 uppercase tracking-wider">Click category to inspect</span>
                   </div>
@@ -1229,7 +1226,7 @@
                 </div>
 
                 <!-- Legend and Footer -->
-                <div class="flex justify-between items-center mt-6 px-2 sm:px-6 relative z-10 text-xs tracking-wider uppercase font-bold">
+                <div class="flex justify-between items-center mt-6 px-1 relative z-10 text-xs tracking-wider uppercase font-bold">
                   <!-- Legend -->
                   <div class="flex items-center gap-6">
                     <div class="flex items-center gap-2">
@@ -1248,7 +1245,7 @@
               </div>
 
               <!-- Mobile horizontal chart version (visible on mobile only) -->
-              <div class="block md:hidden p-5 relative w-full bg-white border border-gray-200 rounded-md shadow-sm text-left">
+              <div class="block md:hidden relative w-full text-left">
                 <div class="flex justify-between items-center mb-4">
                   <h4 class="text-xs uppercase font-bold tracking-wider text-gray-400 font-mono">/ Accuracy Metrics</h4>
                   <div class="flex items-center gap-3 text-[10px] font-mono">
@@ -1336,14 +1333,13 @@
                   <div class="flex items-center gap-3">
                     <div class="flex items-center gap-1.5">
                       <span class="w-2.5 h-2.5 bg-zinc-300 rounded-sm"></span>
-                      <span>Old</span>
+                      <span>Baseline RAG</span>
                     </div>
                     <div class="flex items-center gap-1.5">
                       <span class="w-2.5 h-2.5 bg-[#D97756] rounded-sm"></span>
-                      <span>New</span>
+                      <span>Memwyre</span>
                     </div>
                   </div>
-                  <span>LOCOMO</span>
                 </div>
               </div>
             </div>
