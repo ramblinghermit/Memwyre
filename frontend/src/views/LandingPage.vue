@@ -275,17 +275,13 @@
 
               <!-- Stats Row -->
               <div class="flex flex-wrap gap-3 mb-8">
-                <div class="bg-white/20 group-hover:bg-white/25 backdrop-blur-md border border-white/35 group-hover:border-white/50 rounded-xl px-5 py-3.5 text-center min-w-[110px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-500">
-                  <div class="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-xs">&lt;200ms</div>
-                  <div class="text-[10px] font-bold tracking-[0.12em] uppercase text-white/90 mt-1">RECALL LATENCY</div>
-                </div>
-                <div class="bg-white/20 group-hover:bg-white/25 backdrop-blur-md border border-white/35 group-hover:border-white/50 rounded-xl px-5 py-3.5 text-center min-w-[110px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-500">
-                  <div class="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-xs">88.5%</div>
-                  <div class="text-[10px] font-bold tracking-[0.12em] uppercase text-white/90 mt-1">TOKEN REDUCTION</div>
-                </div>
-                <div class="bg-white/20 group-hover:bg-white/25 backdrop-blur-md border border-white/35 group-hover:border-white/50 rounded-xl px-5 py-3.5 text-center min-w-[110px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-500">
+                <div class="bg-white/20 group-hover:bg-white/25 backdrop-blur-md border border-white/35 group-hover:border-white/50 rounded-xl px-5 py-3.5 text-center min-w-[120px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-500">
                   <div class="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-xs">73.5%</div>
                   <div class="text-[10px] font-bold tracking-[0.12em] uppercase text-white/90 mt-1">LOCOMO ACCURACY</div>
+                </div>
+                <div class="bg-white/20 group-hover:bg-white/25 backdrop-blur-md border border-white/35 group-hover:border-white/50 rounded-xl px-5 py-3.5 text-center min-w-[120px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-500">
+                  <div class="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-xs">88.5%</div>
+                  <div class="text-[10px] font-bold tracking-[0.12em] uppercase text-white/90 mt-1">TOKEN REDUCTION</div>
                 </div>
               </div>
 
