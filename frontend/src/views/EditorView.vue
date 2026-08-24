@@ -256,6 +256,7 @@
       title="Delete Memory"
       message="Are you sure you want to delete this memory? This cannot be undone."
       confirm-text="Delete"
+      :loading="isDeletingMemory"
       @confirm="confirmDeleteDocument"
       @cancel="showDeleteModal = false"
     />
@@ -664,6 +665,7 @@ const approveDocument = async () => {
 };
 
 const showDeleteModal = ref(false);
+const isDeletingMemory = ref(false);
 
 const deleteDocument = async () => {
   if (documentId.value === 'new') {
@@ -674,6 +676,7 @@ const deleteDocument = async () => {
 };
 
 const confirmDeleteDocument = async () => {
+  isDeletingMemory.value = true;
   try {
     const targetId = resolvedId.value || documentId.value;
     // Handle 'mem_' prefix if present in ID but API expects int, or vice versa.
@@ -688,6 +691,7 @@ const confirmDeleteDocument = async () => {
         toast.error('Failed to delete document'); // Simple feedback
     }
   } finally {
+    isDeletingMemory.value = false;
     showDeleteModal.value = false;
   }
 };

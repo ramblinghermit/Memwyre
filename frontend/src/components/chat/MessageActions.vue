@@ -37,7 +37,7 @@
     </div>
 
     <span class="text-[10px] text-gray-400 dark:text-zinc-500 px-2 py-0.5 rounded-md bg-gray-100/60 dark:bg-zinc-800/50">
-      Kimi K2.5 (Bedrock)
+      Kimi K2.5
     </span>
   </div>
 </template>

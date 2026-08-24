@@ -148,27 +148,112 @@
         </div>
       </div>
 
-      <!-- MCP Connection Guide Embedded (Flushed) -->
-      <div v-if="currentDetailItem.id !== 'notion' && !currentDetailItem.isComingSoon" class="mt-8 border-t border-gray-100 dark:border-zinc-800/80 pt-6">
-        <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">MCP Configuration</h3>
-        <p class="text-xs text-gray-500 dark:text-zinc-400 mb-2">Copy the configuration below or click "Install plugin" to generate an active API key.</p>
-        
-        <McpConnectionGuide 
-          :apiKey="integrationApiKey" 
-          :initialTab="mapIntegrationToTab(currentDetailItem.id)"
-          :hideHeader="true"
-          :hideTabs="true"
-          class="!mt-0"
-        />
+      <!-- Connection / Configuration Guide (Grounded by Integration Type) -->
+      <div v-if="!currentDetailItem.isComingSoon" class="mt-8 border-t border-gray-100 dark:border-zinc-800/80 pt-6">
+        <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">
+          {{ currentDetailItem.setupSectionTitle || (currentDetailItem.isPlugin ? 'Plugin Configuration' : (currentDetailItem.isExtension ? 'Extension Installation' : (currentDetailItem.isOAuth ? 'OAuth 2.0 Authorization' : (currentDetailItem.isCustomAction ? 'Custom Action & Tool Setup' : 'MCP Configuration')))) }}
+        </h3>
+        <p class="text-xs text-gray-500 dark:text-zinc-400 mb-4">
+          {{ currentDetailItem.setupSubtitle || (currentDetailItem.isPlugin ? 'Run the terminal command below and configure your authentication credentials.' : (currentDetailItem.isExtension ? 'Install the official extension from the Chrome Web Store and pair your Memwyre API key.' : (currentDetailItem.isOAuth ? 'Authorize Memwyre to sync pages, databases, and workspace knowledge.' : (currentDetailItem.isCustomAction ? 'Configure OpenAPI action schemas or function declarations in your AI platform.' : 'Copy the configuration below or click "Install plugin" to generate an active API key.')))) }}
+        </p>
+
+        <!-- A. Notion / OAuth Connectors -->
+        <div v-if="currentDetailItem.isOAuth" class="space-y-4">
+          <div class="p-4 rounded-2xl bg-gray-100/70 dark:bg-[#18181b] border border-gray-200/70 dark:border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Workspace Authorization</h4>
+              <p class="text-xs text-gray-500 dark:text-zinc-400 mt-0.5">
+                {{ connectionsStatus[currentDetailItem.id]?.connected ? `Connected to ${connectionsStatus[currentDetailItem.id]?.workspace_name || 'workspace'}` : 'Click connect to initiate OAuth 2.0 authorization with your workspace.' }}
+              </p>
+            </div>
+            <button
+              @click="handleDetailPrimaryAction"
+              class="px-4 py-2 rounded-xl text-xs font-semibold bg-[#D97757] hover:bg-[#c66849] text-white transition-colors cursor-pointer shrink-0 shadow-xs"
+            >
+              {{ connectionsStatus[currentDetailItem.id]?.connected ? 'Sync Workspace Now' : 'Connect with OAuth' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- B. Chrome Extension -->
+        <div v-else-if="currentDetailItem.isExtension" class="space-y-4">
+          <div class="p-4 rounded-2xl bg-gray-100/70 dark:bg-[#18181b] border border-gray-200/70 dark:border-zinc-800/80 space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white">1. Install from Chrome Web Store</h4>
+                <p class="text-xs text-gray-500 dark:text-zinc-400 mt-0.5">Get the official Memwyre extension for Chrome, Brave, and Edge.</p>
+              </div>
+              <a 
+                href="https://chromewebstore.google.com" 
+                target="_blank"
+                class="px-4 py-2 rounded-xl text-xs font-semibold bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-colors shrink-0"
+              >
+                Chrome Web Store ↗
+              </a>
+            </div>
+
+            <div class="pt-3 border-t border-gray-200/70 dark:border-zinc-800/70">
+              <h4 class="text-xs font-semibold text-gray-900 dark:text-white mb-1.5">2. Pair with your API Key</h4>
+              <div class="flex items-center gap-2">
+                <div class="flex-1 bg-white dark:bg-[#121214] rounded-lg border border-gray-200/80 dark:border-zinc-800 p-2.5">
+                  <code class="text-xs text-gray-800 dark:text-zinc-200 font-mono">{{ integrationApiKey }}</code>
+                </div>
+                <button
+                  @click="handleCopySamplePrompt({ samplePrompt: integrationApiKey })"
+                  class="px-3 py-2 rounded-lg bg-gray-200/80 dark:bg-zinc-800 hover:bg-gray-300 dark:hover:bg-zinc-700 text-xs font-medium text-gray-800 dark:text-zinc-200 transition-colors cursor-pointer"
+                >
+                  Copy Key
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- C. Custom Actions / LLMs (ChatGPT / Gemini / Perplexity) -->
+        <div v-else-if="currentDetailItem.isCustomAction" class="space-y-4">
+          <div class="p-4 rounded-2xl bg-gray-100/70 dark:bg-[#18181b] border border-gray-200/70 dark:border-zinc-800/80 space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white">API Authentication Header</h4>
+                <p class="text-xs text-gray-500 dark:text-zinc-400 mt-0.5">Use Bearer token authentication against the Memwyre OpenAPI gateway.</p>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-[#121214] rounded-lg border border-gray-200/80 dark:border-zinc-800 p-3">
+              <code class="text-xs text-gray-800 dark:text-zinc-200 font-mono select-all">Authorization: Bearer {{ integrationApiKey }}</code>
+            </div>
+            <div class="text-xs text-gray-500 dark:text-zinc-400">
+              <span>Endpoint: </span><code class="text-gray-800 dark:text-zinc-300 font-mono">https://api.memwyre.tech/api/v1/memory/search</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- D. Standard MCP & CLI Plugins (Cursor, VS Code, Windsurf, Claude Code, OpenClaw, Antigravity, etc.) -->
+        <div v-else>
+          <McpConnectionGuide 
+            :apiKey="integrationApiKey" 
+            :initialTab="mapIntegrationToTab(currentDetailItem.id)"
+            :hideHeader="true"
+            :hideTabs="true"
+            class="!mt-0"
+          />
+        </div>
       </div>
 
       <!-- Information Section -->
       <div class="mt-10 border-t border-gray-100 dark:border-zinc-800/80 pt-6 pb-12">
         <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-4">Information</h3>
-        <dl class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <dl class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
           <div>
             <dt class="text-gray-400 dark:text-zinc-500 font-medium">Developer</dt>
             <dd class="text-gray-900 dark:text-zinc-200 mt-0.5 font-medium">Memwyre Inc.</dd>
+          </div>
+          <div>
+            <dt class="text-gray-400 dark:text-zinc-500 font-medium">Category</dt>
+            <dd class="text-gray-900 dark:text-zinc-200 mt-0.5 font-medium">{{ currentDetailItem.typeLabel || 'IDE Integration' }}</dd>
+          </div>
+          <div>
+            <dt class="text-gray-400 dark:text-zinc-500 font-medium">Protocol / Interface</dt>
+            <dd class="text-gray-900 dark:text-zinc-200 mt-0.5 font-medium">{{ currentDetailItem.protocol || 'Model Context Protocol (MCP)' }}</dd>
           </div>
           <div>
             <dt class="text-gray-400 dark:text-zinc-500 font-medium">Documentation</dt>
@@ -178,10 +263,6 @@
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
               </a>
             </dd>
-          </div>
-          <div>
-            <dt class="text-gray-400 dark:text-zinc-500 font-medium">Protocol</dt>
-            <dd class="text-gray-900 dark:text-zinc-200 mt-0.5 font-medium">Model Context Protocol (MCP)</dd>
           </div>
         </dl>
       </div>
@@ -524,7 +605,7 @@ const connectionsStatus = ref({
   gdrive: { connected: false, workspace_name: null, last_synced_at: null, workspace_icon: null }
 });
 
-// Authentic Memwyre Integration Registry
+// Authentic Memwyre Integration Registry (Grounded with exact protocols & types)
 const integrationCategories = ref([
   {
     name: 'Featured',
@@ -543,6 +624,10 @@ const integrationCategories = ref([
         ],
         icon: cursorLightIcon,
         iconDark: cursorDarkIcon,
+        protocol: 'Model Context Protocol (MCP)',
+        typeLabel: 'Native IDE MCP Client',
+        appSubtitle: 'Direct stdio / SSE MCP Connector',
+        setupSectionTitle: 'MCP Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server/cursor'
       },
       { 
@@ -560,6 +645,11 @@ const integrationCategories = ref([
         ],
         icon: notionIcon, 
         darkInvert: true,
+        protocol: 'OAuth 2.0 / Notion REST API',
+        typeLabel: 'Cloud Workspace Connector',
+        appSubtitle: 'OAuth 2.0 Workspace Sync',
+        setupSectionTitle: 'Workspace Authorization',
+        isOAuth: true,
         docsLink: 'https://docs.memwyre.tech/integrations/connectors'
       },
       { 
@@ -575,6 +665,10 @@ const integrationCategories = ref([
           { title: 'Bi-directional ingestion', desc: 'Save critical takeaways back to your Memwyre vault' }
         ],
         icon: claudeIcon,
+        protocol: 'Model Context Protocol (MCP)',
+        typeLabel: 'Desktop Assistant MCP Client',
+        appSubtitle: 'Desktop stdio MCP Server',
+        setupSectionTitle: 'MCP Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server/claude'
       },
       { 
@@ -590,6 +684,10 @@ const integrationCategories = ref([
           { title: 'Convention enforcement', desc: 'Ensure team coding standards and past decisions are remembered' }
         ],
         icon: vscodeIcon,
+        protocol: 'Model Context Protocol (MCP)',
+        typeLabel: 'IDE Extension / MCP Client',
+        appSubtitle: 'VS Code MCP Server',
+        setupSectionTitle: 'MCP Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server/vscode'
       },
       { 
@@ -604,6 +702,10 @@ const integrationCategories = ref([
           { title: 'Direct MCP connector', desc: 'Built-in support for tool calls: save_memory, search_memwyre, and get_inbox' }
         ],
         icon: antigravityIcon,
+        protocol: 'Model Context Protocol (MCP) & Agent Skill',
+        typeLabel: 'Agentic IDE & Skill Architecture',
+        appSubtitle: 'Antigravity MCP Server & Tool Schemas',
+        setupSectionTitle: 'MCP & Skill Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server'
       },
       { 
@@ -618,6 +720,11 @@ const integrationCategories = ref([
           { title: 'AI summarization', desc: 'Automatic key takeaway extraction and semantic tagging' }
         ],
         icon: chromeIcon,
+        protocol: 'Chrome Manifest V3 / Web API',
+        typeLabel: 'Browser Extension',
+        appSubtitle: 'Browser Context & Webpage Ingestor',
+        setupSectionTitle: 'Extension Installation',
+        isExtension: true,
         docsLink: 'https://docs.memwyre.tech/integrations/browser'
       }
     ]
@@ -638,6 +745,10 @@ const integrationCategories = ref([
         ],
         icon: cursorLightIcon,
         iconDark: cursorDarkIcon,
+        protocol: 'Model Context Protocol (MCP)',
+        typeLabel: 'Native IDE MCP Client',
+        appSubtitle: 'Direct stdio / SSE MCP Connector',
+        setupSectionTitle: 'MCP Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server/cursor'
       },
       { 
@@ -652,6 +763,10 @@ const integrationCategories = ref([
           { title: 'Multi-repo intelligence', desc: 'Seamlessly link memories across different workspaces and projects' }
         ],
         icon: vscodeIcon,
+        protocol: 'Model Context Protocol (MCP)',
+        typeLabel: 'IDE Extension / MCP Client',
+        appSubtitle: 'VS Code MCP Server',
+        setupSectionTitle: 'MCP Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server/vscode'
       },
       { 
@@ -667,6 +782,10 @@ const integrationCategories = ref([
         ],
         icon: windsurfIcon,
         darkInvert: true,
+        protocol: 'Model Context Protocol (MCP)',
+        typeLabel: 'Cascade IDE MCP Client',
+        appSubtitle: 'Cascade Flow MCP Connector',
+        setupSectionTitle: 'MCP Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server'
       },
       { 
@@ -680,6 +799,10 @@ const integrationCategories = ref([
           { title: 'CLI command memory', desc: 'Remember CLI setups, environment variables, and execution plans' }
         ],
         icon: codexIcon,
+        protocol: 'Codex CLI Protocol & MCP',
+        typeLabel: 'CLI Assistant Integration',
+        appSubtitle: 'Codex CLI Memory Extension',
+        setupSectionTitle: 'CLI Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/cli-installer'
       }
     ]
@@ -700,6 +823,11 @@ const integrationCategories = ref([
         ],
         icon: claudeCodeIcon, 
         isPro: true,
+        protocol: 'Claude Code Plugin Protocol',
+        typeLabel: 'CLI Terminal Plugin',
+        appSubtitle: 'Native Claude Code CLI Plugin',
+        setupSectionTitle: 'Plugin Installation & Auth',
+        isPlugin: true,
         docsLink: 'https://docs.memwyre.tech/integrations/plugins/claude'
       },
       { 
@@ -715,6 +843,11 @@ const integrationCategories = ref([
         ],
         icon: openclawIcon, 
         isPro: true,
+        protocol: 'OpenClaw Plugin Architecture',
+        typeLabel: 'Autonomous Agent Plugin',
+        appSubtitle: 'OpenClaw Agent Backplane Plugin',
+        setupSectionTitle: 'Plugin Configuration',
+        isPlugin: true,
         docsLink: 'https://docs.memwyre.tech/integrations/plugins/openclaw'
       },
       { 
@@ -729,6 +862,10 @@ const integrationCategories = ref([
           { title: 'Direct MCP connector', desc: 'Built-in support for tool calls: save_memory, search_memwyre, and get_inbox' }
         ],
         icon: antigravityIcon,
+        protocol: 'Model Context Protocol (MCP) & Agent Skill',
+        typeLabel: 'Agentic IDE & Skill Architecture',
+        appSubtitle: 'Antigravity MCP Server & Tool Schemas',
+        setupSectionTitle: 'MCP & Skill Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server'
       },
       { 
@@ -743,6 +880,10 @@ const integrationCategories = ref([
           { title: 'Dynamic tool execution', desc: 'Claude autonomously pulls memories when answering complex queries' }
         ],
         icon: claudeIcon,
+        protocol: 'Model Context Protocol (MCP)',
+        typeLabel: 'Desktop Assistant MCP Client',
+        appSubtitle: 'Desktop stdio MCP Server',
+        setupSectionTitle: 'MCP Configuration',
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server/claude'
       },
       { 
@@ -758,6 +899,11 @@ const integrationCategories = ref([
         icon: opencodeIcon,
         darkInvert: true,
         isPro: true,
+        protocol: 'OpenCode Agent Plugin / MCP',
+        typeLabel: 'Multi-Agent Platform Plugin',
+        appSubtitle: 'OpenCode Context Connector',
+        setupSectionTitle: 'Plugin Configuration',
+        isPlugin: true,
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server'
       }
     ]
@@ -779,6 +925,11 @@ const integrationCategories = ref([
         ],
         icon: notionIcon, 
         darkInvert: true,
+        protocol: 'OAuth 2.0 / Notion REST API',
+        typeLabel: 'Cloud Workspace Connector',
+        appSubtitle: 'OAuth 2.0 Workspace Sync',
+        setupSectionTitle: 'Workspace Authorization',
+        isOAuth: true,
         docsLink: 'https://docs.memwyre.tech/integrations/connectors'
       },
       { 
@@ -794,6 +945,11 @@ const integrationCategories = ref([
         ],
         icon: gdriveIcon, 
         isComingSoon: true,
+        protocol: 'Google Workspace OAuth 2.0',
+        typeLabel: 'Cloud Workspace Connector',
+        appSubtitle: 'Google Workspace Document Indexer',
+        setupSectionTitle: 'Workspace Authorization',
+        isOAuth: true,
         docsLink: 'https://docs.memwyre.tech/integrations/connectors'
       },
       { 
@@ -808,6 +964,11 @@ const integrationCategories = ref([
           { title: 'AI summarization', desc: 'Automatic key takeaway extraction and semantic tagging' }
         ],
         icon: chromeIcon,
+        protocol: 'Chrome Manifest V3 / Web API',
+        typeLabel: 'Browser Extension',
+        appSubtitle: 'Browser Context & Webpage Ingestor',
+        setupSectionTitle: 'Extension Installation',
+        isExtension: true,
         docsLink: 'https://docs.memwyre.tech/integrations/browser'
       }
     ]
@@ -828,6 +989,11 @@ const integrationCategories = ref([
         ],
         icon: openaiIcon, 
         darkInvert: true,
+        protocol: 'OpenAI Custom Actions (OpenAPI / REST)',
+        typeLabel: 'Custom GPT / LLM Tool',
+        appSubtitle: 'OpenAPI Schema & Action Endpoints',
+        setupSectionTitle: 'Custom Action Configuration',
+        isCustomAction: true,
         docsLink: 'https://docs.memwyre.tech/integrations/llms'
       },
       { 
@@ -842,6 +1008,11 @@ const integrationCategories = ref([
           { title: 'Real-time indexing', desc: 'Automatically sync conversation takeaways into Memwyre' }
         ],
         icon: geminiIcon,
+        protocol: 'Gemini Function Calling / REST API',
+        typeLabel: 'LLM Function Calling Tool',
+        appSubtitle: 'Gemini Function Declarations',
+        setupSectionTitle: 'Function Calling Configuration',
+        isCustomAction: true,
         docsLink: 'https://docs.memwyre.tech/integrations/llms'
       },
       { 
@@ -856,6 +1027,11 @@ const integrationCategories = ref([
           { title: 'Citation graphs', desc: 'Build connected references across web search queries' }
         ],
         icon: perplexityIcon,
+        protocol: 'Citation & Webhook Ingestion API',
+        typeLabel: 'Search & Citation Integration',
+        appSubtitle: 'Research Stream Webhook',
+        setupSectionTitle: 'Webhook & Ingestion Setup',
+        isCustomAction: true,
         docsLink: 'https://docs.memwyre.tech/integrations/llms'
       }
     ]

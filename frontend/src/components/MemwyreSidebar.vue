@@ -18,7 +18,7 @@
 
     <!-- Sidebar Container (Light & Dark Theme Responsive) -->
     <aside
-      class="fixed lg:static top-0 bottom-0 left-0 z-50 flex flex-col bg-gray-50 dark:bg-[#09090b] text-gray-700 dark:text-zinc-200 border-r border-gray-200 dark:border-zinc-800/80 transition-all duration-300 select-none shadow-2xl lg:shadow-none h-screen shrink-0 overflow-hidden"
+      class="fixed lg:static top-0 bottom-0 left-0 z-50 flex flex-col bg-gray-50 dark:bg-[#09090b] text-gray-700 dark:text-zinc-200 border-r border-gray-200 dark:border-zinc-800/80 transition-all duration-300 select-none shadow-2xl lg:shadow-none h-screen shrink-0"
       :class="[
         isCollapsed ? 'w-[68px]' : 'w-[260px] sm:w-[280px]',
         isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
@@ -279,13 +279,22 @@
                 ]"
               >
                 <span class="truncate pr-2">{{ recent.title }}</span>
-                <button
-                  @click.stop="pinItem(recent)"
-                  title="Pin this item"
-                  class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-[#D97757] p-0.5 rounded transition-opacity shrink-0"
-                >
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
-                </button>
+                <div class="flex items-center gap-0.5 shrink-0">
+                  <button
+                    @click.stop="openDeleteChatModal(recent)"
+                    title="Delete chat"
+                    class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 dark:hover:text-red-400 p-0.5 rounded transition-opacity cursor-pointer"
+                  >
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                  </button>
+                  <button
+                    @click.stop="pinItem(recent)"
+                    title="Pin this item"
+                    class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-[#D97757] p-0.5 rounded transition-opacity cursor-pointer"
+                  >
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
+                  </button>
+                </div>
               </div>
             </div>
             <div v-else class="px-2.5 py-2">
@@ -369,11 +378,12 @@
 
       <!-- Bottom Footer: Real User Profile Tile & Account Menu -->
       <div 
+        ref="userMenuRef"
         class="border-t border-gray-200/80 dark:border-zinc-800/80 shrink-0 bg-gray-50/80 dark:bg-[#09090b] relative"
         :class="isCollapsed ? 'p-2' : 'p-3'"
       >
         <div 
-          @click="toggleUserMenu"
+          @click.stop="toggleUserMenu"
           class="flex items-center rounded-xl hover:bg-gray-200/60 dark:hover:bg-zinc-800/70 cursor-pointer transition-colors"
           :class="isCollapsed ? 'justify-center p-1.5' : 'justify-between p-1.5'"
         >
@@ -407,25 +417,32 @@
           leave-to-class="transform opacity-0 scale-95"
         >
           <div 
-            v-if="isUserMenuOpen"
-            class="absolute bottom-full left-3 right-3 mb-2 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-zinc-700/80 rounded-xl shadow-2xl py-1.5 z-[70] text-sm text-gray-700 dark:text-zinc-200"
+            v-if="isUserMenuOpen" 
+            @click.stop
+            class="absolute bottom-full left-0 mb-2 w-60 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-zinc-700/80 rounded-2xl shadow-2xl py-1.5 z-[100] text-sm text-gray-700 dark:text-zinc-200"
           >
-            <div class="px-3 py-2 border-b border-gray-100 dark:border-zinc-800">
-              <p class="text-xs text-gray-400 dark:text-zinc-500">Signed in as</p>
-              <p class="text-xs font-semibold text-gray-900 dark:text-white truncate">{{ authStore.user?.email || 'user@memwyre.tech' }}</p>
+            <div class="px-3.5 py-2.5 border-b border-gray-100 dark:border-zinc-800">
+              <p class="text-[11px] font-medium text-gray-400 dark:text-zinc-500 uppercase tracking-wider">Signed in as</p>
+              <p class="text-xs font-semibold text-gray-900 dark:text-white truncate mt-0.5">{{ authStore.user?.email || 'user@memwyre.tech' }}</p>
             </div>
-            <router-link to="/settings" @click="isUserMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 hover:bg-gray-100 dark:hover:bg-zinc-700/60 hover:text-gray-900 dark:hover:text-white transition-colors">
-              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
-              <span>Account & Settings</span>
-            </router-link>
-            <router-link to="/billing" @click="isUserMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 hover:bg-gray-100 dark:hover:bg-zinc-700/60 hover:text-gray-900 dark:hover:text-white transition-colors">
-              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-              <span>Subscription & Usage</span>
-            </router-link>
-            <button @click="handleLogout" class="w-full flex items-center gap-2.5 px-3 py-2 hover:bg-red-50 dark:hover:bg-red-950/30 text-red-600 dark:text-red-400 transition-colors text-left border-t border-gray-100 dark:border-zinc-800">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
-              <span>Log out</span>
-            </button>
+
+            <div class="p-1 space-y-0.5">
+              <router-link to="/settings" @click="isUserMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800/80 hover:text-gray-900 dark:hover:text-white transition-colors">
+                <svg class="w-4 h-4 text-gray-400 dark:text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
+                <span class="text-xs font-medium truncate">Account & Settings</span>
+              </router-link>
+              <router-link to="/billing" @click="isUserMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800/80 hover:text-gray-900 dark:hover:text-white transition-colors">
+                <svg class="w-4 h-4 text-gray-400 dark:text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                <span class="text-xs font-medium truncate">Subscription & Usage</span>
+              </router-link>
+            </div>
+
+            <div class="p-1 border-t border-gray-100 dark:border-zinc-800">
+              <button @click="handleLogout" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-950/30 text-red-600 dark:text-red-400 transition-colors text-left cursor-pointer">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                <span class="text-xs font-medium">Log out</span>
+              </button>
+            </div>
           </div>
         </transition>
       </div>
@@ -481,6 +498,17 @@
         </div>
       </div>
     </transition>
+
+    <!-- Delete Conversation Confirmation Modal -->
+    <ConfirmationModal
+      :is-open="showDeleteChatModal"
+      title="Delete Conversation"
+      :message="`Are you sure you want to delete '${chatToDelete?.title || 'this conversation'}'? This cannot be undone.`"
+      confirm-text="Delete"
+      :loading="isDeletingChat"
+      @confirm="confirmDeleteChat"
+      @cancel="showDeleteChatModal = false"
+    />
   </div>
 </template>
 
@@ -490,6 +518,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
 import { useChatStore } from '../stores/chat';
 import { useInboxStore } from '../stores/inbox';
+import ConfirmationModal from './ConfirmationModal.vue';
 import cursorLightIcon from '../assets/cursor_CUBE_2D_LIGHT.svg';
 import vscodeIcon from '../assets/vscode.svg';
 import claudeCodeIcon from '../assets/claudecode-color.svg';
@@ -522,6 +551,12 @@ const isMoreMenuOpen = ref(false);
 const isUserMenuOpen = ref(false);
 const isSearchOpen = ref(false);
 const searchQuery = ref('');
+const showDeleteChatModal = ref(false);
+const chatToDelete = ref(null);
+const isDeletingChat = ref(false);
+
+const moreMenuRef = ref(null);
+const userMenuRef = ref(null);
 
 const isChatMode = computed(() => route.path.startsWith('/chat'));
 
@@ -586,6 +621,15 @@ const setSlide = (idx) => {
   startSlideTimer();
 };
 
+function handleDocumentClick(e) {
+  if (userMenuRef.value && !userMenuRef.value.contains(e.target)) {
+    isUserMenuOpen.value = false;
+  }
+  if (moreMenuRef.value && !moreMenuRef.value.contains(e.target)) {
+    isMoreMenuOpen.value = false;
+  }
+}
+
 // Load sessions and collapse preference on mount
 onMounted(async () => {
   if (typeof localStorage !== 'undefined') {
@@ -608,13 +652,15 @@ onMounted(async () => {
 
   startSlideTimer();
 
-  // Global keydown (⌘K / Ctrl+K)
+  // Global listeners
   window.addEventListener('keydown', handleGlobalKeydown);
+  document.addEventListener('click', handleDocumentClick);
 });
 
 onUnmounted(() => {
   stopSlideTimer();
   window.removeEventListener('keydown', handleGlobalKeydown);
+  document.removeEventListener('click', handleDocumentClick);
 });
 
 function handleGlobalKeydown(e) {
@@ -661,6 +707,28 @@ async function startNewChat() {
     router.push('/chat');
   } catch (e) {
     router.push('/chat');
+  }
+}
+
+function openDeleteChatModal(recent) {
+  chatToDelete.value = recent;
+  showDeleteChatModal.value = true;
+}
+
+async function confirmDeleteChat() {
+  if (!chatToDelete.value) return;
+  const sessionId = chatToDelete.value.id;
+  const wasActive = chatStore.currentSession?.id === sessionId;
+  isDeletingChat.value = true;
+  try {
+    const deleted = await chatStore.deleteSession(sessionId);
+    if (deleted && wasActive) {
+      router.push('/chat');
+    }
+  } finally {
+    isDeletingChat.value = false;
+    showDeleteChatModal.value = false;
+    chatToDelete.value = null;
   }
 }
 

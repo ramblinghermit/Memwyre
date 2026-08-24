@@ -297,6 +297,33 @@ async def delete_sessions(
     return Response(status_code=204)
 
 
+@router.delete("/sessions/{session_id}", status_code=204, response_class=Response)
+async def delete_session(
+    session_id: int,
+    db: AsyncSession = Depends(deps.get_db),
+    current_user: User = Depends(deps.get_current_user)
+):
+    """Delete a single chat session and its messages."""
+    result = await db.execute(
+        select(ChatSession).where(
+            ChatSession.id == session_id,
+            ChatSession.user_id == current_user.id
+        )
+    )
+    session = result.scalar_one_or_none()
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+
+    await db.execute(
+        delete(ChatMessage).where(ChatMessage.session_id == session_id)
+    )
+    await db.execute(
+        delete(ChatSession).where(ChatSession.id == session_id)
+    )
+    await db.commit()
+    return Response(status_code=204)
+
+
 class FeedbackCreate(BaseModel):
     feedback: str # "up" or "down"
 

@@ -125,15 +125,15 @@
           </span>
         </div>
 
-        <!-- Card Title & Content Preview -->
-        <div class="mb-3">
-          <h3 class="text-sm sm:text-base font-semibold text-gray-900 dark:text-zinc-100 leading-snug mb-1.5">
-            {{ item.details }}
+        <!-- Card Title & Raw Text Snippet (Email style) -->
+        <div class="mb-2.5">
+          <h3 class="text-sm sm:text-base font-semibold text-gray-900 dark:text-zinc-100 leading-snug">
+            {{ item.details || 'Untitled Memory' }}
           </h3>
           
-          <div v-if="item.content" class="text-xs text-gray-600 dark:text-zinc-300 leading-relaxed bg-gray-50/80 dark:bg-zinc-900/60 rounded-xl p-3 border border-gray-100 dark:border-zinc-800/80 overflow-hidden max-h-60 overflow-y-auto custom-scrollbar">
-            <MarkdownPreview :content="item.content" />
-          </div>
+          <p v-if="item.content" class="text-xs text-gray-500 dark:text-zinc-400 mt-1 line-clamp-2 leading-relaxed font-normal">
+            {{ getRawPreview(item.content) }}
+          </p>
         </div>
 
         <!-- Similarity Alert if any -->
@@ -321,6 +321,17 @@ const getSimilarity = (item) => {
     }
   }
   return null;
+};
+
+const getRawPreview = (content) => {
+  if (!content) return '';
+  return content
+    .replace(/#+\s+/g, '')
+    .replace(/!\[.*?\]\(.*?\)/g, '')
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+    .replace(/[*_~`]/g, '')
+    .replace(/\n+/g, ' ')
+    .trim();
 };
 
 const formatTimeAgo = (dateString) => {

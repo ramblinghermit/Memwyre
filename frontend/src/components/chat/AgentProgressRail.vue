@@ -1,32 +1,38 @@
 <template>
   <div class="flex justify-start my-2">
     <div class="max-w-[85%] min-w-0">
-      <div class="bg-white/80 dark:bg-surface-2/60 border border-gray-200/80 dark:border-gray-800 rounded-xl p-3 shadow-xs transition-all">
-        <div class="flex items-center justify-between gap-3">
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-semibold text-gray-700 dark:text-gray-200 tracking-wide uppercase">Agent Progress</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-500 font-mono">
-              {{ steps.filter(s => s.status === 'completed').length }}/{{ steps.length || 1 }}
-            </span>
-          </div>
+      <div class="py-1">
+        <div class="flex items-center gap-2">
           <button
-            class="text-[11px] text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 font-medium transition-colors"
+            class="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-700 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors font-medium cursor-pointer select-none group"
             @click="$emit('toggle')"
           >
-            {{ expanded ? 'Collapse' : 'Details' }}
+            <svg
+              class="w-3.5 h-3.5 transition-transform duration-200 text-gray-400 dark:text-zinc-500 group-hover:text-gray-600 dark:group-hover:text-zinc-300"
+              :class="{ 'rotate-90': expanded }"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            <span class="animate-pulse text-[#D97757] font-semibold">Thinking...</span>
+            <span v-if="steps.length > 0" class="text-[11px] text-gray-400 dark:text-zinc-600 font-mono">
+              ({{ steps.filter(s => s.status === 'completed').length }}/{{ steps.length }})
+            </span>
           </button>
         </div>
 
-        <p v-if="waitingForFirstStep" class="mt-1.5 text-xs text-gray-500 dark:text-gray-400 font-mono">
-          Waiting for agent response...
+        <p v-if="waitingForFirstStep" class="mt-1 pl-5 text-xs text-gray-400 dark:text-zinc-500 italic">
+          Connecting to agent...
         </p>
 
         <template v-else-if="steps.length > 0">
-          <p v-if="!expanded" class="mt-1.5 text-xs text-gray-600 dark:text-gray-300 font-mono truncate">
+          <p v-if="!expanded" class="mt-1 pl-5 text-xs text-gray-400 dark:text-zinc-500 truncate">
             {{ summaryLine }}
           </p>
 
-          <ul v-else class="mt-3 pl-1 space-y-2 border-t border-gray-100 dark:border-gray-800 pt-2.5">
+          <ul v-else class="mt-2 pl-3 ml-1.5 space-y-1.5 border-l border-gray-200 dark:border-zinc-800">
             <li
               v-for="step in steps"
               :key="`${turnId}-${step.step}`"
@@ -37,12 +43,12 @@
                   class="w-1.5 h-1.5 rounded-full shrink-0"
                   :class="dotClass(step.status)"
                 ></span>
-                <span class="text-gray-700 dark:text-gray-200 font-medium truncate">{{ step.label }}</span>
-                <span v-if="metaText(step.meta)" class="text-[10px] text-gray-400 dark:text-gray-500 font-mono">
+                <span class="text-gray-600 dark:text-zinc-300 font-medium truncate">{{ step.label }}</span>
+                <span v-if="metaText(step.meta)" class="text-[10px] text-gray-400 dark:text-zinc-500 font-mono">
                   ({{ metaText(step.meta) }})
                 </span>
               </div>
-              <span class="text-[10px] text-gray-400 dark:text-gray-500 shrink-0 font-mono">{{ formatTime(step.timestamp) }}</span>
+              <span class="text-[10px] text-gray-400 dark:text-zinc-500 shrink-0 font-mono">{{ formatTime(step.timestamp) }}</span>
             </li>
           </ul>
         </template>
@@ -79,7 +85,7 @@ const dotClass = (status) => {
   if (status === 'failed') return 'bg-red-500';
   if (status === 'active') return 'bg-amber-500 animate-pulse';
   if (status === 'completed') return 'bg-emerald-500';
-  return 'bg-gray-300 dark:bg-gray-600';
+  return 'bg-gray-300 dark:bg-zinc-600';
 };
 
 const formatTime = (timestamp) => {
