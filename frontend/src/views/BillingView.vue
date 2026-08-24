@@ -1,131 +1,132 @@
 <template>
-  <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden">
-    <NavBar />
-
-    <main class="flex-1 overflow-y-auto w-full max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="mb-10">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-text-primary">Billing</h1>
-        <p class="mt-2 text-sm text-gray-500 dark:text-text-secondary">Manage your Memwyre Pro subscription.</p>
+  <div class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 no-scrollbar flex flex-col min-h-0 overflow-y-auto overflow-x-hidden select-none">
+    
+    <!-- Top Header -->
+    <div class="mb-6 shrink-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Billing & Subscription</h2>
+          <span
+            :class="billing.isPro ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20' : 'bg-gray-100 text-gray-700 dark:bg-zinc-800 dark:text-zinc-300 border-gray-200 dark:border-zinc-700'"
+            class="text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider border"
+          >
+            {{ billing.plan || 'Free' }}
+          </span>
+        </div>
+        <p class="text-sm text-gray-500 dark:text-zinc-400 mt-1">Manage your membership, daily token allowances, and renewal settings.</p>
       </div>
 
-      <!-- Success/Cancel Banner -->
-      <div v-if="queryStatus === 'success'" class="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg animate-fade-in">
-        <div class="flex items-center gap-3">
-          <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <!-- Dev Mode Badge -->
+      <div v-if="billing.isDevMode" class="px-3 py-1 bg-purple-100 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 rounded-xl text-xs font-bold uppercase tracking-wider self-start sm:self-auto">
+        🛠 Dev Mode Active
+      </div>
+    </div>
+
+    <!-- Feedback Banners -->
+    <div v-if="queryStatus === 'success'" class="mb-5 p-4 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 rounded-2xl animate-fade-in flex items-center gap-3">
+      <svg class="w-5 h-5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <div>
+        <p class="text-sm font-semibold text-emerald-900 dark:text-emerald-200">Payment Successful!</p>
+        <p class="text-xs sm:text-sm text-emerald-700 dark:text-emerald-300">Your Pro subscription has been activated.</p>
+      </div>
+    </div>
+
+    <div v-if="queryStatus === 'cancelled'" class="mb-5 p-4 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/60 rounded-2xl animate-fade-in flex items-center gap-3">
+      <svg class="w-5 h-5 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
+      <p class="text-xs sm:text-sm text-amber-800 dark:text-amber-200">Checkout was cancelled. No charges were made.</p>
+    </div>
+
+    <!-- Loading State -->
+    <div v-if="billing.loading" class="flex items-center justify-center py-20">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D97757]"></div>
+    </div>
+
+    <!-- Flushed Content Sections -->
+    <div v-else class="space-y-8 pb-12 divide-y divide-gray-200/80 dark:divide-zinc-800">
+      
+      <!-- Current Plan Section (Flushed) -->
+      <section class="space-y-4 pt-2 first:pt-0">
+        <div>
+          <h3 class="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wider">Current Membership</h3>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-0.5">Your active plan and renewal status.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-3 border-b border-gray-100 dark:border-zinc-800/60">
           <div>
-            <p class="font-medium text-green-800 dark:text-green-200">Payment successful!</p>
-            <p class="text-sm text-green-700 dark:text-green-300">Your Pro subscription is being activated. It may take a moment to reflect.</p>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="queryStatus === 'cancelled'" class="mb-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg animate-fade-in">
-        <div class="flex items-center gap-3">
-          <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
-          <p class="font-medium text-yellow-800 dark:text-yellow-200">Checkout was cancelled. No charges were made.</p>
-        </div>
-      </div>
-
-      <!-- Loading -->
-      <div v-if="billing.loading" class="flex items-center justify-center py-20">
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D97757]"></div>
-      </div>
-
-      <div v-else>
-        <!-- Current Plan Card -->
-        <div class="bg-white dark:bg-surface shadow rounded-xl border border-gray-100 dark:border-border p-8 mb-8 animate-fade-in">
-          <div class="flex items-center justify-between mb-6">
-            <div>
-              <h2 class="text-lg font-semibold text-gray-900 dark:text-text-primary">Current Plan</h2>
-              <div class="flex items-center gap-3 mt-2">
-                <span
-                  :class="billing.isPro ? 'bg-[#D97757] text-white' : 'bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300'"
-                  class="px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider"
-                >
-                  {{ billing.plan || 'Free' }}
-                </span>
-                <span
-                  :class="{
-                    'text-green-600 dark:text-green-400': billing.status === 'active' || billing.isDevMode,
-                    'text-yellow-600 dark:text-yellow-400': billing.status === 'on_hold',
-                    'text-red-600 dark:text-red-400': billing.status === 'failed' || billing.status === 'cancelled',
-                    'text-gray-500 dark:text-gray-400': billing.status === 'inactive'
-                  }"
-                  class="text-sm font-medium"
-                >
-                  {{ billing.statusLabel }}
-                </span>
-              </div>
-            </div>
-
-            <!-- Dev mode badge -->
-            <div v-if="billing.isDevMode" class="px-3 py-1.5 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-lg text-xs font-bold uppercase tracking-wider">
-              ðŸ›  Dev Mode Active
-            </div>
-          </div>
-
-          <!-- Period info -->
-          <div v-if="billing.currentPeriodEnd && billing.isPro" class="text-sm text-gray-500 dark:text-text-secondary">
-            Current period ends: <span class="font-medium text-gray-700 dark:text-gray-300">{{ formatDate(billing.currentPeriodEnd) }}</span>
-          </div>
-        </div>
-
-        <!-- Upgrade CTA (shown when on free plan) -->
-        <div v-if="!billing.isPro" class="relative overflow-hidden bg-white dark:bg-surface shadow rounded-xl border border-gray-100 dark:border-border p-8 mb-8 animate-fade-in">
-          <!-- Gradient accent -->
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D97757] via-[#E8956E] to-[#D97757]"></div>
-
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900 dark:text-text-primary">Upgrade to Pro</h2>
-              <p class="mt-2 text-gray-500 dark:text-text-secondary max-w-md">Unlock unlimited memories, document uploads, AI chat, and more.</p>
-
-              <ul class="mt-4 space-y-2">
-                <li v-for="feature in proFeatures" :key="feature" class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                  <svg class="w-4 h-4 text-[#D97757] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  {{ feature }}
-                </li>
-              </ul>
-            </div>
-
-            <div class="flex flex-col items-center gap-3">
-              <div class="text-center">
-                <span class="text-4xl font-bold text-gray-900 dark:text-text-primary">$12</span>
-                <span class="text-gray-500 dark:text-text-secondary">/month</span>
-              </div>
-              <button
-                @click="handleUpgrade"
-                :disabled="checkingOut"
-                class="w-full md:w-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-sm font-bold rounded-lg text-white bg-[#D97757] hover:bg-[#C4654A] transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            <div class="flex items-center gap-2.5">
+              <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">
+                {{ billing.isPro ? 'Memwyre Pro Plan' : 'Free Starter Plan' }}
+              </span>
+              <span
+                :class="{
+                  'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20': billing.status === 'active' || billing.isDevMode,
+                  'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20': billing.status === 'on_hold',
+                  'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20': billing.status === 'failed' || billing.status === 'cancelled',
+                  'bg-gray-100 text-gray-600 dark:bg-zinc-800 dark:text-zinc-400 border-gray-200 dark:border-zinc-700': billing.status === 'inactive'
+                }"
+                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold border"
               >
-                <svg v-if="checkingOut" class="animate-spin -ml-1 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" /><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" /></svg>
-                {{ checkingOut ? 'Redirecting...' : 'Upgrade Now' }}
-              </button>
+                <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+                {{ billing.statusLabel }}
+              </span>
             </div>
+            <p v-if="billing.currentPeriodEnd && billing.isPro" class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-1">
+              Renews {{ formatDate(billing.currentPeriodEnd) }}
+            </p>
           </div>
+
+          <button
+            v-if="!billing.isPro"
+            @click="handleUpgrade"
+            :disabled="checkingOut"
+            class="bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm flex items-center gap-2 transition-all shadow-xs cursor-pointer active:scale-95 disabled:opacity-50 shrink-0 self-start sm:self-auto"
+          >
+            <svg v-if="checkingOut" class="animate-spin -ml-1 mr-1.5 h-4 w-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            <span>{{ checkingOut ? 'Redirecting...' : 'Upgrade to Pro — $12/mo' }}</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Pro Features Section (Flushed) -->
+      <section v-if="!billing.isPro" class="space-y-4 pt-8 first:pt-0">
+        <div>
+          <h3 class="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wider">Features in Pro</h3>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-0.5">Supercharge your workflow with persistent context across every AI tool.</p>
         </div>
 
-        <!-- Manage Subscription (shown when on Pro) -->
-        <div v-if="billing.isPro && !billing.isDevMode" class="bg-white dark:bg-surface shadow rounded-xl border border-gray-100 dark:border-border p-8 animate-fade-in">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-text-primary mb-4">Manage Subscription</h3>
-
-          <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-surface-2 rounded-lg">
-            <div>
-              <p class="font-medium text-gray-900 dark:text-text-primary">Cancel Subscription</p>
-              <p class="text-sm text-gray-500 dark:text-text-secondary mt-1">Your access will continue until the end of the current billing period.</p>
-            </div>
-            <button
-              @click="handleCancel"
-              :disabled="cancelling"
-              class="inline-flex items-center px-4 py-2 border border-red-300 dark:border-red-800 text-sm font-medium rounded-lg text-red-600 dark:text-red-400 bg-white dark:bg-transparent hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {{ cancelling ? 'Cancelling...' : 'Cancel Plan' }}
-            </button>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 py-2">
+          <div v-for="feature in proFeatures" :key="feature" class="flex items-center gap-2 text-sm text-gray-700 dark:text-zinc-200">
+            <svg class="w-4 h-4 text-[#D97757] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>{{ feature }}</span>
           </div>
         </div>
-      </div>
-    </main>
+      </section>
+
+      <!-- Manage / Cancel (Flushed) -->
+      <section v-if="billing.isPro && !billing.isDevMode" class="space-y-4 pt-8 first:pt-0">
+        <div>
+          <h3 class="text-xs font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wider">Subscription Management</h3>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-0.5">Manage your renewal preferences or cancel active plan.</p>
+        </div>
+
+        <div class="flex items-center justify-between gap-4 py-3 border-b border-gray-100 dark:border-zinc-800/60">
+          <div>
+            <p class="text-sm font-semibold text-gray-900 dark:text-zinc-100">Cancel Membership</p>
+            <p class="text-xs sm:text-[13px] text-gray-500 dark:text-zinc-400 mt-0.5">Your Pro features will remain active until the end of your billing cycle.</p>
+          </div>
+          <button
+            @click="handleCancel"
+            :disabled="cancelling"
+            class="px-3.5 py-1.5 border border-red-200 dark:border-red-900/60 text-xs sm:text-sm font-medium rounded-xl text-red-600 dark:text-red-400 bg-red-50/50 hover:bg-red-100 dark:bg-red-950/20 dark:hover:bg-red-950/40 transition-colors disabled:opacity-50 cursor-pointer shadow-2xs shrink-0"
+          >
+            {{ cancelling ? 'Cancelling...' : 'Cancel Plan' }}
+          </button>
+        </div>
+      </section>
+
+    </div>
   </div>
 </template>
 
@@ -134,7 +135,6 @@ import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useBillingStore } from '../stores/billing';
 import { useToast } from 'vue-toastification';
-import NavBar from '../components/NavBar.vue';
 
 const route = useRoute();
 const billing = useBillingStore();
@@ -146,58 +146,55 @@ const cancelling = ref(false);
 const queryStatus = computed(() => route.query.status);
 
 const proFeatures = [
-  '1M+ token storage',
+  'Unlimited memory indexing',
   '100K daily AI token budget',
-  'PDF & web page ingestion (YouTube coming soon)',
-  'MCP Server for IDE integration',
-  'Browser Extension (Chrome & Edge)',
-  'OpenClaw agent plugin access',
-  'Priority support',
+  'PDF, Markdown & web capture',
+  'Universal MCP server connection',
+  'Full IDE & agent integrations',
+  'Priority vector search retrieval'
 ];
 
-const formatDate = (isoString) => {
-  if (!isoString) return '';
-  return new Date(isoString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
+onMounted(async () => {
+  await billing.fetchSubscription();
+});
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return '';
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'short',
     day: 'numeric',
+    year: 'numeric'
   });
 };
 
 const handleUpgrade = async () => {
   checkingOut.value = true;
   try {
-    await billing.startCheckout();
+    const url = await billing.createCheckoutSession();
+    if (url) {
+      window.location.href = url;
+    } else {
+      toast.error('Failed to create checkout session');
+    }
   } catch (err) {
-    toast.error('Failed to start checkout. Please try again.');
+    toast.error(err.response?.data?.detail || 'Upgrade failed. Please try again.');
+  } finally {
     checkingOut.value = false;
   }
 };
 
 const handleCancel = async () => {
-  if (!confirm('Are you sure you want to cancel your Pro subscription?')) return;
+  if (!confirm('Are you sure you want to cancel your Pro subscription? You will retain access until the end of the billing period.')) {
+    return;
+  }
   cancelling.value = true;
   try {
     await billing.cancelSubscription();
-    toast.success('Subscription cancelled. Access continues until period end.');
+    toast.success('Subscription cancelled. Access remains active through billing period.');
   } catch (err) {
-    toast.error('Failed to cancel subscription.');
+    toast.error(err.response?.data?.detail || 'Failed to cancel subscription.');
   } finally {
     cancelling.value = false;
   }
 };
-
-onMounted(() => {
-  billing.fetchStatus();
-});
 </script>
-
-<style scoped>
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-in-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>

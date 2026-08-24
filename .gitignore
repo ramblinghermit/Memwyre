@@ -28,10 +28,20 @@ frontend/docs/.vitepress/cache
 *.log
 *.zip
 *.db
+*.pem
 pytest_output.txt
 .temp_research/
 scratch/
 tmp/
+debug_hook.txt
+*.bak
+.codex.bak/
+.grok/
+.impeccable/
+.opencode/
+mapping.json
+route53.json
+litellm_config.yaml
 
 # Development & Agent Configs
 .cursor/

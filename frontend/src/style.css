@@ -122,36 +122,47 @@ body {
   text-wrap: balance;
 }
 
-/* Global Document Scrollbar styling (Landing Page) */
-html::-webkit-scrollbar {
-  width: 10px;
+/* Refined Neutral Gray Shaded Scrollbar Styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 160, 160, 0.25) transparent;
 }
 
-html::-webkit-scrollbar-track {
-  background: #111111;
+.dark * {
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
 }
 
-html::-webkit-scrollbar-thumb {
-  background-color: #333;
-  border-radius: 4px;
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
 
-html::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-html {
-  scrollbar-color: #333 #111111;
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.14);
+  border-radius: 9999px;
+  transition: background-color 0.15s ease;
 }
 
-/* Reset scrollbars for inner app elements */
-body {
-  scrollbar-color: auto;
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.28);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.28);
 }
 
 /* Custom scrollbar class for inner elements */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -159,12 +170,21 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #94a3b8;
-  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.14);
+  border-radius: 9999px;
+  transition: background-color 0.15s ease;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #64748b;
+  background-color: rgba(0, 0, 0, 0.28);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.28);
 }
 
 /* Hide scrollbar utilities */

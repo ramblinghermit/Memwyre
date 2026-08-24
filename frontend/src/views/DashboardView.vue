@@ -1,124 +1,26 @@
 <template>
-  <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden">
-    <NavBar />
-
-    <main class="flex-1 overflow-y-auto lg:overflow-hidden w-full pt-6 pb-10 lg:pb-6 no-scrollbar">
-      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col min-h-full lg:h-full lg:min-h-0">
-        <div class="mb-6 shrink-0" id="tour-welcome">
-          <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Good {{ timeOfDay }}, {{ user?.name || 'User' }}</h1>
-          <p class="mt-1 text-gray-500 dark:text-text-secondary">This is where your AI work lives.</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-0">
-          <div class="lg:col-span-8 min-h-0">
-            <div id="tour-timeline" class="bg-white dark:bg-surface rounded-lg border border-gray-300 dark:border-gray-600 overflow-hidden h-[512px] lg:h-full min-h-0">
-              <AIInteractionTimeline ref="timelineRef" :project-id="projectStore.currentProjectId" :focus-today="focusToday" @open-item="openItem" />
-            </div>
-          </div>
-
-          <div class="lg:col-span-4 min-h-0 flex flex-col gap-6">
-            <div class="bg-white dark:bg-surface rounded-lg border border-gray-300 dark:border-gray-600 overflow-hidden h-[400px] lg:flex-1 min-h-0">
-              <DashboardInboxList />
-            </div>
-
-            <!-- Integration Suggestions Slider -->
-            <div class="bg-white dark:bg-surface rounded-lg border border-gray-300 dark:border-gray-600 overflow-hidden shrink-0">
-              <!-- Content Body -->
-              <div class="overflow-hidden relative w-full">
-                <div 
-                  class="flex transition-transform duration-300 ease-in-out"
-                  :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
-                >
-                  <div 
-                    v-for="(slide, slideIdx) in slides" 
-                    :key="slideIdx" 
-                    class="w-full shrink-0 p-6 flex flex-col gap-4"
-                  >
-                    <div class="flex justify-between items-center">
-                      <div class="flex items-center gap-2">
-                        <span class="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider">{{ slide.title }}</span>
-                        <span class="text-[10px] font-mono text-gray-400 dark:text-text-muted bg-gray-100 dark:bg-surface-2 px-1.5 py-0.5 rounded">{{ slideIdx + 1 }}/{{ slides.length }}</span>
-                      </div>
-                      
-                      <!-- Inline controls inside slide header -->
-                      <div class="flex items-center gap-1 shrink-0 select-none">
-                        <button 
-                          @click.stop.prevent="prevSlide" 
-                          class="p-1 text-gray-400 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300 transition-colors cursor-pointer"
-                        >
-                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /></svg>
-                        </button>
-                        <button 
-                          @click.stop.prevent="nextSlide" 
-                          class="p-1 text-gray-400 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300 transition-colors cursor-pointer"
-                        >
-                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
-                        </button>
-                      </div>
-                    </div>
-                    
-                    <p class="text-xs text-gray-500 dark:text-text-secondary leading-relaxed -mt-1">{{ slide.desc }}</p>
-
-                    <div class="flex flex-col gap-3">
-                      <router-link 
-                        v-for="item in slide.items" 
-                        :key="item.id" 
-                        to="/integrations" 
-                        class="group flex items-center justify-between p-2.5 bg-gray-50/50 dark:bg-zinc-900/30 rounded-xl border border-gray-100 dark:border-zinc-800 hover:border-primary/50 hover:bg-white dark:hover:bg-zinc-800 transition-all duration-200"
-                      >
-                        <div class="flex items-center gap-3 min-w-0">
-                          <div class="w-8 h-8 rounded-lg bg-white dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700/80 flex items-center justify-center shrink-0 shadow-sm">
-                            <img :src="item.icon" class="w-4.5 h-4.5 object-contain" :class="{'invert': item.invert, 'dark:invert': item.darkInvert}" :alt="item.name + ' icon'" />
-                          </div>
-                          <div class="flex flex-col min-w-0">
-                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ item.name }}</span>
-                            <span class="text-[10px] text-gray-400 dark:text-text-muted truncate pr-2">{{ item.desc }}</span>
-                          </div>
-                        </div>
-                        <svg class="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors mr-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
-                      </router-link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Footer / Indicator dot selectors -->
-              <div class="p-6 pt-0 border-t border-gray-50 dark:border-zinc-800 flex justify-between items-center bg-gray-50/20 dark:bg-zinc-900/10">
-                <div class="flex gap-1.5 select-none">
-                  <span 
-                    v-for="(_, dotIdx) in slides" 
-                    :key="dotIdx" 
-                    @click="setSlide(dotIdx)" 
-                    class="w-1.5 h-1.5 rounded-full cursor-pointer transition-all duration-300"
-                    :class="currentSlide === dotIdx ? 'bg-primary w-3' : 'bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300'"
-                  ></span>
-                </div>
-                
-                <router-link to="/integrations" class="text-xs font-bold text-primary hover:text-primary-600 transition-colors flex items-center gap-1">
-                  View all integrations &rarr;
-                </router-link>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 no-scrollbar flex flex-col min-h-0 overflow-y-auto overflow-x-hidden lg:overflow-hidden">
+    <div class="flex-1 min-h-0 flex flex-col h-full w-full">
+      <div id="tour-timeline" class="flex-1 min-h-0 flex flex-col overflow-hidden">
+        <AIInteractionTimeline 
+          ref="timelineRef" 
+          :project-id="projectStore.currentProjectId" 
+          :focus-today="focusToday" 
+          @open-item="openItem" 
+          @open-quick-add="handleOpenQuickAdd"
+        />
       </div>
-    </main>
-
-    <QuickActions @open-review="showDailyReview = true" />
-    <DailyReviewModal v-if="showDailyReview" @close="showDailyReview = false" />
+    </div>
 
     <OnboardingOverlay v-if="showOnboardingModal" />
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch, inject } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
-import NavBar from '../components/NavBar.vue';
-import QuickActions from '../components/QuickActions.vue';
-import DashboardInboxList from '../components/DashboardInboxList.vue';
-import DailyReviewModal from '../components/DailyReviewModal.vue';
+
 import AIInteractionTimeline from '../components/AIInteractionTimeline.vue';
 import OnboardingOverlay from '../components/OnboardingOverlay.vue';
 import { createTour } from '../tour';
@@ -128,11 +30,6 @@ import { useProjectStore } from '../stores/project';
 import api from '../services/api';
 import chromeLogo from '../assets/chrome-logo-svgrepo-com.svg';
 import edgeLogo from '../assets/microsoft-edge-logo.svg';
-import vscodeIcon from '../assets/vscode.svg';
-import claudeCodeIcon from '../assets/claudecode-color.svg';
-import openclawIcon from '../assets/openclaw-color.svg';
-import notionIcon from '../assets/notion-svgrepo-com.svg';
-import gdriveIcon from '../assets/google-drive.svg';
 import {
   migrateOnboardingLegacyState,
   readScopedBoolean,
@@ -147,6 +44,46 @@ const toast = useToast();
 const inboxStore = useInboxStore();
 const authStore = useAuthStore();
 const projectStore = useProjectStore();
+const openQuickCreate = inject('openQuickCreate', null);
+
+const handleOpenQuickAdd = () => {
+  if (openQuickCreate) {
+    openQuickCreate();
+  } else {
+    window.dispatchEvent(new CustomEvent('open-quick-add'));
+  }
+};
+
+const isMobileSidebarOpen = ref(false);
+const isWorkspaceMenuOpen = ref(false);
+const newWorkspaceName = ref('');
+const workspaceDropdownRef = ref(null);
+
+const currentProjectName = computed(() => {
+  const proj = projectStore.projects.find((p) => p.id === projectStore.currentProjectId);
+  return proj ? proj.name : 'Main Workspace';
+});
+
+const selectWorkspace = (id) => {
+  projectStore.selectProject(id);
+  isWorkspaceMenuOpen.value = false;
+};
+
+const handleCreateWorkspace = async () => {
+  const name = newWorkspaceName.value.trim();
+  if (!name) return;
+  try {
+    const newProj = await projectStore.createProject(name);
+    if (newProj?.id) {
+      projectStore.selectProject(newProj.id);
+    }
+    newWorkspaceName.value = '';
+    isWorkspaceMenuOpen.value = false;
+    toast.success('Workspace created');
+  } catch (err) {
+    toast.error('Failed to create workspace');
+  }
+};
 
 const user = computed(() => authStore.user);
 const isVerified = computed(() => !!user.value?.is_verified);
@@ -166,63 +103,7 @@ const firstActionStartedAt = ref('');
 const hasCompletedTour = ref(false);
 const extensionChoice = ref('');
 
-// Integration Suggestions Slider
-const currentSlide = ref(0);
-const slides = [
-  {
-    title: 'IDE & Editor Extensions',
-    desc: 'Capture convention changes, codebase decisions, and context directly from your workspace.',
-    items: [
-      { id: 'cursor', name: 'Cursor', desc: 'One-click MCP install in Cursor', icon: 'https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg', darkInvert: true },
-      { id: 'vscode', name: 'VS Code', desc: 'Native MCP support for VS Code', icon: vscodeIcon }
-    ]
-  },
-  {
-    title: 'CLI & Agents',
-    desc: 'Integrate persistent context into autonomous developers and terminal runtimes.',
-    items: [
-      { id: 'claude-code', name: 'Claude Code', desc: 'Convention-aware context retrieval for Claude Code', icon: claudeCodeIcon },
-      { id: 'openclaw', name: 'OpenClaw', desc: 'Agent memory backplane for OpenClaw session loops', icon: openclawIcon }
-    ]
-  },
-  {
-    title: 'Knowledge Bases',
-    desc: 'Sync collaborative documentation and pages to your memory index.',
-    items: [
-      { id: 'notion', name: 'Notion Workspace', desc: 'Sync docs, databases, and page indexes', icon: notionIcon, darkInvert: true },
-      { id: 'gdrive', name: 'Google Drive', desc: 'Index your Docs, Sheets, and Slides', icon: gdriveIcon }
-    ]
-  }
-];
 
-let slideInterval = null;
-
-const startSlideTimer = () => {
-  stopSlideTimer();
-  slideInterval = setInterval(() => {
-    nextSlide();
-  }, 6000);
-};
-
-const stopSlideTimer = () => {
-  if (slideInterval) {
-    clearInterval(slideInterval);
-    slideInterval = null;
-  }
-};
-
-const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % slides.length;
-};
-
-const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length;
-};
-
-const setSlide = (idx) => {
-  currentSlide.value = idx;
-  startSlideTimer();
-};
 
 const aiWorkTypes = [
   { id: 'conversation', label: 'Conversation', description: 'Save an AI chat exchange.' },
@@ -560,13 +441,11 @@ onMounted(() => {
   if (showOnboardingModal.value && !isVerified.value) {
     startVerificationPolling();
   }
-  startSlideTimer();
 });
 
 // Stop polling when component unmounts
 onUnmounted(() => {
   stopVerificationPolling();
-  stopSlideTimer();
 });
 
 // Watch: if verification is detected via any means, stop polling

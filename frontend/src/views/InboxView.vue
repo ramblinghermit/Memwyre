@@ -1,179 +1,237 @@
 <template>
-  <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden">
-    <NavBar />
+  <div class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 no-scrollbar flex flex-col min-h-0 overflow-y-auto overflow-x-hidden lg:overflow-hidden select-none">
+    
+    <!-- Top Header: Title, Count Badge, Search Pill, and Approve All -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 shrink-0">
+      <div class="flex items-center gap-2.5">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Inbox</h2>
+        <span v-if="filteredItems.length > 0" class="text-xs px-2 py-0.5 rounded-full font-semibold bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300">
+          {{ filteredItems.length }}
+        </span>
+      </div>
 
-    <main class="flex-1 overflow-hidden">
-       <div class="max-w-7xl mx-auto h-full flex pt-6 pb-6 px-4 sm:px-6 lg:px-8 gap-6">
-           
-           <!-- Left Pane: Incoming Items -->
-           <div class="w-1/3 flex flex-col bg-white dark:bg-surface rounded-xl shadow-sm border border-gray-200 dark:border-border overflow-hidden">
-               <div class="p-4 border-b border-gray-200 dark:border-border flex justify-between items-center bg-gray-50/50 dark:bg-surface-2">
-                   <h2 class="text-base font-semibold text-gray-900 dark:text-text-primary">Incoming Items</h2>
-               </div>
-               
-               <div class="flex-1 overflow-y-auto p-3 space-y-3 custom-scrollbar">
-                   <div v-if="store.items.length === 0" class="text-center py-10 text-gray-400 text-sm">
-                       No pending items.
-                   </div>
-                   
-                   <div 
-                     v-for="item in store.items" 
-                     :key="item.id"
-                     @click="selectItem(item)"
-                     :class="['p-4 rounded-lg border cursor-pointer transition-all hover:shadow-sm', 
-                              selectedItem?.id === item.id 
-                                ? 'bg-gray-100 border-gray-300 dark:bg-surface-2 dark:border-gray-500' 
-                                : 'bg-white border-gray-200 dark:bg-surface-2 dark:border-border hover:border-[#D97757]']"
-                   >
-                       <h3 class="font-medium text-gray-900 dark:text-text-primary mb-1 line-clamp-2">{{ item.details }}</h3>
-                       <div class="flex justify-between items-end mt-3">
-                           <div class="flex flex-col gap-2">
-                               <div class="flex items-center gap-2">
-                                   <div class="w-5 h-5 flex items-center justify-center shrink-0 text-gray-400 dark:text-gray-500 rounded overflow-hidden">
-                                       <template v-if="getIconForSource(item).type === 'svg'">
-                                           <div v-html="getIconForSource(item).content" class="w-full h-full"></div>
-                                       </template>
-                                       <template v-else-if="getIconForSource(item).type === 'img'">
-                                           <img
-                                             :src="getIconForSource(item).content"
-                                             alt="Source"
-                                             :class="['w-full h-full object-cover rounded-sm', getIconForSource(item).darkInvert ? 'dark:invert' : '']"
-                                             @error="handleImageError($event)"
-                                           />
-                                       </template>
-                                   </div>
-                                   <span class="text-xs text-gray-600 dark:text-text-secondary truncate max-w-[140px]">
-                                       {{ item.source === 'agent_drop' ? 'External AI' : (item.source || 'Unknown Source') }}
-                                   </span>
-                               </div>
-                                   <span v-if="item.source === 'agent_drop'" class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium w-fit bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600">
-                                       Unverified
-                                   </span>
-                                   <span :class="['inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium w-fit', item.status === 'approved' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200']">
-                                        {{ item.status === 'approved' ? 'Approved' : 'Pending' }}
-                                   </span>
-                           </div>
-                           <span class="text-[10px] text-gray-400">{{ formatTimeAgo(item.created_at) }}</span>
-                       </div>
-                   </div>
-               </div>
-           </div>
+      <div class="flex items-center gap-3 w-full sm:w-auto">
+        <!-- Search Input Pill -->
+        <div class="relative flex-1 sm:w-64">
+          <svg class="w-4 h-4 text-gray-400 dark:text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Search inbox..."
+            class="w-full bg-gray-100/80 dark:bg-[#18181b] border border-gray-200/80 dark:border-zinc-800 rounded-full pl-9 pr-8 py-1.5 text-xs sm:text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#D97757] dark:focus:border-[#D97757] transition-all"
+          />
+          <button
+            v-if="searchQuery"
+            @click="searchQuery = ''"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-zinc-200 cursor-pointer"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
 
-           <!-- Right Pane: Detail View -->
-           <div class="w-2/3 bg-white dark:bg-surface rounded-xl shadow-sm border border-gray-200 dark:border-border flex flex-col overflow-hidden">
-               <div v-if="selectedItem" class="flex flex-col h-full">
-                   <!-- Content Header -->
-                   <div class="p-6 border-b border-gray-200 dark:border-border">
-                       <div class="flex flex-col gap-2 mb-4">
-                           <div class="flex justify-between items-start">
-                               <h1 class="text-2xl font-bold text-gray-900 dark:text-text-primary leading-tight">{{ selectedItem.details }}</h1>
-                               <span :class="['inline-flex items-center px-2 py-1 rounded text-xs font-medium shrink-0', selectedItem.status === 'approved' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200']">
-                                   {{ selectedItem.status === 'approved' ? 'Approved' : 'Pending' }}
-                               </span>
-                           </div>
-                           
-                           <!-- Similarity Alert -->
-                           <div v-if="similarityData && similarityData.score > 90" class="flex items-center gap-2 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-md text-sm text-yellow-800 dark:text-yellow-200">
-                               <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                               <span>
-                                   Matches existing content: <span class="font-bold border-b border-yellow-600/30 cursor-pointer" @click="router.push(`/editor/${similarityData.type === 'memory' ? 'mem_' : 'doc_'}${similarityData.source_id}`)">{{ similarityData.source_title }}</span> ({{ similarityData.score }}%)
-                               </span>
-                           </div>
-                           
-                           <!-- Tags -->
-                           <div class="flex flex-wrap items-center gap-2 mt-2">
-                               <div v-if="selectedItem.tags && selectedItem.tags.length" class="flex flex-wrap gap-2">
-                                   <span v-for="tag in selectedItem.tags" :key="tag" :class="['text-xs px-2 py-0.5 rounded-full border flex items-center gap-1 group', tag === 'similar-content' ? 'hidden' : 'bg-gray-100 text-gray-600 border-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600']">
-                                       #{{ tag }}
-                                       <button @click.stop="removeTag(tag)" class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-opacity focus:outline-none" title="Remove tag">
-                                           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                                       </button>
-                                   </span>
-                               </div>
+        <!-- Approve All Button -->
+        <button
+          v-if="pendingItemsCount > 1"
+          @click="handleApproveAll"
+          :disabled="approvingAll"
+          class="bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 font-semibold px-4 py-1.5 rounded-full text-xs sm:text-sm flex items-center gap-1.5 transition-all shadow-xs cursor-pointer active:scale-95 shrink-0 disabled:opacity-50"
+        >
+          <LoadingLogo v-if="approvingAll" size="sm" class="w-3.5 h-3.5" />
+          <svg v-else class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>{{ approvingAll ? 'Approving...' : 'Approve All' }}</span>
+        </button>
+      </div>
+    </div>
 
-                               <!-- Add Tag Input -->
-                               <div class="relative flex items-center">
-                                   <input 
-                                     v-model="newTagInput"
-                                     @keydown.enter="addNewTag"
-                                     placeholder="+ Add tag" 
-                                     class="text-xs px-2 py-1 rounded-full border border-gray-200 dark:border-gray-600 bg-transparent text-gray-600 dark:text-gray-300 focus:outline-none focus:border-[#D97757] focus:ring-1 focus:ring-[#D97757] w-24 transition-all"
-                                   />
-                               </div>
-                           </div>
-                       </div>
+    <!-- Filter Category Pills & Controls Row -->
+    <div class="flex items-center justify-between gap-3 pb-3 border-b border-gray-100 dark:border-zinc-800/60 shrink-0 mb-4">
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+        <button
+          v-for="tab in filterTabs"
+          :key="tab.id"
+          @click="activeTab = tab.id"
+          :class="[
+            activeTab === tab.id
+              ? 'bg-gray-900 text-white dark:bg-zinc-800 dark:text-white font-medium shadow-2xs'
+              : 'text-gray-500 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-200 hover:bg-gray-100 dark:hover:bg-zinc-900/60',
+            'px-3.5 py-1 rounded-full text-xs sm:text-sm transition-colors cursor-pointer whitespace-nowrap'
+          ]"
+        >
+          {{ tab.name }} ({{ tab.count }})
+        </button>
+      </div>
 
-                       <div class="flex items-center gap-6 text-sm text-gray-500 dark:text-text-secondary">
-                           <div class="flex flex-col">
-                               <span class="text-xs font-medium text-gray-400 uppercase tracking-wider">Source</span>
-                               <div class="flex items-center gap-2">
-                                   <span>{{ selectedItem.source === 'agent_drop' ? 'External AI Agent' : (selectedItem.source || 'Direct Entry') }}</span>
-                                   <span v-if="selectedItem.source === 'agent_drop'" class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400 border border-red-100 dark:border-red-900/30">
-                                       Unverified
-                                   </span>
-                               </div>
-                           </div>
-                           <div class="flex flex-col">
-                               <span class="text-xs font-medium text-gray-400 uppercase tracking-wider">Received</span>
-                               <span>{{ new Date(selectedItem.created_at).toLocaleString() }}</span>
-                           </div>
-                       </div>
-                   </div>
+      <div class="text-xs text-gray-400 dark:text-zinc-500 font-medium">
+        {{ filteredItems.length }} {{ filteredItems.length === 1 ? 'item' : 'items' }}
+      </div>
+    </div>
 
-                   <!-- Content Body -->
-                   <div class="flex-1 overflow-y-auto p-6 custom-scrollbar">
-                       <div class="rounded-2xl border border-gray-200 dark:border-gray-700 bg-gradient-to-b from-gray-50/60 to-white dark:from-surface-2/40 dark:to-surface p-6">
-                         <MarkdownPreview :content="selectedItem.content || ''" />
-                       </div>
-                   </div>
+    <!-- Scrollable Items List -->
+    <div class="flex-1 overflow-y-auto no-scrollbar space-y-3 pb-12">
+      <!-- Empty State -->
+      <div v-if="filteredItems.length === 0" class="h-64 flex flex-col items-center justify-center text-center p-8">
+        <div class="w-12 h-12 rounded-2xl bg-gray-100 dark:bg-zinc-800/80 flex items-center justify-center text-gray-400 dark:text-zinc-500 mb-3 shadow-2xs">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+          </svg>
+        </div>
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-zinc-100">All caught up</h3>
+        <p class="text-xs text-gray-400 dark:text-zinc-500 mt-1 max-w-sm">No pending items in your inbox. New memories captured from IDEs, extensions, and AI agents will appear here for review.</p>
+      </div>
 
-                   <!-- Action Footer -->
-                   <div class="p-4 border-t border-gray-200 dark:border-border bg-gray-50 dark:bg-surface-2 flex justify-end gap-3 shrink-0">
-                       <button 
-                         @click="startEditing(selectedItem)"
-                         class="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 shadow-sm flex items-center gap-2"
-                         :disabled="approving || dismissing"
-                       >
-                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
-                         Edit Full Content
-                       </button>
-                       <button 
-                         @click="dismissItem(selectedItem)"
-                         :disabled="approving || dismissing"
-                         class="px-4 py-2 bg-white dark:bg-gray-700 text-red-600 dark:text-red-400 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-red-50 dark:hover:bg-red-900/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 shadow-sm flex items-center gap-2 disabled:opacity-50"
-                       >
-                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                         Dismiss
-                       </button>
-                       <button 
-                         @click="approveItem(selectedItem)"
-                         :disabled="selectedItem.status === 'approved' || approving || dismissing"
-                          :class="['px-4 py-2 text-white text-sm font-medium rounded-lg shadow-sm flex items-center gap-2 min-w-[100px] justify-center', selectedItem.status === 'approved' ? 'bg-green-600 cursor-default' : 'bg-[#D97757] hover:bg-[#C4654A] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D97757] disabled:opacity-70']"
-                       >
-                         <LoadingLogo v-if="approving" size="sm" class="w-4 h-4" :isWhite="selectedItem.status !== 'approved'" />
-                         {{ approving ? 'Approving...' : (selectedItem.status === 'approved' ? 'Approved' : 'Approve') }}
-                       </button>
-                   </div>
-               </div>
+      <!-- Item Card -->
+      <div
+        v-for="item in filteredItems"
+        :key="item.id"
+        class="bg-white dark:bg-[#18181b] border border-gray-200/80 dark:border-zinc-800 rounded-2xl p-4 sm:p-5 transition-all shadow-2xs hover:shadow-xs group"
+      >
+        <!-- Card Header: Client Icon + Source + Timestamp + Status -->
+        <div class="flex items-center justify-between gap-3 mb-2.5">
+          <div class="flex items-center gap-2 min-w-0">
+            <div class="w-6 h-6 rounded-lg bg-gray-100 dark:bg-zinc-800 border border-gray-200/60 dark:border-zinc-700/50 flex items-center justify-center shrink-0 p-1">
+              <template v-if="getIconForSource(item).type === 'svg'">
+                <div v-html="getIconForSource(item).content" class="w-full h-full"></div>
+              </template>
+              <template v-else-if="getIconForSource(item).type === 'img'">
+                <img
+                  :src="getIconForSource(item).content"
+                  alt="Source"
+                  :class="['w-full h-full object-contain', getIconForSource(item).darkInvert ? 'dark:invert' : '']"
+                  @error="handleImageError($event)"
+                />
+              </template>
+            </div>
+            <span class="text-xs font-medium text-gray-600 dark:text-zinc-400 truncate">
+              {{ item.source === 'agent_drop' ? 'External AI Agent' : (item.source || 'Direct Entry') }}
+            </span>
+            <span v-if="item.status === 'approved'" class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+              Approved
+            </span>
+            <span v-else class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+              Pending
+            </span>
+          </div>
 
-               <!-- Empty Selection State -->
-               <div v-else class="h-full flex flex-col items-center justify-center text-gray-400">
-                   <div class="p-4 bg-gray-50 dark:bg-surface-2 rounded-full mb-4">
-                       <svg class="w-12 h-12 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" /></svg>
-                   </div>
-                   <h3 class="text-lg font-medium text-gray-900 dark:text-text-primary">Select an item to review</h3>
-                   <p class="mt-1">Choose a pending memory from the list to view details and take action.</p>
-               </div>
-           </div>
-       </div>
-    </main>
+          <span class="text-xs text-gray-400 dark:text-zinc-500 shrink-0 font-medium">
+            {{ formatTimeAgo(item.created_at) }}
+          </span>
+        </div>
 
+        <!-- Card Title & Content Preview -->
+        <div class="mb-3">
+          <h3 class="text-sm sm:text-base font-semibold text-gray-900 dark:text-zinc-100 leading-snug mb-1.5">
+            {{ item.details }}
+          </h3>
+          
+          <div v-if="item.content" class="text-xs text-gray-600 dark:text-zinc-300 leading-relaxed bg-gray-50/80 dark:bg-zinc-900/60 rounded-xl p-3 border border-gray-100 dark:border-zinc-800/80 overflow-hidden max-h-60 overflow-y-auto custom-scrollbar">
+            <MarkdownPreview :content="item.content" />
+          </div>
+        </div>
+
+        <!-- Similarity Alert if any -->
+        <div v-if="getSimilarity(item) && getSimilarity(item).score > 90" class="mb-3 flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/80 dark:border-amber-800/40 text-xs text-amber-800 dark:text-amber-300">
+          <svg class="w-4 h-4 shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+          <span class="truncate">
+            Matches existing content: 
+            <strong class="cursor-pointer hover:underline" @click="router.push(`/editor/${getSimilarity(item).type === 'memory' ? 'mem_' : 'doc_'}${getSimilarity(item).source_id}`)">
+              {{ getSimilarity(item).source_title }}
+            </strong> 
+            ({{ getSimilarity(item).score }}%)
+          </span>
+        </div>
+
+        <!-- Tags & Actions Footer -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-gray-100 dark:border-zinc-800/80">
+          <!-- Tags list -->
+          <div class="flex flex-wrap items-center gap-1.5 min-w-0">
+            <span
+              v-for="tag in (item.tags || [])"
+              :key="tag"
+              class="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-0.5 rounded-lg bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-zinc-300 group/tag border border-gray-200/50 dark:border-zinc-700/50"
+            >
+              #{{ tag }}
+              <button @click.stop="handleRemoveTag(item, tag)" class="opacity-0 group-hover/tag:opacity-100 hover:text-red-500 transition-opacity cursor-pointer">
+                <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </span>
+            
+            <!-- Quick Tag Add Pill -->
+            <button
+              v-if="activeTagInputId !== item.id"
+              @click="activeTagInputId = item.id"
+              class="text-[11px] text-gray-400 hover:text-gray-700 dark:text-zinc-500 dark:hover:text-zinc-300 px-2 py-0.5 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+            >
+              + Tag
+            </button>
+            <input
+              v-else
+              v-model="quickTagText"
+              @keyup.enter="handleSaveQuickTag(item)"
+              @blur="activeTagInputId = null; quickTagText = ''"
+              placeholder="tag..."
+              autofocus
+              class="text-[11px] w-20 px-2 py-0.5 rounded-lg bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-200 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:border-[#D97757]"
+            />
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+            <!-- Edit in full studio -->
+            <button
+              @click="startEditing(item)"
+              class="px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white bg-gray-100 hover:bg-gray-200/80 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+              title="Edit full content in editor"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+              <span>Edit</span>
+            </button>
+
+            <!-- Dismiss -->
+            <button
+              @click="dismissItem(item)"
+              :disabled="actionLoading[item.id]"
+              class="px-3 py-1.5 text-xs font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 bg-red-50 hover:bg-red-100/80 dark:bg-red-950/30 dark:hover:bg-red-900/40 border border-red-200/60 dark:border-red-900/40 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-2xs"
+              title="Dismiss from inbox"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span>Dismiss</span>
+            </button>
+
+            <!-- Approve -->
+            <button
+              v-if="item.status !== 'approved'"
+              @click="approveItem(item)"
+              :disabled="actionLoading[item.id]"
+              class="px-3.5 py-1.5 text-xs font-semibold text-white bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 dark:text-gray-900 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-2xs active:scale-95"
+            >
+              <LoadingLogo v-if="actionLoading[item.id] === 'approve'" size="sm" class="w-3.5 h-3.5" />
+              <svg v-else class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{{ actionLoading[item.id] === 'approve' ? 'Approving...' : 'Approve' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dismiss Confirmation Modal -->
     <ConfirmationModal
       :is-open="showDismissModal"
       title="Dismiss Item"
       message="Dismiss this item from inbox? This will remove it from pending tasks but keep it in the vault if already saved."
       confirm-text="Dismiss"
-      :loading="dismissing"
+      :loading="isDismissConfirming"
       @confirm="confirmDismissItem"
       @cancel="showDismissModal = false"
     />
@@ -181,199 +239,198 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useInboxStore } from '../stores/inbox';
-import { useAuthStore } from '../stores/auth';
 import { useProjectStore } from '../stores/project';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import api from '../services/api';
-import NavBar from '../components/NavBar.vue';
 import ConfirmationModal from '../components/ConfirmationModal.vue';
 import { useToast } from 'vue-toastification';
 import { getIconForSource } from '../utils/iconResolver';
 import MarkdownPreview from '../components/common/MarkdownPreview.vue';
-
 import LoadingLogo from '@/components/common/LoadingLogo.vue';
 
 const store = useInboxStore();
-const authStore = useAuthStore();
 const projectStore = useProjectStore();
 const router = useRouter();
-const route = useRoute();
 const toast = useToast();
-const selectedItem = ref(null);
-// Script addition for similarityData
-const similarityData = ref(null);
-const newTagInput = ref('');
 
-watch(() => projectStore.currentProjectId, async () => {
-  selectedItem.value = null;
-  await store.fetchInbox();
-  if (store.items.length > 0) {
-    selectedItem.value = store.items[0];
-  }
-});
+const searchQuery = ref('');
+const activeTab = ref('all');
+const actionLoading = ref({});
+const approvingAll = ref(false);
+const itemToDismiss = ref(null);
+const showDismissModal = ref(false);
+const isDismissConfirming = ref(false);
 
-// Loading States
-const dismissing = ref(false);
-const approving = ref(false);
-
-const addNewTag = async () => {
-    if (!newTagInput.value.trim() || !selectedItem.value) return;
-    
-    const tagToAdd = newTagInput.value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, ''); // Basic sanitization
-    if (!tagToAdd) return;
-
-    if (selectedItem.value.tags && selectedItem.value.tags.includes(tagToAdd)) {
-        newTagInput.value = '';
-        return;
-    }
-
-    try {
-        const currentTags = selectedItem.value.tags || [];
-        const newTags = [...currentTags, tagToAdd];
-        
-        // Optimistic update
-        selectedItem.value.tags = newTags;
-        newTagInput.value = '';
-        
-        await api.put(`/inbox/${selectedItem.value.id}`, {
-            content: selectedItem.value.content,
-            title: selectedItem.value.details,
-            tags: newTags
-        });
-        toast.success(`Tag added`);
-    } catch (e) {
-        toast.error('Failed to add tag');
-    }
-};
-
-watch(() => selectedItem.value, (newItem) => {
-    if (newItem && newItem.task_type) {
-        try {
-            similarityData.value = JSON.parse(newItem.task_type);
-        } catch (e) {
-            similarityData.value = null;
-        }
-    } else {
-        similarityData.value = null;
-    }
-});
+const activeTagInputId = ref(null);
+const quickTagText = ref('');
 
 onMounted(async () => {
   await store.fetchInbox();
   store.connectWebSocket();
-  
-  const selectedId = route.query.selected;
-  if (selectedId) {
-      const found = store.items.find(i => String(i.id) === String(selectedId));
-      if (found) {
-          selectedItem.value = found;
-      } else if (store.items.length > 0) {
-          selectedItem.value = store.items[0];
-      }
-  } else if (store.items.length > 0 && !selectedItem.value) {
-      selectedItem.value = store.items[0];
+});
+
+watch(() => projectStore.currentProjectId, async () => {
+  await store.fetchInbox();
+});
+
+// Category Filter Tabs
+const filterTabs = computed(() => [
+  { id: 'all', name: 'All', count: store.items.length },
+  { id: 'pending', name: 'Pending', count: store.items.filter(i => i.status !== 'approved').length },
+  { id: 'approved', name: 'Approved', count: store.items.filter(i => i.status === 'approved').length }
+]);
+
+const pendingItemsCount = computed(() => {
+  return store.items.filter(i => i.status !== 'approved').length;
+});
+
+// Filtered & Searched Items
+const filteredItems = computed(() => {
+  let list = store.items || [];
+
+  if (activeTab.value === 'pending') {
+    list = list.filter(i => i.status !== 'approved');
+  } else if (activeTab.value === 'approved') {
+    list = list.filter(i => i.status === 'approved');
   }
+
+  if (searchQuery.value.trim()) {
+    const q = searchQuery.value.toLowerCase().trim();
+    list = list.filter(i => {
+      const details = (i.details || '').toLowerCase();
+      const content = (i.content || '').toLowerCase();
+      const source = (i.source || '').toLowerCase();
+      const tags = (i.tags || []).map(t => t.toLowerCase()).join(' ');
+      return details.includes(q) || content.includes(q) || source.includes(q) || tags.includes(q);
+    });
+  }
+
+  return list;
 });
 
-watch(() => store.items, (newItems) => {
-    if (newItems.length > 0 && !selectedItem.value) {
-        selectedItem.value = newItems[0];
-    } else if (selectedItem.value) {
-        // Check if selected item still exists in new list
-        const found = newItems.find(i => i.id === selectedItem.value.id);
-        if (found) {
-            // Update reference to get new data (e.g. tags)
-            selectedItem.value = found;
-        } else {
-            // Item removed? Select first or null
-            selectedItem.value = newItems.length > 0 ? newItems[0] : null;
-        }
+const getSimilarity = (item) => {
+  if (item && item.task_type) {
+    try {
+      return JSON.parse(item.task_type);
+    } catch {
+      return null;
     }
-});
-
-const selectItem = (item) => {
-    selectedItem.value = item;
+  }
+  return null;
 };
 
 const formatTimeAgo = (dateString) => {
-    if (!dateString) return '';
-    const date = new Date(dateString);
-    const now = new Date();
-    const diff = (now - date) / 1000;
-    if (diff < 60) return 'Just now';
-    if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-    if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
-    return `${Math.floor(diff / 86400)}d ago`;
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  const now = new Date();
+  const diff = (now - date) / 1000;
+  if (diff < 60) return 'Just now';
+  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  return `${Math.floor(diff / 86400)}d ago`;
 };
 
 const handleImageError = (e) => {
-    e.target.style.display = 'none';
+  e.target.style.display = 'none';
 };
-
-// isOpenAIIcon check removed in favor of resolver darkInvert property
 
 const startEditing = (item) => {
-    router.push(`/editor/${item.id}`);
+  router.push(`/editor/${item.id}`);
 };
 
-const itemToDismiss = ref(null);
-const showDismissModal = ref(false);
-
 const dismissItem = (item) => {
-    itemToDismiss.value = item;
-    showDismissModal.value = true;
+  itemToDismiss.value = item;
+  showDismissModal.value = true;
 };
 
 const confirmDismissItem = async () => {
-    if (!itemToDismiss.value) return;
-    dismissing.value = true;
-    try {
-        await store.handleAction(itemToDismiss.value.id, 'dismiss');
-        toast.success('Item dismissed');
-        if (selectedItem.value?.id === itemToDismiss.value.id) {
-            selectedItem.value = store.items.length > 0 ? store.items[0] : null;
-        }
-        showDismissModal.value = false;
-        itemToDismiss.value = null;
-    } catch (e) {
-        toast.error('Failed to dismiss item');
-    } finally {
-        dismissing.value = false;
-    }
-};
-
-const removeTag = async (tagToRemove) => {
-    if (!selectedItem.value) return;
-    try {
-        const newTags = selectedItem.value.tags.filter(t => t !== tagToRemove);
-        // Optimistic update
-        selectedItem.value.tags = newTags;
-        
-        await api.put(`/inbox/${selectedItem.value.id}`, {
-            content: selectedItem.value.content,
-            title: selectedItem.value.details,
-            tags: newTags
-        });
-        toast.success(`Tag #${tagToRemove} removed`);
-    } catch (e) {
-        toast.error('Failed to remove tag');
-    }
+  if (!itemToDismiss.value) return;
+  isDismissConfirming.value = true;
+  try {
+    await store.handleAction(itemToDismiss.value.id, 'dismiss');
+    toast.success('Item dismissed');
+    showDismissModal.value = false;
+    itemToDismiss.value = null;
+  } catch {
+    toast.error('Failed to dismiss item');
+  } finally {
+    isDismissConfirming.value = false;
+  }
 };
 
 const approveItem = async (item) => {
-    approving.value = true;
-    try {
-        await store.handleAction(item.id, 'approve');
-        toast.success('Item approved and moved to memory');
-        if (selectedItem.value?.id === item.id) {
-            selectedItem.value = store.items.length > 0 ? store.items[0] : null;
-        }
-    } catch (e) {
-        toast.error('Failed to approve item');
-    } finally {
-        approving.value = false;
+  actionLoading.value[item.id] = 'approve';
+  try {
+    await store.handleAction(item.id, 'approve');
+    toast.success('Item approved and moved to memory');
+  } catch {
+    toast.error('Failed to approve item');
+  } finally {
+    delete actionLoading.value[item.id];
+  }
+};
+
+const handleApproveAll = async () => {
+  const pending = store.items.filter(i => i.status !== 'approved');
+  if (pending.length === 0) return;
+  approvingAll.value = true;
+  try {
+    for (const item of pending) {
+      await store.handleAction(item.id, 'approve');
     }
+    toast.success(`Approved ${pending.length} items`);
+  } catch {
+    toast.error('Failed to approve some items');
+  } finally {
+    approvingAll.value = false;
+  }
+};
+
+const handleRemoveTag = async (item, tagToRemove) => {
+  try {
+    const newTags = (item.tags || []).filter(t => t !== tagToRemove);
+    item.tags = newTags;
+    await api.put(`/inbox/${item.id}`, {
+      content: item.content,
+      title: item.details,
+      tags: newTags
+    });
+    toast.success(`Tag #${tagToRemove} removed`);
+  } catch {
+    toast.error('Failed to remove tag');
+  }
+};
+
+const handleSaveQuickTag = async (item) => {
+  if (!quickTagText.value.trim()) {
+    activeTagInputId.value = null;
+    return;
+  }
+  const cleanTag = quickTagText.value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, '');
+  if (!cleanTag) return;
+
+  const currentTags = item.tags || [];
+  if (currentTags.includes(cleanTag)) {
+    activeTagInputId.value = null;
+    quickTagText.value = '';
+    return;
+  }
+
+  try {
+    const newTags = [...currentTags, cleanTag];
+    item.tags = newTags;
+    activeTagInputId.value = null;
+    quickTagText.value = '';
+    await api.put(`/inbox/${item.id}`, {
+      content: item.content,
+      title: item.details,
+      tags: newTags
+    });
+    toast.success(`Tag #${cleanTag} added`);
+  } catch {
+    toast.error('Failed to add tag');
+  }
 };
 </script>

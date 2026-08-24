@@ -279,24 +279,96 @@ export function createAppRouter({ ssr = false } = {}) {
                 ]
             },
 
+            // ── Authenticated App Shell (sidebar + top bar) ──────────────
             {
-                path: '/dashboard',
-                name: 'dashboard',
-                component: () => import('../views/DashboardView.vue'),
-                meta: { requiresAuth: true }
+                path: '/',
+                component: () => import('../views/AppLayout.vue'),
+                meta: { requiresAuth: true },
+                children: [
+                    {
+                        path: 'dashboard',
+                        name: 'dashboard',
+                        component: () => import('../views/DashboardView.vue'),
+                    },
+                    {
+                        path: 'inbox',
+                        name: 'inbox',
+                        component: () => import('../views/InboxView.vue'),
+                    },
+                    {
+                        path: 'projects',
+                        name: 'projects',
+                        component: () => import('../views/ProjectsView.vue'),
+                    },
+                    {
+                        path: 'settings',
+                        name: 'settings',
+                        component: () => import('../views/SettingsView.vue'),
+                    },
+                    {
+                        path: 'billing',
+                        name: 'billing',
+                        component: () => import('../views/BillingView.vue'),
+                    },
+                    {
+                        path: 'integrations',
+                        name: 'integrations',
+                        component: () => import('../views/IntegrationsView.vue'),
+                    },
+                    {
+                        path: 'integrations/:id',
+                        name: 'integration-detail',
+                        component: () => import('../views/IntegrationsView.vue'),
+                    },
+                    {
+                        path: 'editor/:id',
+                        name: 'editor',
+                        component: () => import('../views/EditorView.vue'),
+                    },
+                    {
+                        path: 'prompts',
+                        name: 'prompts',
+                        component: () => import('../views/PromptGeneratorView.vue'),
+                    },
+                    {
+                        path: 'map',
+                        name: 'map',
+                        component: () => import('../views/MemoryMapView.vue'),
+                    },
+                    {
+                        path: 'chat',
+                        name: 'chat',
+                        component: () => import('../views/ChatView.vue'),
+                    },
+                    {
+                        path: 'chat/:id',
+                        name: 'chat-session',
+                        component: () => import('../views/ChatView.vue'),
+                    },
+                    {
+                        path: 'billing',
+                        name: 'billing',
+                        component: () => import('../views/BillingView.vue'),
+                    },
+                    {
+                        path: 'admin',
+                        name: 'admin-insights',
+                        component: () => import('../views/AdminInsightsView.vue'),
+                    },
+                    {
+                        path: 'admin/bypass',
+                        name: 'admin-bypass',
+                        component: () => import('../views/AdminBypassView.vue'),
+                    },
+                    {
+                        path: 'retrieval-visualizer',
+                        name: 'retrieval-visualizer',
+                        component: () => import('../views/RetrievalVisualizerView.vue'),
+                    },
+                ]
             },
-            {
-                path: '/inbox',
-                name: 'inbox',
-                component: () => import('../views/InboxView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/projects',
-                name: 'projects',
-                component: () => import('../views/ProjectsView.vue'),
-                meta: { requiresAuth: true }
-            },
+
+            // ── Non-sidebar routes ──────────────────────────────
             {
                 path: '/login',
                 name: 'login',
@@ -321,71 +393,6 @@ export function createAppRouter({ ssr = false } = {}) {
                 path: '/reset-password',
                 name: 'reset-password',
                 component: () => import('../views/ResetPasswordView.vue')
-            },
-            {
-                path: '/settings',
-                name: 'settings',
-                component: () => import('../views/SettingsView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/integrations',
-                name: 'integrations',
-                component: () => import('../views/IntegrationsView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/editor/:id',
-                name: 'editor',
-                component: () => import('../views/EditorView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/prompts',
-                name: 'prompts',
-                component: () => import('../views/PromptGeneratorView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/map',
-                name: 'map',
-                component: () => import('../views/MemoryMapView.vue')
-            },
-            {
-                path: '/chat',
-                name: 'chat',
-                component: () => import('../views/ChatView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/chat/:id',
-                name: 'chat-session',
-                component: () => import('../views/ChatView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/billing',
-                name: 'billing',
-                component: () => import('../views/BillingView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/admin',
-                name: 'admin-insights',
-                component: () => import('../views/AdminInsightsView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/admin/bypass',
-                name: 'admin-bypass',
-                component: () => import('../views/AdminBypassView.vue'),
-                meta: { requiresAuth: true }
-            },
-            {
-                path: '/retrieval-visualizer',
-                name: 'retrieval-visualizer',
-                component: () => import('../views/RetrievalVisualizerView.vue'),
-                meta: { requiresAuth: true }
             },
             {
                 path: '/redeem',
