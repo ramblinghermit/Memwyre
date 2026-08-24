@@ -94,7 +94,7 @@
         <!-- Card Header: Client Icon + Source + Timestamp + Status -->
         <div class="flex items-center justify-between gap-3 mb-2.5">
           <div class="flex items-center gap-2 min-w-0">
-            <div class="w-6 h-6 rounded-lg bg-gray-100 dark:bg-zinc-800 border border-gray-200/60 dark:border-zinc-700/50 flex items-center justify-center shrink-0 p-1">
+            <div class="w-4.5 h-4.5 flex items-center justify-center shrink-0">
               <template v-if="getIconForSource(item).type === 'svg'">
                 <div v-html="getIconForSource(item).content" class="w-full h-full"></div>
               </template>
@@ -110,10 +110,12 @@
             <span class="text-xs font-medium text-gray-600 dark:text-zinc-400 truncate">
               {{ item.source === 'agent_drop' ? 'External AI Agent' : (item.source || 'Direct Entry') }}
             </span>
-            <span v-if="item.status === 'approved'" class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+            <span v-if="item.status === 'approved'" class="inline-flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
               Approved
             </span>
-            <span v-else class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+            <span v-else class="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0"></span>
               Pending
             </span>
           </div>
@@ -147,13 +149,13 @@
         </div>
 
         <!-- Tags & Actions Footer -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-gray-100 dark:border-zinc-800/80">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2.5 border-t border-gray-100 dark:border-zinc-800/80">
           <!-- Tags list -->
-          <div class="flex flex-wrap items-center gap-1.5 min-w-0">
+          <div class="flex flex-wrap items-center gap-2 min-w-0">
             <span
               v-for="tag in (item.tags || [])"
               :key="tag"
-              class="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-0.5 rounded-lg bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-zinc-300 group/tag border border-gray-200/50 dark:border-zinc-700/50"
+              class="inline-flex items-center gap-1 text-xs font-medium text-gray-500 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-200 group/tag transition-colors py-0.5"
             >
               #{{ tag }}
               <button @click.stop="handleRemoveTag(item, tag)" class="opacity-0 group-hover/tag:opacity-100 hover:text-red-500 transition-opacity cursor-pointer">
@@ -165,7 +167,7 @@
             <button
               v-if="activeTagInputId !== item.id"
               @click="activeTagInputId = item.id"
-              class="text-[11px] text-gray-400 hover:text-gray-700 dark:text-zinc-500 dark:hover:text-zinc-300 px-2 py-0.5 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+              class="text-xs text-gray-400 hover:text-gray-700 dark:text-zinc-500 dark:hover:text-zinc-300 py-0.5 hover:underline transition-colors cursor-pointer"
             >
               + Tag
             </button>
@@ -176,19 +178,19 @@
               @blur="activeTagInputId = null; quickTagText = ''"
               placeholder="tag..."
               autofocus
-              class="text-[11px] w-20 px-2 py-0.5 rounded-lg bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-200 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:border-[#D97757]"
+              class="text-xs w-20 px-2 py-0.5 rounded-md bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-200 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:border-[#D97757]"
             />
           </div>
 
           <!-- Action Buttons -->
-          <div class="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+          <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
             <!-- Edit in full studio -->
             <button
               @click="startEditing(item)"
-              class="px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white bg-gray-100 hover:bg-gray-200/80 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+              class="px-2.5 py-1.5 text-xs font-medium text-gray-500 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors flex items-center gap-1.5 cursor-pointer"
               title="Edit full content in editor"
             >
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5 text-gray-400 dark:text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
               </svg>
               <span>Edit</span>
@@ -198,10 +200,10 @@
             <button
               @click="dismissItem(item)"
               :disabled="actionLoading[item.id]"
-              class="px-3 py-1.5 text-xs font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 bg-red-50 hover:bg-red-100/80 dark:bg-red-950/30 dark:hover:bg-red-900/40 border border-red-200/60 dark:border-red-900/40 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-2xs"
+              class="px-2.5 py-1.5 text-xs font-medium text-gray-500 hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
               title="Dismiss from inbox"
             >
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
               <span>Dismiss</span>
@@ -212,7 +214,7 @@
               v-if="item.status !== 'approved'"
               @click="approveItem(item)"
               :disabled="actionLoading[item.id]"
-              class="px-3.5 py-1.5 text-xs font-semibold text-white bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 dark:text-gray-900 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-2xs active:scale-95"
+              class="px-3.5 py-1.5 text-xs font-semibold text-white bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 dark:text-gray-900 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-2xs active:scale-95 ml-1"
             >
               <LoadingLogo v-if="actionLoading[item.id] === 'approve'" size="sm" class="w-3.5 h-3.5" />
               <svg v-else class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

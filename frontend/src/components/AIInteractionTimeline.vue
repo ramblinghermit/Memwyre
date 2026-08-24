@@ -193,15 +193,15 @@
           <!-- Name & Icon -->
           <div class="col-span-7 sm:col-span-6 md:col-span-7 flex items-center gap-3 min-w-0 pr-2">
             <!-- Icon/Thumbnail Container -->
-            <div class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-zinc-800/80 flex items-center justify-center shrink-0 overflow-hidden border border-gray-200/50 dark:border-zinc-700/40">
+            <div class="w-5 h-5 flex items-center justify-center shrink-0">
               <template v-if="getItemThumbnail(item)">
-                <img :src="getItemThumbnail(item)" class="w-full h-full object-cover" />
+                <img :src="getItemThumbnail(item)" class="w-full h-full object-cover rounded-md" />
               </template>
               <template v-else-if="getTimelineIcon(item).type === 'svg'">
-                <div v-html="getTimelineIcon(item).content" class="w-4.5 h-4.5"></div>
+                <div v-html="getTimelineIcon(item).content" class="w-5 h-5 flex items-center justify-center"></div>
               </template>
               <template v-else>
-                <img :src="getTimelineIcon(item).content" class="w-4.5 h-4.5 object-contain" :class="isOpenAIItem(item) ? 'dark:invert' : ''" />
+                <img :src="getTimelineIcon(item).content" class="w-5 h-5 object-contain" :class="isOpenAIItem(item) ? 'dark:invert' : ''" />
               </template>
             </div>
 
@@ -279,12 +279,12 @@
         >
           <div>
             <div class="flex items-center justify-between gap-2 mb-2.5">
-              <div class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
+              <div class="w-5 h-5 flex items-center justify-center shrink-0">
                 <template v-if="getTimelineIcon(item).type === 'svg'">
-                  <div v-html="getTimelineIcon(item).content" class="w-4 h-4"></div>
+                  <div v-html="getTimelineIcon(item).content" class="w-5 h-5 flex items-center justify-center"></div>
                 </template>
                 <template v-else>
-                  <img :src="getTimelineIcon(item).content" class="w-4 h-4 object-contain" :class="isOpenAIItem(item) ? 'dark:invert' : ''" />
+                  <img :src="getTimelineIcon(item).content" class="w-5 h-5 object-contain" :class="isOpenAIItem(item) ? 'dark:invert' : ''" />
                 </template>
               </div>
               <span class="text-[11px] text-gray-400 dark:text-zinc-500 font-mono">
