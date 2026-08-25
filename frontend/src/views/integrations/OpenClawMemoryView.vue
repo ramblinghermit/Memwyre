@@ -229,7 +229,7 @@
             <ul>
               <li><strong>Zero-code CLI integration:</strong> Memwyre installs directly into OpenClaw with one command (<code>openclaw plugins install @memwyre/openclaw-plugin</code>). It automatically hooks into OpenClaw's session lifecycle events to handle context injection and session capture without writing custom SDK code.</li>
               <li><strong>Cross-tool ecosystem:</strong> Mem0 and Zep require custom sync pipelines to share memory between your CLI agents and your IDE. Memwyre's shared vault connects OpenClaw agent sessions directly to Cursor, VS Code, and Claude Desktop.</li>
-              <li><strong>Benchmark performance:</strong> On the <router-link to="/research/locomo-benchmark" class="text-[#D97757] hover:underline font-medium">LoCoMo-10 benchmark</router-link>, Memwyre's cross-encoder engine scores <strong>73.5% accuracy</strong> vs. 43.7% for flat vector RAG baselines, using 88.5% fewer tokens. <em>(Deep dives available on our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Mem0</router-link> and <router-link to="/memwyre-vs-zep" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Zep</router-link> pages.)</em></li>
+              <li><strong>Benchmark performance:</strong> On the <router-link to="/research/locomo-benchmark" class="text-[#D97757] hover:underline font-medium">LoCoMo-10 benchmark</router-link>, Memwyre's cross-encoder engine scores <strong>70.5% accuracy</strong> vs. 43.7% for flat vector RAG baselines, using 81% fewer tokens. <em>(Deep dives available on our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Mem0</router-link> and <router-link to="/memwyre-vs-zep" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Zep</router-link> pages.)</em></li>
             </ul>
 
             <h3 id="cross-tool-sync">How Cross-Tool Sync Actually Works</h3>
@@ -371,14 +371,14 @@
                   <tr>
                     <td class="px-4 py-3 font-semibold border-b border-gray-100 dark:border-gray-800">Overall</td>
                     <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">43.7%</td>
-                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10 font-bold text-[#D97757]">73.5%</td>
-                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 text-green-600 dark:text-green-400 font-bold">+68%</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10 font-bold text-[#D97757]">70.5%</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 text-green-600 dark:text-green-400 font-bold">+61%</td>
                   </tr>
                   <tr>
                     <td class="px-4 py-3 font-semibold">Context Tokens</td>
                     <td class="px-4 py-3">~26,000</td>
                     <td class="px-4 py-3 bg-[#FDFCFB] dark:bg-orange-950/10 font-semibold">~3,000</td>
-                    <td class="px-4 py-3 text-green-600 dark:text-green-400 font-semibold">−88.5%</td>
+                    <td class="px-4 py-3 text-green-600 dark:text-green-400 font-semibold">−81%</td>
                   </tr>
                 </tbody>
               </table>
@@ -566,15 +566,15 @@ const faqs = [
   },
   {
     question: 'How is Memwyre different from Mem0 and Zep for OpenClaw?',
-    answer: 'Frameworks like <strong>Mem0</strong> and <strong>Zep</strong> are built for custom AI application backends, requiring developers to write Python/TS SDK code and manage database instances. <strong>Memwyre</strong> provides a zero-code native plugin for OpenClaw (<code>openclaw plugins install @memwyre/openclaw-plugin</code>) that hooks directly into agent session lifecycles, enabling instant cross-tool context sync with Cursor, VS Code, and Claude Desktop. Memwyre also scores 73.5% on the LoCoMo-10 benchmark vs. 43.7% for flat vector baselines.'
+    answer: 'Frameworks like <strong>Mem0</strong> and <strong>Zep</strong> are built for custom AI application backends, requiring developers to write Python/TS SDK code and manage database instances. <strong>Memwyre</strong> provides a zero-code native plugin for OpenClaw (<code>openclaw plugins install @memwyre/openclaw-plugin</code>) that hooks directly into agent session lifecycles, enabling instant cross-tool context sync with Cursor, VS Code, and Claude Desktop. Memwyre also scores 70.5% on the LoCoMo-10 benchmark vs. 43.7% for flat vector baselines.'
   },
   {
     question: 'What is the best OpenClaw memory plugin?',
-    answer: 'Depends. Memwyre for cross-tool automated memory (73.5% LoCoMo), claude-mem for local-first (89K stars, AGPL-3.0).'
+    answer: 'Depends. Memwyre for cross-tool automated memory (70.5% LoCoMo), claude-mem for local-first (89K stars, AGPL-3.0).'
   },
   {
     question: 'How is Memwyre different from claude-mem?',
-    answer: '<strong>claude-mem</strong> stores observations locally in SQLite + ChromaDB — great for single-machine use with zero cloud dependency. <strong>Memwyre</strong> uses a shared cloud vault with an entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync without SSH setup. License-wise, claude-mem is AGPL-3.0; Memwyre is Apache-2.0. On retrieval quality, Memwyre scores 73.5% on LoCoMo-10 vs. 43.7% for flat vector baselines, using 88.5% fewer context tokens.'
+    answer: '<strong>claude-mem</strong> stores observations locally in SQLite + ChromaDB — great for single-machine use with zero cloud dependency. <strong>Memwyre</strong> uses a shared cloud vault with an entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync without SSH setup. License-wise, claude-mem is AGPL-3.0; Memwyre is Apache-2.0. On retrieval quality, Memwyre scores 70.5% on LoCoMo-10 vs. 43.7% for flat vector baselines, using 81% fewer context tokens.'
   },
   {
     question: 'Does the plugin work with Claude Code and Cursor too?',

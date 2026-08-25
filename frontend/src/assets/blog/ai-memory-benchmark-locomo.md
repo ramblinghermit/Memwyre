@@ -4,11 +4,11 @@ LoCoMo-10 is a widely accepted standard for evaluating long-term memory performa
 
 > **Quick Summary / TL;DR**
 >
-> **Answer:** On the LoCoMo-10 long-term memory benchmark, Memwyre achieves a 73.5% overall accuracy (outperforming flat vector systems) while retrieving a mean token count of only 3,000 per request (versus 26,000 tokens of raw dialog). This is driven by dynamic context pruning, Ebbinghaus logarithmic decay, and two-stage cross-encoder vector re-ranking.
+> **Answer:** On the LoCoMo-10 long-term memory benchmark, Memwyre achieves a 70.5% overall accuracy (outperforming flat vector systems) while retrieving a mean token count of only 3,000 per request (versus 26,000 tokens of raw dialog). This is driven by dynamic context pruning, Ebbinghaus logarithmic decay, and two-stage cross-encoder vector re-ranking.
 
 **Key Metrics:**
 
-- **73.5%** — Overall Accuracy (Benchmark Score)
+- **70.5%** — Overall Accuracy (Benchmark Score)
 - **3,000** — Mean Tokens (Average Context Size)
 - **26k** — Tokens Per Dialog (Up to 32 sessions)
 

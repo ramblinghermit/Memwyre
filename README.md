@@ -21,7 +21,7 @@
 [![Vue 3](https://img.shields.io/badge/Frontend-Vue%203-green.svg?style=flat-square&logo=vue.js)](https://vuejs.org/)
 [![Chrome Extension](https://img.shields.io/badge/Extension-Chrome%20Web%20Store-orange.svg?style=flat-square&logo=google-chrome)](https://chromewebstore.google.com/detail/memwyre/biplnkodgfdgejgblohhjeckiclfpekn)
 [![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-lightgrey.svg?style=flat-square)](https://modelcontextprotocol.io/)
-[![LoCoMo Accuracy](https://img.shields.io/badge/LoCoMo%20Accuracy-73.5%25-brightgreen.svg?style=flat-square)](https://github.com/ramblinghermit0403/Memwyre#-the-locomo-benchmark-evaluation)
+[![LoCoMo Accuracy](https://img.shields.io/badge/LoCoMo%20Accuracy-70.5%25-brightgreen.svg?style=flat-square)](https://github.com/ramblinghermit0403/Memwyre#-the-locomo-benchmark-evaluation)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 
 Memwyre is an open-source, universal memory infrastructure and persistent knowledge retrieval layer for Large Language Models (LLMs), AI agents, and custom applications.
@@ -234,11 +234,11 @@ The **[LoCoMo-10](https://github.com/snap-research/locomo)** (Long Conversationa
 | **Multi-Hop Reasoning** | Linking facts across distant chat sessions | 24.0% | **45.0%** |
 | **Temporal Alignment** | Ordering events and identifying timeframe changes | 48.0% | **74.0%** |
 | **Open-Domain Reasoning** | Contextual inferences and complex reasoning | 50.0% | **76.0%** |
-| **Overall Accuracy** | Weighted average across all 1,540 test questions | 43.7% | **73.5%** |
+| **Overall Accuracy** | Weighted average across all 1,540 test questions | 43.7% | **70.5%** |
 | **Mean Token Size** | Average size of retrieved context sent to LLM prompt | ~26,000 | **~3,000** |
 
 > [!TIP]
-> **Context Compression**: Memwyre achieves a **88.5% context length reduction** (retrieving 3,000 tokens instead of the 26,000-token raw conversational dialog) while significantly outperforming flat vector indexing in accuracy.
+> **Context Compression**: Memwyre achieves a **81% context length reduction** (retrieving 3,000 tokens instead of the 26,000-token raw conversational dialog) while significantly outperforming flat vector indexing in accuracy.
 
 ### Architectural Enablers of LoCoMo Performance
 1. **Dynamic Context Pruning**: Strips out conversational noise (filler words, greetings, and distractors) during chunk enrichment.

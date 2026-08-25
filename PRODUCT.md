@@ -29,7 +29,7 @@ Name: Memwyre (AI Brain Vault)
 
 ## Evidence on Hand
 - System architecture and workflows documented in `README.md` and `ai_brain_vault_srs.md`.
-- LoCoMo Benchmark evaluation showing 73.5% overall accuracy with 88.5% context length reduction.
+- LoCoMo Benchmark evaluation showing 70.5% overall accuracy with 81% context length reduction.
 - Existing codebase structure spanning `backend/` (FastAPI) and `frontend/` (Vue 3 + Tailwind CSS).
 
 ## Product Principles

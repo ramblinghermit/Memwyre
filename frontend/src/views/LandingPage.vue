@@ -8,27 +8,22 @@
 
     <!-- Hero Section -->
     <div data-theme="light"
-      class="hero-wash relative z-10 pt-16 sm:pt-24 lg:pt-12 pb-10 sm:pb-20 overflow-hidden min-h-[calc(100svh-88px)] flex items-center">
+      class="hero-wash relative z-40 pt-16 sm:pt-24 lg:pt-12 pb-10 sm:pb-20 overflow-hidden min-h-[calc(100svh-88px)] flex items-center">
 
       <div class="absolute inset-0 z-0 hero-grain pointer-events-none"></div>
 
-      <!-- Layout Grid Lines (Pinecone Blueprint Style) -->
+      <!-- Layout Grid Lines (Behind Hero Animation) -->
       <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
-        
+        <!-- Hero Side Vertical Grid Lines -->
+        <div class="hidden lg:block absolute top-0 bottom-0 left-6 sm:left-8 lg:left-[calc(50%-640px)] w-px bg-gray-300/80 pointer-events-none select-none"></div>
+        <div class="hidden lg:block absolute top-0 bottom-0 right-6 sm:right-8 lg:right-[calc(50%-640px)] w-px bg-gray-300/80 pointer-events-none select-none"></div>
         <!-- Center column divider line -->
         <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 hidden lg:block"></div>
-
-        <!-- Horizontal grid line below hero header elements -->
-        <div class="absolute top-[55%] left-0 right-0 h-px bg-gray-300/80 hidden sm:block"></div>
-        <!-- Horizontal grid line above logo/footer elements inside hero -->
-        <div class="absolute bottom-[90px] left-0 right-0 h-px bg-gray-300/80 hidden sm:block"></div>
-
-
       </div>
 
-      <!-- Background Animation Layer -->
+      <!-- Background Animation Layer (Above Vertical Lines) -->
       <div
-        class="hero-animation-layer absolute inset-0 z-[1] pointer-events-none overflow-hidden flex items-center justify-end"
+        class="hero-animation-layer absolute inset-0 z-10 pointer-events-none overflow-hidden flex items-center justify-end"
         :class="{ 'hero-animation-layer-ready': heroAnimationReady }"
         :style="heroAnimationStyle"
         aria-hidden="true">
@@ -38,7 +33,7 @@
       </div>
 
       <div
-        class="max-w-7xl mx-auto px-8 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 w-full">
+        class="max-w-7xl mx-auto px-8 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-20 w-full">
 
         <div class="lg:col-span-6 text-left pt-6 pb-6 sm:pt-12 lg:pt-0 lg:mt-[20px] lg:ml-10 px-0 sm:px-4 -translate-y-6 md:-translate-y-4 lg:translate-y-0">
 
@@ -52,13 +47,8 @@
             Memwyre is the AI Memory Platform that gives every AI tool, agent, and conversation a persistent, shared memory.
           </p>
 
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold mt-4 border border-emerald-200 animate-fade-in-up animation-delay-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            Early Access Open
-          </div>
-
           <!-- Unified Buttons and Installer Container for symmetry -->
-          <div class="flex flex-col gap-3 mt-4 sm:mt-6 max-w-[340px] sm:max-w-[380px] w-full animate-fade-in-up animation-delay-300 z-20">
+          <div class="flex flex-col gap-3 mt-6 sm:mt-8 max-w-[340px] sm:max-w-[380px] w-full animate-fade-in-up animation-delay-300 z-20">
             <!-- Buttons -->
             <div class="flex flex-row items-center justify-start gap-3 sm:gap-4 w-full">
               <router-link to="/signup/"
@@ -213,7 +203,7 @@
         <!-- Hero Headline -->
         <div class="text-center max-w-4xl mx-auto mb-10 md:mb-16">
           <h2 class="hero-serif text-3xl sm:text-4xl md:text-[56px] tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] mb-4 md:mb-5">
-            Bring your knowledge. <span class="inline-flex items-center align-middle mx-1.5 -translate-y-0.5"><img src="/favicon-192.png" alt="Memwyre" class="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full shadow-sm object-contain" /></span> <span class="italic font-medium text-[#D97756]">We build memory.</span> Your AI just knows.
+            Bring your knowledge <span class="inline-flex items-center align-middle mx-1.5 -translate-y-0.5"><img src="/favicon-192.png" alt="Memwyre" class="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-full shadow-sm object-contain" /></span> <span class="italic font-medium text-[#D97756]">We build memory.</span> Your AI just knows
           </h2>
           <p class="text-base text-gray-500 leading-relaxed font-normal max-w-2xl mx-auto">
             Persistent memory infrastructure for AI agents. One platform, every capability.
@@ -274,13 +264,13 @@
               </p>
 
               <!-- Stats Row -->
-              <div class="flex flex-wrap gap-3 mb-8">
-                <div class="bg-white/20 group-hover:bg-white/25 backdrop-blur-md border border-white/35 group-hover:border-white/50 rounded-xl px-5 py-3.5 text-center min-w-[120px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-500">
-                  <div class="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-xs">73.5%</div>
+              <div class="grid grid-cols-2 gap-3 mb-8 w-full">
+                <div class="bg-white/20 group-hover:bg-white/25 backdrop-blur-md border border-white/35 group-hover:border-white/50 rounded-xl px-4 sm:px-5 py-3.5 text-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-500">
+                  <div class="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-xs">70.5%</div>
                   <div class="text-[10px] font-bold tracking-[0.12em] uppercase text-white/90 mt-1">LOCOMO ACCURACY</div>
                 </div>
-                <div class="bg-white/20 group-hover:bg-white/25 backdrop-blur-md border border-white/35 group-hover:border-white/50 rounded-xl px-5 py-3.5 text-center min-w-[120px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-500">
-                  <div class="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-xs">88.5%</div>
+                <div class="bg-white/20 group-hover:bg-white/25 backdrop-blur-md border border-white/35 group-hover:border-white/50 rounded-xl px-4 sm:px-5 py-3.5 text-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-500">
+                  <div class="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-xs">81%</div>
                   <div class="text-[10px] font-bold tracking-[0.12em] uppercase text-white/90 mt-1">TOKEN REDUCTION</div>
                 </div>
               </div>
@@ -874,7 +864,7 @@
           </a>
         </div>
         <p class="max-w-3xl text-base text-gray-500 leading-relaxed font-normal mb-12">
-          Memwyre is the unified memory layer built for your AI workflow. Save context once, and access it automatically across every tool.
+          Connect your AI tools in seconds. Save context once, and let your AI automatically remember everything across every conversation.
         </p>
 
         <!-- 3-Column Bordered Card Grid -->
@@ -883,19 +873,19 @@
         >
           <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200/85">
             
-            <!-- Column 1: Save Once -->
+            <!-- Column 1: Install & Forget -->
             <div 
               class="p-8 sm:p-10 flex flex-col justify-between min-h-[380px] transition-colors duration-300"
               :class="{ 'bg-gray-50/50': activeStep === 0 }"
             >
               <div>
-                <div class="text-xs tracking-wider uppercase font-bold font-mono text-gray-400 mb-6">01 . SAVE ONCE</div>
+                <div class="text-xs tracking-wider uppercase font-bold font-mono text-gray-400 mb-6">01 . INSTALL &amp; FORGET</div>
                 <div class="mb-4">
-                  <div class="text-xl sm:text-2xl font-bold text-[#D97756] tracking-tight">Instant</div>
-                  <div class="text-sm sm:text-base font-semibold text-gray-900 leading-tight mt-1">context capture</div>
+                  <div class="text-xl sm:text-2xl font-bold text-[#D97756] tracking-tight">Install</div>
+                  <div class="text-sm sm:text-base font-semibold text-gray-900 leading-tight mt-1">&amp; forget</div>
                 </div>
                 <p class="text-gray-500 text-sm leading-relaxed mb-6">
-                  Save prompts, guidelines, or database schemas with one click. They stream directly to your shared memory layer.
+                  Run the one-line installer or add the browser extension, sign in, and your shared memory vault is ready in seconds.
                 </p>
               </div>
               
@@ -910,23 +900,23 @@
                       transform: `scaleY(${getIngestBarScaleY(i - 1)})`
                     }"></div>
                 </div>
-                <div class="text-xs tracking-widest uppercase font-bold font-mono text-gray-400">mcp &amp; browser streams</div>
+                <div class="text-xs tracking-widest uppercase font-bold font-mono text-gray-400">one-command install</div>
               </div>
             </div>
 
-            <!-- Column 2: AI Connects -->
+            <!-- Column 2: Connect to LLM -->
             <div 
               class="p-8 sm:p-10 flex flex-col justify-between min-h-[380px] transition-colors duration-300"
               :class="{ 'bg-gray-50/50': activeStep === 1 }"
             >
               <div>
-                <div class="text-xs tracking-wider uppercase font-bold font-mono text-gray-400 mb-6">02 . AI CONNECTS</div>
+                <div class="text-xs tracking-wider uppercase font-bold font-mono text-gray-400 mb-6">02 . CONNECT TO LLM</div>
                 <div class="mb-4">
-                  <div class="text-xl sm:text-2xl font-bold text-[#D97756] tracking-tight">Dynamic</div>
-                  <div class="text-sm sm:text-base font-semibold text-gray-900 leading-tight mt-1">no manual tagging</div>
+                  <div class="text-xl sm:text-2xl font-bold text-[#D97756] tracking-tight">Connect</div>
+                  <div class="text-sm sm:text-base font-semibold text-gray-900 leading-tight mt-1">to your LLM</div>
                 </div>
                 <p class="text-gray-500 text-sm leading-relaxed mb-6">
-                  Our platform automatically parses facts, resolves entities, and links context in the background to build a connected memory graph.
+                  Copy your MCP link or plugin and paste it into Claude Desktop, Cursor, VS Code, or ChatGPT.
                 </p>
               </div>
 
@@ -944,23 +934,23 @@
                       transform: activeStep === 1 ? 'none' : 'scaleY(0.5)'
                     }"></div>
                 </div>
-                <div class="text-xs tracking-widest uppercase font-bold font-mono text-gray-400">continuous background indexing</div>
+                <div class="text-xs tracking-widest uppercase font-bold font-mono text-gray-400">cursor &bull; claude &bull; chatgpt</div>
               </div>
             </div>
 
-            <!-- Column 3: Remember Everywhere -->
+            <!-- Column 3: Start Chatting -->
             <div 
               class="p-8 sm:p-10 flex flex-col justify-between min-h-[380px] transition-colors duration-300"
               :class="{ 'bg-gray-50/50': activeStep === 2 }"
             >
               <div>
-                <div class="text-xs tracking-wider uppercase font-bold font-mono text-gray-400 mb-6">03 . REMEMBER EVERYWHERE</div>
+                <div class="text-xs tracking-wider uppercase font-bold font-mono text-gray-400 mb-6">03 . START CHATTING</div>
                 <div class="mb-4">
-                  <div class="text-xl sm:text-2xl font-bold text-[#D97756] tracking-tight">Instant</div>
-                  <div class="text-sm sm:text-base font-semibold text-gray-900 leading-tight mt-1">context injection</div>
+                  <div class="text-xl sm:text-2xl font-bold text-[#D97756] tracking-tight">Start</div>
+                  <div class="text-sm sm:text-base font-semibold text-gray-900 leading-tight mt-1">chatting</div>
                 </div>
                 <p class="text-gray-500 text-sm leading-relaxed mb-6">
-                  Query from Cursor composition, Claude Desktop, ChatGPT, or terminal. The correct context is injected without manual copy-pasting.
+                  Start a new chat with your AI. Memwyre automatically uses your shared memory to answer with full context.
                 </p>
               </div>
 
@@ -999,7 +989,7 @@
                       }" />
                   </svg>
                 </div>
-                <div class="text-xs tracking-widest uppercase font-bold font-mono text-gray-400">p99 query recall</div>
+                <div class="text-xs tracking-widest uppercase font-bold font-mono text-gray-400">automatic context recall</div>
               </div>
             </div>
 
@@ -1060,7 +1050,7 @@
               <div class="relative flex items-center gap-5 bg-white border border-gray-200 rounded-xl p-5 shadow-xs transition-all duration-300 hover:border-gray-300 hover:shadow-sm">
                 <div class="text-[#D97756] text-4xl font-extrabold font-mono tracking-tight">70.5%</div>
                 <div class="text-left">
-                  <div class="text-gray-900 font-bold text-base leading-tight">Non-Adversarial Recall</div>
+                  <div class="text-gray-900 font-bold text-base leading-tight">Non-Adversarial Accuracy</div>
                   <div class="text-gray-500 text-xs tracking-widest uppercase font-semibold mt-0.5">Full 1,540 Benchmark Suite</div>
                 </div>
               </div>
@@ -1231,7 +1221,7 @@
                   <div class="flex items-center gap-6">
                     <div class="flex items-center gap-2">
                       <span class="w-3 h-3 bg-zinc-300 rounded-sm"></span>
-                      <span class="text-gray-500 font-mono text-[11px]">Baseline RAG</span>
+                      <span class="text-gray-500 font-mono text-[11px]">Previous Benchmark</span>
                     </div>
                     <div class="flex items-center gap-2">
                       <span class="w-3 h-3 bg-[#D97756] rounded-sm"></span>
@@ -1249,7 +1239,7 @@
                 <div class="flex justify-between items-center mb-4">
                   <h4 class="text-xs uppercase font-bold tracking-wider text-gray-400 font-mono">/ Accuracy Metrics</h4>
                   <div class="flex items-center gap-3 text-[10px] font-mono">
-                    <span class="text-gray-500">RAG</span>
+                    <span class="text-gray-500">Previous</span>
                     <span class="text-[#D97756] font-bold">Memwyre</span>
                   </div>
                 </div>
@@ -1259,10 +1249,10 @@
                   <div class="space-y-1.5">
                     <div class="flex justify-between items-center text-xs font-semibold text-gray-800">
                       <span>Single-hop</span>
-                      <span class="font-mono text-[10px] text-gray-400">RAG: 53.0% / <span class="text-[#D97756] font-bold">Memwyre: 78.6%</span></span>
+                      <span class="font-mono text-[10px] text-gray-400">Previous: 53.0% / <span class="text-[#D97756] font-bold">Memwyre: 78.6%</span></span>
                     </div>
                     <div class="space-y-1">
-                      <!-- Baseline Bar -->
+                      <!-- Previous Bar -->
                       <div class="w-full bg-gray-150 h-2.5 rounded overflow-hidden relative">
                         <div class="bg-zinc-300 h-full rounded transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '53.0%' : '0%' }" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(0, 0, 0, 0.1) 6px, rgba(0, 0, 0, 0.1) 7px);"></div>
                       </div>
@@ -1277,10 +1267,10 @@
                   <div class="space-y-1.5">
                     <div class="flex justify-between items-center text-xs font-semibold text-gray-800">
                       <span>Multi-hop</span>
-                      <span class="font-mono text-[10px] text-gray-400">RAG: 24.0% / <span class="text-[#D97756] font-bold">Memwyre: 57.5%</span></span>
+                      <span class="font-mono text-[10px] text-gray-400">Previous: 24.0% / <span class="text-[#D97756] font-bold">Memwyre: 57.5%</span></span>
                     </div>
                     <div class="space-y-1">
-                      <!-- Baseline Bar -->
+                      <!-- Previous Bar -->
                       <div class="w-full bg-gray-150 h-2.5 rounded overflow-hidden relative">
                         <div class="bg-zinc-300 h-full rounded transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '24.0%' : '0%' }" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(0, 0, 0, 0.1) 6px, rgba(0, 0, 0, 0.1) 7px);"></div>
                       </div>
@@ -1295,10 +1285,10 @@
                   <div class="space-y-1.5">
                     <div class="flex justify-between items-center text-xs font-semibold text-gray-800">
                       <span>Adversarial</span>
-                      <span class="font-mono text-[10px] text-gray-400">RAG: 50.0% / <span class="text-[#D97756] font-bold">Memwyre: 67.7%</span></span>
+                      <span class="font-mono text-[10px] text-gray-400">Previous: 50.0% / <span class="text-[#D97756] font-bold">Memwyre: 67.7%</span></span>
                     </div>
                     <div class="space-y-1">
-                      <!-- Baseline Bar -->
+                      <!-- Previous Bar -->
                       <div class="w-full bg-gray-150 h-2.5 rounded overflow-hidden relative">
                         <div class="bg-zinc-300 h-full rounded transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '50.0%' : '0%' }" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(0, 0, 0, 0.1) 6px, rgba(0, 0, 0, 0.1) 7px);"></div>
                       </div>
@@ -1313,10 +1303,10 @@
                   <div class="space-y-1.5">
                     <div class="flex justify-between items-center text-xs font-semibold text-gray-800">
                       <span>Temporal</span>
-                      <span class="font-mono text-[10px] text-gray-400">RAG: 48.0% / <span class="text-[#D97756] font-bold">Memwyre: 64.2%</span></span>
+                      <span class="font-mono text-[10px] text-gray-400">Previous: 48.0% / <span class="text-[#D97756] font-bold">Memwyre: 64.2%</span></span>
                     </div>
                     <div class="space-y-1">
-                      <!-- Baseline Bar -->
+                      <!-- Previous Bar -->
                       <div class="w-full bg-gray-150 h-2.5 rounded overflow-hidden relative">
                         <div class="bg-zinc-300 h-full rounded transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '48.0%' : '0%' }" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(0, 0, 0, 0.1) 6px, rgba(0, 0, 0, 0.1) 7px);"></div>
                       </div>
@@ -1333,7 +1323,7 @@
                   <div class="flex items-center gap-3">
                     <div class="flex items-center gap-1.5">
                       <span class="w-2.5 h-2.5 bg-zinc-300 rounded-sm"></span>
-                      <span>Baseline RAG</span>
+                      <span>Previous Benchmark</span>
                     </div>
                     <div class="flex items-center gap-1.5">
                       <span class="w-2.5 h-2.5 bg-[#D97756] rounded-sm"></span>
@@ -2042,22 +2032,22 @@ const activeBenchmarkCategory = ref('all');
 const benchmarkInsights = {
   all: {
     title: 'Full Benchmark Suite (1,540 Queries)',
-    desc: 'Across the complete evaluation suite, Memwyre outperforms standard vector RAG by +24.4% average recall while reducing context footprint by 81%.'
+    desc: 'Across the complete evaluation suite, Memwyre improves upon previous benchmark results by +24.4% average accuracy while reducing context footprint by 81%.'
   },
   single: {
-    title: 'Single-hop Entity Retrieval (+25.6% Recall)',
+    title: 'Single-hop Entity Retrieval (+25.6% Accuracy)',
     desc: 'Direct factual retrieval across past chats. Memwyre indexes structured entity relations to resolve exact variable names, credentials, and preferences without hallucinations.'
   },
   multi: {
-    title: 'Multi-hop Link Reasoning (+33.5% Recall)',
+    title: 'Multi-hop Link Reasoning (+33.5% Accuracy)',
     desc: 'Synthesizing context across disconnected sessions. Memwyre connects past architectural decisions with current code changes without losing intermediate hops.'
   },
   adversarial: {
-    title: 'Adversarial Noise Resistance (+17.7% Recall)',
+    title: 'Adversarial Noise Resistance (+17.7% Accuracy)',
     desc: 'When conflicting or outdated facts exist, Memwyre uses temporal decay and relevance scoring to prevent stale context from polluting model generation.'
   },
   temporal: {
-    title: 'Temporal Evolution Tracking (+16.2% Recall)',
+    title: 'Temporal Evolution Tracking (+16.2% Accuracy)',
     desc: 'Tracks when requirements or conventions evolve over time, invalidating deprecated rules so your AI always uses your newest guidelines.'
   }
 };

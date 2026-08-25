@@ -230,7 +230,7 @@
             <ul>
               <li><strong>Native OpenCode SQLite Integration:</strong> Memwyre's plugin reads session transcripts directly from OpenCode's local database (`~/.local/share/opencode/opencode.db`) using native `node:sqlite`. It requires zero custom API integration code.</li>
               <li><strong>Automatic Lifecycle Hooks:</strong> Hooks into OpenCode's `create`/`start` events to inject past architectural context and `idle`/`end` events to capture newly learned facts seamlessly.</li>
-              <li><strong>LoCoMo-10 Benchmark Scores:</strong> Memwyre's two-stage cross-encoder engine achieves <strong>73.5% overall accuracy</strong> on the LoCoMo-10 benchmark vs. 43.7% for standard vector RAG systems. <em>(Compare features on our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Mem0</router-link> and <router-link to="/memwyre-vs-supermemory" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Supermemory</router-link> pages.)</em></li>
+              <li><strong>LoCoMo-10 Benchmark Scores:</strong> Memwyre's two-stage cross-encoder engine achieves <strong>70.5% overall accuracy</strong> on the LoCoMo-10 benchmark vs. 43.7% for standard vector RAG systems. <em>(Compare features on our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Mem0</router-link> and <router-link to="/memwyre-vs-supermemory" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Supermemory</router-link> pages.)</em></li>
             </ul>
 
             <h3 id="cross-tool-sync">How Cross-Tool Sync Actually Works</h3>
@@ -347,14 +347,14 @@ export default {
                   <tr>
                     <td class="px-4 py-3 font-semibold border-b border-gray-100 dark:border-gray-800">Overall</td>
                     <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">43.7%</td>
-                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10 font-bold text-[#D97757]">73.5%</td>
-                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 text-green-600 dark:text-green-400 font-bold">+68%</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10 font-bold text-[#D97757]">70.5%</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 text-green-600 dark:text-green-400 font-bold">+61%</td>
                   </tr>
                   <tr>
                     <td class="px-4 py-3 font-semibold">Context Tokens</td>
                     <td class="px-4 py-3">~26,000</td>
                     <td class="px-4 py-3 bg-[#FDFCFB] dark:bg-orange-950/10 font-semibold">~3,000</td>
-                    <td class="px-4 py-3 text-green-600 dark:text-green-400 font-semibold">−88.5%</td>
+                    <td class="px-4 py-3 text-green-600 dark:text-green-400 font-semibold">−81%</td>
                   </tr>
                 </tbody>
               </table>
@@ -535,7 +535,7 @@ const faqs = [
   },
   {
     question: 'What is the best OpenCode memory plugin?',
-    answer: 'Depends. Memwyre for cross-tool (73.5% LoCoMo), claude-mem for local-first.'
+    answer: 'Depends. Memwyre for cross-tool (70.5% LoCoMo), claude-mem for local-first.'
   },
   {
     question: 'How is Memwyre different from claude-mem?',

@@ -496,7 +496,7 @@ export function getSeoForPath(path = '/') {
           'name': 'How is Memwyre different from claude-mem?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'claude-mem stores observations locally in SQLite + ChromaDB — great for single-machine use. Memwyre uses a shared cloud vault with entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync across Claude Code, Cursor, VS Code, and Claude Desktop without SSH setup. License-wise, claude-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). On retrieval quality, Memwyre scores 73.5% on LoCoMo-10 vs. 43.7% for flat vector baselines, using 88.5% fewer context tokens.'
+            'text': 'claude-mem stores observations locally in SQLite + ChromaDB — great for single-machine use. Memwyre uses a shared cloud vault with entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync across Claude Code, Cursor, VS Code, and Claude Desktop without SSH setup. License-wise, claude-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). On retrieval quality, Memwyre scores 70.5% on LoCoMo-10 vs. 43.7% for flat vector baselines, using 81% fewer context tokens.'
           }
         },
         {
@@ -624,7 +624,7 @@ export function getSeoForPath(path = '/') {
           'name': 'How is Memwyre different from claude-mem?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'claude-mem stores observations locally in SQLite + ChromaDB — great for single-machine use. Memwyre uses a shared cloud vault with entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync across Claude Code, Cursor, VS Code, and more without SSH setup. License-wise, claude-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). Memwyre scores 73.5% on LoCoMo-10 vs. 43.7% for flat vector baselines.'
+            'text': 'claude-mem stores observations locally in SQLite + ChromaDB — great for single-machine use. Memwyre uses a shared cloud vault with entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync across Claude Code, Cursor, VS Code, and more without SSH setup. License-wise, claude-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). Memwyre scores 70.5% on LoCoMo-10 vs. 43.7% for flat vector baselines.'
           }
         },
         {

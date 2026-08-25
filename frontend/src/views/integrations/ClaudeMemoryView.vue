@@ -232,7 +232,7 @@
             </p>
             <ul>
               <li><strong>Cross-tool sync:</strong> claude-mem stores data locally. To share context between machines, you need to set up SSH-based sync via <code>claude-mem-sync</code>. Memwyre uses a shared cloud vault — install the plugin on Claude Code, connect the MCP server on Cursor, and both read from the same memory layer instantly. No SSH keys, no SCP scripts, no manual replication.</li>
-              <li><strong>Retrieval quality:</strong> claude-mem uses flat vector search (ChromaDB). Memwyre's engine uses <strong>two-stage cross-encoder re-ranking</strong> with Ebbinghaus logarithmic recency decay, scoring <router-link to="/research/locomo-benchmark" class="text-[#D97757] hover:underline font-medium">73.5% on the LoCoMo-10 benchmark</router-link> vs. 43.7% for flat vector RAG baselines — a 68% accuracy improvement with 88.5% fewer tokens.</li>
+              <li><strong>Retrieval quality:</strong> claude-mem uses flat vector search (ChromaDB). Memwyre's engine uses <strong>two-stage cross-encoder re-ranking</strong> with Ebbinghaus logarithmic recency decay, scoring <router-link to="/research/locomo-benchmark" class="text-[#D97757] hover:underline font-medium">70.5% on the LoCoMo-10 benchmark</router-link> vs. 43.7% for flat vector RAG baselines — a 61% accuracy improvement with 81% fewer tokens.</li>
               <li><strong>License:</strong> claude-mem ships under <strong>AGPL-3.0</strong>, which requires teams to open-source modifications if they serve the software over a network. Memwyre ships under <strong>Apache-2.0</strong> — no copyleft obligations, safe for proprietary enterprise deployments. <em>(See our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">detailed comparison pages</router-link> for deeper dives vs. Mem0, Supermemory, and Zep.)</em></li>
             </ul>
 
@@ -379,14 +379,14 @@
                   <tr>
                     <td class="px-4 py-3 font-semibold border-b border-gray-100 dark:border-gray-800">Overall Accuracy</td>
                     <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">43.7%</td>
-                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10 font-bold text-[#D97757]">73.5%</td>
-                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 text-green-600 dark:text-green-400 font-bold">+68%</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10 font-bold text-[#D97757]">70.5%</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 text-green-600 dark:text-green-400 font-bold">+61%</td>
                   </tr>
                   <tr>
                     <td class="px-4 py-3 font-semibold">Context Tokens Sent</td>
                     <td class="px-4 py-3">~26,000</td>
                     <td class="px-4 py-3 bg-[#FDFCFB] dark:bg-orange-950/10 font-semibold">~3,000</td>
-                    <td class="px-4 py-3 text-green-600 dark:text-green-400 font-semibold">−88.5%</td>
+                    <td class="px-4 py-3 text-green-600 dark:text-green-400 font-semibold">−81%</td>
                   </tr>
                 </tbody>
               </table>
@@ -593,11 +593,11 @@ const faqs = [
   },
   {
     question: 'What is the best Claude Code memory plugin?',
-    answer: 'It depends on your needs. <strong>CLAUDE.md</strong> is best for static project rules (zero setup). <strong>Memwyre\'s plugin</strong> is best if you want fully automated, searchable memory that works across Claude Code, Claude Desktop, Cursor, and VS Code — it scores 73.5% on the LoCoMo-10 benchmark vs. 43.7% for flat vector RAG. <strong>claude-mem</strong> (89K+ stars, AGPL-3.0) is another strong option for local-first, single-machine workflows.'
+    answer: 'It depends on your needs. <strong>CLAUDE.md</strong> is best for static project rules (zero setup). <strong>Memwyre\'s plugin</strong> is best if you want fully automated, searchable memory that works across Claude Code, Claude Desktop, Cursor, and VS Code — it scores 70.5% on the LoCoMo-10 benchmark vs. 43.7% for flat vector RAG. <strong>claude-mem</strong> (89K+ stars, AGPL-3.0) is another strong option for local-first, single-machine workflows.'
   },
   {
     question: 'How is Memwyre different from claude-mem?',
-    answer: '<strong>claude-mem</strong> stores observations locally in SQLite + ChromaDB — great for single-machine use with zero cloud dependency. <strong>Memwyre</strong> uses a shared cloud vault with an entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync (Claude Code, Cursor, VS Code, Claude Desktop) without SSH setup. License-wise, claude-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). On retrieval quality, Memwyre\'s engine scores 73.5% on LoCoMo-10 vs. 43.7% for flat vector baselines, using 88.5% fewer context tokens.'
+    answer: '<strong>claude-mem</strong> stores observations locally in SQLite + ChromaDB — great for single-machine use with zero cloud dependency. <strong>Memwyre</strong> uses a shared cloud vault with an entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync (Claude Code, Cursor, VS Code, Claude Desktop) without SSH setup. License-wise, claude-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). On retrieval quality, Memwyre\'s engine scores 70.5% on LoCoMo-10 vs. 43.7% for flat vector baselines, using 81% fewer context tokens.'
   },
   {
     question: 'Does the plugin work with Claude Desktop too?',
