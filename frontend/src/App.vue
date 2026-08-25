@@ -4,6 +4,7 @@ import { onMounted } from 'vue'
 import { useThemeStore } from './stores/theme'
 import { useAuthStore } from './stores/auth'
 import { useProjectStore } from './stores/project'
+import { useBillingStore } from './stores/billing'
 
 // Initialize theme store to ensure dark mode preference persists on reload
 const isClient = typeof window !== 'undefined'
@@ -18,7 +19,11 @@ onMounted(async () => {
   try {
     await authStore.fetchUser()
     const projectStore = useProjectStore()
-    await projectStore.fetchProjects()
+    const billingStore = useBillingStore()
+    await Promise.allSettled([
+      projectStore.fetchProjects(),
+      billingStore.fetchStatus()
+    ])
   } catch (e) {
     // Keep app usable even if profile sync fails.
   }

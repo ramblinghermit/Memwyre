@@ -12,7 +12,7 @@
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
-        <span>Plugins</span>
+        <span>Integrations</span>
       </button>
 
       <!-- App Icon -->
@@ -275,7 +275,7 @@
       <!-- Top Header & Search Bar -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Plugins</h1>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Integrations</h1>
           <p class="text-sm text-gray-500 dark:text-zinc-400 mt-1">Work with Memwyre across your favorite tools and agent backplanes.</p>
         </div>
 
@@ -286,7 +286,7 @@
           </svg>
           <input
             v-model="searchQuery"
-            placeholder="Search plugins"
+            placeholder="Search integrations"
             class="w-full bg-gray-100/90 dark:bg-[#18181b] text-xs sm:text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 rounded-full pl-9 pr-8 py-2 border border-gray-200/80 dark:border-zinc-800/90 focus:border-[#D97757] dark:focus:border-[#D97757] focus:outline-none transition-all"
           />
           <button 
@@ -341,7 +341,7 @@
         </h3>
         
         <div v-if="filteredItems.length === 0" class="text-center py-16 text-sm text-gray-400 dark:text-zinc-500">
-          No plugins found matching "{{ searchQuery }}".
+          No integrations found matching "{{ searchQuery }}".
         </div>
 
         <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">

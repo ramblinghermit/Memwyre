@@ -164,65 +164,6 @@
             </svg>
             <span v-if="!isCollapsed" class="truncate">Integrations</span>
           </router-link>
-
-          <!-- 6. More Tools Popover -->
-          <div class="relative" ref="moreMenuRef">
-            <button
-              @click="toggleMoreMenu"
-              class="w-full flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-200/60 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800/70 transition-colors group cursor-pointer text-left"
-              :class="{ 
-                'justify-center px-0': isCollapsed, 
-                'bg-gray-200/80 text-gray-900 dark:bg-zinc-800 dark:text-white font-medium': isMoreMenuOpen 
-              }"
-              title="More Features"
-            >
-              <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-700 dark:text-zinc-400 dark:group-hover:text-zinc-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
-              <span v-if="!isCollapsed" class="truncate">Tools & More</span>
-            </button>
-
-            <!-- More Flyout Popover -->
-            <transition
-              enter-active-class="transition ease-out duration-100"
-              enter-from-class="transform opacity-0 scale-95"
-              enter-to-class="transform opacity-100 scale-100"
-              leave-active-class="transition ease-in duration-75"
-              leave-from-class="transform opacity-100 scale-100"
-              leave-to-class="transform opacity-0 scale-95"
-            >
-              <div 
-                v-if="isMoreMenuOpen" 
-                class="absolute left-full bottom-0 ml-2 w-56 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-zinc-700/80 rounded-xl shadow-2xl py-1.5 z-[60] text-sm text-gray-700 dark:text-zinc-200"
-              >
-                <router-link to="/prompts" @click="isMoreMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 hover:bg-gray-100 dark:hover:bg-zinc-700/60 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  <svg class="w-4 h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  <span>Prompt Studio</span>
-                </router-link>
-                <router-link to="/map" @click="isMoreMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 hover:bg-gray-100 dark:hover:bg-zinc-700/60 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-                  <span>Memory Map Graph</span>
-                </router-link>
-                <router-link to="/retrieval-visualizer" @click="isMoreMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 hover:bg-gray-100 dark:hover:bg-zinc-700/60 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                  <span>Retrieval Visualizer</span>
-                </router-link>
-                <button @click="handleScheduledClick" class="w-full flex items-center gap-2.5 px-3 py-2 hover:bg-gray-100 dark:hover:bg-zinc-700/60 hover:text-gray-900 dark:hover:text-white transition-colors text-left">
-                  <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  <span>Daily Review / Decay</span>
-                </button>
-                <div class="my-1 border-t border-gray-100 dark:border-zinc-700/60"></div>
-                <router-link to="/settings" @click="isMoreMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 hover:bg-gray-100 dark:hover:bg-zinc-700/60 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  <svg class="w-4 h-4 text-gray-400 dark:text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
-                  <span>Settings & API Keys</span>
-                </router-link>
-                <router-link to="/billing" @click="isMoreMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 hover:bg-gray-100 dark:hover:bg-zinc-700/60 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  <svg class="w-4 h-4 text-gray-400 dark:text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                  <span>Billing & Subscription</span>
-                </router-link>
-              </div>
-            </transition>
-          </div>
         </nav>
 
         <!-- Pinned Section (Interactive Pinned Memories/Chats) -->
@@ -518,6 +459,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
 import { useChatStore } from '../stores/chat';
 import { useInboxStore } from '../stores/inbox';
+import { useBillingStore } from '../stores/billing';
 import ConfirmationModal from './ConfirmationModal.vue';
 import cursorLightIcon from '../assets/cursor_CUBE_2D_LIGHT.svg';
 import vscodeIcon from '../assets/vscode.svg';
@@ -545,9 +487,9 @@ const route = useRoute();
 const authStore = useAuthStore();
 const chatStore = useChatStore();
 const inboxStore = useInboxStore();
+const billingStore = useBillingStore();
 
 const isCollapsed = ref(false);
-const isMoreMenuOpen = ref(false);
 const isUserMenuOpen = ref(false);
 const isSearchOpen = ref(false);
 const searchQuery = ref('');
@@ -555,7 +497,6 @@ const showDeleteChatModal = ref(false);
 const chatToDelete = ref(null);
 const isDeletingChat = ref(false);
 
-const moreMenuRef = ref(null);
 const userMenuRef = ref(null);
 
 const isChatMode = computed(() => route.path.startsWith('/chat'));
@@ -625,9 +566,6 @@ function handleDocumentClick(e) {
   if (userMenuRef.value && !userMenuRef.value.contains(e.target)) {
     isUserMenuOpen.value = false;
   }
-  if (moreMenuRef.value && !moreMenuRef.value.contains(e.target)) {
-    isMoreMenuOpen.value = false;
-  }
 }
 
 // Load sessions and collapse preference on mount
@@ -640,11 +578,14 @@ onMounted(async () => {
     loadPinnedFromStorage();
   }
 
-  // Fetch real chat sessions
+  // Fetch real chat sessions, inbox, and subscription status
   if (authStore.isAuthenticated) {
     try {
-      await chatStore.fetchSessions();
-      await inboxStore.fetchInbox();
+      await Promise.allSettled([
+        chatStore.fetchSessions(),
+        inboxStore.fetchInbox(),
+        billingStore.fetchStatus()
+      ]);
     } catch (e) {
       // Keep working
     }
@@ -677,14 +618,8 @@ function toggleCollapse() {
   }
 }
 
-function toggleMoreMenu() {
-  isMoreMenuOpen.value = !isMoreMenuOpen.value;
-  isUserMenuOpen.value = false;
-}
-
 function toggleUserMenu() {
   isUserMenuOpen.value = !isUserMenuOpen.value;
-  isMoreMenuOpen.value = false;
 }
 
 function openSearch() {
@@ -740,12 +675,12 @@ function handleLogout() {
 
 // Real User details
 const userName = computed(() => {
-  return authStore.user?.name || authStore.user?.email?.split('@')[0] || 'Himansh Shivhare';
+  return authStore.user?.name || authStore.user?.email?.split('@')[0] || 'User';
 });
 
 const userInitials = computed(() => {
   const name = userName.value;
-  if (!name) return 'HS';
+  if (!name) return 'U';
   const parts = name.trim().split(' ');
   if (parts.length >= 2) {
     return (parts[0][0] + parts[1][0]).toUpperCase();
@@ -754,7 +689,19 @@ const userInitials = computed(() => {
 });
 
 const userTier = computed(() => {
-  return authStore.user?.tier || 'Pro Tier';
+  if (billingStore.isDevMode) {
+    return 'Dev Mode';
+  }
+  if (billingStore.isPro || billingStore.plan === 'pro') {
+    return 'Pro Tier';
+  }
+  if (billingStore.plan === 'free') {
+    return 'Free Tier';
+  }
+  if (authStore.user?.tier) {
+    return authStore.user.tier;
+  }
+  return 'Free Tier';
 });
 
 const inboxCount = computed(() => {
