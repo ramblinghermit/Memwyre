@@ -40,9 +40,9 @@ export const PRERENDER_ROUTES = [
 ];
 
 export const DEFAULT_SEO = {
-  title: 'Memwyre | AI Memory Platform — Persistent Shared Memory for Every AI',
+  title: 'Memwyre | AI Memory Platform — Persistent Shared Memory',
   description:
-    'Memwyre is the AI Memory Platform that gives every AI tool, agent, and conversation a persistent, shared memory. Connect to Cursor, VS Code, ChatGPT, Claude, and more.',
+    'Memwyre gives every AI tool, agent, and conversation a persistent shared memory. Connect seamlessly to Cursor, VS Code, ChatGPT, Claude, and more.',
   ogType: 'website',
   twitterCard: 'summary_large_image',
 };
@@ -54,111 +54,111 @@ export const PUBLIC_ROUTE_SEO = {
       'Get in touch with the Memwyre team. Reach out directly to himansh@memwyre.tech or submit a message for developer support and sales inquiries.',
   },
   '/': {
-    title: 'Memwyre | AI Memory Platform — Persistent Shared Memory for Every AI',
+    title: 'Memwyre | AI Memory Platform — Persistent Shared Memory',
     description:
-      'Memwyre is the AI Memory Platform that gives every AI tool, agent, and conversation a persistent, shared memory. Connect to Cursor, VS Code, ChatGPT, Claude, and more.',
+      'Memwyre gives every AI tool, agent, and conversation a persistent shared memory. Connect seamlessly to Cursor, VS Code, ChatGPT, Claude, and more.',
   },
   '/use-cases': {
-    title: 'Memwyre Use Cases | AI Workflow Memory for Teams and Builders',
+    title: 'Memwyre Use Cases | AI Workflow Memory for Teams',
     description:
       'See how engineers, researchers, students, and product teams use Memwyre to retain AI context, reduce repeated work, and move faster.',
   },
   '/pricing': {
     title: 'Memwyre Pricing | Plans for Individuals and Teams',
     description:
-      'Find the plan that fits your AI workflow. Generous free tier with 50 memories and MCP support. Pro includes VS Code, Notion, Google Drive, Claude Code, and Claude Desktop integrations.',
+      'Find the right Memwyre plan for your AI workflow. Free tier includes 50 memories and MCP. Pro unlocks Notion, Drive, Claude Code, and IDE tools.',
   },
   '/privacy-policy': {
-    title: 'Memwyre Privacy Policy | Data Handling, Security, and Retention',
+    title: 'Memwyre Privacy Policy | Data Security and Retention',
     description:
-      'Read how Memwyre collects, processes, secures, and deletes data across the web app, extension, and MCP integrations.',
+      'Read how Memwyre collects, processes, secures, and deletes data across the web app, extension, and MCP integrations with zero retention.',
   },
   '/terms': {
-    title: 'Memwyre Terms of Service | Platform Rules and Responsibilities',
+    title: 'Memwyre Terms of Service | Platform Rules & Policy',
     description:
-      'Review Memwyre Terms of Service, including account use, acceptable behavior, billing expectations, and service limitations.',
+      'Review Memwyre Terms of Service, including account use, acceptable behavior, billing expectations, and platform service limitations.',
   },
   '/connectors': {
-    title: 'Connectors — Memwyre | Real-time Data Sync for AI Agents',
+    title: 'Connectors — Memwyre | Real-time Data Sync for AI',
     description:
-      'Pull context automatically from Notion, Google Drive, Gmail, GitHub, S3, and more. Configure once and keep your AI agent\'s context fresh in real time.',
+      'Pull context automatically from Notion, Google Drive, Gmail, GitHub, S3, and more. Configure once and keep your AI agent context fresh in real time.',
   },
   '/mcp': {
-    title: 'MCP — Memwyre | Universal Model Context Protocol Integrations',
+    title: 'MCP — Memwyre | Universal Context Protocol Gateway',
     description:
-      'Connect Memwyre memory layers directly to Claude, Cursor, Windsurf, VS Code, and any Model Context Protocol (MCP) client. Your context follows you everywhere.',
+      'Connect Memwyre memory layers directly to Claude, Cursor, Windsurf, VS Code, and any Model Context Protocol client. Context follows you everywhere.',
   },
   '/plugins': {
-    title: 'Plugins — Memwyre | Persistent Project Memory for Developer Tools',
+    title: 'Plugins — Memwyre | Persistent Project Memory for Tools',
     description:
-      'Memwyre developer plugins for Claude Code, OpenClaw, OpenCode, and Hermes. One-click memory save, automatic context injection, and project-scoped knowledge.',
+      'Memwyre developer plugins for Claude Code, OpenClaw, OpenCode, and Hermes. One-click memory save, automatic context injection, and project memory.',
   },
   '/extension': {
-    title: 'Chrome Extension — Memwyre | Capture Web Context Instantly',
+    title: 'Chrome Extension — Memwyre | Capture Web Context',
     description:
       'Save AI chats, reusable prompts, code snippets, and webpage content directly from ChatGPT, Claude, and any site with a single click.',
   },
   '/blog': {
-    title: 'Memwyre Blog | Guides, Updates & AI Memory Engineering Insights',
+    title: 'Memwyre Blog | Guides & AI Memory Engineering Insights',
     description:
       'Explore deep dives on Model Context Protocol (MCP), developer tools integration, vector databases, and workflow optimization from the Memwyre team.',
   },
   '/blog/mcp-persistent-memory': {
-    title: 'How to Give Claude Desktop Persistent Memory using MCP | Memwyre Blog',
+    title: 'Persistent Memory for Claude Desktop with MCP | Memwyre',
     description:
       'Connect Memwyre to Claude Desktop as a Model Context Protocol (MCP) server. Give your local Claude assistant a persistent long-term memory layer.',
     ogImage: '/blog-covers/mcp-persistent-memory.png',
   },
   '/blog/vscode-mcp-persistent-memory': {
-    title: 'How to Enable Persistent Codebase Memory in VS Code | Memwyre Blog',
+    title: 'Persistent Codebase Memory in VS Code with MCP | Memwyre',
     description:
       'Configure remote MCP memory gateway for VS Code agentic extensions like Cline, Roo-Code, and Devins. Stop starting from scratch each session.',
     ogImage: '/blog-covers/vscode-mcp-persistent-memory.png',
   },
   '/blog/claude-code-memory-ingestion': {
-    title: 'Building Persistent Terminal Sessions: Claude Code Memory | Memwyre Blog',
+    title: 'Persistent Terminal Sessions: Claude Code Memory | Memwyre',
     description:
-      'Integrate Memwyre lifecycle hooks into Anthropic\'s Claude Code CLI. Inject workspace context on startup and automatically ingest terminal chats on exit.',
+      'Integrate Memwyre lifecycle hooks into Claude Code CLI. Inject workspace context on startup and automatically ingest terminal chats on exit.',
     ogImage: '/blog-covers/claude-code-memory-ingestion.png',
   },
   '/blog/openclaw-autonomous-memory': {
-    title: 'Persistent Memory for Autonomous Agents: OpenClaw | Memwyre Blog',
+    title: 'Persistent Memory for OpenClaw Autonomous Agents | Memwyre',
     description:
       'Load the Memwyre plugin for OpenClaw autonomous coding agents. Enable long-term memory query tools and persistent inbox updates across agent runs.',
     ogImage: '/blog-covers/openclaw-autonomous-memory.png',
   },
   '/blog/cursor-vs-claude-code-context': {
-    title: 'Cursor AI vs Claude Code: Managing Context and Memory | Memwyre Blog',
+    title: 'Cursor AI vs Claude Code: Context & Memory | Memwyre',
     description:
       'Compare workspace indexing and memory management between Cursor AI and Claude Code CLI. Learn how to plug both into a unified memory layer.',
     ogImage: '/blog-covers/cursor-vs-claude-code-context.png',
   },
   '/blog/rag-vs-memory-long-term-knowledge': {
-    title: 'RAG vs. AI Memory: Choosing the Right Approach | Memwyre Blog',
+    title: 'RAG vs. AI Memory: Which Approach Is Right? | Memwyre',
     description:
       'Analyze why basic RAG fails for developer workflows due to chunk fragmentation, and why entity-profile routing provides better context.',
     ogImage: '/blog-covers/rag-vs-memory-long-term-knowledge.png',
   },
   '/blog/state-of-ai-memory-2026': {
-    title: 'State of AI Memory 2026: Shift from Stateless to Stateful | Memwyre Blog',
+    title: 'State of AI Memory 2026: Shift to Stateful Agents | Memwyre',
     description:
-      'An inspection of context window explosion and why stateless attention buffers create substantial financial and latency overheads for enterprise codebase scale.',
+      'An inspection of context window explosion and why stateless attention buffers create substantial financial and latency overheads at codebase scale.',
     ogImage: '/blog-covers/state-of-ai-memory-2026.png',
   },
   '/blog/:slug': {
-    title: 'Memwyre Blog | Engineering Insights & Developer Guides',
+    title: 'Memwyre Blog | Engineering Insights & Guides',
     description:
-      'Latest guides, insights, and updates on building persistent AI workflows from the Memwyre engineering team.',
+      'Read latest guides, architectural deep dives, and tutorials on building persistent AI workflows from the Memwyre engineering team.',
   },
   '/research/:slug': {
     title: 'Memwyre Research | AI Memory & Retrieval Studies',
     description:
-      'Deep dives, evaluations, and benchmarks from the Memwyre Research Lab on long-term AI memory architectures.',
+      'Read in-depth research studies, evaluations, and benchmarks from the Memwyre Research Lab on long-term AI memory architectures.',
   },
   '/research/what-is-ai-memory': {
     title: 'What is AI Memory? The Architecture of Long-Term Context',
     description: 'Explore the technical architecture of AI memory, from flat vector embeddings to hierarchical entity graphs, and how it solves LLM amnesia.',
-    canonical: 'https://memwyre.com/research/what-is-ai-memory',
+    canonical: 'https://memwyre.tech/research/what-is-ai-memory',
     ogType: 'article',
     jsonLd: JSON.stringify({
         "@context": "https://schema.org",
@@ -166,21 +166,21 @@ export const PUBLIC_ROUTE_SEO = {
         "headline": "What is AI Memory? The Architecture of Long-Term Context",
         "description": "Explore the technical architecture of AI memory, from flat vector embeddings to hierarchical entity graphs.",
         "author": { "@type": "Organization", "name": "Himansh Shivhare" },
-        "publisher": { "@type": "Organization", "name": "Memwyre", "logo": { "@type": "ImageObject", "url": "https://memwyre.com/logo.png" } }
+        "publisher": { "@type": "Organization", "name": "Memwyre", "logo": { "@type": "ImageObject", "url": "https://memwyre.tech/image.svg" } }
     })
   },
   '/research/context-engineering': {
-    title: 'What is Context Engineering? The 2026 Guide for Developers',
-    description: 'Prompt engineering is dead. Learn how Context Engineering and hierarchical entity graphs are replacing standard RAG for production AI agents.',
-    canonical: 'https://memwyre.com/research/context-engineering',
+    title: 'Context Engineering: The 2026 Guide for Developers',
+    description: 'Prompt engineering is dead. Learn how Context Engineering and hierarchical entity graphs replace standard RAG for production AI agents.',
+    canonical: 'https://memwyre.tech/research/context-engineering',
     ogType: 'article',
     jsonLd: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "What is Context Engineering? The 2026 Guide for Developers",
-        "description": "Prompt engineering is dead. Learn how Context Engineering and hierarchical entity graphs are replacing standard RAG for production AI agents.",
+        "headline": "Context Engineering: The 2026 Guide for Developers",
+        "description": "Prompt engineering is dead. Learn how Context Engineering and hierarchical entity graphs replace standard RAG for production AI agents.",
         "author": { "@type": "Organization", "name": "Himansh Shivhare" },
-        "publisher": { "@type": "Organization", "name": "Memwyre", "logo": { "@type": "ImageObject", "url": "https://memwyre.com/logo.png" } }
+        "publisher": { "@type": "Organization", "name": "Memwyre", "logo": { "@type": "ImageObject", "url": "https://memwyre.tech/image.svg" } }
     })
   },
   '/ai-memory-benchmark-locomo': {
@@ -189,7 +189,7 @@ export const PUBLIC_ROUTE_SEO = {
     ogImage: '/blog-covers/ai-memory-benchmark-locomo-v2.png',
   },
   '/research': {
-    title: 'Memwyre Research Hub | Advancing AI Long-Term Context Retention',
+    title: 'Memwyre Research Hub | AI Long-Term Memory Studies',
     description: 'Explore studies, whitepapers, and experiments on context density, memory graphs, and RAG retrieval optimizations by the Memwyre Research Lab.',
   },
   '/memwyre-vs-mem0': {
@@ -197,37 +197,37 @@ export const PUBLIC_ROUTE_SEO = {
     description: 'Compare Memwyre and Mem0: side-by-side feature comparison, latency benchmarks, and client-side developer integration support.',
   },
   '/memwyre-vs-supermemory': {
-    title: 'Memwyre vs Supermemory | Developer Context vs Personal Bookmarks',
+    title: 'Memwyre vs Supermemory | Developer Memory Comparison',
     description: 'Analyze differences between developer-first memory layers and personal search engines. Compare latency, MCP configs, and workspace tools.',
   },
   '/memwyre-vs-zep': {
-    title: 'Memwyre vs Zep | Active Workspace Graph vs Session Chat History',
+    title: 'Memwyre vs Zep | Memory Graph vs Chat History',
     description: 'Compare Memwyre and Zep: active developer client integrations and entity mapping vs backend database session history logs.',
   },
   '/chatgpt-memory': {
-    title: 'ChatGPT Memory | Persistent Context & Long-Term Memory for OpenAI',
+    title: 'ChatGPT Memory | Persistent Context for OpenAI | Memwyre',
     description: 'Connect ChatGPT to a unified, long-term memory graph. Save developer guidelines, schemas, and context across all your browser chat sessions.',
   },
   '/claude-memory': {
-    title: 'Claude Code Memory | Persistent Long-Term Memory Plugin for Claude Code',
-    description: 'Give Claude Code persistent memory across sessions. Install the Memwyre plugin in one command — auto-inject project context on start, auto-capture decisions on exit. Works across Claude Desktop, Cursor, and VS Code.',
+    title: 'Claude Code Memory | Persistent Memory Plugin for Claude',
+    description: 'Give Claude Code persistent memory across sessions. Auto-inject project context on start and capture decisions on exit across Claude, Cursor, and VS Code.',
     ogImage: '/blog-covers/claude-code-memory-ingestion.png',
   },
   '/cursor-memory': {
-    title: 'Cursor Memory | Long-Term Codebase Context for Cursor AI IDE',
+    title: 'Cursor Memory | Long-Term Codebase Context for Cursor AI',
     description: 'Enable sub-300ms persistent memory for Cursor Composer and Chat. Save developer rules and databases context to avoid index rebuilding.',
   },
   '/mcp-memory': {
-    title: 'MCP Memory Server | Universal Context Layer for All MCP Clients',
-    description: 'Link any Model Context Protocol (MCP) client to your personal memory layer. Secure, remote context gateway supporting Cursor, Claude, VS Code, and Windsurf.',
+    title: 'MCP Memory Server | Universal Context Layer | Memwyre',
+    description: 'Link any Model Context Protocol (MCP) client to your personal memory layer. Secure, remote context gateway supporting Cursor, Claude, and VS Code.',
   },
   '/openclaw-memory': {
-    title: 'OpenClaw Memory | Persistent Long-Term Memory Plugin for OpenClaw Agents',
-    description: 'Give OpenClaw autonomous agents persistent memory across every run. Install the Memwyre plugin in one command — auto-inject project context on start, auto-capture decisions on exit. Works across Claude Code, Cursor, and VS Code.',
+    title: 'OpenClaw Memory | Persistent Memory Plugin for Agents',
+    description: 'Give OpenClaw autonomous agents persistent memory across runs. Auto-inject project context on launch and capture decisions on exit with the Memwyre plugin.',
   },
   '/opencode-memory': {
-    title: 'OpenCode Memory | Persistent Long-Term Memory Plugin for OpenCode',
-    description: 'Give OpenCode persistent memory across sessions. Install the Memwyre plugin — auto-inject project context on start, auto-capture decisions on exit. Works across Claude Code, Cursor, and VS Code.',
+    title: 'OpenCode Memory | Persistent Memory Plugin for OpenCode',
+    description: 'Give OpenCode persistent memory across sessions. Auto-inject project context on start and capture decisions on exit across your entire development stack.',
   },
 };
 

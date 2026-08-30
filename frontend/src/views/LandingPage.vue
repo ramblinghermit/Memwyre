@@ -51,7 +51,7 @@
           <div class="flex flex-col gap-3 mt-6 sm:mt-8 max-w-[340px] sm:max-w-[380px] w-full animate-fade-in-up animation-delay-300 z-20">
             <!-- Buttons -->
             <div class="flex flex-row items-center justify-start gap-3 sm:gap-4 w-full">
-              <router-link to="/signup/"
+              <router-link to="/signup"
                 class="flex-1 px-4 py-2.5 bg-[#050614] text-white font-bold sm:font-semibold lg:font-bold rounded-md hover:bg-gray-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 focus-visible:ring-offset-2 transition-all duration-200 shadow-md text-xs sm:text-sm lg:text-base inline-flex items-center justify-center text-center">
                 Get Started
               </router-link>
@@ -282,7 +282,7 @@
 
               <!-- CTA -->
               <div class="mt-auto">
-                <router-link to="/signup/" class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-white text-gray-950 font-bold text-sm rounded-xl hover:bg-orange-50 active:scale-[0.98] transition-all duration-300 shadow-md group-hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2">
+                <router-link to="/signup" class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-white text-gray-950 font-bold text-sm rounded-xl hover:bg-orange-50 active:scale-[0.98] transition-all duration-300 shadow-md group-hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2">
                   <span>Start building in 5 minutes</span>
                   <svg class="w-4 h-4 text-gray-950 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
                 </router-link>
@@ -356,7 +356,7 @@
 
               <!-- CTA -->
               <div class="mt-auto">
-                <router-link to="/signup/" class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-[#D97756] text-white font-bold text-sm rounded-xl hover:bg-[#C4654A] active:scale-[0.98] transition-all duration-300 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 focus-visible:ring-offset-2">
+                <router-link to="/signup" class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-[#D97756] text-white font-bold text-sm rounded-xl hover:bg-[#C4654A] active:scale-[0.98] transition-all duration-300 shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 focus-visible:ring-offset-2">
                   <span>Get Personal Memory</span>
                   <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
                 </router-link>
@@ -1563,7 +1563,7 @@
               </div>
 
               <div class="mt-8">
-                <router-link to="/signup/"
+                <router-link to="/signup"
                   class="inline-flex w-full items-center justify-center rounded-md bg-gray-50 text-gray-900 border border-gray-200 px-4 py-3.5 text-sm font-bold hover:bg-gray-100 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 focus-visible:ring-offset-2 transition-all duration-200 shadow-sm">
                   Get Started for Free
                 </router-link>
@@ -1687,7 +1687,7 @@
               </div>
 
               <div class="mt-8 relative z-10">
-                <router-link to="/signup/"
+                <router-link to="/signup"
                   class="inline-flex w-full items-center justify-center rounded-none bg-black text-white px-4 py-3.5 text-sm font-bold shadow-md hover:bg-gray-900 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 transition-all duration-200">
                   Start Building Your Brain
                 </router-link>
@@ -1892,7 +1892,7 @@
 
 
           <div class="flex flex-row items-center justify-start gap-3 sm:gap-4">
-            <router-link to="/signup/"
+            <router-link to="/signup"
               class="w-auto px-6 py-2.5 sm:px-8 sm:py-3 bg-black text-white font-bold rounded-md hover:bg-gray-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 focus-visible:ring-offset-2 transition-all duration-200 shadow-md text-xs sm:text-base inline-flex items-center justify-center">
               Get Started
             </router-link>

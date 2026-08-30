@@ -131,7 +131,7 @@
               Give Claude Code persistent memory across every session. The Memwyre plugin auto-injects past project context when you start a session and auto-captures decisions when you exit — no manual <code>CLAUDE.md</code> management needed.
             </p>
             <div class="flex flex-wrap gap-3 my-6">
-              <router-link to="/signup/" class="px-6 py-2.5 bg-[#050614] dark:bg-white text-white dark:text-black text-sm font-semibold rounded hover:bg-gray-800 transition-colors shadow-sm">
+              <router-link to="/signup" class="px-6 py-2.5 bg-[#050614] dark:bg-white text-white dark:text-black text-sm font-semibold rounded hover:bg-gray-800 transition-colors shadow-sm">
                 Install Plugin Free →
               </router-link>
               <a href="https://docs.memwyre.tech/integrations/plugins/claude" target="_blank" class="px-6 py-2.5 bg-white dark:bg-transparent text-[#050614] dark:text-white text-sm font-semibold rounded border border-gray-250 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -232,7 +232,7 @@
             </p>
             <ul>
               <li><strong>Cross-tool sync:</strong> claude-mem stores data locally. To share context between machines, you need to set up SSH-based sync via <code>claude-mem-sync</code>. Memwyre uses a shared cloud vault — install the plugin on Claude Code, connect the MCP server on Cursor, and both read from the same memory layer instantly. No SSH keys, no SCP scripts, no manual replication.</li>
-              <li><strong>Retrieval quality:</strong> claude-mem uses flat vector search (ChromaDB). Memwyre's engine uses <strong>two-stage cross-encoder re-ranking</strong> with Ebbinghaus logarithmic recency decay, scoring <router-link to="/research/locomo-benchmark" class="text-[#D97757] hover:underline font-medium">70.5% on the LoCoMo-10 benchmark</router-link> vs. 43.7% for flat vector RAG baselines — a 61% accuracy improvement with 81% fewer tokens.</li>
+              <li><strong>Retrieval quality:</strong> claude-mem uses flat vector search (ChromaDB). Memwyre's engine uses <strong>two-stage cross-encoder re-ranking</strong> with Ebbinghaus logarithmic recency decay, scoring <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">70.5% on the LoCoMo-10 benchmark</router-link> vs. 43.7% for flat vector RAG baselines — a 61% accuracy improvement with 81% fewer tokens.</li>
               <li><strong>License:</strong> claude-mem ships under <strong>AGPL-3.0</strong>, which requires teams to open-source modifications if they serve the software over a network. Memwyre ships under <strong>Apache-2.0</strong> — no copyleft obligations, safe for proprietary enterprise deployments. <em>(See our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">detailed comparison pages</router-link> for deeper dives vs. Mem0, Supermemory, and Zep.)</em></li>
             </ul>
 
@@ -396,7 +396,7 @@
               The improvement comes from three architectural choices: <strong>dynamic context pruning</strong> during ingestion (strips conversational filler), <strong>two-stage cross-encoder re-ranking</strong> (high-recall vector fetch → precision cross-encoder scoring), and <strong>Ebbinghaus logarithmic recency decay</strong> (automatically deprioritizes stale observations).
             </p>
             <p>
-              <router-link to="/research/locomo-benchmark" class="text-[#D97757] hover:underline font-medium">View the full LoCoMo-10 benchmark results →</router-link>
+              <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">View the full LoCoMo-10 benchmark results →</router-link>
             </p>
 
             <h2 id="real-world-workflow">Real-World Workflow: Large Codebase Refactoring</h2>
@@ -461,7 +461,7 @@
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
                 One plugin install. Automatic context injection. Automatic session capture. Memory that works across Claude Code, Claude Desktop, Cursor, and VS Code.
               </p>
-              <router-link to="/signup/" class="px-6 py-2 bg-[#D97757] text-white rounded text-sm font-semibold inline-block hover:bg-[#c05c3d] transition-colors">
+              <router-link to="/signup" class="px-6 py-2 bg-[#D97757] text-white rounded text-sm font-semibold inline-block hover:bg-[#c05c3d] transition-colors">
                 Start Free
               </router-link>
             </div>

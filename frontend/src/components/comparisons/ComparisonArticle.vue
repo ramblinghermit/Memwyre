@@ -149,7 +149,7 @@
           Connect your browser, IDE, MCP clients, and developer agents to one persistent memory vault.
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <router-link to="/signup/" class="px-6 py-2.5 bg-[#D97757] hover:bg-[#e68a6c] text-white text-sm font-semibold rounded transition-colors shadow-sm">
+          <router-link to="/signup" class="px-6 py-2.5 bg-[#D97757] hover:bg-[#e68a6c] text-white text-sm font-semibold rounded transition-colors shadow-sm">
             Start Free
           </router-link>
           <router-link to="/mcp" class="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded transition-colors">

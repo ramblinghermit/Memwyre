@@ -131,7 +131,7 @@
               Give OpenCode persistent memory across every session. The Memwyre plugin auto-injects past project context when you start a session and auto-captures decisions when it ends — no manual context management needed.
             </p>
             <div class="flex flex-wrap gap-3 my-6">
-              <router-link to="/signup/" class="px-6 py-2.5 bg-[#050614] dark:bg-white text-white dark:text-black text-sm font-semibold rounded hover:bg-gray-800 transition-colors shadow-sm">
+              <router-link to="/signup" class="px-6 py-2.5 bg-[#050614] dark:bg-white text-white dark:text-black text-sm font-semibold rounded hover:bg-gray-800 transition-colors shadow-sm">
                 Install Plugin Free →
               </router-link>
               <a href="https://docs.memwyre.tech/integrations/plugins/opencode" target="_blank" class="px-6 py-2.5 bg-white dark:bg-transparent text-[#050614] dark:text-white text-sm font-semibold rounded border border-gray-250 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -361,7 +361,7 @@ export default {
             </div>
 
             <p>
-              <router-link to="/research/locomo-benchmark" class="text-[#D97757] hover:underline font-medium">View the full LoCoMo-10 benchmark results →</router-link>
+              <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">View the full LoCoMo-10 benchmark results →</router-link>
             </p>
 
             <h2 id="real-world-workflow">Real-World Workflow: Iterative Feature Development</h2>

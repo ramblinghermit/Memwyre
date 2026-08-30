@@ -155,29 +155,4 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  <url>
-    <loc>https://app.memwyre.tech/login</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  <url>
-    <loc>https://app.memwyre.tech/signup</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  <url>
-    <loc>https://app.memwyre.tech/dashboard</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  <url>
-    <loc>https://app.memwyre.tech/forgot-password</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  <url>
-    <loc>https://app.memwyre.tech/verify-email</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
 </urlset>

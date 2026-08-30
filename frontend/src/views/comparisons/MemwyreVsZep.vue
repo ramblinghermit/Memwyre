@@ -287,7 +287,7 @@
               </div>
               
               <div class="flex flex-wrap gap-4 items-center">
-                <router-link to="/signup/" class="px-6 py-2.5 bg-[#D97757] text-white text-sm font-semibold rounded hover:bg-[#c4684a] transition-colors shadow-sm">
+                <router-link to="/signup" class="px-6 py-2.5 bg-[#D97757] text-white text-sm font-semibold rounded hover:bg-[#c4684a] transition-colors shadow-sm">
                   Start Free Trial
                 </router-link>
               </div>
