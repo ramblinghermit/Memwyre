@@ -11,6 +11,16 @@
     "light": "#D97757",
     "dark": "#D97757"
   },
+  "seo": {
+    "metatags": {
+      "canonical": "https://docs.memwyre.tech"
+    },
+    "organization": {
+      "name": "Memwyre",
+      "url": "https://docs.memwyre.tech",
+      "logo": "https://docs.memwyre.tech/images/logo.png"
+    }
+  },
   "topbarLinks": [
     {
       "name": "Dashboard",

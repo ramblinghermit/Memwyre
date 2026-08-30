@@ -7,6 +7,16 @@
     "dark": "#D97757"
   },
   "favicon": "/images/image.svg",
+  "seo": {
+    "metatags": {
+      "canonical": "https://docs.memwyre.tech"
+    },
+    "organization": {
+      "name": "Memwyre",
+      "url": "https://docs.memwyre.tech",
+      "logo": "https://docs.memwyre.tech/images/logo.png"
+    }
+  },
   "logo": {
     "light": "/images/logo.png",
     "dark": "/images/logo-white.png"

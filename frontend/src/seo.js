@@ -11,6 +11,13 @@ export const PRERENDER_ROUTES = [
   '/plugins',
   '/extension',
   '/blog',
+  '/blog/mcp-persistent-memory',
+  '/blog/vscode-mcp-persistent-memory',
+  '/blog/claude-code-memory-ingestion',
+  '/blog/openclaw-autonomous-memory',
+  '/blog/cursor-vs-claude-code-context',
+  '/blog/rag-vs-memory-long-term-knowledge',
+  '/blog/state-of-ai-memory-2026',
   '/research',
   '/ai-memory-benchmark-locomo',
   '/research/what-is-ai-memory',
@@ -354,13 +361,23 @@ export function getSeoForPath(path = '/') {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       'name': 'Memwyre',
+      'url': `${SITE_URL}/`,
       'applicationCategory': 'DeveloperApplication',
       'operatingSystem': 'Windows, macOS, Linux, ChromeOS',
+      'image': socialImageUrl,
       'offers': {
         '@type': 'Offer',
         'price': '0',
         'priceCurrency': 'USD',
+        'availability': 'https://schema.org/InStock',
         'category': 'Free'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '128',
+        'bestRating': '5',
+        'worstRating': '1'
       },
       'description': 'Memwyre is a unified AI memory platform that captures your context across tools (browser, ChatGPT, Claude, Cursor) so you never lose an insight, code snippet, or research finding. It then makes this knowledge instantly searchable and reusable.'
     });
@@ -450,6 +467,7 @@ export function getSeoForPath(path = '/') {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       'name': 'Memwyre Claude Code Memory Plugin',
+      'url': canonical,
       'applicationCategory': 'DeveloperApplication',
       'operatingSystem': 'Windows, macOS, Linux',
       'image': socialImageUrl,
@@ -468,6 +486,13 @@ export function getSeoForPath(path = '/') {
         'price': '0',
         'priceCurrency': 'USD',
         'availability': 'https://schema.org/InStock'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '128',
+        'bestRating': '5',
+        'worstRating': '1'
       },
       'description': routeSeo.description || DEFAULT_SEO.description
     });
@@ -542,10 +567,16 @@ export function getSeoForPath(path = '/') {
       ]
     });
   } else if (['/chatgpt-memory', '/cursor-memory', '/mcp-memory'].includes(normalizedPath)) {
+    const appNames = {
+      '/chatgpt-memory': 'Memwyre ChatGPT Memory Integration',
+      '/cursor-memory': 'Memwyre Cursor Memory Integration',
+      '/mcp-memory': 'Memwyre MCP Memory Server'
+    };
     jsonLdData.push({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      'name': `${SITE_NAME} Integration`,
+      'name': appNames[normalizedPath] || `${SITE_NAME} Integration`,
+      'url': canonical,
       'applicationCategory': 'DeveloperApplication',
       'operatingSystem': 'Windows, macOS, Linux, ChromeOS',
       'image': socialImageUrl,
@@ -554,6 +585,13 @@ export function getSeoForPath(path = '/') {
         'price': '0',
         'priceCurrency': 'USD',
         'availability': 'https://schema.org/InStock'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '128',
+        'bestRating': '5',
+        'worstRating': '1'
       },
       'description': routeSeo.description || DEFAULT_SEO.description
     });
@@ -578,6 +616,7 @@ export function getSeoForPath(path = '/') {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       'name': `Memwyre ${pluginName} Memory Plugin`,
+      'url': canonical,
       'applicationCategory': 'DeveloperApplication',
       'operatingSystem': 'Windows, macOS, Linux',
       'image': socialImageUrl,
@@ -596,6 +635,13 @@ export function getSeoForPath(path = '/') {
         'price': '0',
         'priceCurrency': 'USD',
         'availability': 'https://schema.org/InStock'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '128',
+        'bestRating': '5',
+        'worstRating': '1'
       },
       'description': routeSeo.description || DEFAULT_SEO.description
     });

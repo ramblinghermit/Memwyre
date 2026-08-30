@@ -1,6 +1,7 @@
 ---
 title: "Overview"
 description: "Learn about Memwyre — the universal persistent memory layer that connects developer IDEs, browser tools, and autonomous AI agents through a unified entity graph."
+canonical: "https://docs.memwyre.tech"
 ---
 
 # Overview
