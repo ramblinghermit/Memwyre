@@ -717,11 +717,14 @@ onMounted(() => {
   fetchTags();
   fetchProjects();
 
-  if (documentId.value === 'new' && !title.value?.trim()) {
-    if (interactionType.value === 'prompt') title.value = 'New Prompt';
-    else if (interactionType.value === 'conversation') title.value = 'New Conversation';
-    else if (interactionType.value === 'webpage') title.value = 'New Webpage Memory';
-    else title.value = 'New Memory';
+  if (documentId.value === 'new') {
+    selectedProjectId.value = projectStore.currentProjectId || null;
+    if (!title.value?.trim()) {
+      if (interactionType.value === 'prompt') title.value = 'New Prompt';
+      else if (interactionType.value === 'conversation') title.value = 'New Conversation';
+      else if (interactionType.value === 'webpage') title.value = 'New Webpage Memory';
+      else title.value = 'New Memory';
+    }
   }
 });
 

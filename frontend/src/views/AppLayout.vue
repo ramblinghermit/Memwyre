@@ -208,10 +208,10 @@ const handleOpenQuickAddEvent = () => {
   isQuickCreateOpen.value = true;
 };
 
-onMounted(() => {
+onMounted(async () => {
   document.addEventListener('click', handleClickOutside);
   window.addEventListener('open-quick-add', handleOpenQuickAddEvent);
-  projectStore.fetchProjects();
+  await projectStore.fetchProjects();
   inboxStore.fetchInbox();
 });
 

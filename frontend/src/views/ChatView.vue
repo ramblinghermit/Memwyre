@@ -238,7 +238,7 @@ function handleOpenSource(source) {
       </div>
 
       <!-- Empty State Hero Composer (Elevated / Up More) -->
-      <div v-else class="flex-1 flex flex-col items-center justify-center p-4 pb-24 sm:pb-36 z-10 w-full">
+      <div v-if="chatStore.messages.length === 0" class="flex-1 flex flex-col items-center justify-center p-4 pb-24 sm:pb-36 z-10 w-full">
         <div class="max-w-2xl w-full mx-auto -mt-8 sm:-mt-16">
           <div class="mb-6 text-left">
             <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
