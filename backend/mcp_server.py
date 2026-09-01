@@ -47,7 +47,7 @@ def redirect_stdout_to_stderr():
 # This prevents libraries (like ChromaDB) from printing to stdout and breaking the MCP protocol
 with redirect_stdout_to_stderr():
     from app.services.vector_store import vector_store
-    from app.services.ingestion import ingestion_service
+    from app.services.ingestion_v2 import ingestion_service
     from app.db.session import AsyncSessionLocal
     from app.models.document import Document
     from app.models.user import User
@@ -297,11 +297,7 @@ async def search_memwyre(query: str, ctx: Context, purpose: str = "general", wor
             if not user:
                 return "Error: No user found."
                 
-            from app.core.config import settings
-            if settings.MEMORY_ENGINE_VERSION == "v2":
-                from app.services.retrieval_service_v2 import retrieval_service
-            else:
-                from app.services.retrieval_service import retrieval_service
+            from app.services.retrieval_service_v2 import retrieval_service
                 
             project_id = await get_or_create_project(db, user.id, workspace_name)
             results = await retrieval_service.search_memories(
@@ -488,61 +484,47 @@ async def get_document(doc_id: int, ctx: Context) -> str:
             return f"Error getting document: {str(e)}"
 
 @mcp.tool()
-async def generate_prompt(query: str, ctx: Context, template: str = "standard", workspace_name: Optional[str] = None) -> str:
+async def get_memory(memory_id: str, ctx: Context) -> str:
     """
-    Generate a prompt with retrieved context from Memwyre.
+    Retrieve the full content of a specific memory by its ID from Memwyre.
+    Use this to verify saved or updated memory text.
     Args:
-        query: The user's question or request.
-        template: The template to use ("standard", "code", "summary").
-        workspace_name: Optional name of the workspace directory. Pass this so that prompt context is scoped strictly to this project workspace.
+        memory_id: The ID of the memory (e.g., 'mem_72').
     """
+    if not memory_id.startswith("mem_"):
+        return "Error: ID must start with 'mem_'."
+
     async with AsyncSessionLocal() as db:
         try:
             user, _ = await get_current_user(db, ctx, required_scope="mcp:read")
             if not user:
                 return "Error: No user found."
-            
-            project_id = await get_or_create_project(db, user.id, workspace_name)
-            
-            # 1. Retrieve Context using ContextBuilder (Standardized)
-            context_data = await context_builder.build_context(query=query, user_id=user.id, limit_tokens=2000, project_id=project_id)
-            context_str = context_data["text"]
-            
-            # 3. Apply Template
-            if template == "code":
-                prompt = f"""You are an expert coding assistant. Use the following context to answer the user's request.
 
-CONTEXT:
-{context_str}
+            try:
+                mem_id = int(memory_id.split("_")[1])
+            except ValueError:
+                return "Error: Invalid ID format."
 
-USER REQUEST:
-{query}
+            result = await db.execute(
+                select(Memory).filter(Memory.id == mem_id, Memory.user_id == user.id)
+            )
+            memory = result.scalars().first()
+            if not memory:
+                return f"Memory {memory_id} not found."
 
-INSTRUCTIONS:
-- Provide clear, efficient code.
-- Explain your reasoning.
-"""
-            elif template == "summary":
-                prompt = f"""Please summarize the following information based on the user's query.
-
-CONTEXT:
-{context_str}
-
-QUERY:
-{query}
-"""
-            else: # Standard
-                prompt = f"""Use the following memory context to answer the question.
-
-MEMORY CONTEXT:
-{context_str}
-
-QUESTION:
-{query}
-"""
-            return prompt
+            tags_str = ", ".join(memory.tags) if memory.tags and isinstance(memory.tags, list) else str(memory.tags or "")
+            return (
+                f"ID: {memory_id}\n"
+                f"Title: {memory.title}\n"
+                f"Status: {memory.status}\n"
+                f"Source: {memory.source_llm}\n"
+                f"Tags: {tags_str}\n"
+                f"Created: {memory.created_at}\n"
+                f"---\n"
+                f"{memory.content}"
+            )
         except Exception as e:
-            return f"Error generating prompt: {str(e)}"
+            return f"Error getting memory: {str(e)}"
 
 @mcp.tool()
 async def update_memory(memory_id: str, content: str, ctx: Context) -> str:
@@ -578,20 +560,21 @@ async def update_memory(memory_id: str, content: str, ctx: Context) -> str:
             await db.commit()
             await db.refresh(memory)
 
-            # Update Vector Store
+            # Update Vector Store — delete old embedding
             if memory.embedding_id:
                 try:
                     vector_store.delete(ids=[memory.embedding_id])
-                except:
+                except Exception:
                     pass
             
             # Re-ingest
-            ids, raw_chunks, enriched_chunks, metadatas = await ingestion_service.process_text(
+            ingest_metadata = {"user_id": user.id, "memory_id": memory.id, "tags": str(memory.tags) if memory.tags else "", "source": "mcp"}
+            ids, raw_chunks, enriched_chunks, metadatas, _facts = await ingestion_service.process_text(
                 text=memory.content,
                 document_id=memory.id,
                 title=memory.title,
                 doc_type="memory",
-                metadata={"user_id": user.id, "memory_id": memory.id, "tags": str(memory.tags) if memory.tags else "", "source": "mcp"}
+                metadata=ingest_metadata
             )
             
             if ids:
@@ -606,6 +589,7 @@ async def update_memory(memory_id: str, content: str, ctx: Context) -> str:
 
             return f"Memory {memory_id} updated successfully."
         except Exception as e:
+            logger.error(f"Error updating memory: {e}", exc_info=True)
             return f"Error updating memory: {str(e)}"
 
 @mcp.tool()
