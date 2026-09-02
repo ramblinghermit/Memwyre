@@ -1,5 +1,5 @@
 from typing import List, Any, Optional
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from pydantic import BaseModel
@@ -31,6 +31,7 @@ class DebugSearchResult(BaseModel):
 @router.post("/search", response_model=List[SearchResult])
 async def search_documents(
     request: SearchRequest,
+    response: Response,
     db: AsyncSession = Depends(deps.get_db),
     current_user: User = Depends(deps.get_current_user)
 ) -> Any:
@@ -48,14 +49,21 @@ async def search_documents(
         # Resolve project_id to ensure workspace containerization
         project_id = await deps.resolve_project_id(db, current_user.id, request.project_id)
         
+        debug_dict = {}
         results = await retrieval_service.search_memories(
             query=request.query,
             user_id=current_user.id,
             db=db,
             top_k=request.top_k,
             view=request.view,
-            project_id=project_id
+            project_id=project_id,
+            debug_info=debug_dict
         )
+        
+        if "timings_ms" in debug_dict:
+            import json
+            response.headers["X-Retrieval-Timings"] = json.dumps(debug_dict["timings_ms"])
+            response.headers["X-Retrieval-Time-Ms"] = str(debug_dict["timings_ms"].get("total_server_ms", ""))
         
         # Transform to response model
         formatted_results = []
