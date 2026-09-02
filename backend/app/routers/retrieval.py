@@ -50,15 +50,25 @@ async def search_documents(
         project_id = await deps.resolve_project_id(db, current_user.id, request.project_id)
         
         debug_dict = {}
-        results = await retrieval_service.search_memories(
-            query=request.query,
-            user_id=current_user.id,
-            db=db,
-            top_k=request.top_k,
-            view=request.view,
-            project_id=project_id,
-            debug_info=debug_dict
-        )
+        if settings.MEMORY_ENGINE_VERSION == "v2":
+            results = await retrieval_service.search_memories(
+                query=request.query,
+                user_id=current_user.id,
+                db=db,
+                top_k=request.top_k,
+                view=request.view,
+                project_id=project_id,
+                debug_info=debug_dict
+            )
+        else:
+            results = await retrieval_service.search_memories(
+                query=request.query,
+                user_id=current_user.id,
+                db=db,
+                top_k=request.top_k,
+                view=request.view,
+                project_id=project_id
+            )
         
         if "timings_ms" in debug_dict:
             import json

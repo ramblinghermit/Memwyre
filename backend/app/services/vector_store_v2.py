@@ -1,7 +1,7 @@
 import logging
 import os
 import asyncio
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from pinecone import Pinecone
 from app.core.config import settings
 from app.core.rate_limiter import get_embeddings_instance
