@@ -47,7 +47,7 @@ def redirect_stdout_to_stderr():
 # This prevents libraries (like ChromaDB) from printing to stdout and breaking the MCP protocol
 with redirect_stdout_to_stderr():
     from app.services.vector_store import vector_store
-    from app.services.ingestion_v2 import ingestion_service
+    from app.services.ingestion_v2 import ingestion_service_v2 as ingestion_service
     from app.db.session import AsyncSessionLocal
     from app.models.document import Document
     from app.models.user import User
