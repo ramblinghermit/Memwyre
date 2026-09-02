@@ -556,7 +556,9 @@ async def update_memory(memory_id: str, content: str, ctx: Context) -> str:
                 return "Error: Memory not found."
 
             # Update DB
+            from datetime import datetime, timezone
             memory.content = content
+            memory.updated_at = datetime.now(timezone.utc)
             await db.commit()
             await db.refresh(memory)
 
