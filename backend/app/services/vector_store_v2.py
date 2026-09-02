@@ -23,6 +23,7 @@ class VectorStore:
         self.index = self.pc.Index(host=settings.PINECONE_HOST)
         
         # Initialize Embeddings Locally
+        self.embedding_error = None
         try:
             self.embeddings = get_embeddings_instance()
             logger.info("Initialized Embeddings with Rate Limiter.")
@@ -30,6 +31,7 @@ class VectorStore:
             import traceback
             logger.error(f"Failed to load embeddings: {e}")
             logger.error(traceback.format_exc())
+            self.embedding_error = f"{type(e).__name__}: {e}"
             self.embeddings = None
         
     from tenacity import retry, stop_after_attempt, wait_exponential
@@ -80,7 +82,9 @@ class VectorStore:
         try:
             # 1. Generate embedding for query locally
             if not self.embeddings:
-                 return {"ids": [[]], "distances": [[]], "metadatas": [[]], "documents": [[]], "embeddings": [[]]}
+                if timing_dict is not None:
+                    timing_dict["error"] = f"self.embeddings is None: {getattr(self, 'embedding_error', 'None')}"
+                return {"ids": [[]], "distances": [[]], "metadatas": [[]], "documents": [[]], "embeddings": [[]]}
 
             # Azure OpenAI embedding is synchronous call usually fast or we can async it too?
             # Let's wrap it just in case, or use aembed_query if available.
@@ -92,6 +96,8 @@ class VectorStore:
                 timing_dict["embed_ms"] = round((time.perf_counter() - t0_emb) * 1000, 1)
             
             if not query_embedding:
+                if timing_dict is not None:
+                    timing_dict["error"] = "query_embedding returned empty"
                 return {"ids": [[]], "distances": [[]], "metadatas": [[]], "documents": [[]], "embeddings": [[]]}
 
             # 2. Query Pinecone (Blocking IO -> Thread)
@@ -141,6 +147,8 @@ class VectorStore:
             
         except Exception as e:
             print(f"Pinecone Query Failed: {e}")
+            if timing_dict is not None:
+                timing_dict["error"] = f"{type(e).__name__}: {e}"
             return {"ids": [[]], "distances": [[]], "metadatas": [[]], "documents": [[]], "embeddings": [[]]}
 
     async def delete(self, ids: List[str]):

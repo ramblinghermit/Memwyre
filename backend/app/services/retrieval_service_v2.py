@@ -191,7 +191,9 @@ class RetrievalService:
             "entity_profile_ms": round(t_profiles, 1),
             "rerank_ms": round(t_rerank, 1)
         }
-        print(f"[RETRIEVAL TIMING] total={timings['total_server_ms']}ms | embed={timings['embed_ms']}ms | pinecone={timings['pinecone_ms']}ms | state_sql={timings['state_sql_ms']}ms | semantic_sql={timings['semantic_sql_ms']}ms | rerank={timings['rerank_ms']}ms")
+        if "error" in vector_timings:
+            timings["vector_error"] = vector_timings["error"]
+        print(f"[RETRIEVAL TIMING] total={timings['total_server_ms']}ms | embed={timings['embed_ms']}ms | pinecone={timings['pinecone_ms']}ms | state_sql={timings['state_sql_ms']}ms | semantic_sql={timings['semantic_sql_ms']}ms | rerank={timings['rerank_ms']}ms | error={timings.get('vector_error')}")
 
         if debug_info is not None:
             debug_info["timings_ms"] = timings
