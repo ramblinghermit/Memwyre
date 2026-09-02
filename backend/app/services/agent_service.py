@@ -242,7 +242,12 @@ class AgentService:
             date_str = " ".join(vals)
             if not date_str and generic_date: date_str = f"Date: {generic_date}"
             if not date_str: date_str = "Date: Unknown"
-            
+            # Content Construction
+            content = r.get("text", "")
+            if chunk:
+               if hasattr(chunk, 'text') and chunk.text and chunk.text != content:
+                   content = f"Fact: {content}\nChunk: {chunk.text}"
+
             # Extract ID and Title if available
             item_id = None
             if meta.get("memory_id"):
