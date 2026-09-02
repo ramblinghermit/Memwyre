@@ -7,7 +7,7 @@ import builtins
 from typing import Any, List, Optional
 from mcp.server.fastmcp import FastMCP
 from sqlalchemy.future import select
-from sqlalchemy import delete
+from sqlalchemy import delete, func
 from sqlalchemy.orm import selectinload
 
 # --- STDOUT PROTECTION ---
@@ -67,10 +67,19 @@ logger.setLevel(logging.INFO)
 
 # Initialize FastMCP Server with DNS rebinding protection configured
 # to allow the production domain (otherwise 421 "Invalid Host header")
-from mcp.server.transport_security import TransportSecuritySettings
+MEMWYRE_INSTRUCTIONS = """
+Memwyre is the persistent cognitive memory and knowledge layer for this agent.
+Guidelines for autonomous memory management:
+1. READ BEFORE WRITING: Before answering user queries that might depend on previous project context, decisions, or notes, call `search_memwyre`.
+2. STORE FULL CONTENT WITHOUT TRUNCATION: When asked to save notes, architectural decisions, reports, benchmarks, or specs, pass the complete unsummarized Markdown document to `save_memory` or `upsert_memory`. Memwyre automatically handles chunking, enrichment, and vector/graph indexing.
+3. UPDATING EXISTING KNOWLEDGE: When updating an existing topic, note, or report, prefer `upsert_memory` with the same `title`, or find the `[ID: mem_XXX]` via `search_memwyre` and call `update_memory` to avoid cluttering the vault with duplicates.
+4. INSPECTING MEMORIES: `search_memwyre` returns snippets with IDs (e.g. `[ID: mem_73]`). To view the full original text of any memory, use `get_memory(memory_id='mem_73')`.
+5. TAGGING CONVENTION: Always assign 2-5 relevant lowercase tags (e.g., ['architecture', 'benchmarks', 'auth', 'database']) to organize knowledge.
+"""
 
 mcp = FastMCP(
     "Memwyre",
+    instructions=MEMWYRE_INSTRUCTIONS,
     stateless_http=True,
     transport_security=TransportSecuritySettings(
         allowed_hosts=["api.memwyre.tech", "server.memwyre.tech", "localhost", "127.0.0.1"],
@@ -241,14 +250,25 @@ async def get_or_create_project(db, user_id: int, workspace_name: Optional[str] 
     return project.id
 
 @mcp.tool()
-async def save_memory(text: str, ctx: Context, source: str = "mcp", tags: Optional[List[str]] = None, workspace_name: Optional[str] = None) -> str:
+async def save_memory(
+    text: str, 
+    ctx: Context, 
+    title: Optional[str] = None, 
+    source: str = "mcp", 
+    tags: Optional[List[str]] = None, 
+    workspace_name: Optional[str] = None
+) -> str:
     """
-    Save a new memory snippet to the Memwyre Vault. Use this tool when the user explicitly asks you to 'remember' something, 'save' a note, or when you encounter important information that should be persisted for future reference.
+    Save a new memory or document to the Memwyre Vault.
+    Supports short notes, conversation facts, or full long-form Markdown documents/reports of any length.
+    The backend automatically chunks, enriches, and indexes long text into vector and graph storage.
+    DO NOT summarize long reports, architecture specs, or code snippets — pass the full text directly.
     Args:
-        text: The content of the memory.
+        text: The full content to save. Markdown is fully supported and preserved (tables, code blocks, lists, headers).
+        title: Optional title for the memory (e.g., 'Production Retrieval Benchmark' or 'System Architecture'). If omitted, one is auto-extracted from the first heading.
         source: Source of memory (default 'mcp').
-        tags: Optional list of tags.
-        workspace_name: Optional name of the workspace directory. Pass this so that memories are containerized in this project workspace.
+        tags: Optional list of tags for categorization (e.g., ['benchmarks', 'architecture', 'database']).
+        workspace_name: Optional name of the workspace directory to scope this memory.
     """
     async with AsyncSessionLocal() as db:
         try:
@@ -258,34 +278,131 @@ async def save_memory(text: str, ctx: Context, source: str = "mcp", tags: Option
                 logger.error("No user found during save_memory")
                 return "Error: No user found."
 
-            # Use the dynamically identified client source if the tool caller just used "mcp"
             effective_source = source
             if source == "mcp" and key_name:
                 effective_source = key_name
             
-            logger.info(f"Effective source: {effective_source} (identified source: {key_name})")
+            # Auto-extract title if not provided and text starts with Markdown header
+            effective_title = title
+            if not effective_title and text.strip().startswith("#"):
+                first_line = text.strip().split("\n")[0].lstrip("#").strip()
+                if first_line:
+                    effective_title = first_line[:80]
 
             project_id = await get_or_create_project(db, user.id, workspace_name)
             memory = await memory_service.create_memory(
                 db=db,
                 user=user,
                 content=text,
+                title=effective_title,
                 source=effective_source,
                 tags=tags,
                 project_id=project_id
             )
             
             logger.info(f"Memory saved successfully: mem_{memory.id}")
-            return f"Memory saved to Inbox with ID: mem_{memory.id} (Status: {memory.status})"
+            return f"Memory saved to Inbox with ID: mem_{memory.id} (Status: {memory.status}, Title: '{memory.title}')"
         except Exception as e:
             logger.error(f"Error saving memory: {e}", exc_info=True)
             return f"Error saving memory: {str(e)}"
 
 @mcp.tool()
+async def upsert_memory(
+    title: str, 
+    text: str, 
+    ctx: Context, 
+    source: str = "mcp", 
+    tags: Optional[List[str]] = None, 
+    workspace_name: Optional[str] = None
+) -> str:
+    """
+    Save or update a living memory/document by title in the Memwyre Vault.
+    If a memory with a matching title already exists in this workspace, it will be updated in-place with the new text and re-indexed (preventing duplicate entries).
+    If no existing memory matches the title, a new memory is created.
+    Use this tool when maintaining living documents (e.g. project architecture, meeting notes, benchmarks, user preferences).
+    Args:
+        title: Unique title or topic name (e.g., 'Production Retrieval Benchmark' or 'System Architecture').
+        text: The full content to save or update (Markdown fully supported, do not summarize).
+        source: Source of memory (default 'mcp').
+        tags: Optional list of categorization tags (e.g., ['benchmarks', 'architecture']).
+        workspace_name: Optional workspace name to scope this memory.
+    """
+    async with AsyncSessionLocal() as db:
+        try:
+            logger.info(f"MCP upsert_memory called. Title: {title}. Text length: {len(text)}")
+            user, key_name = await get_current_user(db, ctx, required_scope="mcp:write")
+            if not user:
+                return "Error: No user found."
+
+            effective_source = source
+            if source == "mcp" and key_name:
+                effective_source = key_name
+
+            project_id = await get_or_create_project(db, user.id, workspace_name)
+
+            # Check if memory with this title already exists (case-insensitive)
+            stmt = select(Memory).filter(
+                Memory.user_id == user.id,
+                func.lower(Memory.title) == func.lower(title.strip())
+            )
+            if project_id is not None:
+                stmt = stmt.filter(Memory.project_id == project_id)
+
+            result = await db.execute(stmt)
+            existing = result.scalars().first()
+
+            if existing:
+                from datetime import datetime, timezone
+                existing.content = text
+                existing.updated_at = datetime.now(timezone.utc)
+                if tags:
+                    existing.tags = tags
+                await db.commit()
+                await db.refresh(existing)
+
+                # Re-ingest
+                if existing.embedding_id:
+                    try:
+                        vector_store.delete(ids=[existing.embedding_id])
+                    except Exception:
+                        pass
+
+                ingest_metadata = {"user_id": user.id, "memory_id": existing.id, "tags": str(existing.tags) if existing.tags else "", "source": effective_source}
+                ids, raw_chunks, enriched_chunks, metadatas, _facts = await ingestion_service.process_text(
+                    text=existing.content,
+                    document_id=existing.id,
+                    title=existing.title,
+                    doc_type="memory",
+                    metadata=ingest_metadata
+                )
+                if ids:
+                    existing.embedding_id = ids[0]
+                    await db.commit()
+                    vector_store.add_documents(ids=ids, documents=enriched_chunks, metadatas=metadatas)
+
+                return f"Memory mem_{existing.id} ('{existing.title}') updated successfully."
+            else:
+                # Create new
+                memory = await memory_service.create_memory(
+                    db=db,
+                    user=user,
+                    content=text,
+                    title=title,
+                    source=effective_source,
+                    tags=tags,
+                    project_id=project_id
+                )
+                return f"Memory saved to Inbox with ID: mem_{memory.id} (Status: {memory.status}, Title: '{title}')"
+        except Exception as e:
+            logger.error(f"Error in upsert_memory: {e}", exc_info=True)
+            return f"Error upserting memory: {str(e)}"
+
+@mcp.tool()
 async def search_memwyre(query: str, ctx: Context, purpose: str = "general", workspace_name: Optional[str] = None) -> str:
     """
     The PRIMARY tool for searching the user's "Memwyre". Use this to retrieve relevant context, notes, code snippets, or past conversations from the Memwyre Vault.
-    ALWAYS use this before answering questions that might require personal context.
+    ALWAYS use this before answering questions that might require personal context or project knowledge.
+    Results include item IDs (e.g. `[ID: mem_123]` or `[ID: doc_45]`). You can pass these IDs to `get_memory` to read full unchunked text, or to `update_memory` / `delete_memory`.
     Args:
         query: The semantic search query (e.g., "python fastapi project structure", "notes on meeting with Bob", or "auth system specs").
         purpose: Optional hint for context formatting ("general", "code", "summary").
@@ -486,10 +603,10 @@ async def get_document(doc_id: int, ctx: Context) -> str:
 @mcp.tool()
 async def get_memory(memory_id: str, ctx: Context) -> str:
     """
-    Retrieve the full content of a specific memory by its ID from Memwyre.
-    Use this to verify saved or updated memory text.
+    Retrieve the full, unabridged content of a specific memory by its ID from Memwyre.
+    Use this when `search_memwyre` returns a snippet with `[ID: mem_XXX]` and you need to read the complete original document, report, or note.
     Args:
-        memory_id: The ID of the memory (e.g., 'mem_72').
+        memory_id: The ID of the memory (e.g., 'mem_73').
     """
     if not memory_id.startswith("mem_"):
         return "Error: ID must start with 'mem_'."
@@ -530,9 +647,12 @@ async def get_memory(memory_id: str, ctx: Context) -> str:
 async def update_memory(memory_id: str, content: str, ctx: Context) -> str:
     """
     Update the content of an existing memory in Memwyre.
+    Requires the memory ID (e.g., 'mem_73'), which can be discovered using `search_memwyre` or `list_memories`.
+    The new content is completely re-chunked and re-indexed into the vector store.
+    Full Markdown documents are supported and encouraged — do not truncate.
     Args:
         memory_id: The ID of the memory (must start with 'mem_').
-        content: The new content.
+        content: The new, full content (Markdown fully supported).
     """
     if not memory_id.startswith("mem_"):
         return "Error: Only memories (starting with 'mem_') can be updated via this tool."
