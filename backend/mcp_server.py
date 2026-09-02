@@ -67,6 +67,8 @@ logger.setLevel(logging.INFO)
 
 # Initialize FastMCP Server with DNS rebinding protection configured
 # to allow the production domain (otherwise 421 "Invalid Host header")
+from mcp.server.transport_security import TransportSecuritySettings
+
 MEMWYRE_INSTRUCTIONS = """
 Memwyre is the persistent cognitive memory and knowledge layer for this agent.
 Guidelines for autonomous memory management:
