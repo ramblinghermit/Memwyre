@@ -193,3 +193,16 @@ async def agent_skills_index():
         ],
     })
 
+
+@router.get("/.well-known/glama.json")
+async def glama_claim():
+    """
+    Glama MCP Connector Ownership Verification Claim.
+    """
+    return JSONResponse(
+        content={
+            "$schema": "https://glama.ai/mcp/schemas/connector.json",
+            "claim": "glama_claim_NUnsbbaIbT3GeLxr3B753lfO71W8tcGO",
+        }
+    )
+
