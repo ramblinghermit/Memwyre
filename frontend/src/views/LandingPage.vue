@@ -1914,6 +1914,9 @@
         <img src="https://www.scrolllaunch.com/api/badge/memwyre" alt="Featured on ScrollLaunch" width="220" height="48"
           loading="lazy" />
       </a>
+      <a href="https://fazier.com/launches/memwyre.tech" target="_blank" rel="noopener noreferrer">
+        <img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=light" width="120" alt="Fazier badge" />
+      </a>
     </div>
 
   </div>
