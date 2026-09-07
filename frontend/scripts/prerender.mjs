@@ -122,7 +122,14 @@ async function prerender() {
             }
         }
 
-        const routeHtml = withSeoAndContent(template, seo, appHtml, injectedScript);
+        let routeHtml = withSeoAndContent(template, seo, appHtml, injectedScript);
+
+        // For the root route, inject styles + script on app.memwyre.tech to hide
+        // prerendered landing page content and re-show #app once Vue loads.
+        if (route === '/') {
+            const antiFlashStyle = `<style id="anti-flash">html[data-app-domain] #app{visibility:hidden}</style><script>if(window.location.hostname==='app.memwyre.tech')document.documentElement.setAttribute('data-app-domain','');</script>`;
+            routeHtml = routeHtml.replace('</head>', `${antiFlashStyle}</head>`);
+        }
 
         const outputPath = route === '/'
             ? path.join(distDir, 'index.html')
