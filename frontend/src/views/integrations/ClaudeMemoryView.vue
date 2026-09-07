@@ -178,7 +178,7 @@
               <div class="space-y-2">
                 <div class="text-[#D97757] font-mono text-xs uppercase font-bold tracking-wider">Quick Summary / Key Takeaways</div>
                 <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-normal">
-                  <strong>Answer:</strong> By default, Claude Code uses <code>CLAUDE.md</code> (static guidelines) and Auto Memory (local <code>MEMORY.md</code>). However, native Auto Memory is strictly capped at <strong>200 lines / 25KB</strong> and silently truncates older notes when exceeded. The <strong>Memwyre Plugin</strong> solves this by using deterministic lifecycle hooks (<code>SessionStart</code> and <code>Stop</code>) to auto-inject dynamic, semantically ranked memories on launch and auto-capture architectural decisions on exit across Claude Code, Cursor, and VS Code.
+                  <strong>Answer:</strong> By default, Claude Code uses <code>CLAUDE.md</code> (static guidelines) and Auto Memory (local <code>MEMORY.md</code>). However, native Auto Memory is strictly capped at <strong>200 lines / 25KB</strong> and silently truncates older notes when exceeded. The <strong>Memwyre Plugin</strong> solves this by using deterministic lifecycle hooks (<code>SessionStart</code> and <code>Stop</code>) to auto-inject dynamic, semantically ranked memories on launch and auto-capture architectural decisions on exit across Claude Code, <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor AI</router-link>, and <router-link to="/mcp-memory" class="text-[#D97757] hover:underline font-medium">VS Code via MCP</router-link>.
                 </p>
               </div>
             </div>
@@ -221,7 +221,7 @@
               Every time you close a Claude Code session, the context window resets. Your debugging breakthroughs, architecture decisions, database schema notes, and style conventions — all gone. You spend the first 5 minutes of every session re-explaining your project.
             </p>
             <p>
-              Anthropic provides <code>CLAUDE.md</code> and auto-memory as built-in solutions, but they require manual maintenance, are limited to flat Markdown files, and don't share context across tools. If you use Claude Code <em>and</em> Claude Desktop <em>and</em> Cursor, each tool maintains its own isolated silo.
+              Anthropic provides <code>CLAUDE.md</code> and auto-memory as built-in solutions, but they require manual maintenance, are limited to flat Markdown files, and don't share context across tools. If you use Claude Code <em>and</em> Claude Desktop <em>and</em> <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link>, each tool maintains its own isolated silo.
             </p>
 
             <h2 id="claudemd-masterclass">The Complete Guide to CLAUDE.md: Hierarchy, Syntax &amp; Best Practices</h2>
@@ -570,7 +570,7 @@ claude mcp add memory-server -- node /path/to/server.js</code></pre>
 
             <h3 id="approach-memwyre">Approach 4: Dedicated Unified Context Engine (Memwyre)</h3>
             <p>
-              Memwyre approaches memory <strong>deterministically</strong> rather than predictively. Instead of forcing the LLM to remember to make tool calls, Memwyre intercepts Claude Code's native lifecycle hooks (<code>SessionStart</code> and <code>Stop</code>). Context is injected before prompt typing begins and extracted when the terminal closes, synchronized across Claude Code, Cursor, and VS Code.
+              Memwyre approaches memory <strong>deterministically</strong> rather than predictively. Instead of forcing the LLM to remember to make tool calls, Memwyre intercepts Claude Code's native lifecycle hooks (<code>SessionStart</code> and <code>Stop</code>). Context is injected before prompt typing begins and extracted when the terminal closes, synchronized across Claude Code, <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor AI</router-link>, and <router-link to="/mcp-memory" class="text-[#D97757] hover:underline font-medium">VS Code (MCP)</router-link>.
             </p>
 
             <h2 id="architecture">How the Memwyre Claude Code Plugin Works</h2>
@@ -1031,8 +1031,28 @@ claude mcp add memory-server -- node /path/to/server.js</code></pre>
             <ul>
               <li><strong>Manual maintenance</strong> — you have to remember to update it.</li>
               <li><strong>Flat storage</strong> — everything goes into one Markdown file. No semantic search or entity relationships.</li>
-              <li><strong>Tool-locked</strong> — CLAUDE.md only works in Claude Code. Your Cursor and Claude Desktop sessions can't access it.</li>
+              <li><strong>Tool-locked</strong> — CLAUDE.md only works in Claude Code. Your <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link> and Claude Desktop sessions can't access it.</li>
             </ul>
+
+            <!-- Connected Ecosystem & Related Integrations -->
+            <div class="my-10 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-950/40">
+              <div class="text-xs font-mono font-bold uppercase tracking-wider text-[#D97757] mb-1">CONNECTED ECOSYSTEM</div>
+              <h3 class="text-lg font-bold text-gray-950 dark:text-white hero-serif mb-4">Explore More Agent Memory Integrations</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <router-link to="/cursor-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Cursor AI Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Eliminate Composer chat amnesia with persistent project memory.</p>
+                </router-link>
+                <router-link to="/opencode-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenCode Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">118MB lightweight memory layer for terminal-native coding agents.</p>
+                </router-link>
+                <router-link to="/openclaw-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenClaw Autonomous →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Multi-agent shared memory bus without re-feeding prompt tokens.</p>
+                </router-link>
+              </div>
+            </div>
 
             <h2 id="faq">FAQ</h2>
             <div class="space-y-4 my-6">

@@ -461,10 +461,10 @@
                       <span class="text-[10px] text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200 dark:border-zinc-700">Cross-Tool Active</span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 font-sans text-xs">
-                      Composer executes the multi-file refactor adhering strictly to the architecture. Any new constraints agreed upon in chat are persisted back via <code>save_memory</code>, immediately available in Claude Code CLI.
+                      Composer executes the multi-file refactor adhering strictly to the architecture. Any new constraints agreed upon in chat are persisted back via <code>save_memory</code>, immediately available in <router-link to="/claude-memory" class="text-[#D97757] hover:underline font-medium">Claude Code CLI</router-link>.
                     </p>
                     <div class="p-2 rounded bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-[11px] text-gray-800 dark:text-gray-200 font-mono">
-                      ✔ Synced to cloud vault &mdash; Accessible instantly in Claude Code CLI &amp; VS Code
+                      ✔ Synced to cloud vault &mdash; Accessible instantly in <router-link to="/claude-memory" class="text-[#D97757] hover:underline">Claude Code</router-link> &amp; <router-link to="/mcp-memory" class="text-[#D97757] hover:underline">VS Code via MCP</router-link>
                     </div>
                   </div>
                 </div>
@@ -680,6 +680,26 @@
             <p>
               Memwyre's multi-factor ranking (combining dense embeddings, entity graph connections, and recency weighting) scored <strong>70.5%</strong>, outperforming flat vector RAG architectures (43.7%) by over 26 percentage points while cutting prompt tokens by 81%.
             </p>
+
+            <!-- Connected Ecosystem & Related Integrations -->
+            <div class="my-10 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-950/40">
+              <div class="text-xs font-mono font-bold uppercase tracking-wider text-[#D97757] mb-1">CONNECTED ECOSYSTEM</div>
+              <h3 class="text-lg font-bold text-gray-950 dark:text-white hero-serif mb-4">Explore More Agent Memory Integrations</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <router-link to="/claude-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Claude Code Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Overcome CLAUDE.md limits with automated CLI session ingestion.</p>
+                </router-link>
+                <router-link to="/mcp-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Universal MCP Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Connect VS Code, Continue, and any Model Context Protocol client.</p>
+                </router-link>
+                <router-link to="/openclaw-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenClaw Autonomous →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Multi-agent shared memory bus without prompt token duplication.</p>
+                </router-link>
+              </div>
+            </div>
 
             <!-- FAQ Section -->
             <h2 id="faq">Frequently Asked Questions</h2>

@@ -621,6 +621,26 @@
               In Windsurf's <code>mcp_config.json</code> or Roo-Code's MCP settings panel, paste the exact same command configuration. Both agents will immediately gain the ability to search your architectural memory vault.
             </p>
 
+            <!-- Connected Ecosystem & Related Integrations -->
+            <div class="my-10 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-950/40">
+              <div class="text-xs font-mono font-bold uppercase tracking-wider text-[#D97757] mb-1">CONNECTED ECOSYSTEM</div>
+              <h3 class="text-lg font-bold text-gray-950 dark:text-white hero-serif mb-4">Explore Specialized Agent Integrations</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <router-link to="/claude-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Claude Code Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Overcome CLAUDE.md limits with automated CLI session ingestion.</p>
+                </router-link>
+                <router-link to="/cursor-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Cursor AI Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Eliminate Composer chat amnesia with persistent project memory.</p>
+                </router-link>
+                <router-link to="/opencode-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenCode Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">118MB lightweight memory layer for terminal-native coding agents.</p>
+                </router-link>
+              </div>
+            </div>
+
             <!-- FAQ Section -->
             <h2 id="faq">Frequently Asked Questions</h2>
             <div class="space-y-4 my-6">
@@ -634,7 +654,7 @@
             <div class="bg-gray-50 dark:bg-zinc-900/50 p-6 rounded-lg border border-gray-200 dark:border-zinc-800 mt-8">
               <h3 class="text-lg font-bold mb-2 hero-serif !mt-0">Connect Any MCP Client to Memwyre</h3>
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                Deploy the universal Model Context Protocol memory server and equip Cursor, Claude, and VS Code with unified long-term context.
+                Deploy the universal Model Context Protocol memory server and equip <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link>, <router-link to="/claude-memory" class="text-[#D97757] hover:underline font-medium">Claude Code</router-link>, and VS Code with unified long-term context.
               </p>
               <router-link to="/signup" class="px-6 py-2 bg-[#D97757] text-white rounded text-sm font-semibold inline-block hover:bg-[#c05c3d] transition-colors">
                 Start Free

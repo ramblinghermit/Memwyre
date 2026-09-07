@@ -607,15 +607,15 @@
             </p>
             <ul>
               <li><strong>Zero-code CLI integration:</strong> Memwyre installs directly into OpenClaw with one command (<code>openclaw plugins install @memwyre/openclaw-plugin</code>). It automatically hooks into OpenClaw's session lifecycle events to handle context injection and session capture without writing custom SDK code.</li>
-              <li><strong>Cross-tool ecosystem:</strong> Mem0 and Zep require custom sync pipelines to share memory between your CLI agents and your IDE. Memwyre's shared vault connects OpenClaw agent sessions directly to Cursor, VS Code, and Claude Desktop.</li>
+              <li><strong>Cross-tool ecosystem:</strong> Mem0 and Zep require custom sync pipelines to share memory between your CLI agents and your IDE. Memwyre's shared vault connects OpenClaw agent sessions directly to <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor AI</router-link>, <router-link to="/mcp-memory" class="text-[#D97757] hover:underline font-medium">VS Code (MCP)</router-link>, and <router-link to="/claude-memory" class="text-[#D97757] hover:underline font-medium">Claude Code</router-link>.</li>
               <li><strong>Benchmark performance:</strong> On the <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">LoCoMo-10 benchmark</router-link> (<a href="https://arxiv.org/abs/2402.17753" target="_blank" rel="noopener noreferrer" class="text-[#D97757] hover:underline font-medium">Snap Research, ACL 2024</a>), Memwyre's cross-encoder engine scores <strong>70.5% accuracy</strong> vs. 43.7% for flat vector RAG baselines, using 81% fewer tokens. <em>(Deep dives available on our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Mem0</router-link> and <router-link to="/memwyre-vs-zep" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Zep</router-link> pages.)</em></li>
             </ul>
 
             <h3 id="cross-tool-sync">How Cross-Tool Sync Actually Works</h3>
             <ul>
               <li><strong>OpenClaw (plugin):</strong> hooks into session lifecycle events. On start → retrieval API. On stop → POST transcript to capture endpoint.</li>
-              <li><strong>Claude Code / Cursor / VS Code / Claude Desktop (MCP):</strong> connect via Memwyre MCP server, same vault.</li>
-              <li><strong>Same API key = same vault.</strong> Memory captured in an OpenClaw agent run is available in Cursor at the next prompt.</li>
+              <li><strong><router-link to="/claude-memory" class="text-[#D97757] hover:underline font-medium">Claude Code</router-link> / <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link> / <router-link to="/mcp-memory" class="text-[#D97757] hover:underline font-medium">VS Code (MCP)</router-link> / Claude Desktop:</strong> connect via Memwyre MCP server, same vault.</li>
+              <li><strong>Same API key = same vault.</strong> Memory captured in an OpenClaw agent run is available in <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link> at the next prompt.</li>
             </ul>
 
             <h2 id="architecture">How the Memwyre OpenClaw Plugin Works</h2>
@@ -801,6 +801,26 @@
             <p>
               Manual context files are fine for static rules. But they face real limitations: manual maintenance, flat storage, and they are tool-locked.
             </p>
+
+            <!-- Connected Ecosystem & Related Integrations -->
+            <div class="my-10 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-950/40">
+              <div class="text-xs font-mono font-bold uppercase tracking-wider text-[#D97757] mb-1">CONNECTED ECOSYSTEM</div>
+              <h3 class="text-lg font-bold text-gray-950 dark:text-white hero-serif mb-4">Explore More Agent Memory Integrations</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <router-link to="/claude-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Claude Code Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Overcome CLAUDE.md limits with automated CLI session ingestion.</p>
+                </router-link>
+                <router-link to="/cursor-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Cursor AI Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Eliminate Composer chat amnesia with persistent project memory.</p>
+                </router-link>
+                <router-link to="/opencode-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenCode Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">118MB lightweight memory layer for terminal-native coding agents.</p>
+                </router-link>
+              </div>
+            </div>
 
             <h2 id="faq">FAQ</h2>
             <div class="space-y-4 my-6">

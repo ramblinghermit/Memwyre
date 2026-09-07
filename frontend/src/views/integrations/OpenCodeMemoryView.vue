@@ -230,7 +230,7 @@
               Every time you close an OpenCode session, the context window resets. Your debugging breakthroughs, architecture decisions, and code patterns — all gone. You spend the first minutes of every session re-explaining your project.
             </p>
             <p>
-              OpenCode doesn't ship with built-in persistent memory. If you use OpenCode <em>and</em> Claude Code <em>and</em> Cursor, each tool maintains its own isolated silo.
+              OpenCode doesn't ship with built-in persistent memory. If you use OpenCode <em>and</em> <router-link to="/claude-memory" class="text-[#D97757] hover:underline font-medium">Claude Code</router-link> <em>and</em> <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link>, each tool maintains its own isolated silo.
             </p>
 
             <h2 id="desktop-ram-dilemma">The OpenCode Memory Dilemma: Desktop RAM vs CLI Persistence</h2>
@@ -403,7 +403,7 @@
             <h3 id="cross-tool-sync">How Cross-Tool Sync Actually Works</h3>
             <ul>
               <li><strong>OpenCode (plugin):</strong> hooks into session lifecycle. On start → retrieval API. On end → POST transcript.</li>
-              <li><strong>Claude Code / Cursor / VS Code / Claude Desktop / OpenClaw:</strong> connect via MCP or their respective plugins to same vault.</li>
+              <li><strong><router-link to="/claude-memory" class="text-[#D97757] hover:underline font-medium">Claude Code</router-link> / <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link> / <router-link to="/mcp-memory" class="text-[#D97757] hover:underline font-medium">VS Code (MCP)</router-link> / Claude Desktop / <router-link to="/openclaw-memory" class="text-[#D97757] hover:underline font-medium">OpenClaw</router-link>:</strong> connect via MCP or their respective plugins to same vault.</li>
               <li><strong>Same API key = same vault.</strong></li>
             </ul>
 
@@ -628,6 +628,26 @@ export default {
             <p>
               Manual files are good for static rules, but limited by maintenance, flat storage, and tool-locking. They don't update automatically as your architecture evolves.
             </p>
+
+            <!-- Connected Ecosystem & Related Integrations -->
+            <div class="my-10 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-950/40">
+              <div class="text-xs font-mono font-bold uppercase tracking-wider text-[#D97757] mb-1">CONNECTED ECOSYSTEM</div>
+              <h3 class="text-lg font-bold text-gray-950 dark:text-white hero-serif mb-4">Explore More Agent Memory Integrations</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <router-link to="/claude-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Claude Code Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Overcome CLAUDE.md limits with automated CLI session ingestion.</p>
+                </router-link>
+                <router-link to="/cursor-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Cursor AI Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Eliminate Composer chat amnesia with persistent project memory.</p>
+                </router-link>
+                <router-link to="/openclaw-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenClaw Autonomous →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Multi-agent shared memory bus without prompt token duplication.</p>
+                </router-link>
+              </div>
+            </div>
 
             <h2 id="faq">FAQ</h2>
             <div class="space-y-4 my-6">
