@@ -60,8 +60,9 @@ const newWorkspaceName = ref('');
 const workspaceDropdownRef = ref(null);
 
 const currentProjectName = computed(() => {
+  if (projectStore.currentProjectId === null) return 'All Workspaces';
   const proj = projectStore.projects.find((p) => p.id === projectStore.currentProjectId);
-  return proj ? proj.name : 'Main Workspace';
+  return proj ? proj.name : 'All Workspaces';
 });
 
 const selectWorkspace = (id) => {

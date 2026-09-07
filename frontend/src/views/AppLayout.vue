@@ -65,6 +65,23 @@
                 <!-- Projects List -->
                 <div class="max-h-52 overflow-y-auto py-1 space-y-0.5 custom-scrollbar">
                   <button 
+                    @click="selectWorkspace(null)"
+                    class="flex w-full items-center justify-between px-2.5 py-2 rounded-xl text-xs transition-all text-left cursor-pointer group"
+                    :class="projectStore.currentProjectId === null ? 'bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-white font-semibold' : 'text-gray-600 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-zinc-800/60 font-medium'"
+                  >
+                    <div class="flex items-center gap-2.5 min-w-0">
+                      <div class="w-6 h-6 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200/80 dark:border-zinc-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:border-gray-300 dark:group-hover:border-zinc-600 transition-colors">
+                        <svg class="w-3.5 h-3.5" :class="projectStore.currentProjectId === null ? 'text-[#D97757]' : 'text-gray-400 dark:text-zinc-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                        </svg>
+                      </div>
+                      <span class="truncate">All Workspaces</span>
+                    </div>
+                    <svg v-if="projectStore.currentProjectId === null" class="w-4 h-4 text-[#D97757] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </button>
+                  <button 
                     v-for="proj in projectStore.projects" 
                     :key="proj.id"
                     @click="selectWorkspace(proj.id)"
@@ -177,9 +194,10 @@ const openQuickCreate = () => {
 provide('openQuickCreate', openQuickCreate);
 
 const currentProjectName = computed(() => {
-  if (!projectStore.currentProjectId || !projectStore.projects.length) return 'Main Workspace';
+  if (projectStore.currentProjectId === null) return 'All Workspaces';
+  if (!projectStore.projects.length) return 'All Workspaces';
   const proj = projectStore.projects.find(p => p.id === projectStore.currentProjectId);
-  return proj?.name || 'Main Workspace';
+  return proj?.name || 'All Workspaces';
 });
 
 function selectWorkspace(id) {

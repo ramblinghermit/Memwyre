@@ -108,8 +108,12 @@
         <!-- Main Document Container - Centered and Flushed -->
         <div class="flex-1 h-full overflow-y-auto overflow-x-hidden custom-scrollbar p-6 sm:p-10 flex justify-center">
              <div class="w-full max-w-3xl min-h-[calc(100vh-10rem)] flex flex-col mb-12">
+                <div v-if="isDocumentLoading" class="flex-1 flex flex-col items-center justify-center min-h-[500px]">
+                    <LoadingLogo size="lg" />
+                    <p class="text-sm text-gray-500 mt-4">Loading memory...</p>
+                 </div>
                 <MarkdownPreview
-                  v-if="isViewMode"
+                  v-else-if="isViewMode"
                   :content="content || ''"
                   class="cursor-text"
                   @click="handlePreviewClick"
@@ -298,6 +302,7 @@ const lastSaved = ref(null);
 const isViewMode = ref(route.params.id !== 'new');
 const documentId = computed(() => route.params.id);
 const docMetadata = ref({});
+const isDocumentLoading = ref(true);
 const selectedProjectId = ref(null);
 const normalizeInteractionType = (value) => {
   const normalized = String(value || '').toLowerCase();
@@ -458,7 +463,11 @@ const resolvedId = ref(null);
 
 const fetchDocument = async () => {
   try {
-    if (documentId.value === 'new') return;
+    isDocumentLoading.value = true;
+    if (documentId.value === 'new') {
+        isDocumentLoading.value = false;
+        return;
+    }
 
     // 1. Try fetching from Memory List
     let found = false;
@@ -523,6 +532,8 @@ const fetchDocument = async () => {
 
   } catch (error) {
     console.error('Error fetching document:', error);
+  } finally {
+    isDocumentLoading.value = false;
   }
 };
 

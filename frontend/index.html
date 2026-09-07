@@ -73,6 +73,11 @@
 </head>
 
 <body>
+  <script>
+    if (window.location.hostname === 'app.memwyre.tech') {
+      document.write('<style>#app { display: none; }</style>');
+    }
+  </script>
   <div id="app"><!--app-html--></div>
   <div class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">
     <a href="https://fazier.com/launches/memwyre.tech" target="_blank" rel="noopener noreferrer">

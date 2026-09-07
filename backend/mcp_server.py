@@ -77,6 +77,7 @@ Guidelines for autonomous memory management:
 3. UPDATING EXISTING KNOWLEDGE: When updating an existing topic, note, or report, prefer `upsert_memory` with the same `title`, or find the `[ID: mem_XXX]` via `search_memwyre` and call `update_memory` to avoid cluttering the vault with duplicates.
 4. INSPECTING MEMORIES: `search_memwyre` returns snippets with IDs (e.g. `[ID: mem_73]`). To view the full original text of any memory, use `get_memory(memory_id='mem_73')`.
 5. TAGGING CONVENTION: Always assign 2-5 relevant lowercase tags (e.g., ['architecture', 'benchmarks', 'auth', 'database']) to organize knowledge.
+6. WORKSPACES: Omit the `workspace_name` parameter to store memories in the Global Vault, UNLESS the user explicitly asks for isolation. If you do use a workspace, reuse existing ones based on the current directory; do not invent new workspace names.
 """
 
 mcp = FastMCP(
