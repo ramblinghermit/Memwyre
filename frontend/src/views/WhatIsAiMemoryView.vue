@@ -300,7 +300,7 @@
                     <tr>
                       <td class="px-6 py-4 font-bold text-gray-950 dark:text-white">Retrieval Logic</td>
                       <td class="px-6 py-4">Cosine similarity only. Out-of-order context.</td>
-                      <td class="px-6 py-4 text-gray-900 dark:text-gray-300 font-bold text-[#D97757]">Sub-300ms. Pruned cache lookup + graph traverse.</td>
+                      <td class="px-6 py-4 text-gray-900 dark:text-gray-300 font-bold text-[#D97757]">Low-latency. Pruned cache lookup + graph traverse.</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-4 font-bold text-gray-950 dark:text-white">Integration Scope</td>

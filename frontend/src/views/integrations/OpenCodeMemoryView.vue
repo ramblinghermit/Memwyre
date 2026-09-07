@@ -29,12 +29,12 @@
         </div>
         
         <h1 class="hero-serif text-4xl sm:text-5xl lg:text-6xl tracking-[-0.02em] leading-[1.1] text-gray-950 dark:text-white">
-          OpenCode Memory <br />
-          <span class="italic font-medium text-gray-900 dark:text-gray-100">Persistent Long-Term Memory <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">Plugin.</span></span>
+          OpenCode Persistent Memory <br />
+          <span class="italic font-medium text-gray-900 dark:text-gray-100">Solving Desktop RAM Leaks &amp; <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">CLI Session Reset.</span></span>
         </h1>
 
         <div class="text-[10px] tracking-wider uppercase font-bold font-mono text-gray-400 dark:text-gray-500 pt-2">
-          12 MIN READ
+          14 MIN READ · CLI PERFORMANCE & PERSISTENCE
         </div>
       </div>
 
@@ -65,9 +65,50 @@
                   Founder & Lead Architect
                 </span>
                 <span class="text-[10px] text-gray-400 dark:text-gray-500 mt-1 uppercase tracking-wide font-mono">
-                  Last Updated: August 4, 2026
+                  Last Updated: August 2026
                 </span>
               </div>
+            </div>
+
+            <!-- Official & Community Outbound Links (E-E-A-T) -->
+            <div class="space-y-2 pt-6 border-t border-gray-100 dark:border-gray-900">
+              <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">OFFICIAL RESOURCES</div>
+              <a 
+                href="https://github.com/anomalyco/opencode" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                OpenCode Core (GitHub)
+              </a>
+              <a 
+                href="https://opencode.ai/docs" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                OpenCode Docs (Official)
+              </a>
+              <a 
+                href="https://github.com/memwyreai/Memwyre" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Memwyre Core (GitHub)
+              </a>
+              <a 
+                href="https://docs.memwyre.tech/integrations/plugins/opencode" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Memwyre OpenCode Plugin Docs
+              </a>
             </div>
 
             <!-- Share Buttons -->
@@ -139,6 +180,51 @@
               </a>
             </div>
 
+            <!-- Quick Summary / Answer-First Box -->
+            <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm my-6">
+              <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+              <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+              <div class="space-y-2">
+                <div class="text-[#D97757] font-mono text-xs uppercase font-bold tracking-wider">Quick Summary / Key Takeaways</div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-normal">
+                  <strong>Answer:</strong> Developers discussing "OpenCode memory" face two separate challenges: extreme RAM consumption in the OpenCode Desktop GUI (often 10–20 GB due to browser session bloat) and statelessness in the OpenCode CLI. The <strong>Memwyre Plugin</strong> solves both: it enables developers to run the ultra-lightweight CLI (reducing RAM usage by 90%) while maintaining persistent, cross-session architecture context across terminal sessions and IDEs.
+                </p>
+              </div>
+            </div>
+
+            <!-- Metric Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 my-10">
+              <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm text-left">
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="text-[#D97757] text-4xl sm:text-5xl font-extrabold font-mono tracking-tight">-90%</div>
+                <div class="mt-2">
+                  <div class="text-gray-900 dark:text-white font-bold text-base">RAM Footprint</div>
+                  <div class="text-gray-500 dark:text-gray-400 text-xs tracking-wider uppercase font-semibold mt-0.5">CLI vs Desktop Bloat</div>
+                </div>
+              </div>
+
+              <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm text-left">
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="text-gray-900 dark:text-white text-4xl sm:text-5xl font-extrabold font-mono tracking-tight">Rapid</div>
+                <div class="mt-2">
+                  <div class="text-gray-900 dark:text-white font-bold text-base">Context Retrieval</div>
+                  <div class="text-gray-500 dark:text-gray-400 text-xs tracking-wider uppercase font-semibold mt-0.5">Sub-Second CLI Start</div>
+                </div>
+              </div>
+
+              <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm text-left">
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="text-[#D97757] text-4xl sm:text-5xl font-extrabold font-mono tracking-tight">70.5%</div>
+                <div class="mt-2">
+                  <div class="text-gray-900 dark:text-white font-bold text-base">Long-Term Recall</div>
+                  <div class="text-gray-500 dark:text-gray-400 text-xs tracking-wider uppercase font-semibold mt-0.5">LoCoMo-10 Benchmark</div>
+                </div>
+              </div>
+            </div>
+
             <h2 id="the-problem">The Problem: OpenCode Forgets Everything</h2>
             <p>
               Every time you close an OpenCode session, the context window resets. Your debugging breakthroughs, architecture decisions, and code patterns — all gone. You spend the first minutes of every session re-explaining your project.
@@ -146,6 +232,87 @@
             <p>
               OpenCode doesn't ship with built-in persistent memory. If you use OpenCode <em>and</em> Claude Code <em>and</em> Cursor, each tool maintains its own isolated silo.
             </p>
+
+            <h2 id="desktop-ram-dilemma">The OpenCode Memory Dilemma: Desktop RAM vs CLI Persistence</h2>
+            <p>
+              When engineers search for <em>"OpenCode memory"</em>, they typically struggle with one of two distinct bottlenecks:
+            </p>
+            <h3 id="issue-ram-bloat">1. Desktop App RAM Leaks (10–20 GB Footprint)</h3>
+            <p>
+              The OpenCode Desktop GUI renders all active and past chat sessions inside an Electron/Chromium runtime. Over hours of coding, in-memory DOM nodes and token buffers accumulate, causing memory consumption to balloon into tens of gigabytes and freeze your system.
+            </p>
+            <h3 id="issue-cli-statelessness">2. CLI Terminal Statelessness</h3>
+            <p>
+              Developers seeking to avoid GUI bloat switch to the <strong>OpenCode CLI</strong>, which is lightweight and fast. However, the CLI resets completely after each run. All knowledge of architectural decisions, database models, and bug fixes vanishes as soon as the terminal closes.
+            </p>
+            <p>
+              <strong>The Solution:</strong> Memwyre bridges the gap. By connecting the lightweight OpenCode CLI to Memwyre's remote cloud vault, you get instant persistent context on session launch with zero local memory leak overhead.
+            </p>
+
+            <!-- Visual Diagram 1: OpenCode Memory Dilemma Architecture (Light Monotone) -->
+            <div class="my-8 p-6 rounded-xl bg-gray-50/80 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 shadow-sm">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gray-900 dark:bg-white"></span>
+                  <span class="text-xs font-mono uppercase font-bold text-gray-900 dark:text-white tracking-wider">OpenCode Architecture: GUI RAM Leaks vs. CLI Cloud Persistence</span>
+                </div>
+                <span class="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase">Local Electron Heap vs Remote Vault</span>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-mono">
+                <!-- Desktop GUI Bloat Box -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm space-y-3">
+                  <div class="flex items-center justify-between text-gray-900 dark:text-white font-bold">
+                    <span>OpenCode Desktop GUI</span>
+                    <span class="text-[10px] bg-red-100 dark:bg-red-950/40 text-red-700 dark:text-red-400 px-2 py-0.5 rounded border border-red-200 dark:border-red-900">10–20 GB RAM Footprint</span>
+                  </div>
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-1.5 text-gray-600 dark:text-gray-400 leading-snug font-mono">
+                    <div class="text-gray-900 dark:text-gray-200 font-semibold">Electron / Chromium In-Memory Session Heap</div>
+                    <div>┌─ Active Sessions (Unbounded DOM Tree)</div>
+                    <div>├─ Cached Canvas &amp; WebGL Buffer Overflows</div>
+                    <div>├─ V8 Garbage Collection Thrashing</div>
+                    <div class="text-gray-900 dark:text-white font-bold bg-gray-200/80 dark:bg-zinc-800 p-1 rounded">▼ SYSTEM MEMORY FREEZE (High Swap Usage)</div>
+                    <div class="text-gray-400 dark:text-gray-500 italic text-[10px]">&nbsp;&nbsp;(Forces developers to kill PID &amp; wipe workspace state)</div>
+                  </div>
+                  <div class="space-y-1 text-[11px] text-gray-500 dark:text-gray-400">
+                    <div class="flex items-center gap-1 text-red-600 dark:text-red-400">
+                      <span>✕</span>
+                      <span>Runaway memory consumption during long sessions</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-red-600 dark:text-red-400">
+                      <span>✕</span>
+                      <span>No cross-tool sync with Cursor or Claude Code</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CLI + Memwyre Architecture Box -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm space-y-3">
+                  <div class="flex items-center justify-between text-gray-900 dark:text-white font-bold">
+                    <span>OpenCode CLI + Memwyre Plugin</span>
+                    <span class="text-[10px] bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-900">&lt;150 MB RAM + Cloud Vault</span>
+                  </div>
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-1.5 text-gray-600 dark:text-gray-400 leading-snug font-mono">
+                    <div class="text-gray-900 dark:text-gray-200 font-semibold">Stateless Terminal + Remote Persistent Brain</div>
+                    <div>┌─ Native Node.js CLI Runtime (&lt;120MB)</div>
+                    <div>├─ Session Lifecycle Hook: @memwyre/opencode-plugin</div>
+                    <div>├─ On Start: Auto-inject relevant architectural context</div>
+                    <div class="text-gray-900 dark:text-white font-bold bg-gray-200/80 dark:bg-zinc-800 p-1 rounded">▲ PERSISTENT MEMORY VAULT (0 Local Bloat)</div>
+                    <div class="text-gray-400 dark:text-gray-500 italic text-[10px]">&nbsp;&nbsp;(On End: Extract decisions &amp; sync to Cursor/Claude Code)</div>
+                  </div>
+                  <div class="space-y-1 text-[11px] text-gray-500 dark:text-gray-400">
+                    <div class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
+                      <span>✓</span>
+                      <span>90% reduction in local system RAM usage</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
+                      <span>✓</span>
+                      <span>Universal memory shared across all IDEs and terminals</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <h2 id="comparison">Four Approaches to OpenCode Memory</h2>
 
@@ -242,6 +409,69 @@
 
             <h2 id="architecture">How the Memwyre OpenCode Plugin Works</h2>
 
+            <!-- Visual Diagram 2: OpenCode Plugin Lifecycle Sequence Diagram (Light Monotone) -->
+            <div class="my-8 p-6 rounded-xl bg-gray-50/80 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 shadow-sm">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gray-900 dark:bg-white"></span>
+                  <span class="text-xs font-mono uppercase font-bold text-gray-900 dark:text-white tracking-wider">Plugin Lifecycle: Context Injection &amp; Transcript Extraction</span>
+                </div>
+                <span class="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase">Deterministic Event Sequence</span>
+              </div>
+
+              <div class="space-y-4 font-mono text-xs">
+                <!-- Step 1: Init & Inject -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm">
+                  <div class="flex items-center justify-between font-bold text-gray-900 dark:text-white mb-2">
+                    <span class="flex items-center gap-2">
+                      <span class="w-5 h-5 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-[10px] flex items-center justify-center font-mono">1</span>
+                      <span>Phase 1: Session Start (create/start hook)</span>
+                    </span>
+                    <span class="text-[10px] text-gray-500 font-normal">Pre-prompt Injection</span>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] text-gray-600 dark:text-gray-400">
+                    <div class="p-2 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800">
+                      <div class="text-gray-900 dark:text-white font-semibold">1. OpenCode CLI Launches</div>
+                      <div>Terminal initializes local environment &amp; triggers plugin hook</div>
+                    </div>
+                    <div class="p-2 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800">
+                      <div class="text-[#D97757] font-semibold">2. Memwyre Retrieval Query</div>
+                      <div>Fetches ranked entities matching project repo identifier</div>
+                    </div>
+                    <div class="p-2 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800">
+                      <div class="text-emerald-600 dark:text-emerald-400 font-semibold">3. Prompt Augmented</div>
+                      <div>Injects verified architectural constraints into session head</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 2: Session End & Extraction -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm">
+                  <div class="flex items-center justify-between font-bold text-gray-900 dark:text-white mb-2">
+                    <span class="flex items-center gap-2">
+                      <span class="w-5 h-5 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-[10px] flex items-center justify-center font-mono">2</span>
+                      <span>Phase 2: Session End / Idle (idle/end hook)</span>
+                    </span>
+                    <span class="text-[10px] text-gray-500 font-normal">Asynchronous Extraction</span>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] text-gray-600 dark:text-gray-400">
+                    <div class="p-2 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800">
+                      <div class="text-gray-900 dark:text-white font-semibold">1. Transcript Capture</div>
+                      <div>Reads session log or queries local opencode.db SQLite</div>
+                    </div>
+                    <div class="p-2 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800">
+                      <div class="text-[#D97757] font-semibold">2. Background Entity Extraction</div>
+                      <div>Async workers extract tech decisions, bug fixes, &amp; rules</div>
+                    </div>
+                    <div class="p-2 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800">
+                      <div class="text-emerald-600 dark:text-emerald-400 font-semibold">3. Cross-Tool Cloud Sync</div>
+                      <div>Immediately available in Cursor, Claude Code, &amp; OpenClaw</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <h3 id="sessionstart">① Session Start — Context Injection</h3>
             <p>
               When you start an OpenCode session (create/start/init events), the plugin calls the Memwyre retrieval engine for past memories matching the current project and injects them into the session prompt.
@@ -322,7 +552,7 @@ export default {
 
             <h2 id="benchmark">Benchmark: Why Retrieval Quality Matters</h2>
             <p>
-              We evaluated Memwyre's retrieval engine against a flat vector RAG baseline on the <strong>LoCoMo-10 benchmark</strong>:
+              We evaluated Memwyre's retrieval engine against a flat vector RAG baseline on the <strong><a href="https://arxiv.org/abs/2402.17753" target="_blank" rel="noopener noreferrer" class="text-[#D97757] hover:underline">LoCoMo-10 benchmark</a></strong> (Snap Research, ACL 2024):
             </p>
 
             <div class="overflow-x-auto my-6">
@@ -459,6 +689,7 @@ const copyLink = () => {
 const toc = [
   { level: 2, text: 'TL;DR', slug: 'tldr' },
   { level: 2, text: 'The Problem', slug: 'the-problem' },
+  { level: 2, text: 'Desktop RAM Dilemma', slug: 'desktop-ram-dilemma' },
   { level: 2, text: 'Comparison', slug: 'comparison' },
   { level: 3, text: 'vs Mem0 & Supermemory', slug: 'memwyre-vs-opencode-alternatives' },
   { level: 3, text: 'Cross-Tool Sync', slug: 'cross-tool-sync' },
@@ -526,36 +757,40 @@ onUnmounted(() => {
 
 const faqs = [
   {
+    question: 'Why does OpenCode use so much RAM (10–20 GB), and how does Memwyre fix it?',
+    answer: 'The OpenCode Desktop GUI renders all past and active sessions inside an Electron/Chromium web runtime, causing memory leaks and DOM buffer bloat over long coding sessions. Memwyre solves this by decoupling memory from the desktop client: developers can switch to the ultra-lightweight OpenCode CLI (cutting RAM usage by 90%) while Memwyre automatically persists architecture context, past decisions, and project conventions across sessions on demand.'
+  },
+  {
     question: 'Does OpenCode have built-in memory?',
-    answer: 'No built-in persistence.'
+    answer: 'No. OpenCode does not provide native persistent memory across separate terminal sessions or restarts. Once a session terminates, all context is flushed unless you connect an external memory provider like Memwyre.'
   },
   {
     question: 'How do I give OpenCode persistent memory?',
-    answer: 'Install @memwyre/opencode-plugin, configure, set API key.'
+    answer: 'Install @memwyre/opencode-plugin into your project or global opencode plugins directory, configure the hook in opencode.json, and provide your MEMWYRE_API_KEY. Context is then automatically injected upon SessionStart.'
   },
   {
     question: 'What is the best OpenCode memory plugin?',
-    answer: 'Depends. Memwyre for cross-tool (70.5% LoCoMo), claude-mem for local-first.'
+    answer: 'For cross-tool workflows (sharing memory between OpenCode, Claude Code, and Cursor), Memwyre is the highest-performing option with 70.5% LoCoMo-10 benchmark recall. For single-agent local-only storage, claude-mem or custom filesystem hooks can be used.'
   },
   {
-    question: 'How is Memwyre different from claude-mem?',
-    answer: 'Same comparison.'
+    question: 'How is Memwyre different from claude-mem or Mem0 in OpenCode?',
+    answer: 'claude-mem stores plain Markdown files on local disk that cannot sync with cloud agents or teammates. Mem0 relies on generic vector similarity search, which lacks developer-specific noise filtration (AST pruning, test log stripping). Memwyre uses multi-factor indexing combining semantic embeddings, recency weighting, and AST dependency graphs.'
   },
   {
-    question: 'Does the plugin work with Claude Code and Cursor?',
-    answer: 'Yes, same vault.'
+    question: 'Does the plugin work with Claude Code and Cursor simultaneously?',
+    answer: 'Yes. Decisions made while running OpenCode in your terminal are indexed in your unified Memwyre vault, immediately accessible to Claude Code CLI and Cursor Composer in real time.'
   },
   {
     question: 'What license is Memwyre released under?',
-    answer: 'Apache-2.0.'
+    answer: 'The Memwyre OpenCode plugin and CLI hooks are released under the Apache-2.0 open-source license.'
   },
   {
-    question: 'What happens if Memwyre captures something wrong?',
-    answer: 'Dashboard/API edit/delete.'
+    question: 'What happens if Memwyre captures incorrect architectural facts?',
+    answer: 'You can inspect, edit, or delete any captured memory instantly via the Memwyre Web Dashboard, CLI commands (`memwyre memory delete`), or via MCP tool calls directly inside your agent.'
   },
   {
-    question: 'Is my memory data private?',
-    answer: 'Zero-retention, self-host option.'
+    question: 'Is my OpenCode memory data private and secure?',
+    answer: 'Yes. Memwyre operates with zero data retention for LLM training. Code snippets are encrypted at rest (AES-256) and in transit (TLS 1.3), with self-hosted on-prem deployment options available for enterprise teams.'
   }
 ];
 </script>
@@ -637,10 +872,11 @@ const faqs = [
 }
 
 .markdown-content pre {
-  background-color: #111827;
-  color: #f3f4f6;
+  background-color: #f8fafc;
+  color: #1e293b;
   padding: 1rem;
   border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
   overflow-x: auto;
   margin-bottom: 1.25rem;
   font-size: 0.875rem;
@@ -648,27 +884,39 @@ const faqs = [
 }
 
 .dark .markdown-content pre {
-  background-color: #000;
-  border: 1px solid #333;
+  background-color: #18181b;
+  color: #f4f4f5;
+  border: 1px solid #27272a;
 }
 
 .markdown-content code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+.markdown-content pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  font-size: inherit !important;
+}
+
 .markdown-content p code, 
 .markdown-content li code {
-  background-color: #f3f4f6;
-  color: #ef4444;
+  background-color: #f1f5f9;
+  color: #0f172a;
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
+  border: 1px solid #e2e8f0;
   font-size: 0.875em;
 }
 
 .dark .markdown-content p code, 
 .dark .markdown-content li code {
-  background-color: #374151;
-  color: #fca5a5;
+  background-color: #27272a;
+  color: #f4f4f5;
+  border-color: #3f3f46;
 }
 
 details summary::-webkit-details-marker {

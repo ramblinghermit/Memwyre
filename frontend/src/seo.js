@@ -205,29 +205,29 @@ export const PUBLIC_ROUTE_SEO = {
     description: 'Compare Memwyre and Zep: active developer client integrations and entity mapping vs backend database session history logs.',
   },
   '/chatgpt-memory': {
-    title: 'ChatGPT Memory | Persistent Context for OpenAI | Memwyre',
-    description: 'Connect ChatGPT to a unified, long-term memory graph. Save developer guidelines, schemas, and context across all your browser chat sessions.',
+    title: 'ChatGPT Persistent Memory: Cross-Tool Context Beyond Web Chat | Memwyre',
+    description: 'Free ChatGPT memory from the web silo. Connect ChatGPT to an external, long-term memory graph with 1-click browser clipping and cross-tool sync with Cursor and Claude.',
   },
   '/claude-memory': {
-    title: 'Claude Code Memory | Persistent Memory Plugin for Claude',
-    description: 'Give Claude Code persistent memory across sessions. Auto-inject project context on start and capture decisions on exit across Claude, Cursor, and VS Code.',
+    title: 'Claude Code Persistent Memory: Overcoming CLAUDE.md & Auto Memory Limits | Memwyre',
+    description: 'Overcome Claude Code native memory limits (CLAUDE.md & 25KB Auto Memory cap). Give Claude persistent cross-session memory with automatic context injection on startup and session capture on exit.',
     ogImage: '/blog-covers/claude-code-memory-ingestion.png',
   },
   '/cursor-memory': {
-    title: 'Cursor Memory | Long-Term Codebase Context for Cursor AI',
-    description: 'Enable sub-300ms persistent memory for Cursor Composer and Chat. Save developer rules and databases context to avoid index rebuilding.',
+    title: 'Cursor AI Persistent Memory: Long-Term Context for Composer & Chat | Memwyre',
+    description: 'Enable persistent memory for Cursor Composer and Chat. Save architectural decisions and database schemas into a memory graph to avoid slow codebase index rebuilding.',
   },
   '/mcp-memory': {
-    title: 'MCP Memory Server | Universal Context Layer | Memwyre',
-    description: 'Link any Model Context Protocol (MCP) client to your personal memory layer. Secure, remote context gateway supporting Cursor, Claude, and VS Code.',
+    title: 'MCP Memory Server: Universal Model Context Protocol Architecture | Memwyre',
+    description: 'Technical reference and specification for the Memwyre MCP Memory Server. Connect Cursor, Claude Desktop, and VS Code with 5 core tools over Stdio and remote HTTP/SSE.',
   },
   '/openclaw-memory': {
-    title: 'OpenClaw Memory | Persistent Memory Plugin for Agents',
-    description: 'Give OpenClaw autonomous agents persistent memory across runs. Auto-inject project context on launch and capture decisions on exit with the Memwyre plugin.',
+    title: 'OpenClaw Persistent Memory: Prevent Context Compaction Loss | Memwyre',
+    description: 'Prevent OpenClaw context compaction loss and RAM bloat. Give autonomous AI coding agents persistent long-term memory across runs with the Memwyre plugin.',
   },
   '/opencode-memory': {
-    title: 'OpenCode Memory | Persistent Memory Plugin for OpenCode',
-    description: 'Give OpenCode persistent memory across sessions. Auto-inject project context on start and capture decisions on exit across your entire development stack.',
+    title: 'OpenCode Persistent Memory: Fix Desktop RAM Bloat & CLI Memory | Memwyre',
+    description: 'Preserve OpenCode project context across sessions and eliminate Desktop RAM leaks. Connect OpenCode CLI directly to a persistent long-term memory graph.',
   },
 };
 
@@ -563,6 +563,22 @@ export function getSeoForPath(path = '/') {
             '@type': 'Answer',
             'text': 'Fully private and encrypted. Memwyre uses zero-retention processing — transcripts are extracted in memory and immediately discarded. For full data sovereignty, you can self-host the entire backend behind your firewall.'
           }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Why does Claude Code forget instructions despite having Auto Memory and CLAUDE.md?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Claude Code native memory stores notes in a local MEMORY.md file capped at 200 lines and 25KB. When your notes exceed 200 lines, older memories are silently truncated without notifying Claude. Native memory also uses exact keyword matching rather than semantic vector search, so Claude fails to retrieve notes unless queries use identical wording. Memwyre solves this with automated vector and entity graph search that scales to millions of tokens.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What is the 200-line / 25KB limit in Claude Code native memory, and how does Memwyre bypass it?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'In Claude Code internal compiler (src/memdir/), MEMORY.md is limited to 200 lines and 25KB to prevent system prompt bloat. Facts at the top fall off silently when exceeded. Memwyre bypasses this by storing notes in an external, cloud-hosted semantic memory vault, retrieving only the top-k relevant memories (~1,500 tokens) on session start using two-stage cross-encoder re-ranking.'
+          }
         }
       ]
     });
@@ -574,12 +590,37 @@ export function getSeoForPath(path = '/') {
     };
     jsonLdData.push({
       '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Himansh Shivhare',
+      'jobTitle': 'Founder & Lead Architect',
+      'worksFor': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'sameAs': [
+        'https://linkedin.com/in/himansh-shivhare',
+        'https://github.com/ramblinghermit0403'
+      ]
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       'name': appNames[normalizedPath] || `${SITE_NAME} Integration`,
       'url': canonical,
       'applicationCategory': 'DeveloperApplication',
       'operatingSystem': 'Windows, macOS, Linux, ChromeOS',
       'image': socialImageUrl,
+      'author': {
+        '@type': 'Person',
+        'name': 'Himansh Shivhare',
+        'url': 'https://linkedin.com/in/himansh-shivhare'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
       'offers': {
         '@type': 'Offer',
         'price': '0',
@@ -595,6 +636,157 @@ export function getSeoForPath(path = '/') {
       },
       'description': routeSeo.description || DEFAULT_SEO.description
     });
+
+    if (normalizedPath === '/cursor-memory') {
+      jsonLdData.push({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': [
+          {
+            '@type': 'Question',
+            'name': 'Does Cursor AI have built-in persistent memory across sessions?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Cursor includes static .cursorrules and local file vector indexing (@Codebase). However, it does not persist conversational rationale, dynamic debugging discoveries, or architectural decisions across different Composer or Chat sessions unless connected to an external memory gateway like Memwyre.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'What is the difference between root .cursorrules and .cursor/rules/*.mdc?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Root .cursorrules is a legacy single-file rulebook loaded on every request. The modern .cursor/rules/*.mdc architecture allows scoped modular rule files that activate selectively based on file glob patterns, saving prompt tokens.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Why does Cursor Composer hallucinate during long, multi-file refactors?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'In extended refactors involving 10+ files, prompt buffers suffer from the Lost-in-the-Middle effect. File contents push initial instructions toward the middle of the context window where LLM attention is lowest, leading to diff hallucinations and forgotten edge cases. Selective semantic memory solves this by keeping active context below 10,000 tokens.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'How is Memwyre different from .cursorrules?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': '.cursorrules is a static text file that you must write and update by hand. Memwyre is an active, queryable knowledge graph: Cursor agents can call MCP tools to search for specific constraints, learn new facts dynamically during coding, and share those learnings across team members.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'How do I add Memwyre to Cursor Composer and Chat?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Open Cursor Settings > Features > MCP > Add New MCP Server. Choose command and enter npx -y mcp-remote https://server.memwyre.tech/mcp --header "Authorization:Bearer YOUR_KEY". Cursor will automatically recognize the memory search and save tools in both Composer and Chat.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Does Memwyre slow down Cursor Composer code generation?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'No. Memwyre queries execute rapidly on-demand. In fact, by injecting targeted architectural context rather than scanning dozens of raw codebase files, Memwyre speeds up Composer response times and reduces token burn by up to 81%.'
+            }
+          }
+        ]
+      });
+    } else if (normalizedPath === '/chatgpt-memory') {
+      jsonLdData.push({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': [
+          {
+            '@type': 'Question',
+            'name': 'How does Memwyre differ from ChatGPT native memory?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'OpenAI native memory is confined strictly to the ChatGPT web interface. It cannot be accessed by your coding IDEs or terminal agents. Memwyre provides a universal graph vault: memories clipped in ChatGPT are instantly accessible in Cursor Composer, Claude Code CLI, and OpenCode.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'How do Custom Instructions differ from ChatGPT Memory and Projects?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Custom Instructions apply globally across every chat with a 1,500-character cap. Native Memory dynamically saves short text facts during conversations but lacks temporal decay. ChatGPT Projects provide folder-scoped instructions with static file uploads (up to 512MB). Memwyre augments all three by connecting conversations to an external, self-updating entity graph that links directly to your local codebase and IDEs.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'How can I clear or delete outdated memories in ChatGPT?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'You can tell ChatGPT directly "Forget [fact]" or navigate to Settings > Personalization > Memory > Manage to manually inspect and delete saved notes. Alternatively, Memwyre applies an automated Ebbinghaus recency decay model so recent decisions supersede stale facts without manual cleanup.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Does Memwyre work with ChatGPT Free accounts?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Yes. The Memwyre Chrome/Edge browser extension operates directly in the browser DOM and functions identically on ChatGPT Free, Plus, Team, and Enterprise accounts.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Can Custom GPTs call Memwyre automatically?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Yes. By registering our OpenAPI Action schema inside your Custom GPT configuration, the model can query (search_memwyre) and persist observations to your memory vault autonomously during chat sessions.'
+            }
+          }
+        ]
+      });
+    } else if (normalizedPath === '/mcp-memory') {
+      jsonLdData.push({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': [
+          {
+            '@type': 'Question',
+            'name': 'What is the Model Context Protocol (MCP)?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'MCP is an open standard created by Anthropic that allows AI models and IDE clients to securely discover and invoke tools, read context resources, and access external databases via standardized JSON-RPC protocols.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'What is the difference between Stdio transport and HTTP/SSE transport in MCP?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Stdio transport spawns a local child process communicating via stdin/stdout pipes, which is fast and secure for local offline tooling but locked to a single workstation. Remote HTTP/SSE transport communicates over persistent HTTPS streams, enabling multi-machine context synchronization across work laptops, desktops, and CI/CD agents.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'How does Memwyre prevent prompt injection attacks through MCP memory tools?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Memwyre routes candidate memories through an isolated extraction sandbox before writing them to the knowledge graph. This pipeline strips imperatival instructions, removes adversarial injection prompts, and only persists factual architectural assertions and schemas.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Which IDEs and tools support the Memwyre MCP Memory Server?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Any client implementing MCP can connect to Memwyre, including Cursor AI IDE, Claude Desktop, Claude Code CLI, Windsurf, Roo-Code, Cline, and custom Python/TypeScript agent frameworks.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'What is the latency of MCP tool calls in Memwyre?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Semantic memory searches execute with low overhead, ensuring that agentic loops and multi-file composer generations are never blocked by context retrieval.'
+            }
+          }
+        ]
+      });
+    }
   } else if (['/openclaw-memory', '/opencode-memory'].includes(normalizedPath)) {
     const pluginName = normalizedPath === '/openclaw-memory' ? 'OpenClaw' : 'OpenCode';
     jsonLdData.push({
@@ -703,6 +895,22 @@ export function getSeoForPath(path = '/') {
           'acceptedAnswer': {
             '@type': 'Answer',
             'text': 'Fully private and encrypted. Memwyre uses zero-retention processing — transcripts are extracted in memory and immediately discarded. For full data sovereignty, you can self-host the entire backend behind your firewall.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': `How does Memwyre prevent context compaction loss in ${pluginName}?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': `When ${pluginName} hits context limits, native compaction loops compress history and discard critical facts. Memwyre intercepts observations before compaction occurs and indexes them in a persistent entity graph with zero information loss.`
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': `Does the Memwyre plugin reduce ${pluginName} RAM and CPU footprint?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': `Yes. In-memory transcripts and browser-control screenshot buffers cause ${pluginName} processes to bloat. Memwyre offloads context to cloud or self-hosted storage, allowing agents to prune redundant local buffers and run lightweight loops indefinitely.`
           }
         }
       ]

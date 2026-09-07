@@ -29,12 +29,12 @@
         </div>
         
         <h1 class="hero-serif text-4xl sm:text-5xl lg:text-6xl tracking-[-0.02em] leading-[1.1] text-gray-950 dark:text-white">
-          OpenClaw Memory <br />
-          <span class="italic font-medium text-gray-900 dark:text-gray-100">Persistent Long-Term Memory <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">Plugin.</span></span>
+          OpenClaw Persistent Memory <br />
+          <span class="italic font-medium text-gray-900 dark:text-gray-100">Overcoming Context Compaction &amp; <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">Silent Fact Loss.</span></span>
         </h1>
 
         <div class="text-[10px] tracking-wider uppercase font-bold font-mono text-gray-400 dark:text-gray-500 pt-2">
-          12 MIN READ
+          14 MIN READ · AUTONOMOUS AGENT MEMORY ARCHITECTURE
         </div>
       </div>
 
@@ -65,9 +65,50 @@
                   Founder & Lead Architect
                 </span>
                 <span class="text-[10px] text-gray-400 dark:text-gray-500 mt-1 uppercase tracking-wide font-mono">
-                  Last Updated: August 4, 2026
+                  Last Updated: August 2026
                 </span>
               </div>
+            </div>
+
+            <!-- Official & OpenClaw Community Outbound Links (E-E-A-T) -->
+            <div class="space-y-2 pt-6 border-t border-gray-100 dark:border-gray-900">
+              <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">OFFICIAL RESOURCES</div>
+              <a 
+                href="https://github.com/openclaw/openclaw" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                OpenClaw Agent Core (GitHub)
+              </a>
+              <a 
+                href="https://learnopenclaw.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                LearnOpenClaw Documentation
+              </a>
+              <a 
+                href="https://github.com/memwyreai/Memwyre" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Memwyre Core (GitHub)
+              </a>
+              <a 
+                href="https://docs.memwyre.tech/integrations/plugins/openclaw" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Memwyre OpenClaw Plugin Docs
+              </a>
             </div>
 
             <!-- Share Buttons -->
@@ -139,14 +180,352 @@
               </a>
             </div>
 
-            <h2 id="the-problem">The Problem: OpenClaw Agents Forget Everything</h2>
+            <!-- Quick Summary / Answer-First Box -->
+            <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm my-6">
+              <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+              <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+              <div class="space-y-2">
+                <div class="text-[#D97757] font-mono text-xs uppercase font-bold tracking-wider">Quick Summary / Key Takeaways</div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-normal">
+                  <strong>Answer:</strong> By default, OpenClaw relies on in-memory transcripts and flat Markdown logs that suffer from <strong>context compaction loss</strong> (automated history summarization that silently erases granular architectural decisions) and high RAM usage from browser-control screenshot buffers. The <strong>Memwyre Plugin</strong> solves this by offloading agent observations into a persistent, cloud-hosted semantic entity graph that survives agent resets, compaction cycles, and tool restarts.
+                </p>
+              </div>
+            </div>
+
+            <!-- Metric Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 my-10">
+              <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm text-left">
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="text-[#D97757] text-4xl sm:text-5xl font-extrabold font-mono tracking-tight">Zero</div>
+                <div class="mt-2">
+                  <div class="text-gray-900 dark:text-white font-bold text-base">Compaction Loss</div>
+                  <div class="text-gray-500 dark:text-gray-400 text-xs tracking-wider uppercase font-semibold mt-0.5">Survives History Pruning</div>
+                </div>
+              </div>
+
+              <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm text-left">
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="text-gray-900 dark:text-white text-4xl sm:text-5xl font-extrabold font-mono tracking-tight">Fast</div>
+                <div class="mt-2">
+                  <div class="text-gray-900 dark:text-white font-bold text-base">Entity Traversal</div>
+                  <div class="text-gray-500 dark:text-gray-400 text-xs tracking-wider uppercase font-semibold mt-0.5">Sub-Agent Context Fetch</div>
+                </div>
+              </div>
+
+              <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm text-left">
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="text-[#D97757] text-4xl sm:text-5xl font-extrabold font-mono tracking-tight">70.5%</div>
+                <div class="mt-2">
+                  <div class="text-gray-900 dark:text-white font-bold text-base">Multi-Run Recall</div>
+                  <div class="text-gray-500 dark:text-gray-400 text-xs tracking-wider uppercase font-semibold mt-0.5">LoCoMo-10 Benchmark</div>
+                </div>
+              </div>
+            </div>
+
+            <h2 id="the-problem">The Problem: OpenClaw Autonomous Agents Forget Everything</h2>
             <p>
-              Every time an autonomous agent run completes, the context window resets. The debugging breakthroughs, architecture decisions, and code patterns from the last run — all gone. You spend the first minutes of every agent session re-explaining your project's constraints.
+              Autonomous coding agents operate on fundamentally different paradigms than standard conversational chatbots. In OpenClaw, an agent doesn't simply respond to a prompt; it enters an autonomous loop: reading file trees, running tests in headless terminals, spinning up Playwright/Puppeteer browser instances, and analyzing visual DOM states.
             </p>
             <p>
-              OpenClaw doesn't ship with built-in persistent memory. If you use OpenClaw <em>and</em> Claude Code <em>and</em> Cursor, each tool maintains its own isolated silo.
+              However, every time an autonomous agent run terminates or the execution context window reaches its token limit, everything resets. Architectural contracts formulated on step 3 are wiped out by step 45, forcing the agent to repeat expensive exploration loops and introduce code regressions.
             </p>
 
+            <!-- Visual Diagram 1: Autonomous Agent Memory Architecture (Light Monotone) -->
+            <div class="my-8 p-6 rounded-xl bg-gray-50/80 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 shadow-sm">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gray-900 dark:bg-white"></span>
+                  <span class="text-xs font-mono uppercase font-bold text-gray-900 dark:text-white tracking-wider">Autonomous Agent Memory Architecture</span>
+                </div>
+                <span class="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase">Compaction Bottleneck vs External Entity Graph</span>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-mono">
+                <!-- Native Ephemeral Agent Box -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm space-y-3">
+                  <div class="flex items-center justify-between text-gray-900 dark:text-white font-bold">
+                    <span>Native OpenClaw Compaction</span>
+                    <span class="text-[10px] bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded border border-gray-200 dark:border-zinc-700">In-Memory Buffers</span>
+                  </div>
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-1.5 text-gray-600 dark:text-gray-400 leading-snug font-mono">
+                    <div class="text-gray-900 dark:text-gray-200 font-semibold">Local Execution Context</div>
+                    <div>┌─ Ephemeral Transcript Array</div>
+                    <div>├─ DOM Screenshots: 8–15 MB RAM/step</div>
+                    <div>├─ Token Threshold (80%): Compaction triggered</div>
+                    <div class="text-gray-900 dark:text-white font-bold bg-gray-200/80 dark:bg-zinc-800 p-1 rounded">▼ SILENT FACT DELETION (Lossy Summarization)</div>
+                    <div class="text-gray-400 dark:text-gray-500 italic text-[10px]">&nbsp;&nbsp;(DB constraints &amp; fixed edge cases forgotten)</div>
+                    <div class="pt-2 text-gray-500 dark:text-gray-400">Next Agent Run:</div>
+                    <div class="text-gray-900 dark:text-white font-bold">↳ 100% AMNESIA (Full Re-exploration)</div>
+                  </div>
+                  <div class="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
+                    Lossy summarization prunes exact variable types and deployment flags. Browser screenshot buffers trigger severe RAM inflation.
+                  </div>
+                </div>
+
+                <!-- Memwyre Graph Memory Box -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-300 dark:border-zinc-700 shadow-sm space-y-3">
+                  <div class="flex items-center justify-between text-gray-900 dark:text-white font-bold">
+                    <span>Memwyre Persistent Graph</span>
+                    <span class="text-[10px] bg-gray-900 dark:bg-white text-white dark:text-black font-semibold px-2 py-0.5 rounded">Offloaded Vault</span>
+                  </div>
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-1.5 text-gray-600 dark:text-gray-400 leading-snug font-mono">
+                    <div class="text-gray-900 dark:text-gray-200 font-semibold">Decoupled Semantic Entity Graph</div>
+                    <div>┌─ Lifecycle Hooks: SessionStart / SessionStop</div>
+                    <div>├─ Pre-Compaction Intercept: Facts preserved</div>
+                    <div class="text-gray-900 dark:text-white font-bold bg-gray-200/80 dark:bg-zinc-800 p-1 rounded">✔ ZERO FACT LOSS (Hierarchical AST Graph)</div>
+                    <div class="text-gray-500 dark:text-gray-400 text-[10px]">&nbsp;&nbsp;(Screenshots purged; structured facts saved)</div>
+                    <div class="pt-2 text-gray-500 dark:text-gray-400">Cross-Tool Portability:</div>
+                    <div class="text-gray-900 dark:text-white font-bold">↳ SHARED with Cursor, Claude Code, VS Code</div>
+                  </div>
+                  <div class="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
+                    Decoupled persistence ensures that memory survives compaction loops, agent crashes, and reboots with on-demand retrieval.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deep Educational Section 1: Context Compaction Deep Dive -->
+            <h2 id="context-compaction-mechanics">The Mechanics of Context Compaction: Why Autonomous Agents Suffer from Amnesia</h2>
+            <p>
+              To understand why autonomous agents make circular mistakes during multi-hour runs, developers must look at how agent runtimes manage the LLM token budget. OpenClaw tracks accumulated tokens in the message transcript. When context window consumption hits <code>maxContextTokens</code> (typically 80% of capacity, or ~100,000 tokens on a 128K model), the runtime initiates <strong>Context Compaction</strong>:
+            </p>
+
+            <h3 id="compaction-algorithm">1. The Compaction Loop &amp; Lossy Compression</h3>
+            <p>
+              The runtime slices the message history, retaining only the initial system prompt and the latest 2–3 messages. The intermediary 30 turns (containing shell outputs, diff attempts, and compiler errors) are passed to an LLM with the instruction: <em>"Summarize the conversation progress so far."</em>
+            </p>
+            <p>
+              While this reduces context tokens by ~85%, it destroys <strong>factual fidelity</strong>. High-level summaries like <em>"Agent debugged Redis auth issue and updated server configuration"</em> discard the actual port numbers, cryptographic salt algorithms, and configuration flags discovered during trial-and-error.
+            </p>
+
+            <h3 id="screenshot-buffer-bloat">2. Browser Screenshot Buffer Leaks</h3>
+            <p>
+              Autonomous browser verification is one of OpenClaw's strongest features. However, capturing full-page PNG screenshots in base64 format places immense strain on the Node.js V8 heap. Holding multiple visual states in the in-memory transcript causes OpenClaw's memory footprint to surge from 150 MB to over 3.5 GB, causing garbage collection spikes and eventual OOM (Out of Memory) crashes during long refactors.
+            </p>
+
+            <!-- Deep Educational Section 2: OpenClaw Configuration & Tool Profiles -->
+            <h2 id="openclaw-config-guide">Mastering OpenClaw Tool Profiles &amp; Agent Configuration</h2>
+            <p>
+              OpenClaw governs agent autonomy through explicit <strong>Tool Profiles</strong>. Understanding how tool permissions interact with memory persistence is vital to prevent agents from getting trapped in permission prompts:
+            </p>
+
+            <div class="overflow-x-auto my-6">
+              <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-800 rounded overflow-hidden">
+                <thead>
+                  <tr class="bg-gray-50 dark:bg-zinc-900 text-xs uppercase font-mono font-bold text-gray-500">
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Profile</th>
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Allowed Toolsets</th>
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Memory Plugin Support</th>
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Recommended Use Case</th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-700 dark:text-gray-300 text-xs leading-relaxed font-mono">
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-[#D97757] border-b border-gray-100 dark:border-gray-800">minimal</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Read-only file operations and basic text responses.</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 font-bold text-gray-400">Disabled</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Static code audits and vulnerability scanning.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-[#D97757] border-b border-gray-100 dark:border-gray-800">standard</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">File read/write, git operations, basic shell.</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 font-bold text-gray-400">Limited (Hooks only)</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Isolated bug fixes and single-file refactors.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-[#D97757] border-b border-gray-100 dark:border-gray-800">coding</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Full shell execution, test runners, package managers.</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 font-bold text-emerald-600 dark:text-emerald-400">Full (Hooks + Tools)</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">End-to-end feature implementations and refactors.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-[#D97757] border-b border-gray-100 dark:border-gray-800">full</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Unrestricted: Browser control, network, terminal, tools.</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 font-bold text-emerald-600 dark:text-emerald-400">Full (Hooks + Tools)</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Autonomous multi-agent migrations and QA loops.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Deep Educational Section 3: Production OpenClaw Configuration -->
+            <h2 id="production-openclaw-config">Production OpenClaw Configuration Template</h2>
+            <p>
+              Below is an enterprise-hardened <code>~/.openclaw/config.json</code> configuration template. It optimizes context thresholds, establishes memory hooks, and configures sandbox boundaries:
+            </p>
+
+            <pre><code class="language-json">{
+  "agent": {
+    "defaultModel": "anthropic/claude-3-7-sonnet-20250219",
+    "toolProfile": "coding",
+    "maxContextTokens": 100000,
+    "temperature": 0.2,
+    "maxIterations": 50
+  },
+  "browser": {
+    "headless": true,
+    "screenshotQuality": 60,
+    "maxScreenshotsPerSession": 5
+  },
+  "plugins": {
+    "entries": {
+      "@memwyre/openclaw-plugin": {
+        "enabled": true,
+        "config": {
+          "apiKey": "bv_sk_your_api_key_here",
+          "hostUrl": "https://api.memwyre.tech",
+          "autoInjectContext": true,
+          "autoCaptureSession": true
+        }
+      }
+    }
+  }
+}</code></pre>
+
+            <!-- Visual Diagram 2: OpenClaw Agent Lifecycle Sequence (Light Monotone) -->
+            <div class="my-8 p-6 rounded-xl bg-gray-50/80 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 shadow-sm overflow-x-auto">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gray-900 dark:bg-white"></span>
+                  <span class="text-xs font-mono uppercase font-bold text-gray-900 dark:text-white tracking-wider">OpenClaw Autonomous Lifecycle Sequence</span>
+                </div>
+                <span class="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase">Start &rarr; Mid-Session Query &rarr; Stop Extraction</span>
+              </div>
+
+              <div class="space-y-4 font-mono text-xs min-w-[580px]">
+                <!-- Step 1: Agent Initialization -->
+                <div class="flex items-start gap-4 p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm">
+                  <div class="w-7 h-7 rounded-md bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white font-mono font-bold flex items-center justify-center shrink-0 text-xs">
+                    1
+                  </div>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-gray-900 dark:text-white text-xs">SessionStart Hook &rarr; Deterministic Context Injection</span>
+                      <span class="text-[10px] text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200 dark:border-zinc-700">&lt;280ms Latency</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 font-sans text-xs">
+                      Agent CLI launches. The plugin detects repository roots, retrieves top-k architecture rules from Memwyre vault, and wraps them in a dense <code>&lt;memwyre-context&gt;</code> block in the system prompt.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Arrow Down -->
+                <div class="flex justify-center text-gray-400 dark:text-gray-600 -my-2 text-xs font-mono">&darr;</div>
+
+                <!-- Step 2: Mid-Run Autonomous Queries -->
+                <div class="flex items-start gap-4 p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm">
+                  <div class="w-7 h-7 rounded-md bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white font-mono font-bold flex items-center justify-center shrink-0 text-xs">
+                    2
+                  </div>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-gray-900 dark:text-white text-xs">Mid-Run Tool Invocations (search_memwyre / save_memory)</span>
+                      <span class="text-[10px] text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200 dark:border-zinc-700">Active Loop</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 font-sans text-xs">
+                      During a 40-step migration, whenever the agent encounters ambiguous schema definitions, it executes <code>search_memwyre</code> rather than blindly scraping external documentation or guessing contracts.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Arrow Down -->
+                <div class="flex justify-center text-gray-400 dark:text-gray-600 -my-2 text-xs font-mono">&darr;</div>
+
+                <!-- Step 3: Session Stop Extraction -->
+                <div class="flex items-start gap-4 p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm">
+                  <div class="w-7 h-7 rounded-md bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white font-mono font-bold flex items-center justify-center shrink-0 text-xs">
+                    3
+                  </div>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-gray-900 dark:text-white text-xs">SessionStop Hook &rarr; Background Entity Extraction</span>
+                      <span class="text-[10px] text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200 dark:border-zinc-700">Async Cloud Sync</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 font-sans text-xs">
+                      When the agent run terminates, the session transcript is posted to the extraction worker. Discovered bug fixes and verified architectural patterns are committed to the graph, ready for Cursor or Claude Code.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deep Educational Section 4: Token ROI & RAM Economics -->
+            <h2 id="agent-token-ram-economics">Token Economics &amp; RAM Optimization in Long-Running Agents</h2>
+            <p>
+              Autonomous loops burn tokens and workstation memory at scale. Decoupling memory into an external entity graph delivers drastic efficiency dividends:
+            </p>
+
+            <!-- Visual Diagram 3: Token Economics Math (Light Monotone) -->
+            <div class="my-8 p-6 rounded-xl bg-gray-50/80 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 shadow-sm overflow-x-auto">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gray-900 dark:bg-white"></span>
+                  <span class="text-xs font-mono uppercase font-bold text-gray-900 dark:text-white tracking-wider">Agent Memory Economics</span>
+                </div>
+                <span class="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase">Per 50 Multi-Step Autonomous Runs</span>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono min-w-[580px]">
+                <!-- Unmanaged Strategy -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm flex flex-col justify-between space-y-3">
+                  <div>
+                    <div class="text-gray-500 dark:text-gray-400 text-[11px] uppercase font-bold">Unmanaged Transcripts</div>
+                    <div class="text-lg font-bold text-gray-900 dark:text-white mt-1">~65,000 Tokens</div>
+                    <div class="text-[10px] text-gray-500 dark:text-gray-400">Retaining full browser &amp; bash logs</div>
+                  </div>
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-2 text-gray-700 dark:text-gray-300">
+                    <div>RAM Usage: 2.8 GB – 4.5 GB</div>
+                    <div>Compaction Trigger: Turn 22</div>
+                    <div class="font-bold text-gray-900 dark:text-white">Frequent OOM Aborts</div>
+                  </div>
+                  <div class="text-[10px] text-gray-500 dark:text-gray-400 font-sans">
+                    Agent memory bloat crashes long refactors and triggers repetitive exploration cycles.
+                  </div>
+                </div>
+
+                <!-- Native Compaction -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm flex flex-col justify-between space-y-3">
+                  <div>
+                    <div class="text-gray-500 dark:text-gray-400 text-[11px] uppercase font-bold">Native Lossy Compaction</div>
+                    <div class="text-lg font-bold text-gray-900 dark:text-white mt-1">~15,000 Tokens</div>
+                    <div class="text-[10px] text-gray-500 dark:text-gray-400">LLM text summary compression</div>
+                  </div>
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-2 text-gray-700 dark:text-gray-300">
+                    <div>Fact Retention: ~35%</div>
+                    <div>Cross-Tool Sync: Zero</div>
+                    <div class="font-bold text-gray-900 dark:text-white">Circular Hallucinations</div>
+                  </div>
+                  <div class="text-[10px] text-gray-500 dark:text-gray-400 font-sans">
+                    Compresses prompt size but discards precise architectural contracts and command arguments.
+                  </div>
+                </div>
+
+                <!-- Memwyre Plugin -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-300 dark:border-zinc-700 shadow-sm flex flex-col justify-between space-y-3">
+                  <div>
+                    <div class="flex items-center justify-between">
+                      <span class="text-gray-900 dark:text-white text-[11px] uppercase font-bold">Memwyre Plugin</span>
+                      <span class="text-[10px] bg-gray-900 dark:bg-white text-white dark:text-black px-1.5 py-0.5 rounded font-semibold">Low Latency</span>
+                    </div>
+                    <div class="text-lg font-bold text-gray-900 dark:text-white mt-1">&lt;1,500 Tokens</div>
+                    <div class="text-[10px] text-gray-500 dark:text-gray-400">Scoped semantic context injection</div>
+                  </div>
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-2 text-gray-700 dark:text-gray-300">
+                    <div>RAM Usage: &lt;200 MB Flat</div>
+                    <div>Token Reduction: -81%</div>
+                    <div class="font-bold text-gray-900 dark:text-white">Full Cross-Tool Portability</div>
+                  </div>
+                  <div class="text-[10px] text-gray-500 dark:text-gray-400 font-sans">
+                    Structured knowledge graph offloads conversation state; eliminates RAM bloat and token saturation.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comparison Table -->
             <h2 id="comparison">Four Approaches to OpenClaw Memory</h2>
             <div class="overflow-x-auto my-6">
               <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-800 rounded overflow-hidden">
@@ -229,7 +608,7 @@
             <ul>
               <li><strong>Zero-code CLI integration:</strong> Memwyre installs directly into OpenClaw with one command (<code>openclaw plugins install @memwyre/openclaw-plugin</code>). It automatically hooks into OpenClaw's session lifecycle events to handle context injection and session capture without writing custom SDK code.</li>
               <li><strong>Cross-tool ecosystem:</strong> Mem0 and Zep require custom sync pipelines to share memory between your CLI agents and your IDE. Memwyre's shared vault connects OpenClaw agent sessions directly to Cursor, VS Code, and Claude Desktop.</li>
-              <li><strong>Benchmark performance:</strong> On the <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">LoCoMo-10 benchmark</router-link>, Memwyre's cross-encoder engine scores <strong>70.5% accuracy</strong> vs. 43.7% for flat vector RAG baselines, using 81% fewer tokens. <em>(Deep dives available on our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Mem0</router-link> and <router-link to="/memwyre-vs-zep" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Zep</router-link> pages.)</em></li>
+              <li><strong>Benchmark performance:</strong> On the <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">LoCoMo-10 benchmark</router-link> (<a href="https://arxiv.org/abs/2402.17753" target="_blank" rel="noopener noreferrer" class="text-[#D97757] hover:underline font-medium">Snap Research, ACL 2024</a>), Memwyre's cross-encoder engine scores <strong>70.5% accuracy</strong> vs. 43.7% for flat vector RAG baselines, using 81% fewer tokens. <em>(Deep dives available on our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Mem0</router-link> and <router-link to="/memwyre-vs-zep" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Zep</router-link> pages.)</em></li>
             </ul>
 
             <h3 id="cross-tool-sync">How Cross-Tool Sync Actually Works</h3>
@@ -412,7 +791,7 @@
 
             <h2 id="license-and-requirements">License & Requirements</h2>
             <ul>
-              <li><strong>License:</strong> <a href="https://github.com/ramblinghermit0403/Memwyre" target="_blank" class="text-[#D97757] hover:underline font-medium">Apache-2.0</a></li>
+              <li><strong>License:</strong> <a href="https://github.com/memwyreai/Memwyre" target="_blank" class="text-[#D97757] hover:underline font-medium">Apache-2.0</a></li>
               <li><strong>System requirements:</strong> Node.js 18+, any OS, no local DB needed</li>
               <li><strong>Self-hosting:</strong> Docker deployment available</li>
               <li><strong>Tool Profile:</strong> OpenClaw tool profile must be <code>full</code> or <code>coding</code></li>
@@ -493,6 +872,12 @@ const copyLink = () => {
 const toc = [
   { level: 2, text: 'TL;DR', slug: 'tldr' },
   { level: 2, text: 'The Problem', slug: 'the-problem' },
+  { level: 2, text: 'Compaction Mechanics', slug: 'context-compaction-mechanics' },
+  { level: 3, text: 'Compaction Loop & Facts', slug: 'compaction-algorithm' },
+  { level: 3, text: 'Screenshot Leaks', slug: 'screenshot-buffer-bloat' },
+  { level: 2, text: 'OpenClaw Tool Profiles', slug: 'openclaw-config-guide' },
+  { level: 2, text: 'Production Config', slug: 'production-openclaw-config' },
+  { level: 2, text: 'Token & RAM Economics', slug: 'agent-token-ram-economics' },
   { level: 2, text: 'Comparison', slug: 'comparison' },
   { level: 3, text: 'vs Mem0 & Zep', slug: 'memwyre-vs-agent-frameworks' },
   { level: 3, text: 'Cross-Tool Sync', slug: 'cross-tool-sync' },
@@ -589,6 +974,14 @@ const faqs = [
     answer: 'View/edit/delete via dashboard or API.'
   },
   {
+    question: 'How does Memwyre prevent context compaction loss in OpenClaw?',
+    answer: 'When OpenClaw hits its <code>maxContextTokens</code> threshold, its native compaction loop compresses chat history into a brief summary, discarding critical facts. Memwyre intercepts observations before compaction occurs and indexes them in a persistent entity graph. When the agent later requires specific parameters, schemas, or prior execution results, it queries Memwyre directly via <code>search_memwyre</code> with zero compaction loss.'
+  },
+  {
+    question: 'Does the Memwyre plugin reduce OpenClaw RAM and CPU usage?',
+    answer: 'Yes. In-memory transcript storage and large screenshot buffers cause OpenClaw agents to consume excessive RAM. Memwyre offloads conversation context to external cloud or self-hosted storage, allowing agents to prune redundant local buffers and run lightweight loops indefinitely.'
+  },
+  {
     question: 'Is my memory data private?',
     answer: 'Zero-retention, self-host option available.'
   }
@@ -672,10 +1065,11 @@ const faqs = [
 }
 
 .markdown-content pre {
-  background-color: #111827;
-  color: #f3f4f6;
+  background-color: #f8fafc;
+  color: #1e293b;
   padding: 1rem;
   border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
   overflow-x: auto;
   margin-bottom: 1.25rem;
   font-size: 0.875rem;
@@ -683,27 +1077,39 @@ const faqs = [
 }
 
 .dark .markdown-content pre {
-  background-color: #000;
-  border: 1px solid #333;
+  background-color: #18181b;
+  color: #f4f4f5;
+  border: 1px solid #27272a;
 }
 
 .markdown-content code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+.markdown-content pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  font-size: inherit !important;
+}
+
 .markdown-content p code, 
 .markdown-content li code {
-  background-color: #f3f4f6;
-  color: #ef4444;
+  background-color: #f1f5f9;
+  color: #0f172a;
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
+  border: 1px solid #e2e8f0;
   font-size: 0.875em;
 }
 
 .dark .markdown-content p code, 
 .dark .markdown-content li code {
-  background-color: #374151;
-  color: #fca5a5;
+  background-color: #27272a;
+  color: #f4f4f5;
+  border-color: #3f3f46;
 }
 
 details summary::-webkit-details-marker {

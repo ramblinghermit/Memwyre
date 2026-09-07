@@ -102,7 +102,7 @@
             <div v-for="(step, idx) in [
               { title: 'Expose context via Stdio', body: 'The Memwyre MCP server launches as a subprocess communicating via JSON-RPC 2.0 over standard I/O.' },
               { title: 'Declare Tools & Prompts', body: 'Exposes tools like save_memory, search_memwyre, and generate_prompt directly to your LLM sessions.' },
-              { title: 'Dynamically Retrieve', body: 'When your AI agent needs context, it queries your Vault via vector and keyword search in under 300ms.' }
+              { title: 'Dynamically Retrieve', body: 'When your AI agent needs context, it queries your Vault via vector and keyword search rapidly on-demand.' }
             ]" :key="idx" class="flex gap-4">
               <div class="w-8 h-8 rounded-full border border-gray-300 text-sm font-bold font-mono flex items-center justify-center shrink-0 text-[#D97757] bg-white">
                 {{ idx + 1 }}

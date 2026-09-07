@@ -29,12 +29,12 @@
         </div>
         
         <h1 class="hero-serif text-4xl sm:text-5xl lg:text-6xl tracking-[-0.02em] leading-[1.1] text-gray-950 dark:text-white">
-          Claude Code Memory <br />
-          <span class="italic font-medium text-gray-900 dark:text-gray-100">Persistent Long-Term Memory <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">Plugin.</span></span>
+          Claude Code Persistent Memory <br />
+          <span class="italic font-medium text-gray-900 dark:text-gray-100">Overcoming CLAUDE.md & <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">Auto Memory Limits.</span></span>
         </h1>
 
         <div class="text-[10px] tracking-wider uppercase font-bold font-mono text-gray-400 dark:text-gray-500 pt-2">
-          12 MIN READ
+          14 MIN READ · TECHNICAL SPECIFICATION & GUIDE
         </div>
       </div>
 
@@ -65,9 +65,41 @@
                   Founder & Lead Architect
                 </span>
                 <span class="text-[10px] text-gray-400 dark:text-gray-500 mt-1 uppercase tracking-wide font-mono">
-                  Last Updated: August 4, 2026
+                  Last Updated: August 2026
                 </span>
               </div>
+            </div>
+
+            <!-- Official & Benchmark Outbound Links (E-E-A-T) -->
+            <div class="space-y-2 pt-6 border-t border-gray-100 dark:border-gray-900">
+              <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">OFFICIAL RESOURCES</div>
+              <a 
+                href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Claude Code Docs (Anthropic)
+              </a>
+              <a 
+                href="https://github.com/anthropics/claude-code" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Claude Code CLI Repo
+              </a>
+              <a 
+                href="https://github.com/thedaviddias/claude-mem" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                claude-mem (OSS Baseline)
+              </a>
             </div>
 
             <!-- Share Buttons -->
@@ -139,6 +171,51 @@
               </a>
             </div>
 
+            <!-- Quick Summary / Answer-First Box -->
+            <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm my-6">
+              <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+              <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+              <div class="space-y-2">
+                <div class="text-[#D97757] font-mono text-xs uppercase font-bold tracking-wider">Quick Summary / Key Takeaways</div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-normal">
+                  <strong>Answer:</strong> By default, Claude Code uses <code>CLAUDE.md</code> (static guidelines) and Auto Memory (local <code>MEMORY.md</code>). However, native Auto Memory is strictly capped at <strong>200 lines / 25KB</strong> and silently truncates older notes when exceeded. The <strong>Memwyre Plugin</strong> solves this by using deterministic lifecycle hooks (<code>SessionStart</code> and <code>Stop</code>) to auto-inject dynamic, semantically ranked memories on launch and auto-capture architectural decisions on exit across Claude Code, Cursor, and VS Code.
+                </p>
+              </div>
+            </div>
+
+            <!-- Metric Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 my-10">
+              <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm text-left">
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="text-[#D97757] text-4xl sm:text-5xl font-extrabold font-mono tracking-tight">200 L</div>
+                <div class="mt-2">
+                  <div class="text-gray-900 dark:text-white font-bold text-base">Native Truncation Cap</div>
+                  <div class="text-gray-500 dark:text-gray-400 text-xs tracking-wider uppercase font-semibold mt-0.5">MEMORY.md Silent Cutoff</div>
+                </div>
+              </div>
+
+              <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm text-left">
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="text-gray-900 dark:text-white text-4xl sm:text-5xl font-extrabold font-mono tracking-tight">25 KB</div>
+                <div class="mt-2">
+                  <div class="text-gray-900 dark:text-white font-bold text-base">Buffer Limit</div>
+                  <div class="text-gray-500 dark:text-gray-400 text-xs tracking-wider uppercase font-semibold mt-0.5">Native File Size Ceiling</div>
+                </div>
+              </div>
+
+              <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm text-left">
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 pointer-events-none border-t-2 border-l-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 pointer-events-none border-b-2 border-r-2 border-gray-400 dark:border-zinc-700"></div>
+                <div class="text-[#D97757] text-4xl sm:text-5xl font-extrabold font-mono tracking-tight">70.5%</div>
+                <div class="mt-2">
+                  <div class="text-gray-900 dark:text-white font-bold text-base">Memwyre Accuracy</div>
+                  <div class="text-gray-500 dark:text-gray-400 text-xs tracking-wider uppercase font-semibold mt-0.5">LoCoMo-10 Benchmark</div>
+                </div>
+              </div>
+            </div>
+
             <h2 id="the-problem">The Problem: Claude Code Forgets Everything</h2>
             <p>
               Every time you close a Claude Code session, the context window resets. Your debugging breakthroughs, architecture decisions, database schema notes, and style conventions — all gone. You spend the first 5 minutes of every session re-explaining your project.
@@ -147,9 +224,243 @@
               Anthropic provides <code>CLAUDE.md</code> and auto-memory as built-in solutions, but they require manual maintenance, are limited to flat Markdown files, and don't share context across tools. If you use Claude Code <em>and</em> Claude Desktop <em>and</em> Cursor, each tool maintains its own isolated silo.
             </p>
 
+            <h2 id="claudemd-masterclass">The Complete Guide to CLAUDE.md: Hierarchy, Syntax &amp; Best Practices</h2>
+            <p>
+              <code>CLAUDE.md</code> is the foundational instruction file for Anthropic's Claude Code CLI. Whenever you initiate a session, Claude reads this file and injects its contents into the root system prompt. Mastering <code>CLAUDE.md</code> is the single most effective way to eliminate repetitive prompting for static project rules.
+            </p>
+
+            <h3 id="claudemd-hierarchy">Directory Hierarchy &amp; Rule Precedence</h3>
+            <p>
+              Claude Code searches for instruction files across a deterministic directory hierarchy. Understanding this resolution order prevents conflicting instructions:
+            </p>
+            <ul>
+              <li><strong>Global Configuration (<code>~/.claude/CLAUDE.md</code>):</strong> Applies across every repository and terminal session on your computer. Use this exclusively for developer-specific habits, such as preferred shell shortcuts, default terminal flags, or global Git commit author styles.</li>
+              <li><strong>Project Root (<code>./CLAUDE.md</code>):</strong> Placed at the root of your Git repository. This file is shared among your team and defines project-level architecture, build commands, testing frameworks, and linting rules.</li>
+              <li><strong>Subdirectory Scopes (<code>./apps/web/CLAUDE.md</code>):</strong> In monorepos, you can place localized files within package directories. When Claude runs commands inside that directory, it merges the package-level rules with the root rules.</li>
+            </ul>
+
+            <h3 id="claudemd-template">Production CLAUDE.md Master Template</h3>
+            <p>
+              The most effective <code>CLAUDE.md</code> files are concise, imperative, and structured with clear Markdown headers. Avoid narrative paragraphs; use bullet points and exact shell syntax:
+            </p>
+
+            <pre><code class="language-markdown"># Project: E-Commerce Microservices Platform
+
+## Tech Stack &amp; Package Manager
+- Runtime: Node.js 20 LTS with pnpm (NEVER use npm or yarn)
+- Framework: Next.js 15 (App Router only, Server Actions for mutations)
+- Database: PostgreSQL 16 with Drizzle ORM
+- Styling: Tailwind CSS v4 with Shadcn UI
+
+## Core Build &amp; Test Commands
+- Dev Server: `pnpm run dev` (runs on http://localhost:3000)
+- Typecheck: `pnpm run type-check` (TypeScript strict mode)
+- Test Suite: `pnpm test` (Vitest unit tests)
+- Integration Tests: `pnpm test:e2e` (Playwright)
+- Database Migration: `pnpm drizzle-kit push`
+
+## Architectural Invariants
+- Never use standard API route handlers (`/api/...`) for form submissions; always use Server Actions with `zod` validation.
+- All database queries must run through repository modules in `lib/db/repositories/`.
+- Zero `any` policy in TypeScript. Use unknown + narrowing or generic constraints.
+
+## Git &amp; Workflow Rules
+- Commits must adhere to Conventional Commits format: `feat(auth): add OAuth provider`.
+- Never commit directly to `main`. Create feature branches (`feat/`, `fix/`).</code></pre>
+
+            <h3 id="claudemd-anti-patterns">What NEVER to Put in CLAUDE.md (Context Inflation Anti-Pattern)</h3>
+            <p>
+              Because <code>CLAUDE.md</code> is injected verbatim into <em>every single turn</em> of your conversation, bloating it directly degrades performance:
+            </p>
+            <ul>
+              <li><strong>Do NOT include raw database schemas:</strong> Dumping 500 lines of SQL or Prisma models into <code>CLAUDE.md</code> consumes 3,000+ tokens on every interaction. Claude can read schema files on demand via its file tools when needed.</li>
+              <li><strong>Do NOT include ephemeral debugging fixes:</strong> Notes like <em>"Fixed Redis port mismatch on line 88"</em> become obsolete in days and clutter Claude's reasoning window.</li>
+              <li><strong>Do NOT paste conversation logs or changelogs:</strong> Historical changelogs belong in Git history, not in the active LLM context.</li>
+            </ul>
+
+            <h2 id="prompt-caching-vs-memory">Anthropic Prompt Caching vs. Persistent Memory</h2>
+            <p>
+              Many developers confuse Anthropic's <strong>Prompt Caching</strong> with long-term memory. While both optimize context, they serve fundamentally different functions:
+            </p>
+
+            <div class="overflow-x-auto my-6">
+              <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-800 rounded overflow-hidden">
+                <thead>
+                  <tr class="bg-gray-50 dark:bg-zinc-900 text-xs uppercase font-mono font-bold text-gray-500">
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Attribute</th>
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Anthropic Prompt Caching</th>
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800 bg-[#FDF8F6] dark:bg-orange-950/20">
+                      <span class="text-[#D97757]">Persistent Cross-Session Memory</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-700 dark:text-gray-300 text-xs leading-relaxed">
+                  <tr>
+                    <td class="px-4 py-3 font-semibold border-b border-gray-100 dark:border-gray-800">Primary Purpose</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">Reduces latency &amp; input token cost for repetitive prompt prefixes.</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10">Preserves architectural decisions &amp; solutions across terminal restarts.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-semibold border-b border-gray-100 dark:border-gray-800">Time-to-Live (TTL)</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 font-bold text-red-500">5 Minutes (Ephemeral)</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10 font-bold text-emerald-500">Permanent (Cross-Session)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-semibold border-b border-gray-100 dark:border-gray-800">Session Boundary</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">Dies when terminal closes or prompt pauses &gt;5 min.</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10">Persists across terminal sessions, reboots, and days.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-semibold border-b border-gray-100 dark:border-gray-800">Cross-Tool Sharing</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">❌ Locked to active API request prefix.</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10">✅ Shared between Claude Code, Cursor, and VS Code.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>
+              In short: <strong>Prompt caching saves tokens within a rapid 5-minute typing loop</strong>. But as soon as you step away for coffee, switch git branches, or close your terminal, the cache evaporates. Persistent memory stores lessons forever and injects them only when semantically relevant.
+            </p>
+
+            <h2 id="native-memory-limits">How Claude Code Memory Works: Deconstructing Native Limits</h2>
+            <p>
+              To understand why Claude Code developers frequently experience memory loss, we inspected Claude Code's memory engine (located in <code>src/memdir/</code>). Claude Code provides three native mechanisms for managing context:
+            </p>
+
+            <h3 id="mechanism-claudemd">1. CLAUDE.md (Static Rules)</h3>
+            <p>
+              <code>CLAUDE.md</code> is a Markdown file placed at your project root or in <code>~/.claude/CLAUDE.md</code>. On startup, Claude loads this file verbatim into its context window. It is ideal for permanent guidelines (e.g., <em>"Always use pnpm"</em>, <em>"Follow TypeScript strict mode"</em>), but it requires 100% manual updating and does not learn dynamically from your terminal sessions.
+            </p>
+
+            <h3 id="mechanism-automemory">2. Auto Memory &amp; MEMORY.md (Version 2.1.59+)</h3>
+            <p>
+              Anthropic introduced <strong>Auto Memory</strong> to let Claude write notes automatically to a local Markdown file at <code>~/.claude/projects/&lt;project-name&gt;/memory/MEMORY.md</code>. While an improvement, it suffers from three critical architectural constraints:
+            </p>
+            <ul>
+              <li><strong>The 200-Line Silent Truncation Cap:</strong> <code>MEMORY.md</code> is hardcoded to truncate after <strong>200 lines</strong>. When your project accumulates more than 200 lines of facts, older entries are silently dropped from Claude's prompt injection. Claude has no awareness that earlier debugging lessons have vanished.</li>
+              <li><strong>The 25KB File Size Limit:</strong> Auto Memory enforces a 25KB binary ceiling. Large code snippets or database schemas quickly trigger this limit.</li>
+              <li><strong>Exact Keyword Search Only:</strong> Native Auto Memory relies primarily on exact text matching rather than two-stage cross-encoder semantic search. If your prompt phrases a problem differently than how Claude originally saved it, the memory is missed.</li>
+            </ul>
+
+            <h3 id="mechanism-autodream">3. Auto Dream (Idle Consolidation)</h3>
+            <p>
+              Claude Code includes an experimental background process called <strong>Auto Dream</strong> that reorganizes memories while the agent is idle. However, it remains machine-locked: it cannot synchronize observations to your laptop, your teammates, or your other editors (Cursor, VS Code, or Claude Desktop).
+            </p>
+
+            <!-- Visual Diagram 1: Native Memory Failure vs Memwyre Graph -->
+            <div class="my-8 p-6 rounded-xl bg-gray-50/80 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 shadow-sm">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gray-900 dark:bg-white"></span>
+                  <span class="text-xs font-mono uppercase font-bold text-gray-900 dark:text-white tracking-wider">Architecture Teardown</span>
+                </div>
+                <span class="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase">Native src/memdir/ vs Graph</span>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-mono">
+                <!-- Native Architecture Box -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm space-y-3">
+                  <div class="flex items-center justify-between text-gray-900 dark:text-white font-bold">
+                    <span>Claude Code Native Memory</span>
+                    <span class="text-[10px] bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded border border-gray-200 dark:border-zinc-700">Flat Buffer</span>
+                  </div>
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-1.5 text-gray-600 dark:text-gray-400 leading-snug font-mono">
+                    <div class="text-gray-900 dark:text-gray-200 font-semibold">Local MEMORY.md (~/.claude/projects/...)</div>
+                    <div>┌─ [Line 1 - 20]: Database Schema Notes</div>
+                    <div>├─ [Line 21 - 50]: JWT Auth Workaround</div>
+                    <div class="text-gray-900 dark:text-white font-bold bg-gray-200/80 dark:bg-zinc-800 p-1 rounded">▼ [LINE 201+]: SILENT TRUNCATION DROP</div>
+                    <div class="text-gray-400 dark:text-gray-500 italic text-[10px]">&nbsp;&nbsp;(Older architecture rules discarded silently)</div>
+                    <div class="pt-2 text-gray-500 dark:text-gray-400">Exact String Search: "credential security"</div>
+                    <div class="text-gray-900 dark:text-white font-bold">↳ MISSED (Saved as "Argon2id hashing")</div>
+                  </div>
+                  <div class="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
+                    Single-file flat text buffer. Strict 200-line cap causes silent memory loss. Zero synchronization with other developer tools.
+                  </div>
+                </div>
+
+                <!-- Memwyre Architecture Box -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-300 dark:border-zinc-700 shadow-sm space-y-3">
+                  <div class="flex items-center justify-between text-gray-900 dark:text-white font-bold">
+                    <span>Memwyre Context Engine</span>
+                    <span class="text-[10px] bg-gray-900 dark:bg-white text-white dark:text-black font-semibold px-2 py-0.5 rounded">Multi-Factor Graph</span>
+                  </div>
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-1.5 text-gray-600 dark:text-gray-400 leading-snug font-mono">
+                    <div class="text-gray-900 dark:text-gray-200 font-semibold">Knowledge Vault + Cross-Encoder</div>
+                    <div>┌─ AST Graph: Entity Relations (Table ⇄ API)</div>
+                    <div>├─ Ebbinghaus Recency Decay (Fresh beats stale)</div>
+                    <div class="text-gray-900 dark:text-white font-bold bg-gray-200/80 dark:bg-zinc-800 p-1 rounded">✔ Scalable Index: Millions of tokens indexed</div>
+                    <div class="text-gray-500 dark:text-gray-400 text-[10px]">&nbsp;&nbsp;(Only top-k relevant ~1,500 tokens injected)</div>
+                    <div class="pt-2 text-gray-500 dark:text-gray-400">Query: "credential security"</div>
+                    <div class="text-gray-900 dark:text-white font-bold">↳ MATCHED: Vector similarity 0.92 to Argon2id</div>
+                  </div>
+                  <div class="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
+                    Multi-factor ranking with semantic embeddings and dependency graph. Shared simultaneously with Cursor and VS Code.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h2 id="cli-commands">Claude Code CLI Commands: Managing Working Context</h2>
+            <p>
+              During active development, Claude Code accumulates terminal output, file reads, and tool execution traces. Anthropic provides several built-in slash commands in the CLI to inspect and control working context:
+            </p>
+
+            <div class="overflow-x-auto my-6">
+              <table class="w-full text-sm text-left border border-gray-200 dark:border-gray-800 rounded overflow-hidden">
+                <thead>
+                  <tr class="bg-gray-50 dark:bg-zinc-900 text-xs uppercase font-mono font-bold text-gray-500">
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Command</th>
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Action</th>
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Context Impact</th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-700 dark:text-gray-300 text-xs leading-relaxed font-mono">
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-[#D97757] border-b border-gray-100 dark:border-gray-800">/memory</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Opens the interactive memory viewer to review or edit stored notes.</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Allows manual pruning of stale or inaccurate auto-memories.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-[#D97757] border-b border-gray-100 dark:border-gray-800">/compact</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Forces immediate context compression by summarizing conversational history.</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Frees up 40–70% of context tokens. Warning: fine-grained error logs are lost.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-[#D97757] border-b border-gray-100 dark:border-gray-800">/clear</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Wipes all working session history and restarts the context window.</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">100% reset. Only <code>CLAUDE.md</code> and auto-memory persist.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-[#D97757] border-b border-gray-100 dark:border-gray-800">/context</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Displays a visual bar chart of active tokens (system prompt, tools, chat).</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Diagnostic tool to pinpoint files or tools causing prompt bloat.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-[#D97757] border-b border-gray-100 dark:border-gray-800">/cost</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Outputs dollar expenditure and cumulative token counts for current session.</td>
+                    <td class="px-4 py-3 font-sans border-b border-gray-100 dark:border-gray-800">Monitors prompt token burn rate in real time.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 id="team-silo-problem">The Team Silo Problem: Why Local Memory Fails Collaborative Engineering</h2>
+            <p>
+              By default, Claude Code writes notes to <code>~/.claude/projects/&lt;project-name&gt;/memory/MEMORY.md</code>. Because this path is stored in your personal home directory on your local workstation, it is completely invisible to your teammates.
+            </p>
+            <p>
+              This creates severe organizational context fragmentation across development teams:
+            </p>
+            <ul>
+              <li><strong>Redundant Problem Solving:</strong> When Senior Engineer Sarah spends 45 minutes debugging an esoteric Docker networking issue on macOS and Claude notes the fix, Junior Engineer Alex encounters the exact same failure the next day and spends another 45 minutes rediscovering the solution from scratch.</li>
+              <li><strong>Git Merge Conflicts from Shared Files:</strong> Teams that try to solve this by committing dynamic notes to <code>CLAUDE.md</code> in Git quickly suffer from branch collision. Every developer's branch modifies <code>CLAUDE.md</code>, generating messy merge conflicts on pull requests.</li>
+              <li><strong>Cross-Editor Disconnect:</strong> Even on a single developer's laptop, if you alternate between Claude Code in your terminal, Cursor for quick edits, and Claude Desktop for strategic planning, none of them know what the other two discovered.</li>
+            </ul>
+
             <h2 id="comparison">Four Approaches to Claude Code Memory</h2>
             <p>
-              There is no single "right" approach — each method suits a different workflow. If you've researched this space, you've likely seen <strong>claude-mem</strong> (89K+ GitHub stars) alongside Anthropic's built-in options. Here is an honest breakdown of all four.
+              There is no single "right" approach — each method suits a different workflow. If you've researched this space, you've likely seen <strong>claude-mem</strong> (89K+ GitHub stars) alongside Anthropic's built-in options. Here is an honest breakdown of all four approaches.
             </p>
 
             <div class="overflow-x-auto my-6">
@@ -220,36 +531,125 @@
             </div>
 
             <p class="text-gray-500 text-xs italic">
-              These approaches are complementary, not exclusive. Use CLAUDE.md for static project rules and Memwyre for dynamic session memory — they work together.
+              These approaches are complementary, not mutually exclusive. Many production teams use CLAUDE.md for permanent guidelines and an external memory layer for dynamic session memory.
             </p>
 
-            <h3 id="memwyre-vs-claude-mem">Memwyre vs. claude-mem: The Key Differences</h3>
+            <h3 id="approach-native">Approach 1: Pure Native (CLAUDE.md + Auto Memory)</h3>
             <p>
-              <strong>claude-mem</strong> is an excellent open-source tool for local-first, single-machine memory. It stores observations in a local SQLite database with ChromaDB for semantic search, and it's earned 89K+ GitHub stars for good reason — it works.
-            </p>
-            <p>
-              Where the two tools diverge:
+              Anthropic's built-in combination requires no external tools or API keys. You write static guidelines into <code>CLAUDE.md</code>, and Claude Code automatically records notes to <code>MEMORY.md</code>.
             </p>
             <ul>
-              <li><strong>Cross-tool sync:</strong> claude-mem stores data locally. To share context between machines, you need to set up SSH-based sync via <code>claude-mem-sync</code>. Memwyre uses a shared cloud vault — install the plugin on Claude Code, connect the MCP server on Cursor, and both read from the same memory layer instantly. No SSH keys, no SCP scripts, no manual replication.</li>
-              <li><strong>Retrieval quality:</strong> claude-mem uses flat vector search (ChromaDB). Memwyre's engine uses <strong>two-stage cross-encoder re-ranking</strong> with Ebbinghaus logarithmic recency decay, scoring <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">70.5% on the LoCoMo-10 benchmark</router-link> vs. 43.7% for flat vector RAG baselines — a 61% accuracy improvement with 81% fewer tokens.</li>
-              <li><strong>License:</strong> claude-mem ships under <strong>AGPL-3.0</strong>, which requires teams to open-source modifications if they serve the software over a network. Memwyre ships under <strong>Apache-2.0</strong> — no copyleft obligations, safe for proprietary enterprise deployments. <em>(See our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">detailed comparison pages</router-link> for deeper dives vs. Mem0, Supermemory, and Zep.)</em></li>
+              <li><strong>Best for:</strong> Solo developers working on single repositories who don't mind manually curating Markdown files.</li>
+              <li><strong>Trade-off:</strong> Suffers from the 200-line silent truncation limit and zero cross-tool synchronization.</li>
             </ul>
 
-            <h3 id="cross-tool-sync">How Cross-Tool Sync Actually Works</h3>
+            <h3 id="approach-claude-mem">Approach 2: Local Open-Source (claude-mem by David Dias)</h3>
             <p>
-              "Shared with Cursor, VS Code, Claude Desktop" is a claim that deserves explanation. Here's the mechanism:
+              <strong>claude-mem</strong> is a popular open-source project (89K+ GitHub stars) that runs an autonomous memory server locally on your machine. It installs via npm and manages context using SQLite and ChromaDB:
+            </p>
+            <pre><code class="language-bash"># Install claude-mem CLI
+npx claude-mem install</code></pre>
+            <p>
+              Under the hood, <code>claude-mem</code> hooks into Claude's execution stream to summarize observations and store vector embeddings in ChromaDB.
             </p>
             <ul>
-              <li><strong>Claude Code (plugin):</strong> The Memwyre plugin hooks into <code>SessionStart</code> and <code>Stop</code> lifecycle events. On start, it calls the retrieval API to pull relevant memories. On stop, it <code>POST</code>s the session transcript to the capture endpoint. Both operations hit your authenticated cloud vault.</li>
-              <li><strong>Cursor / VS Code / Claude Desktop (MCP):</strong> These tools connect via the Memwyre MCP server. The <code>search_memwyre</code> and <code>save_memory</code> tools read from and write to the <em>same vault</em> as the Claude Code plugin.</li>
-              <li><strong>Same API key = same vault.</strong> There's no sync step, no export/import, no SSH tunnel. A memory captured in a Claude Code terminal session at 2pm is available in your Cursor sidebar at 2:01pm.</li>
+              <li><strong>Strengths:</strong> Completely local-first, zero cloud reliance, open-source codebase.</li>
+              <li><strong>Limitations:</strong> Single-machine lock-in. To share context across multiple computers or team members, developers must configure <code>claude-mem-sync</code> over SSH tunnels. Additionally, its <strong>AGPL-3.0</strong> copyleft license creates compliance concerns for proprietary enterprise codebases.</li>
             </ul>
+
+            <h3 id="approach-mcp">Approach 3: Generic MCP Memory Servers</h3>
+            <p>
+              The Model Context Protocol (MCP) allows Claude Code to connect to external servers exposing memory tools (e.g., <code>save_memory</code> and <code>search_memory</code>):
+            </p>
+            <pre><code class="language-bash"># Add a custom MCP server to Claude Code
+claude mcp add memory-server -- node /path/to/server.js</code></pre>
+            <ul>
+              <li><strong>Strengths:</strong> Standardized protocol supported across Claude Code, Cursor, and Claude Desktop.</li>
+              <li><strong>Limitations:</strong> Predictive tool invocation. The LLM must actively decide when to query or update memory during conversation turns. This consumes reasoning tokens on every turn and frequently fails when the model doesn't realize relevant memory exists.</li>
+            </ul>
+
+            <h3 id="approach-memwyre">Approach 4: Dedicated Unified Context Engine (Memwyre)</h3>
+            <p>
+              Memwyre approaches memory <strong>deterministically</strong> rather than predictively. Instead of forcing the LLM to remember to make tool calls, Memwyre intercepts Claude Code's native lifecycle hooks (<code>SessionStart</code> and <code>Stop</code>). Context is injected before prompt typing begins and extracted when the terminal closes, synchronized across Claude Code, Cursor, and VS Code.
+            </p>
 
             <h2 id="architecture">How the Memwyre Claude Code Plugin Works</h2>
             <p>
-              The plugin hooks into Claude Code's lifecycle events — two hooks, zero configuration after install. It reads your project directory name and handles everything automatically.
+              The plugin hooks into Claude Code's native lifecycle events — two hooks, zero configuration after install. It reads your project directory name and handles context retrieval and capture automatically.
             </p>
+
+            <!-- Visual Diagram 2: Deterministic Lifecycle Sequence Map -->
+            <div class="my-8 p-6 rounded-xl bg-gray-50/80 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 shadow-sm overflow-x-auto">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gray-900 dark:bg-white"></span>
+                  <span class="text-xs font-mono uppercase font-bold text-gray-900 dark:text-white tracking-wider">Deterministic Lifecycle Sequence</span>
+                </div>
+                <span class="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase font-semibold">Low-Latency Overhead</span>
+              </div>
+
+              <div class="space-y-4 font-mono text-xs min-w-[580px]">
+                <!-- Step 1: SessionStart -->
+                <div class="flex items-start gap-4 p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm">
+                  <div class="w-7 h-7 rounded-md bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white font-mono font-bold flex items-center justify-center shrink-0 text-xs">
+                    1
+                  </div>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-gray-900 dark:text-white text-xs">Terminal Launch &rarr; SessionStart Hook</span>
+                      <span class="text-[10px] text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200 dark:border-zinc-700">&lt;280ms Latency</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 font-sans text-xs">
+                      Developer runs <code>claude</code> in terminal. Plugin intercepts initialization before prompt input, identifies git workspace, and queries Memwyre API.
+                    </p>
+                    <div class="p-2 rounded bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-[11px] text-gray-800 dark:text-gray-200 font-mono">
+                      POST /api/v1/memories/retrieve { workspace: "my-app", branch: "feat/auth" }
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Arrow Down -->
+                <div class="flex justify-center text-gray-400 dark:text-gray-600 -my-2 text-xs font-mono">↓</div>
+
+                <!-- Step 2: System Injection -->
+                <div class="flex items-start gap-4 p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm">
+                  <div class="w-7 h-7 rounded-md bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white font-mono font-bold flex items-center justify-center shrink-0 text-xs">
+                    2
+                  </div>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-gray-900 dark:text-white text-xs">Targeted Context Injection (&lt;memwyre-context&gt;)</span>
+                      <span class="text-[10px] text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200 dark:border-zinc-700">~1,500 Tokens Max</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 font-sans text-xs">
+                      Top-k memories scored by cross-encoder relevance and recency are formatted into a clean XML block and injected silently into Claude's prompt.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Arrow Down -->
+                <div class="flex justify-center text-gray-400 dark:text-gray-600 -my-2 text-xs font-mono">↓</div>
+
+                <!-- Step 3: Stop Hook Capture -->
+                <div class="flex items-start gap-4 p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm">
+                  <div class="w-7 h-7 rounded-md bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 text-gray-900 dark:text-white font-mono font-bold flex items-center justify-center shrink-0 text-xs">
+                    3
+                  </div>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-gray-900 dark:text-white text-xs">Session Exit &rarr; Stop Hook Extraction</span>
+                      <span class="text-[10px] text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 px-2 py-0.5 rounded border border-gray-200 dark:border-zinc-700">Background Worker</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 font-sans text-xs">
+                      On terminal exit (or <code>/exit</code>), full JSONL transcript sends to Memwyre worker. Model strips ephemeral shell noise and indexes structural decisions.
+                    </p>
+                    <div class="p-2 rounded bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-[11px] text-gray-800 dark:text-gray-200 font-mono">
+                      ✔ Synced to cloud vault &mdash; Accessible immediately in Cursor &amp; VS Code
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <h3 id="sessionstart">① SessionStart — Context Injection</h3>
             <p>
@@ -331,12 +731,83 @@
               <li><strong>✂️ Dynamic Pruning:</strong> Filters out duplicate CLI logs, compiler errors, and noise — keeping memory lean and token costs low.</li>
             </ul>
 
+            <h3 id="monorepo-isolation">Monorepo &amp; Package Boundary Scoping</h3>
+            <p>
+              In multi-package monorepos (Turborepo, Nx, pnpm workspaces), native <code>CLAUDE.md</code> files often create context collision: Claude Code running in a backend service directory pulls in frontend styling rules, polluting the prompt and wasting context. Memwyre applies path-aware AST bounding to ensure strict context isolation.
+            </p>
+
+            <!-- Visual Diagram 3: Monorepo Package Scoping Architecture -->
+            <div class="my-8 p-6 rounded-xl bg-gray-50/80 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 shadow-sm overflow-x-auto">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gray-900 dark:bg-white"></span>
+                  <span class="text-xs font-mono uppercase font-bold text-gray-900 dark:text-white tracking-wider">Monorepo Workspace Isolation</span>
+                </div>
+                <span class="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase font-semibold">Zero Context Pollution</span>
+              </div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 font-mono text-xs">
+                <!-- Column 1: Git Root & Monorepo Tree -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm space-y-2">
+                  <div class="text-gray-900 dark:text-white font-bold flex items-center gap-1.5 pb-2 border-b border-gray-100 dark:border-zinc-800">
+                    <span>📁 Git Root: /enterprise-repo</span>
+                  </div>
+                  <div class="text-[11px] space-y-1 text-gray-600 dark:text-gray-400 font-mono">
+                    <div class="text-gray-900 dark:text-gray-100 font-semibold">├── apps/web/ (Next.js 15)</div>
+                    <div class="text-gray-400 dark:text-gray-500 pl-4">↳ Working Directory 1</div>
+                    <div class="text-gray-900 dark:text-gray-100 font-semibold">├── services/auth/ (Go)</div>
+                    <div class="text-gray-400 dark:text-gray-500 pl-4">↳ Working Directory 2</div>
+                    <div class="text-gray-900 dark:text-gray-100 font-semibold">└── packages/ui/ (Tailwind v4)</div>
+                    <div class="text-gray-400 dark:text-gray-500 pl-4">↳ Shared Dependency</div>
+                  </div>
+                </div>
+
+                <!-- Column 2: Terminal Session A -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm space-y-2">
+                  <div class="text-gray-900 dark:text-white font-bold flex items-center justify-between pb-2 border-b border-gray-100 dark:border-zinc-800">
+                    <span>Session A: cd apps/web</span>
+                    <span class="text-[10px] bg-gray-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-gray-700 dark:text-gray-300 font-mono border border-gray-200 dark:border-zinc-700">Active</span>
+                  </div>
+                  <div class="p-2.5 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-1.5 font-mono">
+                    <div class="text-gray-900 dark:text-white font-semibold">✔ Injected Context:</div>
+                    <div class="text-gray-700 dark:text-gray-300">• Next.js Server Actions standard</div>
+                    <div class="text-gray-700 dark:text-gray-300">• packages/ui Button tokens</div>
+                    <div class="text-gray-400 dark:text-gray-500 pt-1">✕ Filtered Out:</div>
+                    <div class="text-gray-400 dark:text-gray-500 line-through">• Go JWT claims logic (services/auth)</div>
+                    <div class="text-gray-400 dark:text-gray-500 line-through">• PostgreSQL connection pooling</div>
+                  </div>
+                  <p class="text-[10px] font-sans text-gray-600 dark:text-gray-400 leading-snug">
+                    Claude Code receives only relevant Next.js and shared UI tokens. No backend noise.
+                  </p>
+                </div>
+
+                <!-- Column 3: Terminal Session B -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm space-y-2">
+                  <div class="text-gray-900 dark:text-white font-bold flex items-center justify-between pb-2 border-b border-gray-100 dark:border-zinc-800">
+                    <span>Session B: cd services/auth</span>
+                    <span class="text-[10px] bg-gray-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-gray-700 dark:text-gray-300 font-mono border border-gray-200 dark:border-zinc-700">Active</span>
+                  </div>
+                  <div class="p-2.5 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-1.5 font-mono">
+                    <div class="text-gray-900 dark:text-white font-semibold">✔ Injected Context:</div>
+                    <div class="text-gray-700 dark:text-gray-300">• Go Argon2id password hashing</div>
+                    <div class="text-gray-700 dark:text-gray-300">• Database migration rollbacks</div>
+                    <div class="text-gray-400 dark:text-gray-500 pt-1">✕ Filtered Out:</div>
+                    <div class="text-gray-400 dark:text-gray-500 line-through">• Tailwind theme definitions</div>
+                    <div class="text-gray-400 dark:text-gray-500 line-through">• React query hydration hooks</div>
+                  </div>
+                  <p class="text-[10px] font-sans text-gray-600 dark:text-gray-400 leading-snug">
+                    Claude Code receives pure backend security &amp; database rules without CSS clutter.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <h2 id="benchmark">Benchmark: Why Retrieval Quality Matters</h2>
             <p>
               Generic memory plugins dump raw vectors into Claude's context window. That approach fails on the queries that actually matter in a codebase — temporal reasoning ("when did we switch from REST to GraphQL?"), multi-hop connections ("which services depend on the auth token format we changed last week?"), and adversarial edge cases ("we never discussed Redis" → the system should abstain, not hallucinate).
             </p>
             <p>
-              We evaluated Memwyre's retrieval engine against a flat vector RAG baseline on the <strong>LoCoMo-10 benchmark</strong> (Snap Research, 2024) — 1,540 questions across 10 long conversations spanning 200,000+ tokens:
+              We evaluated Memwyre's retrieval engine against a flat vector RAG baseline on the <strong><a href="https://arxiv.org/abs/2402.17753" target="_blank" rel="noopener noreferrer" class="text-[#D97757] hover:underline">LoCoMo-10 benchmark</a></strong> (Snap Research, ACL 2024) — 1,540 questions across 10 long conversations spanning 200,000+ tokens:
             </p>
 
             <div class="overflow-x-auto my-6">
@@ -422,6 +893,122 @@
             <p>
               By summarizing and deduplicating past sessions, the plugin injects a concise <code>&lt;memwyre-context&gt;</code> block that rarely exceeds 1,500 tokens. Compared to manually pasting in megabytes of old transcript logs, this targeted injection saves Anthropic API costs while providing superior context.
             </p>
+
+            <!-- Visual Diagram 4: 30-Day Context ROI & Token Cost Math -->
+            <div class="my-8 p-6 rounded-xl bg-gray-50/80 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 shadow-sm overflow-x-auto">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gray-900 dark:bg-white"></span>
+                  <span class="text-xs font-mono uppercase font-bold text-gray-900 dark:text-white tracking-wider">30-Day Token Economics</span>
+                </div>
+                <span class="text-[10px] font-mono text-gray-500 dark:text-gray-400 uppercase font-semibold">91.8% Reduction</span>
+              </div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 font-mono text-xs">
+                <!-- Card 1: Unmanaged Prompt Pasting -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm flex flex-col justify-between space-y-3">
+                  <div class="space-y-1">
+                    <div class="flex items-center justify-between text-gray-900 dark:text-white font-bold">
+                      <span>Manual Pasting / Raw Files</span>
+                      <span class="text-[10px] bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-400 px-1.5 py-0.5 rounded border border-gray-200 dark:border-zinc-700">Unoptimized</span>
+                    </div>
+                    <p class="text-[11px] font-sans text-gray-600 dark:text-gray-400">Pasting old CLAUDE.md files, chat logs, and manual specs.</p>
+                  </div>
+
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-2 text-gray-700 dark:text-gray-300">
+                    <div class="flex justify-between">
+                      <span class="text-gray-500 dark:text-gray-400">Tokens / Session:</span>
+                      <span class="font-bold text-gray-900 dark:text-white font-mono">18,500</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-500 dark:text-gray-400">Sessions / Day (5×):</span>
+                      <span class="font-mono">92,500 tokens</span>
+                    </div>
+                    <div class="flex justify-between pt-1 border-t border-gray-200 dark:border-zinc-800">
+                      <span class="text-gray-500 dark:text-gray-400">Monthly Tokens:</span>
+                      <span class="font-bold text-gray-900 dark:text-white font-mono">2.03M tokens</span>
+                    </div>
+                    <div class="flex justify-between font-bold pt-1 border-t border-gray-200 dark:border-zinc-800 text-gray-900 dark:text-white">
+                      <span>Anthropic API Cost:</span>
+                      <span>~$6.09 - $16.24/mo</span>
+                    </div>
+                  </div>
+
+                  <div class="text-[10px] text-gray-500 dark:text-gray-400 italic">
+                    + 5 to 10 mins spent re-explaining context per session.
+                  </div>
+                </div>
+
+                <!-- Card 2: Memwyre Targeted Injection -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-300 dark:border-zinc-700 shadow-sm flex flex-col justify-between space-y-3">
+                  <div class="space-y-1">
+                    <div class="flex items-center justify-between text-gray-900 dark:text-white font-bold">
+                      <span>Memwyre Smart Context</span>
+                      <span class="text-[10px] bg-gray-900 dark:bg-white text-white dark:text-black px-1.5 py-0.5 rounded font-semibold">Deterministic</span>
+                    </div>
+                    <p class="text-[11px] font-sans text-gray-600 dark:text-gray-400">Dynamic cross-encoder top-k injection (~1,500 tokens max).</p>
+                  </div>
+
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-2 text-gray-700 dark:text-gray-300">
+                    <div class="flex justify-between">
+                      <span class="text-gray-500 dark:text-gray-400">Tokens / Session:</span>
+                      <span class="font-bold text-gray-900 dark:text-white font-mono">~1,500</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-500 dark:text-gray-400">Sessions / Day (5×):</span>
+                      <span class="font-mono">7,500 tokens</span>
+                    </div>
+                    <div class="flex justify-between pt-1 border-t border-gray-200 dark:border-zinc-800">
+                      <span class="text-gray-500 dark:text-gray-400">Monthly Tokens:</span>
+                      <span class="font-bold text-gray-900 dark:text-white font-mono">165K tokens</span>
+                    </div>
+                    <div class="flex justify-between font-bold pt-1 border-t border-gray-200 dark:border-zinc-800 text-gray-900 dark:text-white">
+                      <span>Anthropic API Cost:</span>
+                      <span>~$0.49 - $1.32/mo</span>
+                    </div>
+                  </div>
+
+                  <div class="text-[10px] text-gray-700 dark:text-gray-300 font-medium">
+                    ⚡ Instant prompt readiness (0 mins lost to priming).
+                  </div>
+                </div>
+
+                <!-- Card 3: Net Efficiency & Savings Summary -->
+                <div class="p-4 rounded-lg bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 shadow-sm flex flex-col justify-between space-y-3">
+                  <div class="space-y-1">
+                    <div class="flex items-center justify-between text-gray-900 dark:text-white font-bold">
+                      <span>Monthly Developer ROI</span>
+                      <span class="text-[10px] bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300 px-1.5 py-0.5 rounded border border-gray-200 dark:border-zinc-700 font-mono">Per Engineer</span>
+                    </div>
+                    <p class="text-[11px] font-sans text-gray-600 dark:text-gray-400">Calculated across 22 work days at 5 Claude Code sessions/day.</p>
+                  </div>
+
+                  <div class="p-3 bg-gray-50 dark:bg-zinc-900 rounded border border-gray-200 dark:border-zinc-800 text-[11px] space-y-2.5 text-gray-700 dark:text-gray-300">
+                    <div>
+                      <div class="flex justify-between text-gray-700 dark:text-gray-300 mb-1">
+                        <span>Context Token Reduction:</span>
+                        <span class="font-bold text-gray-900 dark:text-white font-mono">-91.8%</span>
+                      </div>
+                      <div class="w-full h-2 bg-gray-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+                        <div class="h-full bg-gray-900 dark:bg-white rounded-full" style="width: 91.8%"></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-between pt-2 border-t border-gray-200 dark:border-zinc-800">
+                      <span class="text-gray-500 dark:text-gray-400">Engineering Time Saved:</span>
+                      <span class="font-bold text-gray-900 dark:text-white font-mono">~9.2 hrs/mo</span>
+                    </div>
+                    <div class="flex justify-between font-bold pt-1 border-t border-gray-200 dark:border-zinc-800 text-gray-900 dark:text-white">
+                      <span>Direct Token Savings:</span>
+                      <span>$5.60 - $14.92/mo</span>
+                    </div>
+                  </div>
+
+                  <div class="text-[10px] text-gray-500 dark:text-gray-400">
+                    Pays for itself in recovered engineering focus within the first 3 sessions.
+                  </div>
+                </div>
+              </div>
+            </div>
             <h3 id="enterprise-security">Zero-Retention & Self-Hosting</h3>
             <p>
               Your code is yours. The Memwyre extraction engine uses zero-retention policies—meaning your transcripts are processed in memory and immediately discarded. For enterprise environments with strict compliance requirements, the entire Memwyre backend can be <strong>self-hosted</strong> behind your firewall, ensuring your proprietary source code never leaves your VPC.
@@ -429,9 +1016,9 @@
 
             <h2 id="license-and-requirements">License & Requirements</h2>
             <ul>
-              <li><strong>License:</strong> <a href="https://github.com/ramblinghermit0403/Memwyre" target="_blank" class="text-[#D97757] hover:underline font-medium">Apache-2.0</a> — no copyleft obligations. You can use, modify, and deploy Memwyre in proprietary environments without open-sourcing your changes. This matters for teams: claude-mem's <strong>AGPL-3.0</strong> license requires that any modifications served over a network be made open-source, which creates real compliance friction in enterprise environments.</li>
+              <li><strong>License:</strong> <a href="https://github.com/memwyreai/Memwyre" target="_blank" class="text-[#D97757] hover:underline font-medium">Apache-2.0</a> — no copyleft obligations. You can use, modify, and deploy Memwyre in proprietary environments without open-sourcing your changes. This matters for teams: claude-mem's <strong>AGPL-3.0</strong> license requires that any modifications served over a network be made open-source, which creates real compliance friction in enterprise environments.</li>
               <li><strong>System requirements:</strong> Node.js 18+ (for the plugin runtime). Works on macOS, Linux, and Windows. No local database required — unlike claude-mem (SQLite + ChromaDB dependency), Memwyre stores data in a managed cloud vault.</li>
-              <li><strong>Self-hosting:</strong> For teams that need full data sovereignty, the entire Memwyre backend is available for <strong>self-hosted Docker deployment</strong>. See the <a href="https://github.com/ramblinghermit0403/Memwyre" target="_blank" class="text-[#D97757] hover:underline font-medium">GitHub repo</a> for instructions.</li>
+              <li><strong>Self-hosting:</strong> For teams that need full data sovereignty, the entire Memwyre backend is available for <strong>self-hosted Docker deployment</strong>. See the <a href="https://github.com/memwyreai/Memwyre" target="_blank" class="text-[#D97757] hover:underline font-medium">GitHub repo</a> for instructions.</li>
             </ul>
 
             <h2 id="honest-take">Why Not Just Use CLAUDE.md?</h2>
@@ -517,23 +1104,30 @@ const copyLink = () => {
 const toc = [
   { level: 2, text: 'TL;DR', slug: 'tldr' },
   { level: 2, text: 'The Problem', slug: 'the-problem' },
-  { level: 2, text: 'Comparison', slug: 'comparison' },
-  { level: 3, text: 'vs claude-mem', slug: 'memwyre-vs-claude-mem' },
-  { level: 3, text: 'Cross-Tool Sync', slug: 'cross-tool-sync' },
-  { level: 2, text: 'Architecture', slug: 'architecture' },
+  { level: 2, text: 'CLAUDE.md Guide', slug: 'claudemd-masterclass' },
+  { level: 3, text: 'Hierarchy & Rules', slug: 'claudemd-hierarchy' },
+  { level: 3, text: 'Master Template', slug: 'claudemd-template' },
+  { level: 2, text: 'Prompt Cache vs Memory', slug: 'prompt-caching-vs-memory' },
+  { level: 2, text: 'Native Memory Limits', slug: 'native-memory-limits' },
+  { level: 2, text: 'CLI Context Commands', slug: 'cli-commands' },
+  { level: 2, text: 'The Team Silo Problem', slug: 'team-silo-problem' },
+  { level: 2, text: 'Four Approaches', slug: 'comparison' },
+  { level: 3, text: '1. Pure Native', slug: 'approach-native' },
+  { level: 3, text: '2. claude-mem (OSS)', slug: 'approach-claude-mem' },
+  { level: 3, text: '3. Generic MCP', slug: 'approach-mcp' },
+  { level: 3, text: '4. Memwyre Engine', slug: 'approach-memwyre' },
+  { level: 2, text: 'Plugin Architecture', slug: 'architecture' },
   { level: 3, text: 'SessionStart', slug: 'sessionstart' },
   { level: 3, text: 'Stop Session', slug: 'stop-session' },
   { level: 3, text: 'Troubleshooting', slug: 'troubleshooting' },
   { level: 2, text: 'Setup', slug: 'setup' },
   { level: 2, text: 'Capabilities', slug: 'capabilities' },
+  { level: 3, text: 'Monorepo Scoping', slug: 'monorepo-isolation' },
   { level: 2, text: 'Benchmark', slug: 'benchmark' },
-  { level: 2, text: 'Real-World Workflow', slug: 'real-world-workflow' },
-  { level: 2, text: 'Security & Costs', slug: 'security-and-costs' },
-  { level: 3, text: 'Noise Filtration', slug: 'noise-filtration' },
-  { level: 3, text: 'Token Efficiency', slug: 'token-efficiency' },
-  { level: 3, text: 'Enterprise Security', slug: 'enterprise-security' },
-  { level: 2, text: 'License & Requirements', slug: 'license-and-requirements' },
-  { level: 2, text: 'Honest Take', slug: 'honest-take' },
+  { level: 2, text: 'Real-World Refactor', slug: 'real-world-workflow' },
+  { level: 2, text: 'Token Economics & Costs', slug: 'security-and-costs' },
+  { level: 3, text: '30-Day Token ROI', slug: 'token-efficiency' },
+  { level: 2, text: 'License & Compliance', slug: 'license-and-requirements' },
   { level: 2, text: 'FAQ', slug: 'faq' }
 ];
 
@@ -605,15 +1199,23 @@ const faqs = [
   },
   {
     question: 'What license is Memwyre released under?',
-    answer: '<strong>Apache-2.0.</strong> No copyleft obligations. You can use, modify, and deploy Memwyre in proprietary environments without open-sourcing your changes. The full source is available on <a href="https://github.com/ramblinghermit0403/Memwyre" target="_blank" class="text-[#D97757] hover:underline">GitHub</a>.'
+    answer: '<strong>Apache-2.0.</strong> No copyleft obligations. You can use, modify, and deploy Memwyre in proprietary environments without open-sourcing your changes. The full source is available on <a href="https://github.com/memwyreai/Memwyre" target="_blank" class="text-[#D97757] hover:underline">GitHub</a>.'
   },
   {
     question: 'What happens if Memwyre captures something wrong?',
     answer: 'Every memory is individually addressable. You can view, edit, or delete any observation from the Memwyre dashboard or via API (<code>DELETE /api/v1/memories/:id</code>). The Ebbinghaus decay model also automatically deprioritizes stale facts over time, so outdated context naturally fades from retrieval results.'
   },
   {
+    question: 'Why does Claude Code forget instructions despite having Auto Memory and CLAUDE.md?',
+    answer: 'Claude Code\'s native memory engine stores notes in a local <code>MEMORY.md</code> file that is strictly hardcapped at <strong>200 lines / 25KB</strong>. When your notes exceed 200 lines, older memories are silently truncated without notifying Claude. Additionally, native memory uses exact keyword matching rather than semantic vector search, so Claude fails to retrieve notes unless your query uses identical wording. Memwyre solves this with automated vector and entity graph search that scales to millions of tokens.'
+  },
+  {
+    question: 'What is the 200-line / 25KB limit in Claude Code native memory, and how does Memwyre bypass it?',
+    answer: 'In Claude Code\'s internal compiler (<code>src/memdir/</code>), <code>MEMORY.md</code> is limited to 200 lines and 25KB to prevent system prompt bloat. When exceeded, facts at the top of the file fall off silently. Memwyre bypasses this by moving storage out of the local Markdown file and into an external, cloud-hosted semantic memory vault. Instead of dumping raw files, Memwyre retrieves only the top-k relevant memories (~1,500 tokens) on session start using two-stage cross-encoder re-ranking.'
+  },
+  {
     question: 'Is my memory data private?',
-    answer: 'Fully private and encrypted. Your memory vault is only accessible via your authenticated API key. Memwyre uses zero-retention processing — transcripts are extracted in memory and immediately discarded. For full data sovereignty, you can <a href="https://github.com/ramblinghermit0403/Memwyre" target="_blank" class="text-[#D97757] hover:underline">self-host the entire backend</a> behind your firewall.'
+    answer: 'Fully private and encrypted. Your memory vault is only accessible via your authenticated API key. Memwyre uses zero-retention processing — transcripts are extracted in memory and immediately discarded. For full data sovereignty, you can <a href="https://github.com/memwyreai/Memwyre" target="_blank" class="text-[#D97757] hover:underline">self-host the entire backend</a> behind your firewall.'
   }
 ];
 </script>
@@ -695,10 +1297,11 @@ const faqs = [
 }
 
 .markdown-content pre {
-  background-color: #111827;
-  color: #f3f4f6;
+  background-color: #f8fafc;
+  color: #1e293b;
   padding: 1rem;
   border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
   overflow-x: auto;
   margin-bottom: 1.25rem;
   font-size: 0.875rem;
@@ -706,27 +1309,39 @@ const faqs = [
 }
 
 .dark .markdown-content pre {
-  background-color: #000;
-  border: 1px solid #333;
+  background-color: #18181b;
+  color: #f4f4f5;
+  border: 1px solid #27272a;
 }
 
 .markdown-content code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+.markdown-content pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  font-size: inherit !important;
+}
+
 .markdown-content p code, 
 .markdown-content li code {
-  background-color: #f3f4f6;
-  color: #ef4444;
+  background-color: #f1f5f9;
+  color: #0f172a;
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
+  border: 1px solid #e2e8f0;
   font-size: 0.875em;
 }
 
 .dark .markdown-content p code, 
 .dark .markdown-content li code {
-  background-color: #374151;
-  color: #fca5a5;
+  background-color: #27272a;
+  color: #f4f4f5;
+  border-color: #3f3f46;
 }
 
 details summary::-webkit-details-marker {
