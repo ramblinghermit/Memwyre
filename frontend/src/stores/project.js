@@ -14,8 +14,13 @@ function getStorage() {
 export const useProjectStore = defineStore('project', () => {
     const storage = getStorage();
     const projects = ref([]);
-    const currentProjectId = ref(null);
     const loading = ref(false);
+
+    // Synchronously restore saved workspace on store creation to prevent
+    // race conditions where components fetch data before fetchProjects() resolves.
+    const savedIdStr = storage.getItem('selectedProjectId');
+    const initialId = savedIdStr ? Number(savedIdStr) : null;
+    const currentProjectId = ref(initialId);
 
     const setCurrentProjectId = (id) => {
         const numericId = id ? Number(id) : null;
