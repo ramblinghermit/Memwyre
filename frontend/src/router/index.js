@@ -199,6 +199,16 @@ export function createAppRouter({ ssr = false } = {}) {
                         redirect: '/ai-memory-benchmark-locomo'
                     },
                     {
+                        path: 'blog/vector-database-vs-agent-memory',
+                        redirect: '/research/vector-database-vs-agent-memory'
+                    },
+                    {
+                        path: 'research/vector-database-vs-agent-memory',
+                        name: 'vector-db-vs-agent-memory',
+                        component: () => import('../views/VectorDbVsAgentMemoryView.vue'),
+                        meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/research/vector-database-vs-agent-memory'] }
+                    },
+                    {
                         path: 'research/context-engineering',
                         name: 'context-engineering',
                         component: () => import('../views/ContextEngineeringView.vue'),

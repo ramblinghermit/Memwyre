@@ -314,6 +314,51 @@
               </div>
             </div>
 
+            <h3 id="gc-limits-oom">V8 Garbage Collection Limits &amp; Node.js Out-Of-Memory (OOM) Crashes</h3>
+            <p>
+              When developers run deep, multi-turn coding sessions with the OpenCode Desktop app, they frequently hit catastrophic UI freezes and crashes caused by <strong>V8 garbage collector thrashing</strong> and Node.js heap exhaustion.
+            </p>
+            <p>
+              Here is why OpenCode experiences severe memory leaks and garbage collection bottlenecks:
+            </p>
+            <ul>
+              <li><strong>Retained DOM &amp; Token Buffer Trees:</strong> Because Chromium renders every past code diff, terminal log, and conversational turn inside a single renderer process, objects remain referenced in the V8 heap. The garbage collector cannot safely sweep these objects, leading to unbounded heap growth.</li>
+              <li><strong>Stop-the-World Scavenge Cycles:</strong> As heap usage approaches the default Node.js limit (typically 4 GB or 8 GB), V8 initiates full-generation Mark-Sweep-Compact passes. These synchronous pauses freeze the GUI, causing typed characters to lag and editor interactions to lock up.</li>
+              <li><strong>Fatal Heap Out-of-Memory (OOM):</strong> Once total memory breaches the OS or container allocation boundary, the Node process terminates with <code>FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory</code>. Developers are forced to kill the process and discard unsaved context.</li>
+            </ul>
+            <p>
+              <strong>The Memwyre Decoupling Architecture:</strong> Memwyre circumvents V8 garbage collection limits by shifting memory management out of the local process. Using the stateless OpenCode CLI with the Memwyre hook, terminal sessions discard active token buffers cleanly after each interaction. Relevant project architecture is queried on demand via low-latency API calls, keeping local process memory rock-solid under 150 MB indefinitely.
+            </p>
+
+            <h3 id="ram-requirements">OpenCode RAM Requirements: CLI vs. Desktop GUI</h3>
+            <p>
+              Depending on whether you use the full Electron desktop build or the headless CLI with Memwyre, the system hardware requirements diverge dramatically:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div class="p-5 rounded-lg border border-red-200 dark:border-red-900/50 bg-red-50/40 dark:bg-red-950/20 text-xs">
+                <div class="text-sm font-bold text-red-900 dark:text-red-300 mb-2 font-mono">OpenCode Desktop GUI Profile</div>
+                <div class="space-y-2 text-gray-700 dark:text-gray-300">
+                  <div><strong>Minimum RAM:</strong> 16 GB</div>
+                  <div><strong>Recommended RAM:</strong> 32 GB – 64 GB</div>
+                  <div><strong>Peak Heap Allocation:</strong> 12–20 GB during multi-file refactors</div>
+                  <div><strong>Environment:</strong> Local high-performance workstations only (incompatible with small cloud VPS or devcontainers)</div>
+                  <div><strong>Typical Failure:</strong> System swap starvation, unhandled Electron crashes, CPU spikes during GC cycles</div>
+                </div>
+              </div>
+
+              <div class="p-5 rounded-lg border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/40 dark:bg-emerald-950/20 text-xs">
+                <div class="text-sm font-bold text-emerald-900 dark:text-emerald-300 mb-2 font-mono">OpenCode CLI + Memwyre Profile</div>
+                <div class="space-y-2 text-gray-700 dark:text-gray-300">
+                  <div><strong>Minimum RAM:</strong> 512 MB – 1 GB</div>
+                  <div><strong>Recommended RAM:</strong> 2 GB</div>
+                  <div><strong>Peak Heap Allocation:</strong> &lt; 150 MB (stateless runtime)</div>
+                  <div><strong>Environment:</strong> GitHub Codespaces, low-cost VPS instances, Docker containers, remote SSH boxes, lightweight laptops</div>
+                  <div><strong>Memory Retention:</strong> 100% persistent cross-session recall via remote entity graph</div>
+                </div>
+              </div>
+            </div>
+
             <h2 id="comparison">Four Approaches to OpenCode Memory</h2>
 
             <div class="overflow-x-auto my-6">
@@ -399,6 +444,20 @@
               <li><strong>Automatic Lifecycle Hooks:</strong> Hooks into OpenCode's `create`/`start` events to inject past architectural context and `idle`/`end` events to capture newly learned facts seamlessly.</li>
               <li><strong>LoCoMo-10 Benchmark Scores:</strong> Memwyre's two-stage cross-encoder engine achieves <strong>70.5% overall accuracy</strong> on the LoCoMo-10 benchmark vs. 43.7% for standard vector RAG systems. <em>(Compare features on our <router-link to="/memwyre-vs-mem0" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Mem0</router-link> and <router-link to="/memwyre-vs-supermemory" class="text-[#D97757] hover:underline font-medium">Memwyre vs. Supermemory</router-link> pages.)</em></li>
             </ul>
+
+            <h3 id="memory-md-comparison">Memwyre vs. Manual memory.md &amp; opencode-working-memory</h3>
+            <p>
+              To work around OpenCode's lack of native session memory, many engineers attempt to maintain a static <code>memory.md</code> or <code>.opencode/working-memory</code> file in their repository root. While this seems straightforward initially, it quickly degrades agent performance:
+            </p>
+            <ul>
+              <li><strong>Context Window Bloat:</strong> Prepending a 1,000-line <code>memory.md</code> file into every prompt wastes 4,000–8,000 tokens per interaction, ballooning LLM API costs and slowing down response latency.</li>
+              <li><strong>Attention Distraction &amp; Hallucination:</strong> Large flat files force the model to parse dozens of outdated or irrelevant historical notes, leading to prompt confusion and degraded code generation quality.</li>
+              <li><strong>Manual Overhead &amp; Stale Rules:</strong> Developers must manually edit, prune, and reorganize Markdown notes. Obsolete architectural patterns persist indefinitely because flat files lack recency weighting or decay models.</li>
+              <li><strong>Zero Cross-Tool Sync:</strong> A local <code>memory.md</code> file stays locked inside that specific git repository and branch. It cannot inform <router-link to="/claude-memory" class="text-[#D97757] hover:underline font-medium">Claude Code</router-link>, <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link>, or teammate workflows.</li>
+            </ul>
+            <p>
+              <strong>The Memwyre Difference:</strong> Instead of dumping static files into the prompt, Memwyre performs <em>dynamic, AST-aware contextual injection</em>. On session start, it retrieves only the top 3–5 high-confidence facts relevant to the active workspace. As your architecture evolves, an integrated Ebbinghaus decay model automatically deprioritizes stale conventions without manual editing.
+            </p>
 
             <h3 id="cross-tool-sync">How Cross-Tool Sync Actually Works</h3>
             <ul>
@@ -590,8 +649,9 @@ export default {
               </table>
             </div>
 
-            <p>
+            <p class="flex flex-wrap gap-4 text-sm">
               <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">View the full LoCoMo-10 benchmark results →</router-link>
+              <router-link to="/research/vector-database-vs-agent-memory" class="text-[#D97757] hover:underline font-medium">Read our Vector DB vs. Agent Memory research paper →</router-link>
             </p>
 
             <h2 id="real-world-workflow">Real-World Workflow: Iterative Feature Development</h2>
@@ -710,8 +770,11 @@ const toc = [
   { level: 2, text: 'TL;DR', slug: 'tldr' },
   { level: 2, text: 'The Problem', slug: 'the-problem' },
   { level: 2, text: 'Desktop RAM Dilemma', slug: 'desktop-ram-dilemma' },
+  { level: 3, text: 'GC & OOM Crashes', slug: 'gc-limits-oom' },
+  { level: 3, text: 'RAM Requirements', slug: 'ram-requirements' },
   { level: 2, text: 'Comparison', slug: 'comparison' },
   { level: 3, text: 'vs Mem0 & Supermemory', slug: 'memwyre-vs-opencode-alternatives' },
+  { level: 3, text: 'vs memory.md Files', slug: 'memory-md-comparison' },
   { level: 3, text: 'Cross-Tool Sync', slug: 'cross-tool-sync' },
   { level: 2, text: 'Architecture', slug: 'architecture' },
   { level: 3, text: 'SessionStart', slug: 'sessionstart' },
@@ -777,40 +840,40 @@ onUnmounted(() => {
 
 const faqs = [
   {
+    question: 'Does OpenCode have persistent memory?',
+    answer: 'No. OpenCode does not have native persistent long-term memory across sessions. By default, every time you close an OpenCode terminal or restart a session, all architectural decisions, debugging breakthroughs, and code patterns are flushed. Connecting the Memwyre OpenCode plugin equips OpenCode with cross-session long-term memory that auto-injects relevant context on start and saves learnings on exit.'
+  },
+  {
     question: 'Why does OpenCode use so much RAM (10–20 GB), and how does Memwyre fix it?',
-    answer: 'The OpenCode Desktop GUI renders all past and active sessions inside an Electron/Chromium web runtime, causing memory leaks and DOM buffer bloat over long coding sessions. Memwyre solves this by decoupling memory from the desktop client: developers can switch to the ultra-lightweight OpenCode CLI (cutting RAM usage by 90%) while Memwyre automatically persists architecture context, past decisions, and project conventions across sessions on demand.'
+    answer: 'The OpenCode Desktop GUI renders all past and active sessions inside an Electron/Chromium web runtime, causing memory leaks and DOM buffer bloat over long coding sessions. Memwyre solves this by decoupling memory from the desktop client: developers switch to the ultra-lightweight OpenCode CLI (cutting RAM usage by 90% down to &lt;150 MB) while Memwyre automatically persists architecture context, past decisions, and project conventions across sessions on demand.'
   },
   {
-    question: 'Does OpenCode have built-in memory?',
-    answer: 'No. OpenCode does not provide native persistent memory across separate terminal sessions or restarts. Once a session terminates, all context is flushed unless you connect an external memory provider like Memwyre.'
+    question: 'What causes OpenCode V8 garbage collector freezes and Out-of-Memory (OOM) crashes?',
+    answer: 'In long multi-turn sessions, OpenCode\'s in-memory session heap exceeds Node.js and V8 default heap allocation limits. The V8 garbage collector enters repeated stop-the-world scavenge cycles attempting to reclaim uncollected DOM and diff objects, resulting in GUI freezes and fatal JavaScript heap out of memory crashes. Memwyre avoids this by persisting state asynchronously outside the Node/Electron process.'
   },
   {
-    question: 'How do I give OpenCode persistent memory?',
-    answer: 'Install @memwyre/opencode-plugin into your project or global opencode plugins directory, configure the hook in opencode.json, and provide your MEMWYRE_API_KEY. Context is then automatically injected upon SessionStart.'
+    question: 'What are the RAM requirements for running OpenCode CLI vs Desktop?',
+    answer: 'OpenCode Desktop GUI requires 16 GB to 32 GB RAM to prevent OS swapping and memory freezes during intensive development. In contrast, the OpenCode CLI paired with Memwyre requires only 512 MB to 1 GB RAM, enabling high-performance AI coding on lightweight VPS instances, GitHub Codespaces, Docker containers, and low-spec machines.'
   },
   {
-    question: 'What is the best OpenCode memory plugin?',
-    answer: 'For cross-tool workflows (sharing memory between OpenCode, Claude Code, and Cursor), Memwyre is the highest-performing option with 70.5% LoCoMo-10 benchmark recall. For single-agent local-only storage, claude-mem or custom filesystem hooks can be used.'
+    question: 'How does Memwyre compare to manual memory.md or opencode-working-memory files?',
+    answer: 'Static files like memory.md or opencode-working-memory suffer from token window exhaustion, attention drift, and manual overhead as they grow. Memwyre replaces static files with semantic AST-aware context injection: it dynamically retrieves only the top 3–5 relevant insights for your active task, automatically applies Ebbinghaus decay to obsolete facts, and syncs across Claude Code and Cursor.'
   },
   {
-    question: 'How is Memwyre different from claude-mem or Mem0 in OpenCode?',
-    answer: 'claude-mem stores plain Markdown files on local disk that cannot sync with cloud agents or teammates. Mem0 relies on generic vector similarity search, which lacks developer-specific noise filtration (AST pruning, test log stripping). Memwyre uses multi-factor indexing combining semantic embeddings, recency weighting, and AST dependency graphs.'
+    question: 'What is the best memory plugin for OpenCode?',
+    answer: 'Memwyre is the top-ranked memory plugin for OpenCode, scoring 70.5% on the LoCoMo-10 long-term memory benchmark compared to 43.7% for basic vector solutions. It features deterministic lifecycle hooks, zero local RAM overhead, AST code chunking, and bi-directional cross-tool synchronization with Claude Code, Cursor, and VS Code.'
   },
   {
-    question: 'Does the plugin work with Claude Code and Cursor simultaneously?',
-    answer: 'Yes. Decisions made while running OpenCode in your terminal are indexed in your unified Memwyre vault, immediately accessible to Claude Code CLI and Cursor Composer in real time.'
+    question: 'How do I maintain consistent memory across OpenCode, Claude Code, and Cursor?',
+    answer: 'Memwyre acts as a universal memory hub. By using your single Memwyre API key across the OpenCode plugin, Claude Code hooks, Cursor MCP server, and VS Code extension, decisions made in an OpenCode terminal session are instantly synchronized and accessible to Claude and Cursor in real time.'
   },
   {
-    question: 'What license is Memwyre released under?',
-    answer: 'The Memwyre OpenCode plugin and CLI hooks are released under the Apache-2.0 open-source license.'
-  },
-  {
-    question: 'What happens if Memwyre captures incorrect architectural facts?',
-    answer: 'You can inspect, edit, or delete any captured memory instantly via the Memwyre Web Dashboard, CLI commands (`memwyre memory delete`), or via MCP tool calls directly inside your agent.'
+    question: 'How do I give OpenCode persistent memory across sessions?',
+    answer: 'Install <code>@memwyre/opencode-plugin</code> into your project or global opencode plugins directory, configure the hook in <code>opencode.json</code>, and set your <code>MEMWYRE_API_KEY</code> environment variable. Context is then automatically injected upon SessionStart and saved on SessionEnd.'
   },
   {
     question: 'Is my OpenCode memory data private and secure?',
-    answer: 'Yes. Memwyre operates with zero data retention for LLM training. Code snippets are encrypted at rest (AES-256) and in transit (TLS 1.3), with self-hosted on-prem deployment options available for enterprise teams.'
+    answer: 'Yes. Memwyre operates with zero data retention for LLM training. Code transcripts and embeddings are encrypted at rest (AES-256) and in transit (TLS 1.3), with self-hosted on-prem deployment options available for enterprise teams.'
   }
 ];
 </script>

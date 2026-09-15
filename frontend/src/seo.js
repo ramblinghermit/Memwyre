@@ -11,6 +11,7 @@ export const PRERENDER_ROUTES = [
   '/plugins',
   '/extension',
   '/blog',
+  '/blog/shared-memory-chatgpt-claude-cursor',
   '/blog/mcp-persistent-memory',
   '/blog/vscode-mcp-persistent-memory',
   '/blog/claude-code-memory-ingestion',
@@ -22,6 +23,7 @@ export const PRERENDER_ROUTES = [
   '/ai-memory-benchmark-locomo',
   '/research/what-is-ai-memory',
   '/research/context-engineering',
+  '/research/vector-database-vs-agent-memory',
   '/memwyre-vs-mem0',
   '/memwyre-vs-supermemory',
   '/memwyre-vs-zep',
@@ -127,6 +129,12 @@ export const PUBLIC_ROUTE_SEO = {
       'Load the Memwyre plugin for OpenClaw autonomous coding agents. Enable long-term memory query tools and persistent inbox updates across agent runs.',
     ogImage: '/blog-covers/openclaw-autonomous-memory.png',
   },
+  '/blog/shared-memory-chatgpt-claude-cursor': {
+    title: 'Shared Memory Across ChatGPT, Claude Code & Cursor | Memwyre',
+    description:
+      'Learn how to maintain consistent, shared persistent memory across ChatGPT, Claude Code, and Cursor. Eliminate copy-pasting and architectural context silos.',
+    ogImage: '/blog-covers/shared-memory-chatgpt-claude-cursor.png',
+  },
   '/blog/cursor-vs-claude-code-context': {
     title: 'Cursor AI vs Claude Code: Context & Memory | Memwyre',
     description:
@@ -183,6 +191,127 @@ export const PUBLIC_ROUTE_SEO = {
         "publisher": { "@type": "Organization", "name": "Memwyre", "logo": { "@type": "ImageObject", "url": "https://memwyre.tech/image.svg" } }
     })
   },
+  '/research/vector-database-vs-agent-memory': {
+    title: 'Vector Database vs. AI Agent Memory: The Architectural Difference | Memwyre Research',
+    description: 'Discover why vector databases are not AI agent memory. Compare flat semantic embeddings with stateful entity graphs, Ebbinghaus decay, and continuous write-back loops.',
+    canonical: 'https://memwyre.tech/research/vector-database-vs-agent-memory',
+    ogType: 'article',
+    jsonLd: JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TechArticle",
+          "headline": "Vector Database vs. AI Agent Memory: The Architectural Difference Between Static Indexing and Stateful Cognition",
+          "description": "An architectural comparison between traditional vector databases (Pinecone, Weaviate, Chroma) and active AI agent memory layers (Memwyre). Covers temporal decay, conflict compaction, and LoCoMo-10 benchmark results.",
+          "author": {
+            "@type": "Organization",
+            "name": "Memwyre Research Lab",
+            "url": "https://memwyre.tech/research"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Memwyre",
+            "url": "https://memwyre.tech",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://memwyre.tech/image.svg"
+            }
+          },
+          "datePublished": "2026-09-14",
+          "dateModified": "2026-09-14",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://memwyre.tech/research/vector-database-vs-agent-memory"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Why can't I just use Pinecone, Weaviate, or Chroma as my agent memory?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vector databases only calculate geometric semantic similarity between text embeddings. They lack a write-back feedback loop, have no concept of temporal decay (older facts are retrieved with equal weight to recent updates), cannot resolve contradictory statements, and fail to perform multi-hop relational entity traversal."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does AI Agent Memory resolve conflicting facts across sessions?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "When an agent learns a new architectural decision or user preference, an entity reconciliation worker checks for existing semantic entities in the knowledge graph. If a contradiction is detected, the system deprecates the superseded statement, logs the timestamped change, and updates the entity state rather than storing duplicate conflicting chunks."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the Ebbinghaus forgetting curve in AI memory?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "It is an adaptation of Hermann Ebbinghaus's psychological retention formula R = e^(-λt). In an Agent Memory layer, learned memories decay over time unless reinforced through repeated access or high importance ratings, ensuring recent, actively verified developer constraints always take precedence."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does vector RAG consume so many more tokens than an entity memory layer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vector RAG retrieves entire chunks of arbitrary text (typically 500 to 1,000 tokens each) to avoid cutting off words, injecting 5,000 to 20,000 tokens of noisy prose. An AI Memory Layer extracts and injects concise, deduplicated entity facts, reducing prompt overhead by approximately 81%."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does AI Agent Memory replace my vector database entirely?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Vector databases and Agent Memory are complementary. A vector database is ideal for indexing large volumes of static, immutable reference data (such as 10,000 pages of compliance documentation). An Agent Memory Layer is designed for the active, dynamic state of the user and agent across sessions."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does an Agent Memory Layer connect to my IDE (Cursor, VS Code, Claude Code)?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Memwyre connects via the standard Model Context Protocol (MCP) as well as native CLI hooks. It automatically injects relevant project entities into the prompt on session initialization and extracts learned decisions from the session transcript upon termination."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the LoCoMo-10 benchmark score for Memwyre vs. Vector RAG?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "On the standardized LoCoMo-10 benchmark (1,986 questions across 10 long-term conversational trajectories), Memwyre achieves a 70.5% non-adversarial accuracy across 1,540 standard questions, scoring 78.6% on single-hop recall, 64.2% on temporal reasoning, and 57.5% on multi-hop reasoning. A standard flat vector RAG baseline achieves approximately 42% overall recall on the same dataset, while consuming over 26,000 tokens per query compared to Memwyre's ~4,924 tokens (an 81% reduction)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can multiple AI agents share the same memory vault?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. In Memwyre, multiple agents (such as an architect agent in Claude Code, a coding agent in Cursor Composer, and a headless testing agent in OpenClaw) connect to the same tenant vault. Decisions made by one agent are immediately queryable by another, eliminating multi-agent context fragmentation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does Memwyre handle sensitive credentials, API keys, and code privacy?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Memwyre implements client-side regex and AST filters that automatically sanitize API keys, secrets, and PII before memory ingestion. In transit and at rest, memory graphs are encrypted with AES-256-GCM. Furthermore, Memwyre does not train foundation models on tenant memory vaults."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I self-host the Memwyre memory engine locally or within an isolated VPC?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The Memwyre memory daemon provides a local-first SQLite + embedded vector execution mode that runs entirely on developer workstations with zero cloud network egress. For enterprise teams, a self-hosted Docker / Helm chart deployment is available for private AWS/GCP Kubernetes clusters."
+              }
+            }
+          ]
+        }
+      ]
+    })
+  },
   '/ai-memory-benchmark-locomo': {
     title: 'LoCoMo Benchmark Report | Evaluating AI Memory Networks',
     description: 'Read the LoCoMo Benchmark Report: methodology, datasets, competitors, findings, and conclusions comparing Memwyre, Mem0, Zep, and Supermemory.',
@@ -226,8 +355,8 @@ export const PUBLIC_ROUTE_SEO = {
     description: 'Prevent OpenClaw context compaction loss and RAM bloat. Give autonomous AI coding agents persistent long-term memory across runs with the Memwyre plugin.',
   },
   '/opencode-memory': {
-    title: 'OpenCode Persistent Memory: Fix Desktop RAM Bloat & CLI Memory | Memwyre',
-    description: 'Preserve OpenCode project context across sessions and eliminate Desktop RAM leaks. Connect OpenCode CLI directly to a persistent long-term memory graph.',
+    title: 'OpenCode Persistent Memory: Fix RAM Leaks & CLI Session State | Memwyre',
+    description: 'Eliminate OpenCode RAM bloat, V8 garbage collector freezes, and CLI session reset. Give OpenCode persistent long-term memory across terminal sessions with Memwyre.',
   },
 };
 
@@ -787,8 +916,135 @@ export function getSeoForPath(path = '/') {
         ]
       });
     }
-  } else if (['/openclaw-memory', '/opencode-memory'].includes(normalizedPath)) {
-    const pluginName = normalizedPath === '/openclaw-memory' ? 'OpenClaw' : 'OpenCode';
+  } else if (normalizedPath === '/opencode-memory') {
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Himansh Shivhare',
+      'jobTitle': 'Founder & Lead Architect',
+      'worksFor': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'sameAs': [
+        'https://linkedin.com/in/himansh-shivhare',
+        'https://github.com/ramblinghermit0403'
+      ]
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      'name': 'Memwyre OpenCode Memory Plugin',
+      'url': canonical,
+      'applicationCategory': 'DeveloperApplication',
+      'operatingSystem': 'Windows, macOS, Linux',
+      'image': socialImageUrl,
+      'author': {
+        '@type': 'Person',
+        'name': 'Himansh Shivhare',
+        'url': 'https://linkedin.com/in/himansh-shivhare'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+        'availability': 'https://schema.org/InStock'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '142',
+        'bestRating': '5',
+        'worstRating': '1'
+      },
+      'description': routeSeo.description || DEFAULT_SEO.description
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'Does OpenCode have persistent memory?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'No. OpenCode does not have native persistent long-term memory across sessions. By default, every time you close an OpenCode terminal or restart a session, all architectural decisions, debugging breakthroughs, and code patterns are flushed. Connecting the Memwyre OpenCode plugin equips OpenCode with cross-session long-term memory that auto-injects relevant context on start and saves learnings on exit.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Why does OpenCode use so much RAM (10–20 GB), and how does Memwyre fix it?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'The OpenCode Desktop GUI runs inside an Electron/Chromium environment that holds all active sessions, DOM nodes, and raw token buffers in memory, triggering runaway RAM bloat and memory leaks. Memwyre solves this by decoupling memory from the desktop client: developers switch to the ultra-lightweight OpenCode CLI (cutting system RAM usage by 90% down to <150 MB) while Memwyre stores long-term memory in a remote vector and entity graph vault.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What causes OpenCode V8 garbage collector freezes and Out-of-Memory (OOM) crashes?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'In long multi-turn sessions, OpenCode\'s in-memory session heap exceeds Node.js and V8 default heap allocation limits. The V8 garbage collector enters repeated stop-the-world scavenge cycles attempting to reclaim uncollected DOM and diff objects, resulting in GUI freezes and fatal JavaScript heap out of memory crashes. Memwyre avoids this by persisting state asynchronously outside the Node/Electron process.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What are the RAM requirements for running OpenCode CLI vs Desktop?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'OpenCode Desktop GUI requires 16 GB to 32 GB RAM to prevent OS swapping and memory freezes during intensive development. In contrast, the OpenCode CLI paired with Memwyre requires only 512 MB to 1 GB RAM, enabling high-performance AI coding on lightweight VPS instances, GitHub Codespaces, Docker containers, and low-spec machines.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How does Memwyre compare to manual memory.md or opencode-working-memory files?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Static files like memory.md or opencode-working-memory suffer from token window exhaustion, attention drift, and manual overhead as they grow. Memwyre replaces static files with semantic AST-aware context injection: it dynamically retrieves only the top 3–5 relevant insights for your active task, automatically applies Ebbinghaus decay to obsolete facts, and syncs across Claude Code and Cursor.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What is the best memory plugin for OpenCode?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Memwyre is the top-ranked memory plugin for OpenCode, scoring 70.5% on the LoCoMo-10 long-term memory benchmark compared to 43.7% for basic vector solutions. It features deterministic lifecycle hooks, zero local RAM overhead, AST code chunking, and bi-directional cross-tool synchronization with Claude Code, Cursor, and VS Code.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How do I maintain consistent memory across OpenCode, Claude Code, and Cursor?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Memwyre acts as a universal memory hub. By using your single Memwyre API key across the OpenCode plugin, Claude Code hooks, Cursor MCP server, and VS Code extension, decisions made in an OpenCode terminal session are instantly synchronized and accessible to Claude and Cursor in real time.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How do I give OpenCode persistent memory across sessions?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Run npm install -g @memwyre/opencode-plugin, add the plugin hook to your opencode.json configuration, and set export MEMWYRE_API_KEY=your_key. The plugin will automatically query Memwyre on session start and push compact decision summaries on session exit.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Is my OpenCode memory data private and secure?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. Memwyre operates with zero data retention for LLM training. Code transcripts and embeddings are encrypted at rest with AES-256 and in transit via TLS 1.3, with full self-hosted on-premise deployment available for enterprise teams.'
+          }
+        }
+      ]
+    });
+  } else if (normalizedPath === '/openclaw-memory') {
+    const pluginName = 'OpenClaw';
     jsonLdData.push({
       '@context': 'https://schema.org',
       '@type': 'Person',
@@ -936,6 +1192,87 @@ export function getSeoForPath(path = '/') {
       },
       'url': canonical
     });
+  } else if (normalizedPath === '/blog/shared-memory-chatgpt-claude-cursor') {
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      'headline': 'How to Maintain Consistent Memory Across ChatGPT, Claude Code, and Cursor',
+      'description': 'Learn how to maintain consistent, shared persistent memory across ChatGPT, Claude Code, and Cursor. Eliminate copy-pasting and architectural context silos.',
+      'image': socialImageUrl,
+      'datePublished': '2026-08-14T00:00:00+00:00',
+      'dateModified': '2026-08-14T00:00:00+00:00',
+      'author': {
+        '@type': 'Person',
+        'name': 'Himansh Shivhare',
+        'url': 'https://linkedin.com/in/himansh-shivhare'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'logo': {
+          '@type': 'ImageObject',
+          'url': `${SITE_URL}/image.svg`
+        }
+      },
+      'mainEntityOfPage': {
+        '@type': 'WebPage',
+        '@id': canonical
+      }
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'How can I maintain consistent memory across ChatGPT, Claude Code, and Cursor?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'By connecting all three environments to a central Memwyre vault. You configure Cursor with the official Memwyre MCP server, configure Claude Code with session lifecycle hooks (@memwyre/claude-code-plugin), and connect ChatGPT using the Memwyre browser extension. Every decision saved in one tool becomes instantly searchable in the other two.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What tool lets me maintain conversation history across ChatGPT, Claude, and Cursor?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Memwyre is the dedicated cross-tool memory platform designed specifically for this workflow. Unlike standard chat history exporters that simply store static transcripts, Memwyre analyzes conversations, extracts core architectural entities and coding decisions, and indexes them into an active knowledge graph accessible via API and MCP.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Can Claude Code maintain shared team memory across all developers?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. When your team points their local Claude Code CLI instances to a shared Memwyre organization vault, decisions made during one developer\'s terminal session are indexed and immediately available to teammates. When another developer opens Claude Code or Cursor, their assistant automatically references the updated conventions.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How do I transfer my existing ChatGPT memory into Claude Code or Cursor?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'You can use the Memwyre Chrome Extension to export your ChatGPT memory and conversation history directly into your Memwyre vault. Once synced, the memories are instantly accessible inside Claude Code (via CLI hooks) and Cursor (via @memwyre in Composer).'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Does Cursor AI track memory across separate chat conversations natively?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Cursor\'s native chat does not persist conversational memory across separate threads or Composer windows. Each new conversation starts with a fresh context window, relying only on static @Codebase indexing and .cursorrules. Connecting Memwyre via MCP provides Cursor with persistent, cross-thread memory.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Is my code and conversation data private and secure?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. Memwyre operates with a strict zero-retention policy for LLM training. Code snippets, transcripts, and embeddings are encrypted in transit via TLS 1.3 and at rest with AES-256. For regulated teams requiring complete data sovereignty, Memwyre offers self-hosted on-premise deployments.'
+          }
+        }
+      ]
+    });
   }
 
   return {
@@ -944,7 +1281,7 @@ export function getSeoForPath(path = '/') {
     canonical,
     ogTitle: routeSeo.title || DEFAULT_SEO.title,
     ogDescription: routeSeo.description || DEFAULT_SEO.description,
-    ogType: DEFAULT_SEO.ogType,
+    ogType: routeSeo.ogType || DEFAULT_SEO.ogType,
     ogUrl: canonical,
     ogSiteName: SITE_NAME,
     ogImage: socialImageUrl,
@@ -955,6 +1292,6 @@ export function getSeoForPath(path = '/') {
     twitterDescription: routeSeo.description || DEFAULT_SEO.description,
     twitterImage: socialImageUrl,
     robots: isIndexable ? 'index, follow' : 'noindex, nofollow',
-    jsonLd: JSON.stringify(jsonLdData, null, 2),
+    jsonLd: routeSeo.jsonLd || JSON.stringify(jsonLdData, null, 2),
   };
 }

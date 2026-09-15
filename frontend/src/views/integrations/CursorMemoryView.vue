@@ -680,15 +680,22 @@
             <p>
               Memwyre's multi-factor ranking (combining dense embeddings, entity graph connections, and recency weighting) scored <strong>70.5%</strong>, outperforming flat vector RAG architectures (43.7%) by over 26 percentage points while cutting prompt tokens by 81%.
             </p>
+            <p>
+              For a detailed architectural breakdown of why vector search fails to maintain agent context across sessions, read our research paper on <router-link to="/research/vector-database-vs-agent-memory" class="text-[#D97757] hover:underline font-medium">Vector Database vs. AI Agent Memory</router-link>.
+            </p>
 
             <!-- Connected Ecosystem & Related Integrations -->
             <div class="my-10 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-950/40">
               <div class="text-xs font-mono font-bold uppercase tracking-wider text-[#D97757] mb-1">CONNECTED ECOSYSTEM</div>
               <h3 class="text-lg font-bold text-gray-950 dark:text-white hero-serif mb-4">Explore More Agent Memory Integrations</h3>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <router-link to="/claude-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
                   <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Claude Code Memory →</div>
                   <p class="text-xs text-gray-500 dark:text-gray-400">Overcome CLAUDE.md limits with automated CLI session ingestion.</p>
+                </router-link>
+                <router-link to="/opencode-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenCode Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Eliminate Desktop RAM bloat and fix CLI session reset with persistent memory.</p>
                 </router-link>
                 <router-link to="/mcp-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
                   <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Universal MCP Memory →</div>

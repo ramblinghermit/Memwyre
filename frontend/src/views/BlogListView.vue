@@ -14,6 +14,14 @@ const copyCommand = (cmd) => {
 
 const posts = ref([
   {
+    slug: 'shared-memory-chatgpt-claude-cursor',
+    category: 'Workflows',
+    title: 'How to Maintain Consistent Memory Across ChatGPT, Claude Code, and Cursor',
+    excerpt: 'Stop copy-pasting architecture context between ChatGPT, Claude Code, and Cursor. Build a synchronized cross-tool knowledge graph using Memwyre.',
+    readTime: '7 min read',
+    date: 'Aug 14, 2026'
+  },
+  {
     slug: 'mcp-persistent-memory',
     category: 'MCP Server',
     title: 'How to Give Claude Desktop Persistent Memory using MCP',

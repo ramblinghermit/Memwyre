@@ -866,8 +866,9 @@ claude mcp add memory-server -- node /path/to/server.js</code></pre>
             <p>
               The improvement comes from three architectural choices: <strong>dynamic context pruning</strong> during ingestion (strips conversational filler), <strong>two-stage cross-encoder re-ranking</strong> (high-recall vector fetch → precision cross-encoder scoring), and <strong>Ebbinghaus logarithmic recency decay</strong> (automatically deprioritizes stale observations).
             </p>
-            <p>
+            <p class="flex flex-wrap gap-4 text-sm">
               <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">View the full LoCoMo-10 benchmark results →</router-link>
+              <router-link to="/research/vector-database-vs-agent-memory" class="text-[#D97757] hover:underline font-medium">Read our Vector DB vs. Agent Memory deep dive →</router-link>
             </p>
 
             <h2 id="real-world-workflow">Real-World Workflow: Large Codebase Refactoring</h2>

@@ -62,6 +62,40 @@
               </span>
             </div>
 
+            <!-- Empirical Benchmark Links -->
+            <div class="space-y-2 pt-6 border-t border-gray-100 dark:border-zinc-900">
+              <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">RELATED STUDIES</div>
+              <router-link 
+                to="/research/vector-database-vs-agent-memory" 
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Vector DB vs. Agent Memory
+              </router-link>
+              <router-link 
+                to="/research/what-is-ai-memory" 
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                What is AI Memory?
+              </router-link>
+              <router-link 
+                to="/ai-memory-benchmark-locomo" 
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                LoCoMo-10 Benchmark (70.5%)
+              </router-link>
+              <a 
+                href="https://arxiv.org/abs/2402.17753" 
+                target="_blank"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+                arXiv:2402.17753 (LoCoMo Paper)
+              </a>
+            </div>
+
             <!-- Share Buttons -->
             <div class="space-y-3 pt-6 border-t border-gray-100 dark:border-zinc-900">
               <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold">SHARE THIS ARTICLE</div>
@@ -417,6 +451,7 @@
                 <router-link to="/research" class="hover:text-[#D97757] uppercase">/ Research Hub</router-link>
                 <router-link to="/mcp" class="hover:text-[#D97757] uppercase">/ MCP Integration</router-link>
                 <router-link to="/memwyre-vs-mem0" class="hover:text-[#D97757] uppercase">/ Memwyre vs Mem0</router-link>
+                <router-link to="/research/vector-database-vs-agent-memory" class="hover:text-[#D97757] uppercase">/ Vector DB vs Agent Memory</router-link>
                 <a href="https://docs.memwyre.tech" target="_blank" class="hover:text-[#D97757] uppercase">/ Documentation</a>
               </div>
             </div>

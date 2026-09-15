@@ -764,7 +764,10 @@
             </div>
             <p>
               The improvement comes from architectural drivers like dynamic context pruning, two-stage cross-encoder re-ranking, and Ebbinghaus logarithmic recency decay.
-              <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">View the full LoCoMo-10 benchmark results →</router-link>
+              <span class="block mt-2 flex flex-wrap gap-4 text-sm">
+                <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">View the full LoCoMo-10 benchmark results →</router-link>
+                <router-link to="/research/vector-database-vs-agent-memory" class="text-[#D97757] hover:underline font-medium">Read our Vector DB vs. Agent Memory research paper →</router-link>
+              </span>
             </p>
 
             <h2 id="real-world-workflow">Real-World Workflow: Multi-Agent Codebase Migration</h2>

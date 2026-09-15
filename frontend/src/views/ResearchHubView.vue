@@ -151,6 +151,15 @@ const papers = [
     cover: '/blog-covers/state-of-ai-memory-2026.png'
   },
   {
+    category: 'Architecture Study',
+    title: 'Vector Database vs. AI Agent Memory',
+    excerpt: 'The fundamental engineering differences between passive semantic vector tables and active cognitive agent memory layers with Ebbinghaus decay.',
+    readTime: '16 min read',
+    date: 'Sep 2026',
+    link: '/research/vector-database-vs-agent-memory',
+    cover: '/blog-covers/rag-vs-memory-long-term-knowledge.png'
+  },
+  {
     category: 'Developer Guide',
     title: 'Context Engineering: The 2026 Guide for Developers',
     excerpt: 'Prompt engineering is dead. Learn how Context Engineering and hierarchical entity graphs replace standard RAG for production AI agents.',

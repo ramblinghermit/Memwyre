@@ -780,7 +780,7 @@
                   Afternoon: Multi-File Code Generation in Cursor Composer
                 </div>
                 <p class="text-xs text-gray-600 dark:text-gray-400 mt-2 leading-relaxed">
-                  You open Cursor and ask Composer: <em>"Implement the payment processing router."</em> Composer queries <code>search_memwyre</code>, retrieves the morning decision in 180ms, and writes the Stripe-to-Adyen circuit-breaker without you having to re-type a single specification.
+                  You open Cursor and ask Composer: <em>"Implement the payment processing router."</em> Composer queries <code>search_memwyre</code>, retrieves the morning decision instantly, and writes the Stripe-to-Adyen circuit-breaker without you having to re-type a single specification.
                 </p>
               </div>
 
@@ -805,6 +805,10 @@
               <li><strong>Multi-Hop Reasoning (Linked Entities):</strong> Memwyre scored <strong>68.9%</strong> vs. 41.2% by resolving relationships between database tables and API endpoints.</li>
               <li><strong>Adversarial Negation (Abstention on Hallucination):</strong> Memwyre scored <strong>82.1%</strong> by correctly abstaining when a library had never been introduced, preventing false imports.</li>
             </ul>
+            <p class="flex flex-wrap gap-4 text-sm my-3">
+              <router-link to="/ai-memory-benchmark-locomo" class="text-[#D97757] hover:underline font-medium">View the full LoCoMo-10 benchmark results →</router-link>
+              <router-link to="/research/vector-database-vs-agent-memory" class="text-[#D97757] hover:underline font-medium">Read our Vector DB vs. Agent Memory deep dive →</router-link>
+            </p>
 
             <!-- Setup Section -->
             <h2 id="setup">Step-by-Step Setup Guide</h2>
