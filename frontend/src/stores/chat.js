@@ -76,8 +76,7 @@ export const useChatStore = defineStore('chat', () => {
     }
 
     const availableModels = [
-        { id: 'moonshotai.kimi-k2.5', name: 'Kimi K2.5 (Bedrock)' },
-        { id: 'apac.amazon.nova-pro-v1:0', name: 'Amazon Nova Pro' }
+        { id: 'moonshotai.kimi-k2.5', name: 'Kimi K2.5' }
     ];
 
     const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
@@ -212,6 +211,23 @@ export const useChatStore = defineStore('chat', () => {
     }
 
     async function createSession(title = "New Chat") {
+        // If current session is already empty (no messages sent), just reuse it
+        if (currentSession.value && messages.value.length === 0) {
+            return currentSession.value;
+        }
+
+        // Check if there's an existing empty "New Chat" session in the list
+        const existingEmpty = sessions.value.find(s => 
+            s.title === 'New Chat' && s.id !== currentSession.value?.id
+        );
+        if (existingEmpty) {
+            currentSession.value = existingEmpty;
+            messages.value = [];
+            currentContext.value = [];
+            resetTurnProgress();
+            return existingEmpty;
+        }
+
         try {
             const headers = await getAuthHeaders();
             const projectStore = useProjectStore();
@@ -257,6 +273,25 @@ export const useChatStore = defineStore('chat', () => {
             error.value = e.message;
         } finally {
             isLoading.value = false;
+        }
+    }
+
+    async function deleteSession(sessionId) {
+        try {
+            const headers = await getAuthHeaders();
+            await axios.delete(`${API_URL}/chat/sessions/${sessionId}`, headers);
+            sessions.value = sessions.value.filter(s => s.id !== sessionId);
+            if (currentSession.value?.id === sessionId) {
+                currentSession.value = null;
+                messages.value = [];
+                currentContext.value = [];
+                resetTurnProgress();
+            }
+            return true;
+        } catch (e) {
+            const toast = useToast();
+            toast.error('Failed to delete session');
+            return false;
         }
     }
 
@@ -386,6 +421,7 @@ export const useChatStore = defineStore('chat', () => {
         fetchSessions,
         createSession,
         selectSession,
+        deleteSession,
         sendMessage,
         clearHistory,
         sendFeedback,

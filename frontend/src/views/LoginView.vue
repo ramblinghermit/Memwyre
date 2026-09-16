@@ -8,10 +8,6 @@
              <div class="flex justify-center mb-6">
                  <img src="/logo.png" alt="Memwyre" class="h-9 w-auto dark:invert opacity-90" />
              </div>
-             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold mb-4 border border-emerald-200">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                Limited Beta Access
-             </div>
              <h1 class="text-[28px] font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
                 Log in to Memwyre
              </h1>
@@ -27,7 +23,7 @@
                  <div>
                     <div class="flex items-center justify-between mb-1.5">
                         <label for="password" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Password</label>
-                        <router-link to="/forgot-password/" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                        <router-link to="/forgot-password" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
                             Forgot password?
                         </router-link>
                     </div>
@@ -73,7 +69,7 @@
           <div class="text-center pt-2">
              <p class="text-sm text-zinc-600 dark:text-zinc-400">
                  Don't have an account? 
-                 <router-link to="/signup/" class="font-medium text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 transition-colors">
+                 <router-link to="/signup" class="font-medium text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-600 transition-colors">
                  Sign up
                  </router-link>
              </p>
@@ -143,17 +139,24 @@ const route = useRoute();
 const toast = useToast();
 
 const handleSuccessfulLogin = async (defaultRedirect = '/dashboard') => {
-    toast.success(`Welcome back, ${authStore.user.name}!`);
+    if (authStore.user && authStore.user.name) {
+        toast.success(`Welcome back, ${authStore.user.name}!`);
+    }
     
-    const redirectUri = route.query.redirect_uri;
-    const cliPort = route.query.cli_port;
-    const clientName = route.query.client || 'CLI Auto-Generated';
+    const redirectUri = route.query.redirect_uri || sessionStorage.getItem('cli_redirect_uri');
+    const cliPort = route.query.cli_port || sessionStorage.getItem('cli_port');
+    const clientName = route.query.client || sessionStorage.getItem('cli_client') || 'CLI Auto-Generated';
     
     if (redirectUri || cliPort) {
         try {
             // Generate a permanent API Key for the CLI
             const res = await api.post('/user/api-keys', { name: clientName });
             const newKey = res.data.key;
+            
+            // Clean up sessionStorage
+            sessionStorage.removeItem('cli_redirect_uri');
+            sessionStorage.removeItem('cli_port');
+            sessionStorage.removeItem('cli_client');
             
             // Redirect back to CLI
             const targetUri = cliPort ? `http://localhost:${cliPort}/callback` : redirectUri;
@@ -171,15 +174,25 @@ const handleSuccessfulLogin = async (defaultRedirect = '/dashboard') => {
 
 const loginWithProvider = (provider) => {
     localStorage.setItem('lastProvider', provider);
+    
+    // Save CLI auth context in sessionStorage to survive OAuth redirect loops
+    if (route.query.cli_port) sessionStorage.setItem('cli_port', route.query.cli_port);
+    if (route.query.redirect_uri) sessionStorage.setItem('cli_redirect_uri', route.query.redirect_uri);
+    if (route.query.client) sessionStorage.setItem('cli_client', route.query.client);
+
     // Redirect to backend OAuth initiation
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://api.memwyre.tech/api/v1';
     let url = `${apiUrl}/auth/oauth/${provider}/login`;
     
-    // Preserve CLI auth context by passing it as query parameters (requires backend support)
+    // Preserve CLI auth context by passing it as query parameters
     const queryParams = new URLSearchParams();
-    if (route.query.cli_port) queryParams.append('cli_port', route.query.cli_port);
-    if (route.query.redirect_uri) queryParams.append('redirect_uri', route.query.redirect_uri);
-    if (route.query.client) queryParams.append('client', route.query.client);
+    const activeCliPort = route.query.cli_port || sessionStorage.getItem('cli_port');
+    const activeRedirectUri = route.query.redirect_uri || sessionStorage.getItem('cli_redirect_uri');
+    const activeClient = route.query.client || sessionStorage.getItem('cli_client');
+
+    if (activeCliPort) queryParams.append('cli_port', activeCliPort);
+    if (activeRedirectUri) queryParams.append('redirect_uri', activeRedirectUri);
+    if (activeClient) queryParams.append('client', activeClient);
     
     if (queryParams.toString()) {
         url += `?${queryParams.toString()}`;
@@ -217,7 +230,7 @@ const handleLogin = async () => {
 const handleGoogleOneTapResponse = async (response) => {
     try {
         // Send credential to backend
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://api.memwyre.tech/api/v1';
         const res = await fetch(`${apiUrl}/auth/google-one-tap`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -236,10 +249,30 @@ const handleGoogleOneTapResponse = async (response) => {
     }
 };
 
-onMounted(() => {
+onMounted(async () => {
     window.onTurnstileSuccess = (token) => {
         turnstileToken.value = token;
     };
+
+    // Save CLI query params to sessionStorage on initial landing
+    if (route.query.cli_port) sessionStorage.setItem('cli_port', route.query.cli_port);
+    if (route.query.redirect_uri) sessionStorage.setItem('cli_redirect_uri', route.query.redirect_uri);
+    if (route.query.client) sessionStorage.setItem('cli_client', route.query.client);
+
+    // If user is already authenticated with a valid token, auto-handshake CLI immediately!
+    const token = localStorage.getItem('token');
+    const cliPort = route.query.cli_port || sessionStorage.getItem('cli_port');
+    const redirectUri = route.query.redirect_uri || sessionStorage.getItem('cli_redirect_uri');
+
+    if (token && (cliPort || redirectUri)) {
+        try {
+            await authStore.fetchUser();
+            await handleSuccessfulLogin();
+            return;
+        } catch (e) {
+            console.warn("Existing session auto-login for CLI failed:", e);
+        }
+    }
 
     // Check for tokens (OAuth Callback)
     const accessToken = route.query.access_token;

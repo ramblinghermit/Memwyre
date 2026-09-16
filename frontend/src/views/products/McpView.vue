@@ -25,29 +25,12 @@
               Connect Memwyre to Claude, Cursor, VS Code, Windsurf, and any MCP-compatible client. Your context follows you everywhere.
             </p>
             
-            <!-- Buttons with technical grid brackets -->
+            <!-- Buttons -->
             <div class="relative inline-flex p-3 mt-4 sm:mt-6 border border-dashed border-gray-300 rounded max-w-max z-20">
-              <!-- Corner Brackets (Crosshairs) -->
-              <div class="absolute -top-2 -left-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
-              <div class="absolute -top-2 -right-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
-              <div class="absolute -bottom-2 -left-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
-              <div class="absolute -bottom-2 -right-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
 
               <!-- Content (Buttons) -->
               <div class="flex flex-row items-center justify-start gap-3 sm:gap-4">
-                <router-link to="/signup/"
+                <router-link to="/signup"
                   class="w-auto px-4 py-2 sm:px-6 sm:py-3 bg-[#050614] text-white font-bold rounded hover:bg-gray-800 transition-all duration-300 shadow-md text-xs sm:text-sm inline-flex items-center justify-center gap-2">
                   Get MCP Keys →
                 </router-link>
@@ -119,7 +102,7 @@
             <div v-for="(step, idx) in [
               { title: 'Expose context via Stdio', body: 'The Memwyre MCP server launches as a subprocess communicating via JSON-RPC 2.0 over standard I/O.' },
               { title: 'Declare Tools & Prompts', body: 'Exposes tools like save_memory, search_memwyre, and generate_prompt directly to your LLM sessions.' },
-              { title: 'Dynamically Retrieve', body: 'When your AI agent needs context, it queries your Vault via vector and keyword search in under 300ms.' }
+              { title: 'Dynamically Retrieve', body: 'When your AI agent needs context, it queries your Vault via vector and keyword search rapidly on-demand.' }
             ]" :key="idx" class="flex gap-4">
               <div class="w-8 h-8 rounded-full border border-gray-300 text-sm font-bold font-mono flex items-center justify-center shrink-0 text-[#D97757] bg-white">
                 {{ idx + 1 }}
@@ -223,7 +206,7 @@
         <p class="text-sm text-gray-500 max-w-md mx-auto mb-6">
           Connect your team's stack to a shared memory. Stop repeating settings and setup parameters.
         </p>
-        <router-link to="/signup/" class="inline-block px-8 py-3 bg-[#050614] text-white text-sm font-bold rounded hover:bg-gray-800 transition-all duration-300 shadow-md">
+        <router-link to="/signup" class="inline-block px-8 py-3 bg-[#050614] text-white text-sm font-bold rounded hover:bg-gray-800 transition-all duration-300 shadow-md">
           Connect Your AI Tools
         </router-link>
       </div>

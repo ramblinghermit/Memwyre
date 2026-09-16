@@ -62,6 +62,40 @@
               </span>
             </div>
 
+            <!-- Empirical Benchmark Links -->
+            <div class="space-y-2 pt-6 border-t border-gray-100 dark:border-gray-900">
+              <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">RELATED STUDIES</div>
+              <router-link 
+                to="/research/vector-database-vs-agent-memory" 
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Vector DB vs. Agent Memory
+              </router-link>
+              <router-link 
+                to="/ai-memory-benchmark-locomo" 
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                LoCoMo-10 Benchmark (70.5%)
+              </router-link>
+              <router-link 
+                to="/research/context-engineering" 
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Context Engineering Guide
+              </router-link>
+              <a 
+                href="https://arxiv.org/abs/2402.17753" 
+                target="_blank"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+                arXiv:2402.17753 (LoCoMo Paper)
+              </a>
+            </div>
+
             <!-- Share Buttons -->
             <div class="space-y-3 pt-6 border-t border-gray-100 dark:border-gray-900">
               <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold">SHARE THIS ARTICLE</div>
@@ -300,7 +334,7 @@
                     <tr>
                       <td class="px-6 py-4 font-bold text-gray-950 dark:text-white">Retrieval Logic</td>
                       <td class="px-6 py-4">Cosine similarity only. Out-of-order context.</td>
-                      <td class="px-6 py-4 text-gray-900 dark:text-gray-300 font-bold text-[#D97757]">Sub-300ms. Pruned cache lookup + graph traverse.</td>
+                      <td class="px-6 py-4 text-gray-900 dark:text-gray-300 font-bold text-[#D97757]">Low-latency. Pruned cache lookup + graph traverse.</td>
                     </tr>
                     <tr>
                       <td class="px-6 py-4 font-bold text-gray-950 dark:text-white">Integration Scope</td>
@@ -392,7 +426,7 @@
               </p>
               
               <div class="flex flex-wrap gap-4 items-center mb-8">
-                <router-link to="/signup/" class="px-6 py-2.5 bg-[#050614] dark:bg-white text-white dark:text-black text-sm font-semibold rounded hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-sm">
+                <router-link to="/signup" class="px-6 py-2.5 bg-[#050614] dark:bg-white text-white dark:text-black text-sm font-semibold rounded hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-sm">
                   Get Started Free
                 </router-link>
                 <router-link to="/ai-memory-benchmark-locomo" class="px-6 py-2.5 bg-white dark:bg-zinc-900 text-gray-900 dark:text-white border border-gray-300 dark:border-zinc-800 text-sm font-semibold rounded hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors">
@@ -404,7 +438,7 @@
                 <router-link to="/research" class="hover:text-[#D97757] uppercase">/ Research Hub</router-link>
                 <router-link to="/mcp" class="hover:text-[#D97757] uppercase">/ MCP Integration</router-link>
                 <router-link to="/memwyre-vs-mem0" class="hover:text-[#D97757] uppercase">/ Memwyre vs Mem0</router-link>
-                <router-link to="/grok-bot-memory" class="hover:text-[#D97757] uppercase">/ Grok Bot Memory</router-link>
+                <router-link to="/research/vector-database-vs-agent-memory" class="hover:text-[#D97757] uppercase">/ Vector DB vs Agent Memory</router-link>
                 <a href="https://docs.memwyre.tech" target="_blank" class="hover:text-[#D97757] uppercase">/ Documentation</a>
               </div>
             </div>

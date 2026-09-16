@@ -25,29 +25,12 @@
               Pull from Notion, Google Drive, Gmail, S3, and more. Configure once — your AI agent's context stays fresh automatically.
             </p>
             
-            <!-- Buttons with technical grid brackets -->
+            <!-- Buttons -->
             <div class="relative inline-flex p-3 mt-4 sm:mt-6 border border-dashed border-gray-300 rounded max-w-max z-20">
-              <!-- Corner Brackets (Crosshairs) -->
-              <div class="absolute -top-2 -left-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
-              <div class="absolute -top-2 -right-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
-              <div class="absolute -bottom-2 -left-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
-              <div class="absolute -bottom-2 -right-2 w-4 h-4 pointer-events-none">
-                <div class="absolute top-2 left-0 w-full h-px bg-gray-400"></div>
-                <div class="absolute left-2 top-0 h-full w-px bg-gray-400"></div>
-              </div>
 
               <!-- Content (Buttons) -->
               <div class="flex flex-row items-center justify-start gap-3 sm:gap-4">
-                <router-link to="/signup/"
+                <router-link to="/signup"
                   class="w-auto px-4 py-2 sm:px-6 sm:py-3 bg-[#050614] text-white font-bold rounded hover:bg-gray-800 transition-all duration-300 shadow-md text-xs sm:text-sm inline-flex items-center justify-center gap-2">
                   Start Connecting →
                 </router-link>
@@ -208,7 +191,7 @@
         <p class="text-sm text-gray-500 max-w-md mx-auto mb-6">
           Stop importing. Start connecting. Set up your first data stream in minutes.
         </p>
-        <router-link to="/signup/" class="inline-block px-8 py-3 bg-[#050614] text-white text-sm font-bold rounded hover:bg-gray-800 transition-all duration-300 shadow-md">
+        <router-link to="/signup" class="inline-block px-8 py-3 bg-[#050614] text-white text-sm font-bold rounded hover:bg-gray-800 transition-all duration-300 shadow-md">
           Connect Your Vault
         </router-link>
       </div>

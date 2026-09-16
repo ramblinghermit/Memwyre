@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden">
-<div class="flex-1 w-full h-full relative cursor-move overflow-hidden">
+    <div class="flex-1 w-full h-full relative cursor-move overflow-hidden">
       <!-- Legend (Positioned absolutely over graph) -->
       <div class="absolute top-4 left-4 z-10 pointer-events-auto bg-white/80 dark:bg-surface/80 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400">
         <span class="flex items-center gap-2">

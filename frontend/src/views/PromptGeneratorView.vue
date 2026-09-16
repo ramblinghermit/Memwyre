@@ -1,7 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
-    <!-- Header -->
-<main class="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+    <main class="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
       <div class="mb-8">
          <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Universal Prompt Engine</h1>
       </div>

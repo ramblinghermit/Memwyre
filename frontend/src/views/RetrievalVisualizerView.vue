@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden bg-gray-50 dark:bg-[#121212]">
-<main class="flex-1 overflow-hidden w-full max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8 flex flex-col h-full">
+    <main class="flex-1 overflow-hidden w-full max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8 flex flex-col h-full">
       <div class="flex-none mb-6">
           <h1 class="text-3xl font-bold text-gray-900 dark:text-text-primary">Retrieval Pipeline Visualizer</h1>
           <p class="text-gray-500 dark:text-gray-400 mt-2">Debug and visualize the internal steps of the vector retrieval and reranking process.</p>
@@ -356,19 +356,3 @@ const exportDebugData = () => {
     toast.info("Debug data exported!");
 };
 </script>
-
-<style scoped>
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-  border-radius: 20px;
-}
-.dark .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(75, 85, 99, 0.5);
-}
-</style>

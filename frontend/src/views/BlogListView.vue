@@ -14,12 +14,12 @@ const copyCommand = (cmd) => {
 
 const posts = ref([
   {
-    slug: 'grok-bot-shared-memory',
-    category: 'CLI Plugins',
-    title: 'Cross-Bot Shared Knowledge: Persistent Memory for Grok Build',
-    excerpt: 'Give your xAI Grok Bot instant access to team-wide intelligence. Learn how to configure Memwyre\'s cross-bot shared memory to keep all your agents perfectly aligned.',
-    readTime: '4 min read',
-    date: 'Sep 16, 2026'
+    slug: 'shared-memory-chatgpt-claude-cursor',
+    category: 'Workflows',
+    title: 'How to Maintain Consistent Memory Across ChatGPT, Claude Code, and Cursor',
+    excerpt: 'Stop copy-pasting architecture context between ChatGPT, Claude Code, and Cursor. Build a synchronized cross-tool knowledge graph using Memwyre.',
+    readTime: '7 min read',
+    date: 'Aug 14, 2026'
   },
   {
     slug: 'mcp-persistent-memory',

@@ -1,9 +1,9 @@
 <template>
-  <div class="mt-2.5 flex items-center justify-between text-xs text-gray-400 font-mono">
-    <div class="flex items-center space-x-2">
+  <div class="mt-2 flex items-center justify-between text-xs text-gray-400 dark:text-zinc-500 font-mono">
+    <div class="flex items-center space-x-1.5">
       <button
         @click="$emit('copy')"
-        class="inline-flex items-center space-x-1 px-2 py-1 rounded-md bg-gray-100/70 dark:bg-gray-800/60 hover:bg-gray-200 dark:hover:bg-gray-700/80 hover:text-gray-700 dark:hover:text-gray-200 transition-all cursor-pointer"
+        class="inline-flex items-center space-x-1 px-2 py-1 rounded-lg hover:bg-gray-200/60 dark:hover:bg-zinc-800 text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer"
         title="Copy response"
       >
         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,12 +12,12 @@
         <span>Copy</span>
       </button>
 
-      <span class="text-gray-300 dark:text-gray-700">•</span>
+      <span class="text-gray-300 dark:text-zinc-700">&bull;</span>
 
-      <div class="flex items-center space-x-1">
+      <div class="flex items-center space-x-0.5">
         <button
           @click="$emit('feedback', 'up')"
-          class="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-emerald-500 transition-colors cursor-pointer"
+          class="p-1 rounded-lg hover:bg-gray-200/60 dark:hover:bg-zinc-800 hover:text-emerald-500 dark:hover:text-emerald-400 text-gray-400 dark:text-zinc-500 transition-colors cursor-pointer"
           title="Good response"
         >
           <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -26,7 +26,7 @@
         </button>
         <button
           @click="$emit('feedback', 'down')"
-          class="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-red-500 transition-colors cursor-pointer"
+          class="p-1 rounded-lg hover:bg-gray-200/60 dark:hover:bg-zinc-800 hover:text-red-500 dark:hover:text-red-400 text-gray-400 dark:text-zinc-500 transition-colors cursor-pointer"
           title="Poor response"
         >
           <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,8 +36,8 @@
       </div>
     </div>
 
-    <span class="text-[10px] text-gray-400/80 dark:text-gray-500 px-2 py-0.5 rounded bg-gray-100/50 dark:bg-gray-800/40">
-      Kimi K2.5 (Bedrock)
+    <span class="text-[10px] text-gray-400 dark:text-zinc-500 px-2 py-0.5 rounded-md bg-gray-100/60 dark:bg-zinc-800/50">
+      Kimi K2.5
     </span>
   </div>
 </template>

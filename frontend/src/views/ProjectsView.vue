@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex flex-col overflow-hidden">
-<main class="flex-1 overflow-y-auto p-6">
+    <main class="flex-1 overflow-y-auto p-6">
       <div class="max-w-5xl mx-auto">
         <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Projects</h1>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">

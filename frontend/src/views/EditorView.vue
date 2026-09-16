@@ -1,39 +1,39 @@
 <template>
-  <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden">
+  <div class="flex-1 flex flex-col h-full min-h-0 bg-transparent font-sans overflow-hidden transition-colors duration-300">
 
     <!-- Editor Header (Title & Actions) -->
-    <header class="h-16 shrink-0 border-b border-gray-200 dark:border-border flex items-center justify-between px-6 bg-white dark:bg-surface relative z-10">
-       <div class="flex items-center gap-4 flex-1">
-          <button @click="goBack" class="text-gray-400 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300 transition-colors">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+    <header class="h-14 shrink-0 border-b border-gray-200/60 dark:border-zinc-800 flex items-center justify-between px-6 bg-transparent relative z-10">
+       <div class="flex items-center gap-3 flex-1 min-w-0">
+          <button @click="goBack" class="p-2 rounded-xl text-gray-400 hover:text-gray-700 dark:text-zinc-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer" title="Go Back">
+              <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
           </button>
-          <div class="flex items-center gap-3 w-full max-w-2xl">
-              <span class="text-lg font-bold text-gray-900 dark:text-text-primary whitespace-nowrap">
+          <div class="flex items-center gap-2.5 w-full max-w-2xl min-w-0">
+              <span class="text-sm sm:text-base font-bold text-gray-900 dark:text-white whitespace-nowrap">
                 {{ isViewMode ? 'View Memory' : (documentId === 'new' ? 'New Memory' : 'Edit Memory') }}
               </span>
-              <div class="h-6 w-px bg-gray-200 dark:bg-gray-600"></div>
+              <div class="h-4 w-px bg-gray-200 dark:bg-zinc-700"></div>
               <input 
                 v-model="title" 
                 :readonly="isViewMode"
-                class="bg-transparent border border-transparent focus:border-gray-300 dark:focus:border-gray-600 hover:border-gray-200 dark:hover:border-gray-700 rounded px-2 py-1 text-sm text-gray-600 dark:text-gray-300 w-full transition-colors"
+                class="bg-transparent border border-transparent focus:border-gray-300 dark:focus:border-zinc-700 hover:border-gray-200 dark:hover:border-zinc-800 rounded-lg px-2 py-1 text-xs sm:text-sm text-gray-700 dark:text-zinc-300 w-full transition-colors font-medium"
                 :class="{ 'cursor-default': isViewMode }"
                 placeholder="Document Title"
               />
           </div>
        </div>
-       <div class="flex items-center gap-3">
-           <span v-if="saving" class="flex items-center gap-1 text-xs text-gray-400">
+       <div class="flex items-center gap-2 shrink-0">
+           <span v-if="saving" class="flex items-center gap-1 text-xs text-gray-400 dark:text-zinc-500">
              <svg class="animate-spin h-3 w-3 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
              </svg> 
              Saving...
            </span>
-           <span v-else-if="lastSaved" class="text-xs text-gray-400">Saved {{ lastSaved }}</span>
+           <span v-else-if="lastSaved" class="text-xs text-gray-400 dark:text-zinc-500">Saved {{ lastSaved }}</span>
            <button 
              v-if="documentId !== 'new'"
              @click="deleteDocument"
-             class="p-2 text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20 rounded-md transition-colors"
+             class="p-2 sm:p-2.5 text-red-500 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/30 rounded-xl transition-colors cursor-pointer flex items-center justify-center"
              title="Delete Memory"
            >
              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
@@ -41,14 +41,14 @@
            <button 
              v-if="isInboxItem"
              @click="approveDocument"
-             class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-md transition-colors mr-2"
+             class="px-4 sm:px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer shadow-2xs active:scale-95"
            >
              Approve
            </button>
             <button 
               v-if="isViewMode"
               @click="isViewMode = false"
-              class="px-4 py-2 bg-[#D97757] text-white text-sm font-medium rounded-md transition-colors hover:bg-[#C4654A]"
+              class="px-5 py-2 bg-[#D97757] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all hover:bg-[#C4654A] cursor-pointer shadow-2xs active:scale-95"
             >
               Edit
             </button>
@@ -56,65 +56,64 @@
               v-if="!isViewMode"
               @click="saveDocument"
               :disabled="saving"
-              class="px-4 py-2 bg-[#D97757] text-white text-sm font-medium rounded-md transition-colors hover:bg-[#C4654A]"
+              class="px-5 py-2 bg-[#D97757] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all hover:bg-[#C4654A] disabled:opacity-50 cursor-pointer shadow-2xs active:scale-95"
             >
               Save Changes
             </button>
             <button 
               v-if="!isViewMode && documentId !== 'new'"
               @click="isViewMode = true"
-              class="px-4 py-2 border border-gray-200 dark:border-border text-gray-600 dark:text-text-secondary text-sm font-medium rounded-md transition-colors hover:bg-gray-50 dark:hover:bg-gray-800"
+              class="px-4 sm:px-4.5 py-2 border border-gray-200/80 dark:border-zinc-700 text-gray-700 dark:text-zinc-300 text-xs sm:text-sm font-semibold rounded-xl transition-colors hover:bg-gray-100 dark:hover:bg-zinc-800 cursor-pointer shadow-2xs"
             >
               Cancel
             </button>
        </div>
     </header>
 
-    <!-- Toolbar (Functional) -->
-    <div v-if="!isViewMode" class="h-10 shrink-0 border-b border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-surface/50 flex items-center px-6 gap-4 overflow-x-auto">
-        <div class="flex items-center gap-1 text-gray-500 dark:text-text-secondary">
-            <button @click="insertText('**', '**')" class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors" title="Bold (Markdown **)">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 4h8a4 4 0 014 4 4 4 0 01-4 4H6V4zm0 8h9a5 5 0 015 5 5 5 0 01-5 5H6v-10z" /></svg>
+    <!-- Toolbar (Functional for Edit Mode) -->
+    <div v-if="!isViewMode" class="h-10 shrink-0 border-b border-gray-200/60 dark:border-zinc-800 bg-gray-50/40 dark:bg-zinc-900/30 flex items-center px-6 gap-3 overflow-x-auto">
+        <div class="flex items-center gap-1 text-gray-500 dark:text-zinc-400">
+            <button @click="insertText('**', '**')" class="p-1.5 hover:bg-gray-200/60 dark:hover:bg-zinc-800 rounded-md transition-colors" title="Bold (Markdown **)">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 4h8a4 4 0 014 4 4 4 0 01-4 4H6V4zm0 8h9a5 5 0 015 5 5 5 0 01-5 5H6v-10z" /></svg>
             </button>
-            <button @click="insertText('*', '*')" class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors" title="Italic (Markdown *)">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+            <button @click="insertText('*', '*')" class="p-1.5 hover:bg-gray-200/60 dark:hover:bg-zinc-800 rounded-md transition-colors" title="Italic (Markdown *)">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
             </button>
-             <button @click="insertText('<u>', '</u>')" class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors" title="Underline">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 19h14" /></svg>
-            </button>
-        </div>
-        <div class="h-4 w-px bg-gray-300 dark:bg-gray-600"></div>
-        <div class="flex items-center gap-1 text-gray-500 dark:text-text-secondary">
-            <button @click="insertText('- ')" class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors" title="List">
-                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-            </button>
-             <button @click="insertText('[', '](url)')" class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors" title="Link">
-                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
-            </button>
-             <button @click="insertText('![alt](', ')')" class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors" title="Image">
-                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+             <button @click="insertText('<u>', '</u>')" class="p-1.5 hover:bg-gray-200/60 dark:hover:bg-zinc-800 rounded-md transition-colors" title="Underline">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 19h14" /></svg>
             </button>
         </div>
-         <div class="h-4 w-px bg-gray-300 dark:bg-gray-600"></div>
-          <div class="flex items-center gap-1 text-gray-500 dark:text-text-secondary">
-             <button @click="insertText('```\n', '\n```')" class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors" title="Code Block">
-                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+        <div class="h-3.5 w-px bg-gray-200 dark:bg-zinc-700"></div>
+        <div class="flex items-center gap-1 text-gray-500 dark:text-zinc-400">
+            <button @click="insertText('- ')" class="p-1.5 hover:bg-gray-200/60 dark:hover:bg-zinc-800 rounded-md transition-colors" title="List">
+                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+             <button @click="insertText('[', '](url)')" class="p-1.5 hover:bg-gray-200/60 dark:hover:bg-zinc-800 rounded-md transition-colors" title="Link">
+                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+            </button>
+             <button @click="insertText('![alt](', ')')" class="p-1.5 hover:bg-gray-200/60 dark:hover:bg-zinc-800 rounded-md transition-colors" title="Image">
+                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            </button>
+        </div>
+         <div class="h-3.5 w-px bg-gray-200 dark:bg-zinc-700"></div>
+          <div class="flex items-center gap-1 text-gray-500 dark:text-zinc-400">
+             <button @click="insertText('```\n', '\n```')" class="p-1.5 hover:bg-gray-200/60 dark:hover:bg-zinc-800 rounded-md transition-colors" title="Code Block">
+                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
             </button>
           </div>
     </div>
 
-    <!-- Main Content Area with Absolute Centering and Fixed Sidebar -->
-    <div class="flex-1 overflow-hidden relative flex flex-col">
-        <!-- New Left Enrichment Sidebar -->
-        <aside v-if="isViewMode" class="w-72 fixed left-0 top-16 bottom-0 overflow-y-auto border-r border-gray-100 dark:border-border bg-white dark:bg-surface hidden lg:block z-20 shadow-[min(0px)_0px_0px_0px_rgba(0,0,0,0.1)]">
-             <EnrichmentSidebar :active-chunk="activeChunk" :loading="chunksLoading" />
-        </aside>
-
-        <!-- Main Document Container - Absolutely Centered -->
-        <div class="w-full h-full overflow-y-auto flex justify-center p-4 sm:p-8">
-             <div class="w-full max-w-4xl bg-white dark:bg-surface shadow-sm border border-gray-100 dark:border-border rounded-xl min-h-[calc(100vh-8rem)] flex flex-col p-8 sm:p-12 relative h-fit mb-12">
+    <!-- Main Content Area with Centered Document & Right Inspector -->
+    <div class="flex-1 overflow-hidden relative flex min-h-0">
+        <!-- Main Document Container - Centered and Flushed -->
+        <div class="flex-1 h-full overflow-y-auto overflow-x-hidden custom-scrollbar p-6 sm:p-10 flex justify-center">
+             <div class="w-full max-w-3xl min-h-[calc(100vh-10rem)] flex flex-col mb-12">
+                <div v-if="isDocumentLoading" class="flex-1 flex flex-col items-center justify-center min-h-[500px]">
+                    <LoadingLogo size="lg" />
+                    <p class="text-sm text-gray-500 mt-4">Loading memory...</p>
+                 </div>
                 <MarkdownPreview
-                  v-if="isViewMode"
+                  v-else-if="isViewMode"
                   :content="content || ''"
                   class="cursor-text"
                   @click="handlePreviewClick"
@@ -126,42 +125,69 @@
                   :options="editorOptions"
                   @mount="handleEditorMount"
                   language="markdown"
-                  class="flex-1 w-full min-h-[500px]"
+                  class="flex-1 w-full min-h-[500px] rounded-xl overflow-hidden border border-gray-200/60 dark:border-zinc-800"
                 />
             </div>
         </div>
 
-        <!-- Fixed Right Sidebar -->
-        <aside class="w-72 fixed right-0 top-16 bottom-0 overflow-y-auto border-l border-gray-100 dark:border-border bg-white dark:bg-surface hidden lg:block z-20 shadow-[min(0px)_0px_0px_0px_rgba(0,0,0,0.1)]">
-             <div class="p-8 space-y-8">
+        <!-- Right Inspector Panel -->
+        <aside class="w-80 border-l border-gray-200/60 dark:border-zinc-800 bg-transparent hidden lg:flex flex-col shrink-0 overflow-hidden">
+             <!-- Inspector Header & Tab Switcher -->
+             <div class="px-5 pt-3.5 pb-2.5 border-b border-gray-200/60 dark:border-zinc-800 flex items-center justify-between shrink-0">
+               <div class="flex items-center gap-1 bg-gray-100/70 dark:bg-zinc-800/60 p-0.5 rounded-lg w-full">
+                 <button
+                   @click="activeInspectorTab = 'intelligence'"
+                   :class="activeInspectorTab === 'intelligence' ? 'bg-white dark:bg-zinc-700 text-gray-900 dark:text-white shadow-2xs font-semibold' : 'text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white font-medium'"
+                   class="flex-1 py-1 text-xs rounded-md transition-all cursor-pointer text-center flex items-center justify-center gap-1.5"
+                 >
+                   <span>Intelligence</span>
+                   <span v-if="activeChunk" class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                 </button>
+                 <button
+                   @click="activeInspectorTab = 'properties'"
+                   :class="activeInspectorTab === 'properties' ? 'bg-white dark:bg-zinc-700 text-gray-900 dark:text-white shadow-2xs font-semibold' : 'text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white font-medium'"
+                   class="flex-1 py-1 text-xs rounded-md transition-all cursor-pointer text-center"
+                 >
+                   Properties
+                 </button>
+               </div>
+             </div>
+
+             <!-- Tab: Intelligence -->
+             <div v-show="activeInspectorTab === 'intelligence'" class="flex-1 overflow-hidden">
+               <EnrichmentSidebar :active-chunk="activeChunk" :loading="chunksLoading" />
+             </div>
+
+             <!-- Tab: Properties & Tags -->
+             <div v-show="activeInspectorTab === 'properties'" class="flex-1 overflow-y-auto custom-scrollbar p-5 space-y-6">
                  <!-- Metadata Section -->
                 <div>
-                    <h4 class="text-[11px] font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-6 pb-2 border-b border-gray-100 dark:border-gray-800">Properties</h4>
-                    <div class="space-y-5">
-                        <div class="grid grid-cols-[80px_1fr] items-center gap-2">
-                            <label class="text-[11px] text-gray-500 font-medium">Created</label>
-                            <p class="text-xs text-gray-900 dark:text-gray-200 font-medium truncate">{{ formatDate(docMetadata.created_at) }}</p>
+                    <h4 class="text-[10px] font-bold text-gray-400 dark:text-zinc-500 uppercase tracking-wider font-mono mb-4 pb-2 border-b border-gray-100 dark:border-zinc-800/80">Properties</h4>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-[70px_1fr] items-center gap-2">
+                            <label class="text-xs text-gray-400 dark:text-zinc-500 font-medium">Created</label>
+                            <p class="text-xs text-gray-900 dark:text-zinc-200 font-medium truncate">{{ formatDate(docMetadata.created_at) }}</p>
                         </div>
-                        <div class="grid grid-cols-[80px_1fr] items-center gap-2">
-                            <label class="text-[11px] text-gray-500 font-medium">Source</label>
+                        <div class="grid grid-cols-[70px_1fr] items-center gap-2">
+                            <label class="text-xs text-gray-400 dark:text-zinc-500 font-medium">Source</label>
                             <div>
-                                <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-medium bg-gray-100/70 dark:bg-zinc-800/70 text-gray-700 dark:text-zinc-300 border border-gray-200/50 dark:border-zinc-700/60">
                                     {{ docMetadata.source_llm || 'User' }}
                                 </span>
                             </div>
                         </div>
-                        <div class="grid grid-cols-[80px_1fr] items-center gap-2">
-                             <label class="text-[11px] text-gray-500 font-medium">Status</label>
+                        <div class="grid grid-cols-[70px_1fr] items-center gap-2">
+                             <label class="text-xs text-gray-400 dark:text-zinc-500 font-medium">Status</label>
                              <div class="flex items-center gap-1.5">
-                                <span class="w-1.5 h-1.5 rounded-full" :class="docMetadata.status === 'approved' ? 'bg-green-500' : 'bg-yellow-500'"></span>
-                                <span class="text-xs font-medium capitalize" :class="docMetadata.status === 'approved' ? 'text-green-700 dark:text-green-400' : 'text-yellow-700 dark:text-yellow-400'">
-                                    {{ docMetadata.status || 'Active' }}
-                                </span>
+                                 <span class="w-1.5 h-1.5 rounded-full" :class="docMetadata.status === 'approved' ? 'bg-emerald-500' : 'bg-amber-500'"></span>
+                                 <span class="text-xs font-medium capitalize" :class="docMetadata.status === 'approved' ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'">
+                                     {{ docMetadata.status || 'Active' }}
+                                 </span>
                              </div>
                         </div>
-                        <div class="grid grid-cols-[80px_1fr] items-center gap-2">
-                            <label class="text-[11px] text-gray-500 font-medium">Project</label>
-                            <select v-model="selectedProjectId" :disabled="isViewMode" class="text-xs border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1.5 bg-white dark:bg-surface disabled:opacity-80">
+                        <div class="grid grid-cols-[70px_1fr] items-center gap-2">
+                            <label class="text-xs text-gray-400 dark:text-zinc-500 font-medium">Project</label>
+                            <select v-model="selectedProjectId" :disabled="isViewMode" class="text-xs border border-gray-200/60 dark:border-zinc-700 rounded-lg px-2 py-1.5 bg-white dark:bg-zinc-800/80 text-gray-900 dark:text-zinc-200 disabled:opacity-80">
                                 <option :value="null">Unassigned</option>
                                 <option v-for="project in projects" :key="project.id" :value="project.id">{{ project.name }}</option>
                             </select>
@@ -171,12 +197,12 @@
 
                 <!-- Tags Section -->
                 <div>
-                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-gray-100 dark:border-gray-800">
-                        <h4 class="text-[11px] font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">Tags</h4>
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-100 dark:border-zinc-800/80">
+                        <h4 class="text-[10px] font-bold text-gray-400 dark:text-zinc-500 uppercase tracking-wider font-mono">Tags</h4>
                         <button 
                           @click="generateTags" 
                           :disabled="generatingTags || !content || isViewMode"
-                          class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-indigo-600 dark:text-indigo-400 disabled:opacity-30 disabled:hover:bg-transparent flex items-center gap-2"
+                          class="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors text-[#D97757] disabled:opacity-30 disabled:hover:bg-transparent flex items-center gap-1.5 cursor-pointer"
                           title="Auto-generate tags"
                         >
                              <span v-if="generatingTags" class="text-[10px] italic text-gray-400">Generating...</span>
@@ -189,11 +215,11 @@
                     </div>
 
                     <!-- View Mode Tags -->
-                    <div v-if="isViewMode" class="flex flex-wrap gap-2">
-                        <span v-for="tag in docMetadata.tags" :key="tag" class="px-2.5 py-1 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-md text-[11px] font-medium border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                    <div v-if="isViewMode" class="flex flex-wrap gap-1.5">
+                        <span v-for="tag in docMetadata.tags" :key="tag" class="px-2.5 py-1 bg-gray-100/70 dark:bg-zinc-800/70 text-gray-700 dark:text-zinc-300 rounded-lg text-xs font-medium border border-gray-200/50 dark:border-zinc-700/60 transition-colors">
                             #{{ tag }}
                         </span>
-                        <span v-if="!docMetadata.tags || !docMetadata.tags.length" class="text-[11px] text-gray-400 italic px-1">No tags added</span>
+                        <span v-if="!docMetadata.tags || !docMetadata.tags.length" class="text-xs text-gray-400 dark:text-zinc-500 italic px-1">No tags added</span>
                     </div>
 
                     <!-- Edit Mode Tags Input -->
@@ -206,17 +232,17 @@
                               @keydown.down.prevent="navigateSuggestions(1)"
                               @keydown.up.prevent="navigateSuggestions(-1)"
                               @keydown.enter.prevent="selectActiveSuggestion"
-                              class="w-full bg-gray-50 dark:border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2.5 text-xs focus:ring-1 focus:ring-[#D97757] focus:border-[#D97757] outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600 resize-none h-28 leading-relaxed"
+                              class="w-full bg-white dark:bg-zinc-900/60 border border-gray-200/80 dark:border-zinc-700 text-gray-900 dark:text-zinc-200 rounded-xl px-3 py-2 text-xs focus:ring-1 focus:ring-[#D97757] focus:border-[#D97757] outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-zinc-500 resize-none h-24 leading-relaxed"
                               placeholder="Enter tags separated by commas..."
                             ></textarea>
                             
                              <!-- Tag Suggestions -->
-                            <div v-if="filteredSuggestions.length > 0 && showSuggestions" class="absolute bottom-full left-0 w-full mb-1 bg-white dark:bg-surface border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50 max-h-48 overflow-y-auto overflow-x-hidden">
+                            <div v-if="filteredSuggestions.length > 0 && showSuggestions" class="absolute bottom-full left-0 w-full mb-1 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-zinc-700 rounded-xl shadow-xl z-50 max-h-48 overflow-y-auto overflow-x-hidden p-1">
                                 <div 
                                   v-for="(suggestion, index) in filteredSuggestions" 
                                   :key="suggestion"
                                   @click="addTag(suggestion)"
-                                   :class="['px-3 py-2 text-xs cursor-pointer transition-colors border-b border-gray-50 dark:border-gray-800 last:border-0', activeSuggestionIndex === index ? 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white font-medium' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800']"
+                                   :class="['px-2.5 py-1.5 text-xs rounded-lg cursor-pointer transition-colors', activeSuggestionIndex === index ? 'bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-white font-medium' : 'text-gray-600 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800']"
                                 >
                                     #{{ suggestion }}
                                 </div>
@@ -234,6 +260,7 @@
       title="Delete Memory"
       message="Are you sure you want to delete this memory? This cannot be undone."
       confirm-text="Delete"
+      :loading="isDeletingMemory"
       @confirm="confirmDeleteDocument"
       @cancel="showDeleteModal = false"
     />
@@ -260,6 +287,7 @@ const toast = useToast();
 const projectStore = useProjectStore();
 
 const isInboxItem = ref(false);
+const activeInspectorTab = ref('intelligence');
 
 const title = ref('');
 const content = ref('');
@@ -274,6 +302,7 @@ const lastSaved = ref(null);
 const isViewMode = ref(route.params.id !== 'new');
 const documentId = computed(() => route.params.id);
 const docMetadata = ref({});
+const isDocumentLoading = ref(true);
 const selectedProjectId = ref(null);
 const normalizeInteractionType = (value) => {
   const normalized = String(value || '').toLowerCase();
@@ -434,7 +463,11 @@ const resolvedId = ref(null);
 
 const fetchDocument = async () => {
   try {
-    if (documentId.value === 'new') return;
+    isDocumentLoading.value = true;
+    if (documentId.value === 'new') {
+        isDocumentLoading.value = false;
+        return;
+    }
 
     // 1. Try fetching from Memory List
     let found = false;
@@ -499,6 +532,8 @@ const fetchDocument = async () => {
 
   } catch (error) {
     console.error('Error fetching document:', error);
+  } finally {
+    isDocumentLoading.value = false;
   }
 };
 
@@ -554,6 +589,7 @@ const handlePreviewClick = () => {
         if (offset !== -1) {
             // Update the cursor position to trigger the activeChunk computed property
             cursorPosition.value = offset;
+            activeInspectorTab.value = 'intelligence';
         }
     }
 };
@@ -640,6 +676,7 @@ const approveDocument = async () => {
 };
 
 const showDeleteModal = ref(false);
+const isDeletingMemory = ref(false);
 
 const deleteDocument = async () => {
   if (documentId.value === 'new') {
@@ -650,6 +687,7 @@ const deleteDocument = async () => {
 };
 
 const confirmDeleteDocument = async () => {
+  isDeletingMemory.value = true;
   try {
     const targetId = resolvedId.value || documentId.value;
     // Handle 'mem_' prefix if present in ID but API expects int, or vice versa.
@@ -664,6 +702,7 @@ const confirmDeleteDocument = async () => {
         toast.error('Failed to delete document'); // Simple feedback
     }
   } finally {
+    isDeletingMemory.value = false;
     showDeleteModal.value = false;
   }
 };
@@ -689,11 +728,14 @@ onMounted(() => {
   fetchTags();
   fetchProjects();
 
-  if (documentId.value === 'new' && !title.value?.trim()) {
-    if (interactionType.value === 'prompt') title.value = 'New Prompt';
-    else if (interactionType.value === 'conversation') title.value = 'New Conversation';
-    else if (interactionType.value === 'webpage') title.value = 'New Webpage Memory';
-    else title.value = 'New Memory';
+  if (documentId.value === 'new') {
+    selectedProjectId.value = projectStore.currentProjectId || null;
+    if (!title.value?.trim()) {
+      if (interactionType.value === 'prompt') title.value = 'New Prompt';
+      else if (interactionType.value === 'conversation') title.value = 'New Conversation';
+      else if (interactionType.value === 'webpage') title.value = 'New Webpage Memory';
+      else title.value = 'New Memory';
+    }
   }
 });
 

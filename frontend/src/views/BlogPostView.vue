@@ -83,6 +83,14 @@ watch(rawContent, (newContent) => {
 // Get meta info for other articles sidebar
 const recentPosts = [
   {
+    slug: 'shared-memory-chatgpt-claude-cursor',
+    title: 'How to Maintain Consistent Memory Across ChatGPT, Claude Code, and Cursor',
+    category: 'Workflows',
+    author: 'Himansh Shivhare',
+    fullDate: 'August 14, 2026',
+    readTime: '7 MIN'
+  },
+  {
     slug: 'mcp-persistent-memory',
     title: 'How to Give Claude Desktop Persistent Memory using MCP',
     category: 'MCP Server',
