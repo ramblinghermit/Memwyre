@@ -22,6 +22,7 @@ export const PRERENDER_ROUTES = [
   '/claude-memory',
   '/cursor-memory',
   '/mcp-memory',
+  '/grok-memory',
   '/privacy-policy',
   '/terms',
   '/login',
@@ -202,6 +203,10 @@ export const PUBLIC_ROUTE_SEO = {
   '/claude-memory': {
     title: 'Claude Memory | Persistent long-term memory for Claude Desktop & Code',
     description: 'Setup persistent long-term memory for Anthropic Claude Desktop and Claude Code CLI. Secure, private context updates via remote MCP server gateway.',
+  },
+  '/grok-memory': {
+    title: 'Grok Bot Memory | Cross-Bot Shared Knowledge and Persistence',
+    description: 'Enable cross-bot shared memory for Grok Build & Grok Bot. Instantly share context, conventions, and learnings across your entire xAI agent roster.',
   },
   '/cursor-memory': {
     title: 'Cursor Memory | Long-Term Codebase Context for Cursor AI IDE',
@@ -419,7 +424,7 @@ export function getSeoForPath(path = '/') {
       },
       'url': canonical
     });
-  } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory'].includes(normalizedPath)) {
+  } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory', '/grok-memory'].includes(normalizedPath)) {
     jsonLdData.push({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
