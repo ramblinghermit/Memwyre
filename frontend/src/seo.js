@@ -22,7 +22,7 @@ export const PRERENDER_ROUTES = [
   '/claude-memory',
   '/cursor-memory',
   '/mcp-memory',
-  '/grok-memory',
+  '/grok-bot-memory',
   '/privacy-policy',
   '/terms',
   '/login',
@@ -119,10 +119,7 @@ export const PUBLIC_ROUTE_SEO = {
       'Learn how to load the Memwyre OpenClaw plugin and enable the agent to query and update your persistent vault autonomously.',
     ogImage: '/blog-covers/openclaw-autonomous-memory.png',
   },
-  '/blog/grok-bot-shared-memory': {
-    title: 'Cross-Bot Shared Knowledge: Persistent Memory for Grok Build | Memwyre Blog',
-    description: 'Give your xAI Grok Bot instant access to team-wide intelligence. Learn how to configure cross-bot shared memory to keep all your agents aligned.',
-  },
+
   '/blog/cursor-vs-claude-code-context': {
     title: 'Cursor AI vs Claude Code: Managing Context and Memory | Memwyre Blog',
     description:
@@ -208,7 +205,7 @@ export const PUBLIC_ROUTE_SEO = {
     title: 'Claude Memory | Persistent long-term memory for Claude Desktop & Code',
     description: 'Setup persistent long-term memory for Anthropic Claude Desktop and Claude Code CLI. Secure, private context updates via remote MCP server gateway.',
   },
-  '/grok-memory': {
+  '/grok-bot-memory': {
     title: 'Grok Bot Memory | Cross-Bot Shared Knowledge and Persistence',
     description: 'Enable cross-bot shared memory for Grok Build & Grok Bot. Instantly share context, conventions, and learnings across your entire xAI agent roster.',
   },
@@ -429,7 +426,7 @@ export function getSeoForPath(path = '/') {
       },
       'url': canonical
     });
-  } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory', '/grok-memory'].includes(normalizedPath)) {
+  } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory', '/grok-bot-memory'].includes(normalizedPath)) {
     jsonLdData.push({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
