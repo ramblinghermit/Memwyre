@@ -8,7 +8,6 @@ Grok Build agents are highly intelligent, remarkably fast, and capable of handli
 
 **Key Metrics:**
 
-- **< 150ms** — Context Injection Latency
 - **70.5%** — LoCoMo-10 Retrieval Accuracy
 - **Zero** — Codebase Retention (100% Privacy)
 
@@ -85,7 +84,6 @@ To quantify the impact of cross-bot shared memory, our internal engineering team
 | **Cross-Agent Knowledge Recall** | 0% (Required manual copy-pasting) | 100% (Instant context sync) |
 | **Redundant Token Usage (14 days)** | ~640,000 tokens per developer | ~115,000 tokens (82% reduction) |
 | **LoCoMo-10 Memory Accuracy** | 42.1% (Standard RAG baseline) | **70.5%** (AST-Aware Graph + Ebbinghaus Decay) |
-| **Context Injection Latency** | N/A | < 145ms avg |
 
 By intelligently extracting architectural conventions instead of dumping entire terminal transcripts into the context window, Memwyre effectively eliminated redundant API usage and allowed the agents to maintain perfect context across entirely different physical machines.
 
@@ -150,7 +148,7 @@ Ready to give your Grok bots a persistent brain? [Create your free Memwyre accou
 No. You can leave Grok's native memory enabled for personal chat preferences. Memwyre operates independently at the project and workspace level to handle robust coding memory and team sharing.
 
 **Does this slow down my Grok Build startup time?**
-No. Memwyre utilizes edge-cached semantic retrieval. Context injection typically adds less than ~150ms to the `SessionStart` hook, which is imperceptible during normal CLI usage.
+No. Memwyre utilizes edge-cached semantic retrieval. Context injection happens seamlessly within the `SessionStart` hook and is virtually imperceptible during normal CLI usage.
 
 **What data is sent to Memwyre?**
 Only the abstracted learnings and conversational metadata required to build the memory graph. Memwyre strictly operates under a zero-retention policy for LLM training. Your proprietary source code is never used to train our models.
