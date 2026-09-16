@@ -116,8 +116,13 @@ export const PUBLIC_ROUTE_SEO = {
   '/blog/openclaw-autonomous-memory': {
     title: 'Persistent Memory for Autonomous Agents: OpenClaw | Memwyre Blog',
     description:
-      'Load the Memwyre plugin for OpenClaw autonomous coding agents. Enable long-term memory query tools and persistent inbox updates across agent runs.',
+      'Learn how to load the Memwyre OpenClaw plugin and enable the agent to query and update your persistent vault autonomously.',
     ogImage: '/blog-covers/openclaw-autonomous-memory.png',
+  },
+  '/blog/grok-bot-shared-memory': {
+    title: 'Cross-Bot Shared Knowledge: Persistent Memory for Grok Build | Memwyre Blog',
+    description: 'Give your xAI Grok Bot instant access to team-wide intelligence. Learn how to configure cross-bot shared memory to keep all your agents aligned.',
+    ogImage: '/blog-covers/grok-bot-shared-memory.png',
   },
   '/blog/cursor-vs-claude-code-context': {
     title: 'Cursor AI vs Claude Code: Managing Context and Memory | Memwyre Blog',
@@ -368,7 +373,8 @@ export function getSeoForPath(path = '/') {
       'vscode-mcp-persistent-memory': '2026-06-02T08:00:00Z',
       'claude-code-memory-ingestion': '2026-05-18T08:00:00Z',
       'openclaw-autonomous-memory': '2026-05-04T08:00:00Z',
-      'cursor-vs-claude-code-context': '2026-04-22T08:00:00Z',
+      'grok-bot-shared-memory': '2026-09-16T08:00:00Z',
+      'cursor-vs-claude-code-context': '2026-04-20T08:00:00Z',
       'state-of-ai-memory-2026': '2026-04-18T08:00:00Z',
       'rag-vs-memory-long-term-knowledge': '2026-04-09T08:00:00Z'
     };

@@ -14,6 +14,14 @@ const copyCommand = (cmd) => {
 
 const posts = ref([
   {
+    slug: 'grok-bot-shared-memory',
+    category: 'CLI Plugins',
+    title: 'Cross-Bot Shared Knowledge: Persistent Memory for Grok Build',
+    excerpt: 'Give your xAI Grok Bot instant access to team-wide intelligence. Learn how to configure Memwyre\'s cross-bot shared memory to keep all your agents perfectly aligned.',
+    readTime: '4 min read',
+    date: 'Sep 16, 2026'
+  },
+  {
     slug: 'mcp-persistent-memory',
     category: 'MCP Server',
     title: 'How to Give Claude Desktop Persistent Memory using MCP',
