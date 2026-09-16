@@ -157,6 +157,7 @@
             :is="agent.to ? 'router-link' : 'div'"
             v-for="agent in [
               { name: 'Claude Code', desc: 'Auto-inject command line prompts & error summaries', logo: claudeLogo, to: '/claude-memory' },
+              { name: 'Grok Build & Bot', desc: 'Persistent, cross-bot shared memory', logo: grokLogo, to: '/grok-memory' },
               { name: 'OpenClaw', desc: 'Autonomous memory hooks for multi-agent workflows', logo: openclawLogo, to: '/openclaw-memory' },
               { name: 'OpenCode', desc: 'Shared coding patterns & architecture conventions', iconClass: 'fa-solid fa-code', to: '/opencode-memory' },
               { name: 'Hermes Agent', desc: 'Secure local-first knowledge extraction & scoping', iconClass: 'fa-solid fa-robot' }
@@ -234,6 +235,7 @@
 
 <script setup>
 import claudeLogo from '@/assets/claude-color.svg';
+import grokLogo from '@/assets/grok-color.svg';
 import openclawLogo from '@/assets/openclaw-color.svg';
 import SiteFooter from '@/components/SiteFooter.vue';
 </script>

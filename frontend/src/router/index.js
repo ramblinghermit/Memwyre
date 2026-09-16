@@ -285,6 +285,12 @@ export function createAppRouter({ ssr = false } = {}) {
                         meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/openclaw-memory'] }
                     },
                     {
+                        path: 'grok-memory',
+                        name: 'grok-memory',
+                        component: () => import('../views/integrations/GrokMemoryView.vue'),
+                        meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/openclaw-memory'] }
+                    },
+                    {
                         path: 'opencode-memory',
                         name: 'opencode-memory',
                         component: () => import('../views/integrations/OpenCodeMemoryView.vue'),
