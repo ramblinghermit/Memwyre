@@ -233,7 +233,7 @@ async def retrieve_context(
         from app.services.retrieval_service import retrieval_service
     
     # Resolve project_id to ensure workspace containerization
-    project_id = await deps.resolve_project_id(db, current_user.id, request.project_id, request.workspace_name)
+    project_id = await deps.resolve_project_id(db, current_user.id, request.project_id)
     
     results = await retrieval_service.search_memories(
         query=request.query,

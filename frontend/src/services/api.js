@@ -108,13 +108,10 @@ api.interceptors.response.use(
                 isRefreshing = false;
                 processQueue(err, null);
                 authStore.logout();
-                const requiresAuth = router.currentRoute.value.meta?.requiresAuth;
-                if (requiresAuth) {
-                    router.push({
-                        path: '/login',
-                        query: { redirect: router.currentRoute.value.fullPath }
-                    });
-                }
+                router.push({
+                    path: '/login',
+                    query: { redirect: router.currentRoute.value.fullPath }
+                });
                 return Promise.reject(err);
             }
         }

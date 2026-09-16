@@ -159,13 +159,13 @@ To see the co-processor in action, consider a developer asking: *"Which database
                                 │
                                 └──> [3. Temporal Decay Filter] ───> Decays old/deprecated nodes
                                           │
-                                          └───> [4. Dense Payload Injection]
+                                          └───> [4. Dense Sub-300ms Payload Injection]
 ```
 
 1. **Dense Semantic Vector Search**: A fast vector lookup retrieves candidate nodes from the Semantic Memory database matching query terms like "database configuration" and "container".
 2. **Graph Traversal**: The co-processor walks the State Graph from the `container` entity node to locate adjacent database parameters and configuration files.
 3. **Temporal Decay Filter**: The Ebbinghaus decay formula suppresses outdated container settings from previous months, selecting only the configurations reinforced or created within the "last week" window.
-4. **Dense Payload Injection**: The resolved parameters are packaged and injected into the LLM system prompt. The entire pipeline completes almost instantly, completely bypassing the need to feed historical transcripts into the attention buffer.
+4. **Dense Sub-300ms Payload Injection**: The resolved parameters are packaged and injected into the LLM system prompt. The entire pipeline completes in under 300ms, completely bypassing the need to feed historical transcripts into the attention buffer.
 
 ---
 

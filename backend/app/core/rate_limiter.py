@@ -152,8 +152,7 @@ def get_embeddings_instance():
             async def aembed_documents(self, texts: List[str], chunk_size: Optional[int] = 0) -> List[List[float]]:
                 original_create = self.async_client.create
                 async def mock_create(*args, **kwargs):
-                    if "nvidia/" in getattr(self, "model", ""):
-                        kwargs["extra_body"] = {"input_type": "passage"}
+                    kwargs["extra_body"] = {"input_type": "passage"}
                     return await original_create(*args, **kwargs)
                 self.async_client.create = mock_create
                 try:
@@ -164,8 +163,7 @@ def get_embeddings_instance():
             async def aembed_query(self, text: str) -> List[float]:
                 original_create = self.async_client.create
                 async def mock_create(*args, **kwargs):
-                    if "nvidia/" in getattr(self, "model", ""):
-                        kwargs["extra_body"] = {"input_type": "query"}
+                    kwargs["extra_body"] = {"input_type": "query"}
                     return await original_create(*args, **kwargs)
                 self.async_client.create = mock_create
                 try:
@@ -176,8 +174,7 @@ def get_embeddings_instance():
             def embed_documents(self, texts: List[str], chunk_size: Optional[int] = 0) -> List[List[float]]:
                 original_create = self.client.create
                 def mock_create(*args, **kwargs):
-                    if "nvidia/" in getattr(self, "model", ""):
-                        kwargs["extra_body"] = {"input_type": "passage"}
+                    kwargs["extra_body"] = {"input_type": "passage"}
                     return original_create(*args, **kwargs)
                 self.client.create = mock_create
                 try:
@@ -188,8 +185,7 @@ def get_embeddings_instance():
             def embed_query(self, text: str) -> List[float]:
                 original_create = self.client.create
                 def mock_create(*args, **kwargs):
-                    if "nvidia/" in getattr(self, "model", ""):
-                        kwargs["extra_body"] = {"input_type": "query"}
+                    kwargs["extra_body"] = {"input_type": "query"}
                     return original_create(*args, **kwargs)
                 self.client.create = mock_create
                 try:
@@ -201,7 +197,7 @@ def get_embeddings_instance():
         raw_embeddings = CustomNIMEmbeddings(
             base_url=settings.EMBEDDING_API_BASE,
             api_key=api_key,
-            model=getattr(settings, "EMBEDDING_MODEL_NAME", "baai/bge-m3"),
+            model=getattr(settings, "EMBEDDING_MODEL_NAME", "nvidia/nv-embedqa-e5-v5"),
             check_embedding_ctx_length=False
         )
     elif provider == "azure" or provider == "openai":

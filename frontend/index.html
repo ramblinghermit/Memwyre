@@ -2,12 +2,6 @@
 <html lang="en">
 
 <head>
-  <!-- Anti-Clickjacking Frame Buster -->
-  <script>
-    if (self !== top) {
-      top.location = self.location;
-    }
-  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHE56HRTSE"></script>
   <script>
@@ -74,16 +68,6 @@
 
 <body>
   <div id="app"><!--app-html--></div>
-  <script>
-    if (window.location.hostname === 'app.memwyre.tech') {
-      document.getElementById('app').innerHTML = '';
-    }
-  </script>
-  <div class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">
-    <a href="https://fazier.com/launches/memwyre.tech" target="_blank" rel="noopener noreferrer">
-      <img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=light" width="120" alt="Fazier badge" />
-    </a>
-  </div>
   <script type="module" src="/src/main.js"></script>
 </body>
 

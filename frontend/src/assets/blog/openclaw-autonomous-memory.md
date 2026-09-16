@@ -1,7 +1,5 @@
 # Persistent Memory for Autonomous Agents: OpenClaw and Memwyre Integration
 
-> 📖 **Official Guide:** Looking for the full OpenClaw persistent memory plugin installation and context compaction guide? Visit the [OpenClaw Persistent Memory Integration Guide](/openclaw-memory).
-
 > **TL;DR:** Autonomous coding agents (like OpenClaw) lose context across runs, resulting in cost explosion and repeat debugging. By integrating the Memwyre OpenClaw Plugin, you equip the agent with tools (`search_memwyre`, `save_memory`) and a temporal forgetting curve, enabling it to recall past debugging sessions, codebase patterns, and workspace instructions.
 
 Autonomous coding agents are shifting from simple prompt-based assistants to goal-driven systems that execute multiple files, run tests, and self-correct. **OpenClaw** is a prominent open-source autonomous agent framework that excels at executing complex, multi-step workflows.
@@ -145,5 +143,5 @@ This background reconciliation ensures that your agent always operates on a clea
 
 Integrating Memwyre with OpenClaw transforms autonomous agents from simple, stateless executors into continuous, learning co-developers. 
 
-For complete plugin configuration, multi-agent context sharing, and setup commands, visit our official [OpenClaw Persistent Memory Guide](/openclaw-memory) or equip your autonomous agents at [memwyre.tech](https://memwyre.tech).
+Equip your autonomous agents with long-term memory at [memwyre.tech](https://memwyre.tech).
 

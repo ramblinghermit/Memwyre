@@ -7,7 +7,7 @@ import builtins
 from typing import Any, List, Optional
 from mcp.server.fastmcp import FastMCP
 from sqlalchemy.future import select
-from sqlalchemy import delete, func
+from sqlalchemy import delete
 from sqlalchemy.orm import selectinload
 
 # --- STDOUT PROTECTION ---
@@ -47,7 +47,7 @@ def redirect_stdout_to_stderr():
 # This prevents libraries (like ChromaDB) from printing to stdout and breaking the MCP protocol
 with redirect_stdout_to_stderr():
     from app.services.vector_store import vector_store
-    from app.services.ingestion_v2 import ingestion_service_v2 as ingestion_service
+    from app.services.ingestion import ingestion_service
     from app.db.session import AsyncSessionLocal
     from app.models.document import Document
     from app.models.user import User
@@ -69,23 +69,11 @@ logger.setLevel(logging.INFO)
 # to allow the production domain (otherwise 421 "Invalid Host header")
 from mcp.server.transport_security import TransportSecuritySettings
 
-MEMWYRE_INSTRUCTIONS = """
-Memwyre is the persistent cognitive memory and knowledge layer for this agent.
-Guidelines for autonomous memory management:
-1. READ BEFORE WRITING: Before answering user queries that might depend on previous project context, decisions, or notes, call `search_memwyre`.
-2. STORE FULL CONTENT WITHOUT TRUNCATION: When asked to save notes, architectural decisions, reports, benchmarks, or specs, pass the complete unsummarized Markdown document to `save_memory` or `upsert_memory`. Memwyre automatically handles chunking, enrichment, and vector/graph indexing.
-3. UPDATING EXISTING KNOWLEDGE: When updating an existing topic, note, or report, prefer `upsert_memory` with the same `title`, or find the `[ID: mem_XXX]` via `search_memwyre` and call `update_memory` to avoid cluttering the vault with duplicates.
-4. INSPECTING MEMORIES: `search_memwyre` returns snippets with IDs (e.g. `[ID: mem_73]`). To view the full original text of any memory, use `get_memory(memory_id='mem_73')`.
-5. TAGGING CONVENTION: Always assign 2-5 relevant lowercase tags (e.g., ['architecture', 'benchmarks', 'auth', 'database']) to organize knowledge.
-6. WORKSPACES: Omit the `workspace_name` parameter to store memories in the Global Vault, UNLESS the user explicitly asks for isolation. If you do use a workspace, reuse existing ones based on the current directory; do not invent new workspace names.
-"""
-
 mcp = FastMCP(
     "Memwyre",
-    instructions=MEMWYRE_INSTRUCTIONS,
     stateless_http=True,
     transport_security=TransportSecuritySettings(
-        allowed_hosts=["api.memwyre.tech", "server.memwyre.tech", "localhost", "127.0.0.1"],
+        allowed_hosts=["server.memwyre.tech", "localhost", "127.0.0.1"],
     ),
 )
 
@@ -253,25 +241,14 @@ async def get_or_create_project(db, user_id: int, workspace_name: Optional[str] 
     return project.id
 
 @mcp.tool()
-async def save_memory(
-    text: str, 
-    ctx: Context, 
-    title: Optional[str] = None, 
-    source: str = "mcp", 
-    tags: Optional[List[str]] = None, 
-    workspace_name: Optional[str] = None
-) -> str:
+async def save_memory(text: str, ctx: Context, source: str = "mcp", tags: Optional[List[str]] = None, workspace_name: Optional[str] = None) -> str:
     """
-    Save a new memory or document to the Memwyre Vault.
-    Supports short notes, conversation facts, or full long-form Markdown documents/reports of any length.
-    The backend automatically chunks, enriches, and indexes long text into vector and graph storage.
-    DO NOT summarize long reports, architecture specs, or code snippets — pass the full text directly.
+    Save a new memory snippet to the Memwyre Vault. Use this tool when the user explicitly asks you to 'remember' something, 'save' a note, or when you encounter important information that should be persisted for future reference.
     Args:
-        text: The full content to save. Markdown is fully supported and preserved (tables, code blocks, lists, headers).
-        title: Optional title for the memory (e.g., 'Production Retrieval Benchmark' or 'System Architecture'). If omitted, one is auto-extracted from the first heading.
+        text: The content of the memory.
         source: Source of memory (default 'mcp').
-        tags: Optional list of tags for categorization (e.g., ['benchmarks', 'architecture', 'database']).
-        workspace_name: Optional name of the workspace directory to scope this memory.
+        tags: Optional list of tags.
+        workspace_name: Optional name of the workspace directory. Pass this so that memories are containerized in this project workspace.
     """
     async with AsyncSessionLocal() as db:
         try:
@@ -281,131 +258,34 @@ async def save_memory(
                 logger.error("No user found during save_memory")
                 return "Error: No user found."
 
+            # Use the dynamically identified client source if the tool caller just used "mcp"
             effective_source = source
             if source == "mcp" and key_name:
                 effective_source = key_name
             
-            # Auto-extract title if not provided and text starts with Markdown header
-            effective_title = title
-            if not effective_title and text.strip().startswith("#"):
-                first_line = text.strip().split("\n")[0].lstrip("#").strip()
-                if first_line:
-                    effective_title = first_line[:80]
+            logger.info(f"Effective source: {effective_source} (identified source: {key_name})")
 
             project_id = await get_or_create_project(db, user.id, workspace_name)
             memory = await memory_service.create_memory(
                 db=db,
                 user=user,
                 content=text,
-                title=effective_title,
                 source=effective_source,
                 tags=tags,
                 project_id=project_id
             )
             
             logger.info(f"Memory saved successfully: mem_{memory.id}")
-            return f"Memory saved to Inbox with ID: mem_{memory.id} (Status: {memory.status}, Title: '{memory.title}')"
+            return f"Memory saved to Inbox with ID: mem_{memory.id} (Status: {memory.status})"
         except Exception as e:
             logger.error(f"Error saving memory: {e}", exc_info=True)
             return f"Error saving memory: {str(e)}"
 
 @mcp.tool()
-async def upsert_memory(
-    title: str, 
-    text: str, 
-    ctx: Context, 
-    source: str = "mcp", 
-    tags: Optional[List[str]] = None, 
-    workspace_name: Optional[str] = None
-) -> str:
-    """
-    Save or update a living memory/document by title in the Memwyre Vault.
-    If a memory with a matching title already exists in this workspace, it will be updated in-place with the new text and re-indexed (preventing duplicate entries).
-    If no existing memory matches the title, a new memory is created.
-    Use this tool when maintaining living documents (e.g. project architecture, meeting notes, benchmarks, user preferences).
-    Args:
-        title: Unique title or topic name (e.g., 'Production Retrieval Benchmark' or 'System Architecture').
-        text: The full content to save or update (Markdown fully supported, do not summarize).
-        source: Source of memory (default 'mcp').
-        tags: Optional list of categorization tags (e.g., ['benchmarks', 'architecture']).
-        workspace_name: Optional workspace name to scope this memory.
-    """
-    async with AsyncSessionLocal() as db:
-        try:
-            logger.info(f"MCP upsert_memory called. Title: {title}. Text length: {len(text)}")
-            user, key_name = await get_current_user(db, ctx, required_scope="mcp:write")
-            if not user:
-                return "Error: No user found."
-
-            effective_source = source
-            if source == "mcp" and key_name:
-                effective_source = key_name
-
-            project_id = await get_or_create_project(db, user.id, workspace_name)
-
-            # Check if memory with this title already exists (case-insensitive)
-            stmt = select(Memory).filter(
-                Memory.user_id == user.id,
-                func.lower(Memory.title) == func.lower(title.strip())
-            )
-            if project_id is not None:
-                stmt = stmt.filter(Memory.project_id == project_id)
-
-            result = await db.execute(stmt)
-            existing = result.scalars().first()
-
-            if existing:
-                from datetime import datetime, timezone
-                existing.content = text
-                existing.updated_at = datetime.now(timezone.utc)
-                if tags:
-                    existing.tags = tags
-                await db.commit()
-                await db.refresh(existing)
-
-                # Re-ingest
-                if existing.embedding_id:
-                    try:
-                        vector_store.delete(ids=[existing.embedding_id])
-                    except Exception:
-                        pass
-
-                ingest_metadata = {"user_id": user.id, "memory_id": existing.id, "tags": str(existing.tags) if existing.tags else "", "source": effective_source}
-                ids, raw_chunks, enriched_chunks, metadatas, _facts = await ingestion_service.process_text(
-                    text=existing.content,
-                    document_id=existing.id,
-                    title=existing.title,
-                    doc_type="memory",
-                    metadata=ingest_metadata
-                )
-                if ids:
-                    existing.embedding_id = ids[0]
-                    await db.commit()
-                    vector_store.add_documents(ids=ids, documents=enriched_chunks, metadatas=metadatas)
-
-                return f"Memory mem_{existing.id} ('{existing.title}') updated successfully."
-            else:
-                # Create new
-                memory = await memory_service.create_memory(
-                    db=db,
-                    user=user,
-                    content=text,
-                    title=title,
-                    source=effective_source,
-                    tags=tags,
-                    project_id=project_id
-                )
-                return f"Memory saved to Inbox with ID: mem_{memory.id} (Status: {memory.status}, Title: '{title}')"
-        except Exception as e:
-            logger.error(f"Error in upsert_memory: {e}", exc_info=True)
-            return f"Error upserting memory: {str(e)}"
-
-@mcp.tool()
 async def search_memwyre(query: str, ctx: Context, purpose: str = "general", workspace_name: Optional[str] = None) -> str:
     """
     The PRIMARY tool for searching the user's "Memwyre". Use this to retrieve relevant context, notes, code snippets, or past conversations from the Memwyre Vault.
-    ALWAYS use this before answering questions that might require personal context or project knowledge.
-    Results include item IDs (e.g. `[ID: mem_123]` or `[ID: doc_45]`). You can pass these IDs to `get_memory` to read full unchunked text, or to `update_memory` / `delete_memory`.
+    ALWAYS use this before answering questions that might require personal context.
     Args:
         query: The semantic search query (e.g., "python fastapi project structure", "notes on meeting with Bob", or "auth system specs").
         purpose: Optional hint for context formatting ("general", "code", "summary").
@@ -417,7 +297,11 @@ async def search_memwyre(query: str, ctx: Context, purpose: str = "general", wor
             if not user:
                 return "Error: No user found."
                 
-            from app.services.retrieval_service_v2 import retrieval_service
+            from app.core.config import settings
+            if settings.MEMORY_ENGINE_VERSION == "v2":
+                from app.services.retrieval_service_v2 import retrieval_service
+            else:
+                from app.services.retrieval_service import retrieval_service
                 
             project_id = await get_or_create_project(db, user.id, workspace_name)
             results = await retrieval_service.search_memories(
@@ -604,58 +488,69 @@ async def get_document(doc_id: int, ctx: Context) -> str:
             return f"Error getting document: {str(e)}"
 
 @mcp.tool()
-async def get_memory(memory_id: str, ctx: Context) -> str:
+async def generate_prompt(query: str, ctx: Context, template: str = "standard", workspace_name: Optional[str] = None) -> str:
     """
-    Retrieve the full, unabridged content of a specific memory by its ID from Memwyre.
-    Use this when `search_memwyre` returns a snippet with `[ID: mem_XXX]` and you need to read the complete original document, report, or note.
+    Generate a prompt with retrieved context from Memwyre.
     Args:
-        memory_id: The ID of the memory (e.g., 'mem_73').
+        query: The user's question or request.
+        template: The template to use ("standard", "code", "summary").
+        workspace_name: Optional name of the workspace directory. Pass this so that prompt context is scoped strictly to this project workspace.
     """
-    if not memory_id.startswith("mem_"):
-        return "Error: ID must start with 'mem_'."
-
     async with AsyncSessionLocal() as db:
         try:
             user, _ = await get_current_user(db, ctx, required_scope="mcp:read")
             if not user:
                 return "Error: No user found."
+            
+            project_id = await get_or_create_project(db, user.id, workspace_name)
+            
+            # 1. Retrieve Context using ContextBuilder (Standardized)
+            context_data = await context_builder.build_context(query=query, user_id=user.id, limit_tokens=2000, project_id=project_id)
+            context_str = context_data["text"]
+            
+            # 3. Apply Template
+            if template == "code":
+                prompt = f"""You are an expert coding assistant. Use the following context to answer the user's request.
 
-            try:
-                mem_id = int(memory_id.split("_")[1])
-            except ValueError:
-                return "Error: Invalid ID format."
+CONTEXT:
+{context_str}
 
-            result = await db.execute(
-                select(Memory).filter(Memory.id == mem_id, Memory.user_id == user.id)
-            )
-            memory = result.scalars().first()
-            if not memory:
-                return f"Memory {memory_id} not found."
+USER REQUEST:
+{query}
 
-            tags_str = ", ".join(memory.tags) if memory.tags and isinstance(memory.tags, list) else str(memory.tags or "")
-            return (
-                f"ID: {memory_id}\n"
-                f"Title: {memory.title}\n"
-                f"Status: {memory.status}\n"
-                f"Source: {memory.source_llm}\n"
-                f"Tags: {tags_str}\n"
-                f"Created: {memory.created_at}\n"
-                f"---\n"
-                f"{memory.content}"
-            )
+INSTRUCTIONS:
+- Provide clear, efficient code.
+- Explain your reasoning.
+"""
+            elif template == "summary":
+                prompt = f"""Please summarize the following information based on the user's query.
+
+CONTEXT:
+{context_str}
+
+QUERY:
+{query}
+"""
+            else: # Standard
+                prompt = f"""Use the following memory context to answer the question.
+
+MEMORY CONTEXT:
+{context_str}
+
+QUESTION:
+{query}
+"""
+            return prompt
         except Exception as e:
-            return f"Error getting memory: {str(e)}"
+            return f"Error generating prompt: {str(e)}"
 
 @mcp.tool()
 async def update_memory(memory_id: str, content: str, ctx: Context) -> str:
     """
     Update the content of an existing memory in Memwyre.
-    Requires the memory ID (e.g., 'mem_73'), which can be discovered using `search_memwyre` or `list_memories`.
-    The new content is completely re-chunked and re-indexed into the vector store.
-    Full Markdown documents are supported and encouraged — do not truncate.
     Args:
         memory_id: The ID of the memory (must start with 'mem_').
-        content: The new, full content (Markdown fully supported).
+        content: The new content.
     """
     if not memory_id.startswith("mem_"):
         return "Error: Only memories (starting with 'mem_') can be updated via this tool."
@@ -679,27 +574,24 @@ async def update_memory(memory_id: str, content: str, ctx: Context) -> str:
                 return "Error: Memory not found."
 
             # Update DB
-            from datetime import datetime, timezone
             memory.content = content
-            memory.updated_at = datetime.now(timezone.utc)
             await db.commit()
             await db.refresh(memory)
 
-            # Update Vector Store — delete old embedding
+            # Update Vector Store
             if memory.embedding_id:
                 try:
                     vector_store.delete(ids=[memory.embedding_id])
-                except Exception:
+                except:
                     pass
             
             # Re-ingest
-            ingest_metadata = {"user_id": user.id, "memory_id": memory.id, "tags": str(memory.tags) if memory.tags else "", "source": "mcp"}
-            ids, raw_chunks, enriched_chunks, metadatas, _facts = await ingestion_service.process_text(
+            ids, raw_chunks, enriched_chunks, metadatas = await ingestion_service.process_text(
                 text=memory.content,
                 document_id=memory.id,
                 title=memory.title,
                 doc_type="memory",
-                metadata=ingest_metadata
+                metadata={"user_id": user.id, "memory_id": memory.id, "tags": str(memory.tags) if memory.tags else "", "source": "mcp"}
             )
             
             if ids:
@@ -714,7 +606,6 @@ async def update_memory(memory_id: str, content: str, ctx: Context) -> str:
 
             return f"Memory {memory_id} updated successfully."
         except Exception as e:
-            logger.error(f"Error updating memory: {e}", exc_info=True)
             return f"Error updating memory: {str(e)}"
 
 @mcp.tool()
@@ -972,9 +863,5 @@ async def get_all_tags(ctx: Context, workspace_name: Optional[str] = None) -> st
         except Exception as e:
             return f"Error getting tags: {str(e)}"
 
-# Export ASGI app instance for Gunicorn / Uvicorn server deployments
-app = mcp.streamable_http_app()
-
 if __name__ == "__main__":
     mcp.run()
-

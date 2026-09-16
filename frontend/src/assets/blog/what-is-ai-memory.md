@@ -74,7 +74,7 @@ A common question is: "Why not just use a standard RAG pipeline?" The table belo
 |---|---|---|
 | **Knowledge State** | Static document upload. Requires manual re-indexing. | Evolving. Learns context from developer chat logs dynamically. |
 | **Context Structure** | Flat vector chunks. No entity connections. | Entity-relationship memory graph. Knows how files and projects connect. |
-| **Retrieval Logic** | Cosine similarity only. Out-of-order context. | Instant. Pruned cache lookup + graph traverse. |
+| **Retrieval Logic** | Cosine similarity only. Out-of-order context. | Sub-300ms. Pruned cache lookup + graph traverse. |
 | **Integration Scope** | API endpoints or isolated chatbots. | IDE Plugins (Cursor, VS Code), MCP Clients, terminal plugins, and browser extension. |
 | **Decay / Cleaning** | No decay. Old outdated data competes with new updates. | Active forgetting curves. Prunes out irrelevant old logs and duplicates automatically. |
 

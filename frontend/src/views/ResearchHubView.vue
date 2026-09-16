@@ -105,7 +105,7 @@
           Access our open source benchmark repositories, integrate Model Context Protocol memory servers, and build stateful agents.
         </p>
         <div class="flex justify-center gap-4">
-          <router-link to="/signup" class="px-6 py-2.5 bg-[#D97757] hover:bg-[#c05c3d] text-white text-sm font-semibold rounded-lg transition-colors shadow-sm">
+          <router-link to="/signup/" class="px-6 py-2.5 bg-[#D97757] hover:bg-[#c05c3d] text-white text-sm font-semibold rounded-lg transition-colors shadow-sm">
             Join the Beta
           </router-link>
           <a href="https://github.com/ramblinghermit0403/Memwyre" target="_blank" class="px-6 py-2.5 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:bg-gray-100 dark:hover:bg-zinc-800 text-gray-700 dark:text-gray-300 text-sm font-semibold rounded-lg transition-colors">
@@ -140,33 +140,6 @@ const papers = [
     date: 'ACCURACY: 70.5% | HIT@10: 79.9%',
     link: '/ai-memory-benchmark-locomo',
     cover: '/blog-covers/ai-memory-benchmark-locomo-v2.png'
-  },
-  {
-    category: 'Architecture Study',
-    title: 'What is AI Memory? The Architecture of Long-Term Context',
-    excerpt: 'Explore the technical architecture of AI memory, from flat vector embeddings to hierarchical entity graphs, and how it solves LLM amnesia.',
-    readTime: '6 min read',
-    date: 'Apr 2026',
-    link: '/research/what-is-ai-memory',
-    cover: '/blog-covers/state-of-ai-memory-2026.png'
-  },
-  {
-    category: 'Architecture Study',
-    title: 'Vector Database vs. AI Agent Memory',
-    excerpt: 'The fundamental engineering differences between passive semantic vector tables and active cognitive agent memory layers with Ebbinghaus decay.',
-    readTime: '16 min read',
-    date: 'Sep 2026',
-    link: '/research/vector-database-vs-agent-memory',
-    cover: '/blog-covers/rag-vs-memory-long-term-knowledge.png'
-  },
-  {
-    category: 'Developer Guide',
-    title: 'Context Engineering: The 2026 Guide for Developers',
-    excerpt: 'Prompt engineering is dead. Learn how Context Engineering and hierarchical entity graphs replace standard RAG for production AI agents.',
-    readTime: '7 min read',
-    date: 'May 2026',
-    link: '/research/context-engineering',
-    cover: '/blog-covers/mcp-persistent-memory.png'
   }
 ];
 </script>

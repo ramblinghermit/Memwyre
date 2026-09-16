@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 from sqlalchemy.orm import selectinload
 from app.models.document import Chunk
 from app.services.vector_store_v2 import vector_store_v2 as vector_store
-from app.core.config import settings
 
 class RetrievalService:
     async def search_memories(
@@ -28,12 +27,6 @@ class RetrievalService:
         """
         top_k = max(10, top_k)
         injected_profiles = []
-        import time
-        t_start = time.perf_counter()
-        t_state = 0.0
-        t_semantic = 0.0
-        t_profiles = 0.0
-        t_rerank = 0.0
         
         if view == "state":
             return await self._search_state(query, user_id, db, top_k, project_id=project_id, debug_info=debug_info)
@@ -49,32 +42,36 @@ class RetrievalService:
             unified_results = await self._search_unified(query, str_user_id, top_k=top_k, project_id=project_id, debug_info=debug_info)
             
             import asyncio
-            t0 = time.perf_counter()
-            state_results = await self._search_state(query, user_id, db, top_k=max(15, top_k), pre_fetched=unified_results["facts"], project_id=project_id, debug_info=debug_info)
-            t_state = (time.perf_counter() - t0) * 1000
+            # Pass pre-fetched candidates to ranking methods
+            # _search_state needs int user_id for SQL, _search_semantic needs int or str?
+            # Let's look at signatures. _search_state(user_id: int). _search_semantic(user_id: int).
+            # So pass user_id (int) to both.
+            # state_task = self._search_state(query, user_id, db, top_k=3, pre_fetched=unified_results["facts"])
+            # semantic_task = self._search_semantic(query, user_id, db, top_k=top_k, pre_fetched=unified_results["memories"])
             
-            t0 = time.perf_counter()
+            # fix: AsyncSession cannot be shared across concurrent tasks. Run sequentially.
+            state_results = await self._search_state(query, user_id, db, top_k=max(15, top_k), pre_fetched=unified_results["facts"], project_id=project_id, debug_info=debug_info)
             semantic_results = await self._search_semantic(query, user_id, db, top_k=top_k, pre_fetched=unified_results["memories"], project_id=project_id, debug_info=debug_info)
-            t_semantic = (time.perf_counter() - t0) * 1000
             
             results = state_results + semantic_results
             
             # STRIP SEMANTIC PROFILES
+            # Semantic search pulls in all the garbage profiles from the vector store.
+            # We filter them out entirely here so ONLY the deterministically injected 
+            # profiles make it to the LLM context.
             results = [r for r in results if r.get("metadata", {}).get("type") != "profile"]
 
             # DETERMINISTIC ENTITY PROFILE INJECTION
+            # Hold profiles separately — they bypass reranking entirely
             injected_profiles = []
-            t0 = time.perf_counter()
             try:
                 injected_profiles = await self._inject_entity_profiles(query, user_id, db, project_id=project_id)
                 if injected_profiles:
                     print(f"RetrievalV2: Injected {len(injected_profiles)} entity profile(s) deterministically")
             except Exception as profile_e:
                 print(f"RetrievalV2: Entity profile injection failed: {profile_e}")
-            t_profiles = (time.perf_counter() - t0) * 1000
 
         # PHASE 1: API-BASED RERANKING (Zero Local RAM/CPU Overhead)
-        t0_rerank = time.perf_counter()
         if results and len(results) > 1:
             try:
                 documents = [r["text"] for r in results]
@@ -82,29 +79,17 @@ class RetrievalService:
                 
                 # Attempt 1: Pinecone Inference Rerank API
                 if hasattr(vector_store, "pc") and vector_store.pc:
-                    candidate_models = [
-                        getattr(settings, "PINECONE_RERANK_MODEL", "bge-reranker-v2-m3"),
-                        "bge-reranker-v2-m3",
-                        "pinecone-rerank-v0",
-                        "cohere-rerank-v3.5"
-                    ]
-                    # Deduplicate preserving order
-                    seen = set()
-                    models_to_try = [m for m in candidate_models if not (m in seen or seen.add(m))]
-
-                    for pc_model in models_to_try:
-                        try:
-                            res = vector_store.pc.inference.rerank(
-                                model=pc_model,
-                                query=query,
-                                documents=documents,
-                                top_n=len(results)
-                            )
-                            if hasattr(res, "data") and res.data:
-                                reranked_data = [(item.index, item.score) for item in res.data]
-                                break
-                        except Exception as pc_e:
-                            print(f"RetrievalV2: Pinecone Rerank API model '{pc_model}' failed/fallback: {pc_e}")
+                    try:
+                        res = vector_store.pc.inference.rerank(
+                            model="bge-reranker-large",
+                            query=query,
+                            documents=documents,
+                            top_n=len(results)
+                        )
+                        if hasattr(res, "data") and res.data:
+                            reranked_data = [(item.index, item.score) for item in res.data]
+                    except Exception as pc_e:
+                        print(f"RetrievalV2: Pinecone Rerank API info/fallback: {pc_e}")
 
                 # Attempt 2: NVIDIA NIM Rerank API
                 if not reranked_data:
@@ -157,8 +142,6 @@ class RetrievalService:
             except Exception as e:
                 print(f"RetrievalV2 Reranking failed: {e}")
         
-        t_rerank = (time.perf_counter() - t0_rerank) * 1000
-
         # Prepend profiles AFTER reranking — they always sit at the top
         if injected_profiles:
             results = injected_profiles + results
@@ -178,25 +161,6 @@ class RetrievalService:
                         "is_dropped": False
                     })
                 debug_info["reranking"] = profile_debug + debug_info["reranking"]
-
-        # Aggregate timings
-        t_total_ms = (time.perf_counter() - t_start) * 1000
-        vector_timings = debug_info.get("vector_timings", {}) if debug_info else {}
-        timings = {
-            "total_server_ms": round(t_total_ms, 1),
-            "embed_ms": vector_timings.get("embed_ms", 0.0),
-            "pinecone_ms": vector_timings.get("pinecone_ms", 0.0),
-            "state_sql_ms": round(t_state, 1),
-            "semantic_sql_ms": round(t_semantic, 1),
-            "entity_profile_ms": round(t_profiles, 1),
-            "rerank_ms": round(t_rerank, 1)
-        }
-        if "error" in vector_timings:
-            timings["vector_error"] = vector_timings["error"]
-        print(f"[RETRIEVAL TIMING] total={timings['total_server_ms']}ms | embed={timings['embed_ms']}ms | pinecone={timings['pinecone_ms']}ms | state_sql={timings['state_sql_ms']}ms | semantic_sql={timings['semantic_sql_ms']}ms | rerank={timings['rerank_ms']}ms | error={timings.get('vector_error')}")
-
-        if debug_info is not None:
-            debug_info["timings_ms"] = timings
                 
         return results[:top_k]
 
@@ -297,16 +261,12 @@ class RetrievalService:
         if project_id is not None:
             where_dict["project_id"] = str(project_id)
             
-        vector_timings = {}
         results = await vector_store.query(
             query,
             n_results=fetch_k,
             where=where_dict,
-            include_values=True,
-            timing_dict=vector_timings
+            include_values=True 
         )
-        if debug_info is not None:
-            debug_info["vector_timings"] = vector_timings
         
         # Split results by type
         facts_res = {"ids": [[]], "distances": [[]], "metadatas": [[]], "embeddings": [[]], "documents": [[]]}

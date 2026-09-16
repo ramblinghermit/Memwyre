@@ -8,7 +8,7 @@ import open from 'open';
 import express from 'express';
 import toml from '@iarna/toml';
 
-const MEMWYRE_MCP_URL_NATIVE = 'https://api.memwyre.tech/mcp';
+const MEMWYRE_MCP_URL_NATIVE = 'https://server.memwyre.tech/mcp';
 
 // Helper to determine paths
 const getAppData = () => process.env.APPDATA || (process.platform === 'darwin' ? path.join(os.homedir(), 'Library', 'Application Support') : path.join(os.homedir(), '.config'));
@@ -56,6 +56,36 @@ const IDE_CONFIGS = {
       }
     })
   },
+  'claudecode': {
+    name: 'Claude Code',
+    clientName: 'Claude Code',
+    execute: async (token) => {
+      const { exec } = await import('child_process');
+      const util = await import('util');
+      const execAsync = util.promisify(exec);
+      await execAsync(`claude mcp add memwyre -- npx -y mcp-remote ${MEMWYRE_MCP_URL_NATIVE} --header "Authorization:Bearer ${token}"`);
+    }
+  },
+  'grokbot': {
+    name: 'Grok Build & Bot',
+    clientName: 'Grok',
+    execute: async (token) => {
+      const { exec } = await import('child_process');
+      const util = await import('util');
+      const execAsync = util.promisify(exec);
+      
+      try {
+        await execAsync(`grok plugin install @memwyre/grok-plugin`);
+      } catch (e) {
+        // Fallback for when grok CLI isn't found
+        throw new Error(`Failed to install Grok plugin. Ensure the 'grok' CLI is available. Details: ${e.message}`);
+      }
+      
+      p.log.warn(pc.yellow(`IMPORTANT: You must set your API key in your environment to finish setup.`));
+      p.log.info(`Run this in your terminal or add it to your ~/.bashrc / ~/.zshrc:`);
+      p.log.info(pc.cyan(`export MEMWYRE_API_KEY="${token}"`));
+    }
+  },
   'antigravity': {
     name: 'Antigravity',
     clientName: 'Antigravity',
@@ -89,7 +119,7 @@ async function authenticate(clientName) {
       const port = server.address().port;
       const redirectUri = `http://localhost:${port}/callback`;
       // Use production URL or fallback to localhost for development
-      const frontendUrl = process.env.MEMWYRE_FRONTEND_URL || 'https://app.memwyre.tech';
+      const frontendUrl = process.env.MEMWYRE_FRONTEND_URL || 'https://memwyre.tech';
       const authUrl = `${frontendUrl}/login?cli_port=${port}&client=${encodeURIComponent(clientName)}`;
       
       p.log.info(`Opening your browser to authenticate with Memwyre...`);
@@ -100,13 +130,7 @@ async function authenticate(clientName) {
 
 async function updateMcpConfig(ideKey, token) {
   const ide = IDE_CONFIGS[ideKey];
-
-  if (ide.customUpdate) {
-    p.log.info(`Configuring ${ide.name}...`);
-    await ide.customUpdate(token);
-    return;
-  }
-
+  
   if (ide.execute) {
     p.log.info(`Executing CLI installation for ${ide.name}...`);
     try {
@@ -158,49 +182,45 @@ async function updateMcpConfig(ideKey, token) {
 }
 
 async function main() {
-  p.intro(pc.bgCyan(pc.black(' Memwyre Auto Installer ')));
+  p.intro(pc.bgCyan(pc.black(' Memwyre MCP Installer ')));
 
   const args = process.argv.slice(2);
   let selectedIde = null;
-  let suppliedToken = process.env.MEMWYRE_API_KEY || null;
 
-  // Simple argument parsing
+  // Simple argument parsing, e.g., --cursor, --claude, --vscode, --codex
   const argMap = {
     '--cursor': 'cursor',
     '--claude': 'claude',
     '--vscode': 'vscode',
     '--codex': 'codex',
     '--claudecode': 'claudecode',
-    '--antigravity': 'antigravity',
-    '--openclaw': 'openclaw',
-    '--opencode': 'opencode'
+    '--grokbot': 'grokbot',
+    '--antigravity': 'antigravity'
   };
 
   for (const arg of args) {
     if (argMap[arg.toLowerCase()]) {
       selectedIde = argMap[arg.toLowerCase()];
+      break;
     } else if (arg.startsWith('--client=')) {
       selectedIde = arg.split('=')[1].toLowerCase();
-    } else if (arg.startsWith('--token=')) {
-      suppliedToken = arg.split('=')[1];
-    } else if (arg.startsWith('--api-key=')) {
-      suppliedToken = arg.split('=')[1];
+      break;
     } else if (arg === '-codex') {
       selectedIde = 'codex';
+      break;
     }
   }
 
   if (!selectedIde || !IDE_CONFIGS[selectedIde]) {
     selectedIde = await p.select({
-      message: 'Which agent / IDE would you like to configure?',
+      message: 'Which IDE would you like to configure?',
       options: [
-        { value: 'openclaw', label: 'OpenClaw', hint: 'AI Agent' },
-        { value: 'opencode', label: 'OpenCode', hint: 'AI Agent' },
-        { value: 'claudecode', label: 'Claude Code', hint: 'AI Agent' },
-        { value: 'cursor', label: 'Cursor', hint: 'IDE' },
-        { value: 'vscode', label: 'VS Code', hint: 'IDE' },
-        { value: 'claude', label: 'Claude Desktop', hint: 'Desktop App' },
+        { value: 'cursor', label: 'Cursor', hint: 'recommended' },
+        { value: 'claude', label: 'Claude Desktop' },
+        { value: 'vscode', label: 'VS Code' },
         { value: 'codex', label: 'Codex' },
+        { value: 'claudecode', label: 'Claude Code' },
+        { value: 'grokbot', label: 'Grok Build & Bot' },
         { value: 'antigravity', label: 'Antigravity' }
       ],
     });
@@ -210,25 +230,20 @@ async function main() {
       process.exit(0);
     }
   } else {
-    p.log.step(`Auto-selected IDE/Agent: ${IDE_CONFIGS[selectedIde].name}`);
+    p.log.step(`Auto-selected IDE: ${IDE_CONFIGS[selectedIde].name}`);
   }
 
   const s = p.spinner();
   const ideInfo = IDE_CONFIGS[selectedIde];
 
   try {
-    let token = suppliedToken;
-    if (!token) {
-      s.start(`Waiting for authentication for ${ideInfo.name}...`);
-      token = await authenticate(ideInfo.clientName);
-      s.stop(`Authenticated successfully!`);
-    } else {
-      p.log.info(`Using provided API token.`);
-    }
+    s.start(`Waiting for authentication for ${ideInfo.name}...`);
+    const token = await authenticate(ideInfo.clientName);
+    s.stop(`Authenticated successfully!`);
 
     await updateMcpConfig(selectedIde, token);
     
-    p.outro(pc.green('Memwyre is now connected! Please restart your agent / IDE.'));
+    p.outro(pc.green('Memwyre is now connected! Please restart your IDE.'));
     process.exit(0);
   } catch (err) {
     s.stop(`Installation failed.`);

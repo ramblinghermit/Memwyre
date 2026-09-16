@@ -59,16 +59,6 @@ export const useBillingStore = defineStore('billing', {
             }
         },
 
-        async createCheckoutSession() {
-            try {
-                const res = await billingService.createCheckout();
-                return res.data?.checkout_url;
-            } catch (err) {
-                console.error('Checkout creation failed:', err);
-                throw err;
-            }
-        },
-
         async cancelSubscription() {
             try {
                 const res = await billingService.cancelSubscription();

@@ -7,16 +7,6 @@
     "dark": "#D97757"
   },
   "favicon": "/images/image.svg",
-  "seo": {
-    "metatags": {
-      "canonical": "https://docs.memwyre.tech"
-    },
-    "organization": {
-      "name": "Memwyre",
-      "url": "https://docs.memwyre.tech",
-      "logo": "https://docs.memwyre.tech/images/logo.png"
-    }
-  },
   "logo": {
     "light": "/images/logo.png",
     "dark": "/images/logo-white.png"
@@ -25,7 +15,7 @@
     "links": [
       {
         "label": "Dashboard",
-        "href": "https://app.memwyre.tech/dashboard"
+        "href": "https://memwyre.tech/dashboard/"
       },
       {
         "label": "Blog",
@@ -35,7 +25,7 @@
     "primary": {
       "type": "button",
       "label": "Get Started",
-      "href": "https://app.memwyre.tech/signup"
+      "href": "https://memwyre.tech/signup"
     }
   },
   "footer": {

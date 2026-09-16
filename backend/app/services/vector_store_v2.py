@@ -1,7 +1,7 @@
 import logging
 import os
 import asyncio
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 from pinecone import Pinecone
 from app.core.config import settings
 from app.core.rate_limiter import get_embeddings_instance
@@ -23,7 +23,6 @@ class VectorStore:
         self.index = self.pc.Index(host=settings.PINECONE_HOST)
         
         # Initialize Embeddings Locally
-        self.embedding_error = None
         try:
             self.embeddings = get_embeddings_instance()
             logger.info("Initialized Embeddings with Rate Limiter.")
@@ -31,7 +30,6 @@ class VectorStore:
             import traceback
             logger.error(f"Failed to load embeddings: {e}")
             logger.error(traceback.format_exc())
-            self.embedding_error = f"{type(e).__name__}: {e}"
             self.embeddings = None
         
     from tenacity import retry, stop_after_attempt, wait_exponential
@@ -75,33 +73,25 @@ class VectorStore:
             print(f"Pinecone Upsert Failed: {e}")
             return False
 
-    async def query(self, query_texts: str, n_results: int = 5, where: Dict = None, include_values: bool = False, timing_dict: Optional[Dict[str, Any]] = None) -> Dict:
+    async def query(self, query_texts: str, n_results: int = 5, where: Dict = None, include_values: bool = False) -> Dict:
         """
         Query Pinecone index asynchronously.
         """
         try:
             # 1. Generate embedding for query locally
             if not self.embeddings:
-                if timing_dict is not None:
-                    timing_dict["error"] = f"self.embeddings is None: {getattr(self, 'embedding_error', 'None')}"
-                return {"ids": [[]], "distances": [[]], "metadatas": [[]], "documents": [[]], "embeddings": [[]]}
+                 return {"ids": [[]], "distances": [[]], "metadatas": [[]], "documents": [[]], "embeddings": [[]]}
 
             # Azure OpenAI embedding is synchronous call usually fast or we can async it too?
             # Let's wrap it just in case, or use aembed_query if available.
             # aembed_query was used above.
-            import time
-            t0_emb = time.perf_counter()
+            
             query_embedding = await self.embeddings.aembed_query(query_texts)
-            if timing_dict is not None:
-                timing_dict["embed_ms"] = round((time.perf_counter() - t0_emb) * 1000, 1)
             
             if not query_embedding:
-                if timing_dict is not None:
-                    timing_dict["error"] = "query_embedding returned empty"
                 return {"ids": [[]], "distances": [[]], "metadatas": [[]], "documents": [[]], "embeddings": [[]]}
 
             # 2. Query Pinecone (Blocking IO -> Thread)
-            t0_pc = time.perf_counter()
             search_results = await asyncio.to_thread(
                 self.index.query,
                 vector=query_embedding,
@@ -110,8 +100,6 @@ class VectorStore:
                 filter=where,
                 include_values=include_values
             )
-            if timing_dict is not None:
-                timing_dict["pinecone_ms"] = round((time.perf_counter() - t0_pc) * 1000, 1)
             
             # ... (rest of logic)
             
@@ -147,8 +135,6 @@ class VectorStore:
             
         except Exception as e:
             print(f"Pinecone Query Failed: {e}")
-            if timing_dict is not None:
-                timing_dict["error"] = f"{type(e).__name__}: {e}"
             return {"ids": [[]], "distances": [[]], "metadatas": [[]], "documents": [[]], "embeddings": [[]]}
 
     async def delete(self, ids: List[str]):

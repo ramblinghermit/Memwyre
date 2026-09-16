@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 56" height="56" width="230" fill="none">
-  <g transform="translate(4, 7)">
-    <svg viewBox="0 0 24 24" width="42" height="42">
-      <path d="M12 2.568c-6.33 0-9.495 5.275-9.495 9.495 0 4.22 3.165 8.44 6.33 9.494v2.11h2.11v-2.11s1.055.422 2.11 0v2.11h2.11v-2.11c3.165-1.055 6.33-5.274 6.33-9.494S18.33 2.568 12 2.568z" fill="#FF4D4D"/>
-      <path d="M8.835 9.109a1.266 1.266 0 100-2.532 1.266 1.266 0 000 2.532zM15.165 9.109a1.266 1.266 0 100-2.532 1.266 1.266 0 000 2.532z" fill="#050810"/>
-    </svg>
-  </g>
-  <text x="54" y="37" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Inter', Roboto, sans-serif" font-size="27" font-weight="800" fill="#000000" letter-spacing="-0.5">OpenClaw</text>
-</svg>

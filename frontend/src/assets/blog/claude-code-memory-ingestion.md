@@ -1,7 +1,5 @@
 # Building Persistent Terminal Sessions: Claude Code Memory Ingestion
 
-> 📖 **Official Guide:** Looking for the official Claude Code persistent memory plugin, installation commands, and architecture teardown? Visit the [Claude Code Persistent Memory Integration Guide](/claude-memory).
-
 > **TL;DR:** To bypass Claude Code's local limits (200-line history / 25KB `MEMORY.md` cap) and enable persistent cross-session terminal memory, integrate the Memwyre Claude Plugin. Using life-cycle hooks defined in `hooks.json`, Memwyre automatically injects relevant context on startup and ingests terminal chat transcripts on exit.
 
 Anthropic's **Claude Code** is a revolutionary command-line agent that allows developers to run terminal commands, write code, search files, and fix errors directly from their shell. It is fast, lightweight, and incredibly capable. 
@@ -147,5 +145,5 @@ When you exit using `/exit` or `Ctrl + C`, the capture script processes the conv
 
 With Memwyre, Claude Code becomes an extension of your own long-term memory. You no longer lose progress when switching tasks, closing terminal tabs, or rebooting your computer.
 
-For full CLI installation instructions, terminal lifecycle hook schemas, and cross-tool sync configuration with Cursor and VS Code, read our official [Claude Code Persistent Memory Integration Guide](/claude-memory) or start building your memory vault today at [memwyre.tech](https://memwyre.tech).
+Unlock persistent terminal intelligence today at [memwyre.tech](https://memwyre.tech).
 

@@ -52,7 +52,7 @@ class Settings(BaseSettings):
     
     # LLM Provider
     DEFAULT_LLM_PROVIDER: str = "bedrock"
-    DEFAULT_EMBEDDING_PROVIDER: str = "bedrock"
+    DEFAULT_EMBEDDING_PROVIDER: Optional[str] = None
 
     # Database
     # Default to sqlite if not set in .env
@@ -87,7 +87,7 @@ class Settings(BaseSettings):
     # Both LLM and embeddings route through NVIDIA's integrate API
     EMBEDDING_API_BASE: Optional[str] = "https://integrate.api.nvidia.com/v1"
     EMBEDDING_API_KEY: Optional[str] = None
-    EMBEDDING_MODEL_NAME: Optional[str] = "baai/bge-m3"
+    EMBEDDING_MODEL_NAME: Optional[str] = "nvidia/nv-embedqa-e5-v5"
 
     LLM_API_BASE: Optional[str] = "https://integrate.api.nvidia.com/v1"
     LLM_API_KEY: Optional[str] = None
@@ -113,7 +113,6 @@ class Settings(BaseSettings):
     
     # Dual Index Support
     PINECONE_SPARSE_HOST: Optional[str] = None
-    PINECONE_RERANK_MODEL: str = "bge-reranker-v2-m3"
 
     # Memory Engine Feature Flag
     MEMORY_ENGINE_VERSION: str = "v1"

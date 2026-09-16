@@ -37,7 +37,7 @@ Memwyre exposes an [MCP Server](https://memwyre.tech/.well-known/mcp.json) with 
 
 ### Connecting
 
-1. Get an API key from [app.memwyre.tech/settings](https://app.memwyre.tech/settings)
+1. Get an API key from [memwyre.tech/dashboard/settings](https://memwyre.tech/dashboard/settings)
 2. Connect via MCP at `https://server.memwyre.tech/mcp/`
 3. Authenticate with `Authorization: Bearer bv_sk_YOUR_KEY`
 

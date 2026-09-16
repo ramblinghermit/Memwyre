@@ -17,11 +17,11 @@ The Memwyre extension is built on **Manifest V3** and distributed as a standalon
   * `storage`: To securely cache authentication tokens and settings locally.
   * `sidePanel`: Exposes the sidebar interface for search and vault discovery.
   * `contextMenus`: Adds right-click triggers like "Save to Memwyre".
-* **Host Permissions**: Limited to `https://server.memwyre.tech/*` and `https://app.memwyre.tech/*` to preserve user privacy.
+* **Host Permissions**: Limited to `https://server.memwyre.tech/*` and `https://memwyre.tech/*` to preserve user privacy.
 
 ### Step 1 — Download & Extract
 
-1. Download the `extension.zip` file from your [Memwyre dashboard](https://app.memwyre.tech/dashboard) or the direct link provided to you.
+1. Download the `extension.zip` file from your [Memwyre dashboard](https://memwyre.tech) or the direct link provided to you.
 2. Extract the ZIP into a permanent folder on your computer. **Do not move or delete this folder** after loading the extension — doing so will break it.
 
 ### Step 2 — Load into Chrome or Edge
@@ -40,7 +40,7 @@ The Memwyre icon will now appear in your browser toolbar. ✅
 Before saving memories, you need to link the extension to your account:
 
 1. Click the Memwyre icon in your toolbar to open the side panel.
-2. Open [app.memwyre.tech](https://app.memwyre.tech) and go to **Settings**.
+2. Open [memwyre.tech](https://memwyre.tech) and go to **Settings**.
 3. Click **"Copy Extension Token"**.
 4. Paste the token into the extension popup when prompted.
 

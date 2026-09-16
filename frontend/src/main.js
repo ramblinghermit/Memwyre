@@ -1,6 +1,5 @@
 import './style.css'
 import { createMemwyreApp } from './app'
-import router from './router'
 
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
@@ -12,6 +11,4 @@ app.use(Toast, {
     toastClassName: "brain-vault-toast",
 })
 
-router.isReady().then(() => {
-    app.mount('#app')
-})
+app.mount('#app')

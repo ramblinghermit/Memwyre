@@ -1,50 +1,56 @@
 <template>
-  <div class="h-full flex flex-col bg-transparent">
+  <div class="h-full flex flex-col bg-white dark:bg-surface border-r border-gray-200 dark:border-border">
     <!-- Content (Scrollable) -->
-    <div class="flex-1 overflow-y-auto p-5 space-y-6 custom-scrollbar">
+    <div class="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar">
+      
+      <!-- Header Section inside scrollable area to match Properties -->
+      <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 mb-6 pb-2">
+         <h4 class="text-[11px] font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">Intelligence</h4>
+         <LoadingLogo v-if="loading" size="sm" />
+      </div>
 
       <!-- Loading State (Center) -->
       <div v-if="loading" class="flex flex-col items-center justify-center py-8">
         <LoadingLogo size="md" />
-        <span class="text-xs text-gray-400 dark:text-zinc-500 mt-2">Analyzing content...</span>
+        <span class="text-xs text-gray-400 mt-2">Analyzing content...</span>
       </div>
 
       <!-- No Selection State -->
-      <div v-if="!activeChunk && !loading" class="text-center py-8 text-gray-400 dark:text-zinc-500 text-xs">
+      <div v-if="!activeChunk && !loading" class="text-center py-8 text-gray-500 dark:text-gray-400 text-sm">
         <p>Select a section of the document to see AI insights.</p>
       </div>
 
       <!-- Active Content -->
-      <div v-if="activeChunk && !loading" class="space-y-6">
+      <div v-if="activeChunk && !loading" class="space-y-8">
         
         <!-- Summary Section -->
         <section v-if="activeChunk.summary">
-          <h3 class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-zinc-500 font-bold font-mono mb-2">Summary</h3>
-          <div class="p-3 bg-gray-50/70 dark:bg-zinc-900/50 rounded-xl text-xs text-gray-700 dark:text-zinc-300 leading-relaxed border border-gray-100 dark:border-zinc-800/80">
+          <h3 class="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-medium mb-3">Summary</h3>
+          <div class="p-4 bg-gray-50 dark:bg-surface-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 leading-relaxed border border-gray-100 dark:border-border">
             {{ activeChunk.summary }}
           </div>
         </section>
 
         <!-- Q&A Section -->
         <section v-if="activeChunk.generated_qas && activeChunk.generated_qas.length">
-          <h3 class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-zinc-500 font-bold font-mono mb-2">Suggested Questions</h3>
-          <div class="space-y-2.5">
+          <h3 class="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-medium mb-3">Suggested Questions</h3>
+          <div class="space-y-3">
             <div 
               v-for="(qa, idx) in normalizedQAs" 
               :key="idx" 
-              class="p-3 bg-gray-50/70 dark:bg-zinc-900/50 border border-gray-100 dark:border-zinc-800/80 rounded-xl transition-colors"
+              class="p-4 bg-white dark:bg-surface border border-gray-200 dark:border-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
             >
-              <p class="text-xs font-semibold text-gray-900 dark:text-white mb-1.5 q-icon">{{ qa.question }}</p>
-              <p class="text-xs text-gray-600 dark:text-zinc-400 pl-3 border-l-2 border-[#D97757]/60 leading-relaxed">{{ qa.answer }}</p>
+              <p class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-2 q-icon">{{ qa.question }}</p>
+              <p class="text-xs text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-primary-100 dark:border-primary-600/30 leading-relaxed">{{ qa.answer }}</p>
             </div>
           </div>
         </section>
 
         <!-- Entities Section -->
         <section v-if="activeChunk.entities && activeChunk.entities.length">
-           <h3 class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-zinc-500 font-bold font-mono mb-2">Entities</h3>
-           <div class="flex flex-wrap gap-1.5">
-             <span v-for="entity in activeChunk.entities" :key="entity" class="px-2.5 py-0.5 bg-[#D97757]/10 text-[#D97757] text-xs rounded-lg border border-[#D97757]/20 font-medium">
+           <h3 class="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-medium mb-3">Entities</h3>
+           <div class="flex flex-wrap gap-2">
+             <span v-for="entity in activeChunk.entities" :key="entity" class="px-2.5 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-200 text-xs rounded-full border border-blue-100 dark:border-blue-900/50 font-medium">
                {{ entity }}
              </span>
            </div>

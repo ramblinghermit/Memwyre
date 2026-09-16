@@ -46,41 +46,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://memwyre.tech/blog/mcp-persistent-memory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/blog/vscode-mcp-persistent-memory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/blog/claude-code-memory-ingestion</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/blog/openclaw-autonomous-memory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/blog/cursor-vs-claude-code-context</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/blog/rag-vs-memory-long-term-knowledge</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/blog/state-of-ai-memory-2026</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://memwyre.tech/research</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -136,16 +101,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://memwyre.tech/openclaw-memory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/opencode-memory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://memwyre.tech/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -154,5 +109,25 @@
     <loc>https://memwyre.tech/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://memwyre.tech/login</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://memwyre.tech/signup</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://memwyre.tech/dashboard</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://memwyre.tech/forgot-password</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
   </url>
 </urlset>

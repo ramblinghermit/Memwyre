@@ -242,32 +242,14 @@ class AgentService:
             date_str = " ".join(vals)
             if not date_str and generic_date: date_str = f"Date: {generic_date}"
             if not date_str: date_str = "Date: Unknown"
+            
             # Content Construction
             content = r.get("text", "")
             if chunk:
                if hasattr(chunk, 'text') and chunk.text and chunk.text != content:
                    content = f"Fact: {content}\nChunk: {chunk.text}"
-
-            # Extract ID and Title if available
-            item_id = None
-            if meta.get("memory_id"):
-                item_id = f"mem_{meta['memory_id']}"
-            elif meta.get("document_id"):
-                item_id = f"doc_{meta['document_id']}"
-            elif meta.get("id"):
-                raw_id = str(meta["id"])
-                item_id = raw_id if raw_id.startswith(("mem_", "doc_")) else f"mem_{raw_id}"
-            elif chunk:
-                if getattr(chunk, "memory_id", None):
-                    item_id = f"mem_{chunk.memory_id}"
-                elif getattr(chunk, "document_id", None):
-                    item_id = f"doc_{chunk.document_id}"
-
-            id_str = f" [ID: {item_id}]" if item_id else ""
-            title = meta.get("title") or (getattr(chunk, "title", None) if chunk else None)
-            title_str = f" - '{title}'" if title else ""
-
-            result_snippets.append(f"[Result {result_counter}]{id_str}{title_str} ({date_str.strip()})\nContent: {content}")
+            
+            result_snippets.append(f"[Result {result_counter}] ({date_str.strip()})\nContent: {content}")
         
         # Assemble final context string
         sections = []

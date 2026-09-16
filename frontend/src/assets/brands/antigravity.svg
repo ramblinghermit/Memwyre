@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" height="56" width="240" fill="none">
-  <g transform="translate(4, 7)">
-    <circle cx="21" cy="21" r="19" fill="#1A73E8"/>
-    <path d="M21 9L30 26H12L21 9Z" fill="#FFFFFF"/>
-    <circle cx="21" cy="22" r="3.5" fill="#EA4335"/>
-  </g>
-  <text x="54" y="37" font-family="'Product Sans', 'Segoe UI', sans-serif" font-size="25" font-weight="700" fill="#202124" letter-spacing="-0.5">Antigravity</text>
-</svg>

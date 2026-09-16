@@ -1,11 +1,10 @@
 {
   "name": "install-memwyre",
-  "version": "1.0.7",
+  "version": "1.0.4",
   "description": "Zero-friction MCP installer for Memwyre",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "memwyre": "./index.js",
     "install-memwyre": "./index.js"
   },
   "scripts": {

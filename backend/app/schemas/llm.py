@@ -28,7 +28,6 @@ class ContextRequest(BaseModel):
     limit_tokens: Optional[int] = 2000
     compression_level: Optional[str] = "medium" # "low", "medium", "high"
     project_id: Optional[int] = None
-    workspace_name: Optional[str] = None
 
 class ContextResponse(BaseModel):
     context_text: str

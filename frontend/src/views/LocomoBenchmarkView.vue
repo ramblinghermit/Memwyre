@@ -66,7 +66,7 @@
             <div class="space-y-2 pt-6 border-t border-gray-100 dark:border-gray-900">
               <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">BENCHMARK RESOURCES</div>
               <a 
-                href="https://arxiv.org/abs/2402.17753" 
+                href="https://arxiv.org/abs/2406.16016" 
                 target="_blank"
                 class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
               >
@@ -89,13 +89,6 @@
                 <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
                 MemoryBench Harness
               </a>
-              <router-link 
-                to="/research/vector-database-vs-agent-memory"
-                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
-              >
-                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
-                Vector DB vs Agent Memory
-              </router-link>
             </div>
 
             <!-- Share Buttons -->
@@ -201,7 +194,7 @@
                 1. Introduction &amp; What is LoCoMo?
               </h2>
               <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                <strong>LoCoMo</strong> (Long Conversational Memory) is the premier benchmark for evaluating long-term memory in AI agents and conversational assistants. It was introduced by researchers at Snap Research in their paper <a href="https://arxiv.org/abs/2402.17753" target="_blank" class="text-[#D97757] underline hover:text-[#c4654a]">LoCoMo: Building Long Conversational Memory for LLMs</a>.
+                <strong>LoCoMo</strong> (Long Conversational Memory) is the premier benchmark for evaluating long-term memory in AI agents and conversational assistants. It was introduced by researchers at Snap Research in their paper <a href="https://arxiv.org/abs/2406.16016" target="_blank" class="text-[#D97757] underline hover:text-[#c4654a]">LoCoMo: Building Long Conversational Memory for LLMs</a>.
               </p>
               <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
                 The benchmark dataset contains 10 comprehensive multi-session conversations spanning up to 35 sessions per user over weeks and months of simulated dialogue. Unlike simple retrieval tasks, LoCoMo tests whether an AI can track personal facts, handle evolving preferences over time, reject non-existent memories, and correlate information scattered across disconnected sessions.

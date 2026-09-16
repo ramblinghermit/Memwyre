@@ -409,7 +409,6 @@ def process_plugin_transcript_task_v2(session_id: str, project_name: str, cwd: s
                     
                     project_id = proj.id
 
-                    saved_memories = []
                     for signal_content in signals:
                         # Create Memory Model
                         # Adding [Plugin] prefix or similar context
@@ -420,29 +419,8 @@ def process_plugin_transcript_task_v2(session_id: str, project_name: str, cwd: s
                             project_id=project_id,
                         )
                         db.add(new_memory)
-                        saved_memories.append(new_memory)
                     await db.commit()
-
-                    # Trigger ingestion pipeline for each new memory
-                    for memory in saved_memories:
-                        await db.refresh(memory)
-                        
-                        from app.worker_v2 import ingest_memory_task_v2, process_memory_metadata_task_v2, dedupe_memory_task_v2
-                        
-                        # 1. Chunking & Vector Store (with temporal resolution in metadata extraction)
-                        ingest_memory_task_v2.delay(
-                            memory_id=memory.id,
-                            user_id=user_id,
-                            content=memory.content,
-                            title=f"Plugin Memory {memory.id}",
-                            source="plugin"
-                        )
-                        # 2. SPO Fact Atomization & Auto-tagging
-                        process_memory_metadata_task_v2.delay(memory_id=memory.id, user_id=user_id)
-                        # 3. Graph/Vector Deduplication
-                        dedupe_memory_task_v2.delay(memory_id=memory.id)
-
-                print(f"Worker: Saved {len(signals)} memories from plugin and triggered pipeline.")
+                print(f"Worker: Saved {len(signals)} memories from plugin.")
             else:
                 print(f"Worker: No high-value signals found in session {session_id}")
                 

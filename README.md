@@ -12,8 +12,8 @@
 
 <p align="center">
   <a href="https://memwyre.tech">Website</a> ·
-  <a href="https://docs.memwyre.tech/">Documentation</a> ·
-  <a href="https://app.memwyre.tech/login">Console / App</a> ·
+  <a href="https://memwyre.tech/docs/">Documentation</a> ·
+  <a href="https://memwyre.tech/login">Console / App</a> ·
   <a href="https://x.com/Memwyre">Twitter / X</a>
 </p>
 
@@ -21,7 +21,7 @@
 [![Vue 3](https://img.shields.io/badge/Frontend-Vue%203-green.svg?style=flat-square&logo=vue.js)](https://vuejs.org/)
 [![Chrome Extension](https://img.shields.io/badge/Extension-Chrome%20Web%20Store-orange.svg?style=flat-square&logo=google-chrome)](https://chromewebstore.google.com/detail/memwyre/biplnkodgfdgejgblohhjeckiclfpekn)
 [![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-lightgrey.svg?style=flat-square)](https://modelcontextprotocol.io/)
-[![LoCoMo Accuracy](https://img.shields.io/badge/LoCoMo%20Accuracy-70.5%25-brightgreen.svg?style=flat-square)](https://github.com/ramblinghermit0403/Memwyre#-the-locomo-benchmark-evaluation)
+[![LoCoMo Accuracy](https://img.shields.io/badge/LoCoMo%20Accuracy-73.5%25-brightgreen.svg?style=flat-square)](https://github.com/ramblinghermit0403/Memwyre#-the-locomo-benchmark-evaluation)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 
 Memwyre is an open-source, universal memory infrastructure and persistent knowledge retrieval layer for Large Language Models (LLMs), AI agents, and custom applications.
@@ -92,7 +92,7 @@ Interface with the unified memory vault, custom vector searches, and profile-bas
 
 Memwyre provides multiple ways to ingest and retrieve information:
 
-*   **1. Web Application & Dashboard** ([Deployed on app.memwyre.tech](https://app.memwyre.tech/login)): The main web app written in Vue 3 (Vite + Tailwind CSS), incorporating an onboarding tour, Monaco Editor for document management, billing integration, and a visual retrieval simulator to debug and verify vector rankings.
+*   **1. Web Application & Dashboard** ([Deployed on memwyre.tech](https://memwyre.tech/login)): The main web app written in Vue 3 (Vite + Tailwind CSS), incorporating an onboarding tour, Monaco Editor for document management, billing integration, and a visual retrieval simulator to debug and verify vector rankings.
 *   **2. Chrome Extension (Manifest V3)** ([Available on Chrome Web Store](https://chromewebstore.google.com/detail/memwyre/biplnkodgfdgejgblohhjeckiclfpekn)): Auto-injects context into web chat clients, maps authentication tokens, and allows users to save articles, code snippets, or conversational logs directly to their vault with a single click.
 *   **3. Model Context Protocol (MCP) Server**: A Python server mapping memory tools (`search_memory`, `save_memory`, `get_document`) directly into IDEs like Cursor and VS Code, or desktop assistants like Claude Desktop.
 *   **4. CLI Tool**: A Node-based Command Line Interface (`cli/`) providing terminal-level interaction, query testing, and batch document uploads.
@@ -234,11 +234,11 @@ The **[LoCoMo-10](https://github.com/snap-research/locomo)** (Long Conversationa
 | **Multi-Hop Reasoning** | Linking facts across distant chat sessions | 24.0% | **45.0%** |
 | **Temporal Alignment** | Ordering events and identifying timeframe changes | 48.0% | **74.0%** |
 | **Open-Domain Reasoning** | Contextual inferences and complex reasoning | 50.0% | **76.0%** |
-| **Overall Accuracy** | Weighted average across all 1,540 test questions | 43.7% | **70.5%** |
+| **Overall Accuracy** | Weighted average across all 1,540 test questions | 43.7% | **73.5%** |
 | **Mean Token Size** | Average size of retrieved context sent to LLM prompt | ~26,000 | **~3,000** |
 
 > [!TIP]
-> **Context Compression**: Memwyre achieves a **81% context length reduction** (retrieving 3,000 tokens instead of the 26,000-token raw conversational dialog) while significantly outperforming flat vector indexing in accuracy.
+> **Context Compression**: Memwyre achieves a **88.5% context length reduction** (retrieving 3,000 tokens instead of the 26,000-token raw conversational dialog) while significantly outperforming flat vector indexing in accuracy.
 
 ### Architectural Enablers of LoCoMo Performance
 1. **Dynamic Context Pruning**: Strips out conversational noise (filler words, greetings, and distractors) during chunk enrichment.

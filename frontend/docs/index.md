@@ -1,7 +1,6 @@
 ---
 title: "Overview"
 description: "Learn about Memwyre — the universal persistent memory layer that connects developer IDEs, browser tools, and autonomous AI agents through a unified entity graph."
-canonical: "https://docs.memwyre.tech"
 ---
 
 # Overview
@@ -51,7 +50,7 @@ Get started with the integrations that fit your workflow:
 
 ## Quick Start (60 Seconds)
 
-1. **Create an Account**: Sign up at [app.memwyre.tech](https://app.memwyre.tech/signup).
+1. **Create an Account**: Sign up at [memwyre.tech](https://memwyre.tech).
 2. **Install the Browser Extension**: Download the extension ([guide](/integrations/browser-extension)).
 3. **Configure the Token**: Go to your dashboard settings, copy your API token, and paste it into the extension.
 4. **Begin Querying**: Open your IDE or ChatGPT — Memwyre is active and ready to feed context.
