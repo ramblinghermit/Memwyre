@@ -61,11 +61,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://memwyre.tech/blog/grok-bot-shared-memory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://memwyre.tech/research/what-is-ai-memory</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -101,7 +96,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://memwyre.tech/grok-memory</loc>
+    <loc>https://memwyre.tech/grok-bot-memory</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
