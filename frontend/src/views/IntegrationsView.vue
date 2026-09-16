@@ -578,9 +578,9 @@ import geminiIcon from '@/assets/gemini-color.svg';
 import perplexityIcon from '@/assets/perplexity-color.svg';
 import chromeIcon from '@/assets/chrome-logo-svgrepo-com.svg';
 
-const windsurfIcon = vscodeIcon;
-const codexIcon = vscodeIcon;
-const opencodeIcon = vscodeIcon;
+import windsurfIcon from '@/assets/windsurf-color.svg';
+import codexIcon from '@/assets/codex-color.svg';
+import opencodeIcon from '@/assets/opencode-color.svg';
 
 const route = useRoute();
 const router = useRouter();
