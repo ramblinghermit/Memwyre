@@ -92,7 +92,8 @@
 }</code></pre>
 
             <div class="pt-4 border-t border-gray-200 font-mono text-[11px] text-gray-500 leading-relaxed">
-              * Official guide: <router-link to="/blog/mcp-persistent-memory" class="text-[#D97757] underline">Claude Desktop Memory Guide</router-link> or <router-link to="/blog/claude-code-memory-ingestion" class="text-[#D97757] underline">Claude Code Guide</router-link>.
+              * Official guide: <router-link to="/blog/mcp-persistent-memory" class="text-[#D97757] underline">Claude Desktop Memory Guide</router-link> or <router-link to="/blog/claude-code-memory-ingestion" class="text-[#D97757] underline">Claude Code Guide</router-link>.<br>
+              * See Also: <router-link to="/grok-bot-memory" class="text-[#D97757] underline">Grok Bot Memory</router-link>.
             </div>
           </div>
         </div>

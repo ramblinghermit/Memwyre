@@ -114,6 +114,9 @@
           <router-link to="/blog/cursor-vs-claude-code-context" class="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded transition-colors">
             Read Cursor vs Claude Code
           </router-link>
+          <router-link to="/grok-bot-memory" class="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded transition-colors">
+            Grok Bot Memory
+          </router-link>
         </div>
       </div>
 

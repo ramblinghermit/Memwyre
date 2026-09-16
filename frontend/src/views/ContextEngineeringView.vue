@@ -418,6 +418,7 @@
                 <router-link to="/mcp" class="hover:text-[#D97757] uppercase">/ MCP Integration</router-link>
                 <router-link to="/memwyre-vs-mem0" class="hover:text-[#D97757] uppercase">/ Memwyre vs Mem0</router-link>
                 <a href="https://docs.memwyre.tech" target="_blank" class="hover:text-[#D97757] uppercase">/ Documentation</a>
+                <router-link to="/grok-bot-memory" class="hover:text-[#D97757] uppercase">/ Grok Bot Memory</router-link>
               </div>
             </div>
           </article>

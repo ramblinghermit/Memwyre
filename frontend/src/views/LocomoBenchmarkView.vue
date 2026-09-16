@@ -89,6 +89,20 @@
                 <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
                 MemoryBench Harness
               </a>
+              <router-link 
+                to="/grok-bot-memory" 
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Grok Bot Memory
+              </router-link>
+              <router-link 
+                to="/research/vector-database-vs-agent-memory" 
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Vector Database vs Agent Memory
+              </router-link>
             </div>
 
             <!-- Share Buttons -->

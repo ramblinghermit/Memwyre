@@ -55,6 +55,8 @@
             class="text-sm text-black hover:text-[#D97757] transition-colors font-medium">Claude</router-link>
           <router-link to="/cursor-memory/"
             class="text-sm text-black hover:text-[#D97757] transition-colors font-medium">Cursor AI</router-link>
+          <router-link to="/grok-bot-memory/"
+            class="text-sm text-black hover:text-[#D97757] transition-colors font-medium">Grok Bot</router-link>
           <router-link to="/mcp-memory/"
             class="text-sm text-black hover:text-[#D97757] transition-colors font-medium">Universal MCP</router-link>
         </div>
