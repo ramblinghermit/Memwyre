@@ -569,6 +569,7 @@ import antigravityIcon from '@/assets/Google-Antigravity-Icon-Full-Color.png';
 import vscodeIcon from '@/assets/vscode.svg';
 import claudeIcon from '@/assets/claude-color.svg';
 import claudeCodeIcon from '@/assets/claudecode-color.svg';
+import grokIcon from '@/assets/grok-color.svg';
 import openclawIcon from '@/assets/openclaw-color.svg';
 import gdriveIcon from '@/assets/google-drive.svg';
 import notionIcon from '@/assets/notion-svgrepo-com.svg';
@@ -829,6 +830,26 @@ const integrationCategories = ref([
         setupSectionTitle: 'Plugin Installation & Auth',
         isPlugin: true,
         docsLink: 'https://docs.memwyre.tech/integrations/plugins/claude'
+      },
+      { 
+        id: 'grok-build', 
+        name: 'Grok Build & Bot', 
+        subtitle: 'Persistent, cross-bot shared memory for your Grok Bot roster',
+        desc: 'Persistent, cross-bot shared memory for Grok', 
+        samplePrompt: 'Share what you found with the Coder bot in the next session',
+        fullDesc: 'The Grok plugin enables true cross-bot shared memory. When one bot finishes a session, its memories are extracted and injected into the next bot\'s session context.',
+        features: [
+          { title: 'Cross-bot context', desc: 'Bot B instantly knows what Bot A learned in the previous task' },
+          { title: 'Curated memory', desc: 'Approve or discard memories before they become permanent' }
+        ],
+        icon: grokIcon, 
+        isPro: true,
+        protocol: 'Grok Build Hooks Protocol',
+        typeLabel: 'Autonomous Agent Plugin',
+        appSubtitle: 'Native Grok Build CLI Plugin',
+        setupSectionTitle: 'Plugin Installation & Auth',
+        isPlugin: true,
+        docsLink: 'https://docs.memwyre.tech/integrations/plugins/grok'
       },
       { 
         id: 'openclaw', 
@@ -1135,6 +1156,7 @@ const mapIntegrationToTab = (id) => {
   if (id === 'cursor') return 'cursor';
   if (id === 'vscode') return 'vscode';
   if (id === 'claude-code') return 'claudecode';
+  if (id === 'grok-build') return 'grok';
   if (id === 'codex') return 'codex';
   if (id === 'antigravity') return 'antigravity';
   if (id === 'openclaw') return 'openclaw';
