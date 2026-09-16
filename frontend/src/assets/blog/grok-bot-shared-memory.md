@@ -1,18 +1,18 @@
 # Cross-Bot Shared Knowledge: Persistent Memory for Grok Build
 
-> **TL;DR:** While Grok offers native persistent memory for personalized chat, Grok Build agents operate in silos. By installing the Memwyre Grok Plugin, you can enable true cross-bot shared memory. We bridge the gap by implementing Working, Episodic, Semantic, and Procedural memory layers. When one bot learns a new architecture pattern, it saves it to your Memwyre Vault. The next time *any* bot in your fleet runs, it instantly inherits that exact context.
+Grok Build agents are highly intelligent, remarkably fast, and capable of handling complex software engineering tasks. However, as teams scale, these agents operate in complete isolation, creating severe knowledge silos. This guide breaks down how to implement cross-bot shared memory to sync context instantly across your entire xAI agent fleet.
 
-xAI's **Grok Bot** and **Grok Build** platforms have revolutionized how developers build and interact with autonomous agents. They are highly intelligent, remarkably fast, and capable of handling complex software engineering tasks with a touch of characteristic wit. 
+> **Quick Summary / TL;DR**
+>
+> **Answer:** While Grok offers native persistent memory for basic chat preferences, it falls short for autonomous multi-agent developer workflows. By installing the Memwyre Grok Plugin, you can enable true cross-bot shared memory. We bridge this gap by implementing Working, Episodic, Semantic, and Procedural memory layers directly into Grok's lifecycle hooks, ensuring that when one bot learns a new architecture pattern, every bot instantly inherits that exact context.
 
-However, as engineering teams scale their agent rosters—spawning multiple Grok bots for different repositories, microservices, and tasks—a massive inefficiency emerges: **knowledge silos**. 
+**Key Metrics:**
 
-If you correct a Grok bot on an API endpoint format during one session, another Grok bot running a separate task has no idea that correction took place. You end up repeating yourself, copying and pasting system prompts manually, and watching as your bots drift out of sync with your project's evolving architecture.
+- **< 150ms** — Context Injection Latency
+- **70.5%** — LoCoMo-10 Retrieval Accuracy
+- **Zero** — Codebase Retention (100% Privacy)
 
-Memwyre solves this with **Cross-Bot Shared Memory**.
-
----
-
-## The Landscape of AI Agent Memory
+## 1. The Landscape of AI Agent Memory
 
 To understand why shared memory is critical, we first need to look at how high-ranking AI research defines agent memory. Unlike standard LLMs that process each prompt in isolation, true agentic systems require four types of memory:
 
@@ -23,7 +23,7 @@ To understand why shared memory is critical, we first need to look at how high-r
 
 The memory "loop"—storing, retrieving, and forgetting obsolete data—is what separates advanced, persistent agents from simple stateless chatbots.
 
-## The Problem: Grok's Native Memory Limitations
+## 2. The Problem: Grok's Native Memory Limitations
 
 Grok introduced a native **Persistent Memory** feature that allows it to carry user preferences forward across different chat sessions. You can share roles or project details, and Grok stores this information, manageable via its "Data Controls" settings.
 
@@ -32,9 +32,9 @@ While this is excellent for a single user's chat experience, **it falls short fo
 * **No Cross-Bot Sharing:** Bot A (assigned to frontend) cannot access the episodic memory of Bot B (assigned to backend).
 * **Token Exhaustion:** Native memory struggles with large codebases, often failing to "forget" obsolete architectural rules, leading to hallucinations.
 
-When a standard Grok Build session ends, its procedural and episodic learnings die with it.
+When a standard Grok Build session ends, its procedural and episodic learnings die with it. You end up repeating yourself, copying and pasting system prompts manually, and watching as your bots drift out of sync with your project's evolving architecture.
 
-## The Architecture of Memwyre Shared Memory
+## 3. The Architecture of Memwyre Shared Memory
 
 We built the **Memwyre Grok Plugin** (`@memwyre/grok-plugin`) to securely bridge your Grok instances with a persistent, team-wide intelligence layer. 
 
@@ -62,15 +62,13 @@ sequenceDiagram
     Vault-->>Vault: Compress, deduplicate, and index memory
 ```
 
-### 1. Instant Context Injection (SessionStart)
+### Instant Context Injection (SessionStart)
 When a Grok Build session begins, the plugin triggers our `inject-memory` script. This script reaches out to the Memwyre Vault, pulls the active semantic and procedural memory relevant to the current working directory, and dynamically injects them directly into Grok's system prompt. 
 
-### 2. Autonomous Learning (SessionEnd)
+### Autonomous Learning (SessionEnd)
 When the session concludes, the `capture-session` hook processes the terminal transcript. Memwyre uses a lightweight embedding router to extract *actionable insights* (e.g., *"The team switched to strict TypeScript interfaces for API responses"*) and saves them to the shared Vault as episodic memory.
 
----
-
-## Why Vector Databases Aren't Enough
+## 4. Why Vector Databases Aren't Enough
 
 You might wonder why you can't just use a standard vector database (like Pinecone) to store Grok's memory. 
 
@@ -78,7 +76,7 @@ Basic RAG (Retrieval-Augmented Generation) fails for agent memory because codeba
 
 Memwyre employs an **AST-aware semantic graph** combined with **Ebbinghaus decay**. It doesn't just find similar text; it understands temporal relevance. Older, contradictory memories naturally decay in weight. In recent independent testing on the **LoCoMo-10 long-term memory benchmark**, Memwyre achieved a **70.5%** recall accuracy compared to just ~42% for standard vector solutions.
 
-## Getting Started in 60 Seconds
+## 5. Getting Started in 60 Seconds
 
 Installing the Memwyre Grok Plugin requires zero dependencies and only takes a few seconds.
 
@@ -123,9 +121,7 @@ Launch Grok normally. You'll see a small indicator that Memwyre has successfully
 grok build
 ```
 
----
-
-## Beyond Grok: Universal AI Memory
+## 6. Beyond Grok: Universal AI Memory
 
 The true power of Memwyre is that it isn't limited to a single ecosystem. Because Memwyre acts as a centralized brain, the memories your Grok bots generate can be instantly queried by your other AI tools. 
 
@@ -135,7 +131,7 @@ If a Grok bot resolves a nasty dependency conflict in your CI pipeline, that res
 
 Ready to give your Grok bots a persistent brain? [Create your free Memwyre account today](/signup) and install the plugin. 
 
-## Frequently Asked Questions
+## 7. Frequently Asked Questions
 
 **Does this conflict with Grok's native memory?**
 No. You can leave Grok's native memory enabled for personal chat preferences. Memwyre operates independently at the project and workspace level to handle robust coding memory and team sharing.

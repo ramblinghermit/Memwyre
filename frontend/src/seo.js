@@ -122,7 +122,6 @@ export const PUBLIC_ROUTE_SEO = {
   '/blog/grok-bot-shared-memory': {
     title: 'Cross-Bot Shared Knowledge: Persistent Memory for Grok Build | Memwyre Blog',
     description: 'Give your xAI Grok Bot instant access to team-wide intelligence. Learn how to configure cross-bot shared memory to keep all your agents aligned.',
-    ogImage: '/blog-covers/grok-bot-shared-memory.png',
   },
   '/blog/cursor-vs-claude-code-context': {
     title: 'Cursor AI vs Claude Code: Managing Context and Memory | Memwyre Blog',
