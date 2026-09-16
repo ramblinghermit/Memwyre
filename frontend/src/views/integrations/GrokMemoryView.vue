@@ -74,16 +74,16 @@
             <div class="space-y-2 pt-6 border-t border-gray-100 dark:border-gray-900">
               <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">OFFICIAL RESOURCES</div>
               <a 
-                href="https://docs.anthropic.com/en/docs/agents-and-tools/Grok-code/overview" 
+                href="https://docs.x.ai/grok-build" 
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
               >
                 <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
-                Grok Build Docs (Anthropic)
+                Grok Build Docs (xAI)
               </a>
               <a 
-                href="https://github.com/anthropics/Grok-code" 
+                href="https://github.com/xai-org/grok-build" 
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
@@ -92,13 +92,13 @@
                 Grok Build CLI Repo
               </a>
               <a 
-                href="https://github.com/thedaviddias/Grok-mem" 
+                href="https://github.com/thedaviddias/grok-mem" 
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
               >
                 <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
-                Grok-mem (OSS Baseline)
+                grok-mem (OSS Baseline)
               </a>
             </div>
 
@@ -221,12 +221,12 @@
               Every time you close a Grok Build session, the context window resets. Your debugging breakthroughs, architecture decisions, database schema notes, and style conventions — all gone. You spend the first 5 minutes of every session re-explaining your project.
             </p>
             <p>
-              Anthropic provides <code>Grok Memory</code> and auto-memory as built-in solutions, but they require manual maintenance, are limited to flat Markdown files, and don't share context across tools. If you use Grok Build <em>and</em> Grok Desktop <em>and</em> <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link>, each tool maintains its own isolated silo.
+              xAI provides <code>Grok Memory</code> and auto-memory as built-in solutions, but they require manual maintenance, are limited to flat Markdown files, and don't share context across tools. If you use Grok Build <em>and</em> Grok Desktop <em>and</em> <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link>, each tool maintains its own isolated silo.
             </p>
 
             <h2 id="Grokmd-masterclass">The Complete Guide to Grok Memory: Hierarchy, Syntax &amp; Best Practices</h2>
             <p>
-              <code>Grok Memory</code> is the foundational instruction file for Anthropic's Grok Build CLI. Whenever you initiate a session, Grok reads this file and injects its contents into the root system prompt. Mastering <code>Grok Memory</code> is the single most effective way to eliminate repetitive prompting for static project rules.
+              <code>Grok Memory</code> is the foundational instruction file for xAI's Grok Build CLI. Whenever you initiate a session, Grok reads this file and injects its contents into the root system prompt. Mastering <code>Grok Memory</code> is the single most effective way to eliminate repetitive prompting for static project rules.
             </p>
 
             <h3 id="Grokmd-hierarchy">Directory Hierarchy &amp; Rule Precedence</h3>
@@ -278,9 +278,9 @@
               <li><strong>Do NOT paste conversation logs or changelogs:</strong> Historical changelogs belong in Git history, not in the active LLM context.</li>
             </ul>
 
-            <h2 id="prompt-caching-vs-memory">Anthropic Prompt Caching vs. Persistent Memory</h2>
+            <h2 id="prompt-caching-vs-memory">xAI Prompt Caching vs. Persistent Memory</h2>
             <p>
-              Many developers confuse Anthropic's <strong>Prompt Caching</strong> with long-term memory. While both optimize context, they serve fundamentally different functions:
+              Many developers confuse xAI's <strong>Prompt Caching</strong> with long-term memory. While both optimize context, they serve fundamentally different functions:
             </p>
 
             <div class="overflow-x-auto my-6">
@@ -288,7 +288,7 @@
                 <thead>
                   <tr class="bg-gray-50 dark:bg-zinc-900 text-xs uppercase font-mono font-bold text-gray-500">
                     <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Attribute</th>
-                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Anthropic Prompt Caching</th>
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">xAI Prompt Caching</th>
                     <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800 bg-[#FDF8F6] dark:bg-orange-950/20">
                       <span class="text-[#D97757]">Persistent Cross-Session Memory</span>
                     </th>
@@ -335,7 +335,7 @@
 
             <h3 id="mechanism-automemory">2. Auto Memory &amp; MEMORY.md (Version 2.1.59+)</h3>
             <p>
-              Anthropic introduced <strong>Auto Memory</strong> to let Grok write notes automatically to a local Markdown file at <code>~/.Grok/projects/&lt;project-name&gt;/memory/MEMORY.md</code>. While an improvement, it suffers from three critical architectural constraints:
+              xAI introduced <strong>Auto Memory</strong> to let Grok write notes automatically to a local Markdown file at <code>~/.Grok/projects/&lt;project-name&gt;/memory/MEMORY.md</code>. While an improvement, it suffers from three critical architectural constraints:
             </p>
             <ul>
               <li><strong>The 200-Line Silent Truncation Cap:</strong> <code>MEMORY.md</code> is hardcoded to truncate after <strong>200 lines</strong>. When your project accumulates more than 200 lines of facts, older entries are silently dropped from Grok's prompt injection. Grok has no awareness that earlier debugging lessons have vanished.</li>
@@ -403,7 +403,7 @@
 
             <h2 id="cli-commands">Grok Build CLI Commands: Managing Working Context</h2>
             <p>
-              During active development, Grok Build accumulates terminal output, file reads, and tool execution traces. Anthropic provides several built-in slash commands in the CLI to inspect and control working context:
+              During active development, Grok Build accumulates terminal output, file reads, and tool execution traces. xAI provides several built-in slash commands in the CLI to inspect and control working context:
             </p>
 
             <div class="overflow-x-auto my-6">
@@ -460,7 +460,7 @@
 
             <h2 id="comparison">Four Approaches to Grok Build Memory</h2>
             <p>
-              There is no single "right" approach — each method suits a different workflow. If you've researched this space, you've likely seen <strong>Grok-mem</strong> (89K+ GitHub stars) alongside Anthropic's built-in options. Here is an honest breakdown of all four approaches.
+              There is no single "right" approach — each method suits a different workflow. If you've researched this space, you've likely seen <strong>grok-mem</strong> (89K+ GitHub stars) alongside xAI's built-in options. Here is an honest breakdown of all four approaches.
             </p>
 
             <div class="overflow-x-auto my-6">
@@ -469,7 +469,7 @@
                   <tr class="bg-gray-50 dark:bg-zinc-900 text-xs uppercase font-mono font-bold text-gray-500">
                     <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Feature</th>
                     <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Grok Memory / Auto-Memory</th>
-                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">Grok-mem (OSS)</th>
+                    <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">grok-mem (OSS)</th>
                     <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800">MCP Memory Server</th>
                     <th class="px-4 py-3 border-b border-gray-200 dark:border-gray-800 bg-[#FDF8F6] dark:bg-orange-950/20">
                       <span class="text-[#D97757]">Memwyre Plugin</span>
@@ -494,7 +494,7 @@
                   <tr>
                     <td class="px-4 py-3 font-semibold border-b border-gray-100 dark:border-gray-800">Setup</td>
                     <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">Manual file creation</td>
-                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800"><code>npx Grok-mem install</code></td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800"><code>npx grok-mem install</code></td>
                     <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">JSON config + API key</td>
                     <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10"><code>Grok plugin install</code></td>
                   </tr>
@@ -508,7 +508,7 @@
                   <tr>
                     <td class="px-4 py-3 font-semibold border-b border-gray-100 dark:border-gray-800">Cross-Tool</td>
                     <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">❌ Grok Build only</td>
-                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">⚠️ SSH sync (<code>Grok-mem-sync</code>)</td>
+                    <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">⚠️ SSH sync (<code>grok-mem-sync</code>)</td>
                     <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800">✅ Any MCP client</td>
                     <td class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-[#FDFCFB] dark:bg-orange-950/10">✅ Shared vault (Cursor, VS Code, Grok Desktop)</td>
                   </tr>
@@ -536,25 +536,25 @@
 
             <h3 id="approach-native">Approach 1: Pure Native (Grok Memory + Auto Memory)</h3>
             <p>
-              Anthropic's built-in combination requires no external tools or API keys. You write static guidelines into <code>Grok Memory</code>, and Grok Build automatically records notes to <code>MEMORY.md</code>.
+              xAI's built-in combination requires no external tools or API keys. You write static guidelines into <code>Grok Memory</code>, and Grok Build automatically records notes to <code>MEMORY.md</code>.
             </p>
             <ul>
               <li><strong>Best for:</strong> Solo developers working on single repositories who don't mind manually curating Markdown files.</li>
               <li><strong>Trade-off:</strong> Suffers from the 200-line silent truncation limit and zero cross-tool synchronization.</li>
             </ul>
 
-            <h3 id="approach-Grok-mem">Approach 2: Local Open-Source (Grok-mem by David Dias)</h3>
+            <h3 id="approach-grok-mem">Approach 2: Local Open-Source (grok-mem by David Dias)</h3>
             <p>
-              <strong>Grok-mem</strong> is a popular open-source project (89K+ GitHub stars) that runs an autonomous memory server locally on your machine. It installs via npm and manages context using SQLite and ChromaDB:
+              <strong>grok-mem</strong> is a popular open-source project (89K+ GitHub stars) that runs an autonomous memory server locally on your machine. It installs via npm and manages context using SQLite and ChromaDB:
             </p>
-            <pre><code class="language-bash"># Install Grok-mem CLI
-npx Grok-mem install</code></pre>
+            <pre><code class="language-bash"># Install grok-mem CLI
+npx grok-mem install</code></pre>
             <p>
-              Under the hood, <code>Grok-mem</code> hooks into Grok's execution stream to summarize observations and store vector embeddings in ChromaDB.
+              Under the hood, <code>grok-mem</code> hooks into Grok's execution stream to summarize observations and store vector embeddings in ChromaDB.
             </p>
             <ul>
               <li><strong>Strengths:</strong> Completely local-first, zero cloud reliance, open-source codebase.</li>
-              <li><strong>Limitations:</strong> Single-machine lock-in. To share context across multiple computers or team members, developers must configure <code>Grok-mem-sync</code> over SSH tunnels. Additionally, its <strong>AGPL-3.0</strong> copyleft license creates compliance concerns for proprietary enterprise codebases.</li>
+              <li><strong>Limitations:</strong> Single-machine lock-in. To share context across multiple computers or team members, developers must configure <code>grok-mem-sync</code> over SSH tunnels. Additionally, its <strong>AGPL-3.0</strong> copyleft license creates compliance concerns for proprietary enterprise codebases.</li>
             </ul>
 
             <h3 id="approach-mcp">Approach 3: Generic MCP Memory Servers</h3>
@@ -705,8 +705,8 @@ Grok mcp add memory-server -- node /path/to/server.js</code></pre>
                 <pre><code class="language-json">{
   "description": "Memwyre: Persistent autonomous memory",
   "hooks": {
-    "SessionStart": [{ "hooks": [{ "type": "command", "command": "node \"/path/to/node_modules/@memwyre/Grok-memwyre/dist/inject-memory.cjs\"", "timeout": 30 }] }],
-    "Stop": [{ "hooks": [{ "type": "command", "command": "node \"/path/to/node_modules/@memwyre/Grok-memwyre/dist/capture-session.cjs\"", "timeout": 30 }] }]
+    "SessionStart": [{ "hooks": [{ "type": "command", "command": "node \"/path/to/node_modules/@memwyre/grok-memwyre/dist/inject-memory.cjs\"", "timeout": 30 }] }],
+    "Stop": [{ "hooks": [{ "type": "command", "command": "node \"/path/to/node_modules/@memwyre/grok-memwyre/dist/capture-session.cjs\"", "timeout": 30 }] }]
   }
 }</code></pre>
               </div>
@@ -892,7 +892,7 @@ Grok mcp add memory-server -- node /path/to/server.js</code></pre>
             </p>
             <h3 id="token-efficiency">Predictable Token Usage</h3>
             <p>
-              By summarizing and deduplicating past sessions, the plugin injects a concise <code>&lt;memwyre-context&gt;</code> block that rarely exceeds 1,500 tokens. Compared to manually pasting in megabytes of old transcript logs, this targeted injection saves Anthropic API costs while providing superior context.
+              By summarizing and deduplicating past sessions, the plugin injects a concise <code>&lt;memwyre-context&gt;</code> block that rarely exceeds 1,500 tokens. Compared to manually pasting in megabytes of old transcript logs, this targeted injection saves xAI API costs while providing superior context.
             </p>
 
             <!-- Visual Diagram 4: 30-Day Context ROI & Token Cost Math -->
@@ -930,7 +930,7 @@ Grok mcp add memory-server -- node /path/to/server.js</code></pre>
                       <span class="font-bold text-gray-900 dark:text-white font-mono">2.03M tokens</span>
                     </div>
                     <div class="flex justify-between font-bold pt-1 border-t border-gray-200 dark:border-zinc-800 text-gray-900 dark:text-white">
-                      <span>Anthropic API Cost:</span>
+                      <span>xAI API Cost:</span>
                       <span>~$6.09 - $16.24/mo</span>
                     </div>
                   </div>
@@ -964,7 +964,7 @@ Grok mcp add memory-server -- node /path/to/server.js</code></pre>
                       <span class="font-bold text-gray-900 dark:text-white font-mono">165K tokens</span>
                     </div>
                     <div class="flex justify-between font-bold pt-1 border-t border-gray-200 dark:border-zinc-800 text-gray-900 dark:text-white">
-                      <span>Anthropic API Cost:</span>
+                      <span>xAI API Cost:</span>
                       <span>~$0.49 - $1.32/mo</span>
                     </div>
                   </div>
@@ -1017,8 +1017,8 @@ Grok mcp add memory-server -- node /path/to/server.js</code></pre>
 
             <h2 id="license-and-requirements">License & Requirements</h2>
             <ul>
-              <li><strong>License:</strong> <a href="https://github.com/memwyreai/Memwyre" target="_blank" class="text-[#D97757] hover:underline font-medium">Apache-2.0</a> — no copyleft obligations. You can use, modify, and deploy Memwyre in proprietary environments without open-sourcing your changes. This matters for teams: Grok-mem's <strong>AGPL-3.0</strong> license requires that any modifications served over a network be made open-source, which creates real compliance friction in enterprise environments.</li>
-              <li><strong>System requirements:</strong> Node.js 18+ (for the plugin runtime). Works on macOS, Linux, and Windows. No local database required — unlike Grok-mem (SQLite + ChromaDB dependency), Memwyre stores data in a managed cloud vault.</li>
+              <li><strong>License:</strong> <a href="https://github.com/memwyreai/Memwyre" target="_blank" class="text-[#D97757] hover:underline font-medium">Apache-2.0</a> — no copyleft obligations. You can use, modify, and deploy Memwyre in proprietary environments without open-sourcing your changes. This matters for teams: grok-mem's <strong>AGPL-3.0</strong> license requires that any modifications served over a network be made open-source, which creates real compliance friction in enterprise environments.</li>
+              <li><strong>System requirements:</strong> Node.js 18+ (for the plugin runtime). Works on macOS, Linux, and Windows. No local database required — unlike grok-mem (SQLite + ChromaDB dependency), Memwyre stores data in a managed cloud vault.</li>
               <li><strong>Self-hosting:</strong> For teams that need full data sovereignty, the entire Memwyre backend is available for <strong>self-hosted Docker deployment</strong>. See the <a href="https://github.com/memwyreai/Memwyre" target="_blank" class="text-[#D97757] hover:underline font-medium">GitHub repo</a> for instructions.</li>
             </ul>
 
@@ -1134,7 +1134,7 @@ const toc = [
   { level: 2, text: 'The Team Silo Problem', slug: 'team-silo-problem' },
   { level: 2, text: 'Four Approaches', slug: 'comparison' },
   { level: 3, text: '1. Pure Native', slug: 'approach-native' },
-  { level: 3, text: '2. Grok-mem (OSS)', slug: 'approach-Grok-mem' },
+  { level: 3, text: '2. grok-mem (OSS)', slug: 'approach-grok-mem' },
   { level: 3, text: '3. Generic MCP', slug: 'approach-mcp' },
   { level: 3, text: '4. Memwyre Engine', slug: 'approach-memwyre' },
   { level: 2, text: 'Plugin Architecture', slug: 'architecture' },
@@ -1208,11 +1208,11 @@ const faqs = [
   },
   {
     question: 'What is the best Grok Build memory plugin?',
-    answer: 'It depends on your needs. <strong>Grok Memory</strong> is best for static project rules (zero setup). <strong>Memwyre\'s plugin</strong> is best if you want fully automated, searchable memory that works across Grok Build, Grok Desktop, Cursor, and VS Code — it scores 70.5% on the LoCoMo-10 benchmark vs. 43.7% for flat vector RAG. <strong>Grok-mem</strong> (89K+ stars, AGPL-3.0) is another strong option for local-first, single-machine workflows.'
+    answer: 'It depends on your needs. <strong>Grok Memory</strong> is best for static project rules (zero setup). <strong>Memwyre\'s plugin</strong> is best if you want fully automated, searchable memory that works across Grok Build, Grok Desktop, Cursor, and VS Code — it scores 70.5% on the LoCoMo-10 benchmark vs. 43.7% for flat vector RAG. <strong>grok-mem</strong> (89K+ stars, AGPL-3.0) is another strong option for local-first, single-machine workflows.'
   },
   {
-    question: 'How is Memwyre different from Grok-mem?',
-    answer: '<strong>Grok-mem</strong> stores observations locally in SQLite + ChromaDB — great for single-machine use with zero cloud dependency. <strong>Memwyre</strong> uses a shared cloud vault with an entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync (Grok Build, Cursor, VS Code, Grok Desktop) without SSH setup. License-wise, Grok-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). On retrieval quality, Memwyre\'s engine scores 70.5% on LoCoMo-10 vs. 43.7% for flat vector baselines, using 81% fewer context tokens.'
+    question: 'How is Memwyre different from grok-mem?',
+    answer: '<strong>grok-mem</strong> stores observations locally in SQLite + ChromaDB — great for single-machine use with zero cloud dependency. <strong>Memwyre</strong> uses a shared cloud vault with an entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync (Grok Build, Cursor, VS Code, Grok Desktop) without SSH setup. License-wise, grok-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). On retrieval quality, Memwyre\'s engine scores 70.5% on LoCoMo-10 vs. 43.7% for flat vector baselines, using 81% fewer context tokens.'
   },
   {
     question: 'Does the plugin work with Grok Desktop too?',
