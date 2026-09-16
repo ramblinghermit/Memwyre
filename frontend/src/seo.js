@@ -208,6 +208,7 @@ export const PUBLIC_ROUTE_SEO = {
   '/grok-bot-memory': {
     title: 'Grok Bot Memory | Cross-Bot Shared Knowledge and Persistence',
     description: 'Enable cross-bot shared memory for Grok Build & Grok Bot. Instantly share context, conventions, and learnings across your entire xAI agent roster.',
+    ogImage: '/blog-covers/grok-bot-shared-memory.png',
   },
   '/cursor-memory': {
     title: 'Cursor Memory | Long-Term Codebase Context for Cursor AI IDE',

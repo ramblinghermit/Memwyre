@@ -143,6 +143,15 @@
         <!-- Middle Column (Banner & Article Body) -->
         <main class="lg:col-span-8 px-0 lg:px-8 pt-0 lg:pt-12 text-left">
           
+          <!-- Cover Image -->
+          <div class="w-full aspect-[2/1] rounded-xl overflow-hidden mb-10 bg-gray-50 border border-gray-150 dark:bg-zinc-900/30 dark:border-zinc-800/80">
+            <img 
+              src="/blog-covers/grok-bot-shared-memory.png" 
+              alt="Grok Bot & Grok Build Shared Memory Cover" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+
           <div class="markdown-content mb-16 animate-fade-in">
             <!-- Verified Environment & E-E-A-T Trust Badge -->
             <div class="mb-8 p-3.5 rounded-md border border-gray-200 dark:border-zinc-800 bg-gray-50/60 dark:bg-zinc-900/40 flex flex-wrap items-center justify-between gap-3 text-xs text-gray-600 dark:text-gray-400 font-mono">
