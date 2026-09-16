@@ -247,7 +247,6 @@ import { VueMonacoEditor } from '@guolao/vue-monaco-editor';
 import { useToast } from 'vue-toastification';
 import api from '../services/api';
 import { useThemeStore } from '../stores/theme';
-import NavBar from '../components/NavBar.vue';
 import ConfirmationModal from '../components/ConfirmationModal.vue';
 import EnrichmentSidebar from '../components/EnrichmentSidebar.vue';
 import LoadingLogo from '@/components/common/LoadingLogo.vue';

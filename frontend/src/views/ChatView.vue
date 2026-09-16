@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router';
 import { useChatStore } from '../stores/chat';
 import { useAuthStore } from '../stores/auth';
 import { useProjectStore } from '../stores/project';
-import NavBar from '../components/NavBar.vue';
 import ConfirmationModal from '../components/ConfirmationModal.vue';
 import AgentProgressRail from '../components/chat/AgentProgressRail.vue';
 import AssistantMessageCard from '../components/chat/AssistantMessageCard.vue';
@@ -137,9 +136,7 @@ function handleOpenSource(source) {
 
 <template>
   <div class="h-screen flex flex-col bg-[#F9F9FB] dark:bg-[#121214] text-[#2D2B2A] dark:text-[#FAF6F0] font-sans transition-colors duration-300">
-    <NavBar />
-
-    <div class="flex-1 flex overflow-hidden relative">
+<div class="flex-1 flex overflow-hidden relative">
       <!-- Left Sidebar: Lobe UI Session History -->
       <transition enter-active-class="transition-transform duration-300 ease-in-out" enter-from-class="-translate-x-full" enter-to-class="translate-x-0" leave-active-class="transition-transform duration-300 ease-in-out" leave-from-class="translate-x-0" leave-to-class="-translate-x-full">
         <aside v-if="showHistory" class="w-72 bg-white/80 dark:bg-surface/80 backdrop-blur-md border-r border-gray-200/80 dark:border-border flex flex-col shrink-0 absolute md:static z-20 h-full shadow-xl md:shadow-none">

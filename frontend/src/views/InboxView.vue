@@ -1,8 +1,6 @@
 <template>
   <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden">
-    <NavBar />
-
-    <main class="flex-1 overflow-hidden">
+<main class="flex-1 overflow-hidden">
        <div class="max-w-7xl mx-auto h-full flex pt-6 pb-6 px-4 sm:px-6 lg:px-8 gap-6">
            
            <!-- Left Pane: Incoming Items -->
@@ -187,7 +185,6 @@ import { useAuthStore } from '../stores/auth';
 import { useProjectStore } from '../stores/project';
 import { useRouter, useRoute } from 'vue-router';
 import api from '../services/api';
-import NavBar from '../components/NavBar.vue';
 import ConfirmationModal from '../components/ConfirmationModal.vue';
 import { useToast } from 'vue-toastification';
 import { getIconForSource } from '../utils/iconResolver';

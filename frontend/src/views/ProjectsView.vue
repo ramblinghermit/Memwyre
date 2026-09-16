@@ -1,7 +1,6 @@
 <template>
   <div class="h-screen flex flex-col overflow-hidden">
-    <NavBar />
-    <main class="flex-1 overflow-y-auto p-6">
+<main class="flex-1 overflow-y-auto p-6">
       <div class="max-w-5xl mx-auto">
         <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Projects</h1>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -24,7 +23,6 @@
 <script setup>
 import { computed } from 'vue';
 import { useProjectStore } from '../stores/project';
-import NavBar from '../components/NavBar.vue';
 import ProjectSidebar from '../components/ProjectSidebar.vue';
 import AIInteractionTimeline from '../components/AIInteractionTimeline.vue';
 

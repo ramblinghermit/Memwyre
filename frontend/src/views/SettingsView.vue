@@ -1,8 +1,6 @@
 <template>
   <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden">
-    <NavBar />
-    
-    <main class="flex-1 overflow-hidden w-full max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 flex flex-col h-full">
+<main class="flex-1 overflow-hidden w-full max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 flex flex-col h-full">
       <div class="flex-none">
           <div class="mb-8">
             <h1 class="text-3xl font-bold text-gray-900 dark:text-text-primary">Settings</h1>
@@ -157,7 +155,6 @@ import { useAuthStore } from '../stores/auth';
 import { useRouter } from 'vue-router';
 import api from '../services/api';
 import apiKeysService from '../services/apiKeys'; // Import Service
-import NavBar from '../components/NavBar.vue';
 import ThemeToggle from '../components/ThemeToggle.vue';
 import ConfirmationModal from '../components/ConfirmationModal.vue';
 import McpConnectionGuide from '../components/McpConnectionGuide.vue';

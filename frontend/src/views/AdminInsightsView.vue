@@ -1,8 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-50 text-gray-900 dark:bg-background dark:text-text-primary">
-    <NavBar />
-
-    <main class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-8 sm:px-8 lg:px-12">
+<main class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-8 sm:px-8 lg:px-12">
       <header class="flex flex-col gap-4 border-b border-gray-200 pb-6 dark:border-border md:flex-row md:items-end md:justify-between">
         <div>
           <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Admin</p>
@@ -308,7 +306,6 @@
 
 <script setup>
 import { computed, h, onMounted, ref } from 'vue';
-import NavBar from '../components/NavBar.vue';
 import api from '../services/api';
 
 const insights = ref(null);

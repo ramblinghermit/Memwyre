@@ -1,8 +1,6 @@
 <template>
   <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden">
-    <NavBar />
-
-    <main class="flex-1 overflow-y-auto w-full max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+<main class="flex-1 overflow-y-auto w-full max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="mb-10">
         <h1 class="text-3xl font-bold text-gray-900 dark:text-text-primary">Billing</h1>
@@ -134,8 +132,6 @@ import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useBillingStore } from '../stores/billing';
 import { useToast } from 'vue-toastification';
-import NavBar from '../components/NavBar.vue';
-
 const route = useRoute();
 const billing = useBillingStore();
 const toast = useToast();
