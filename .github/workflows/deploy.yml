@@ -90,6 +90,11 @@ jobs:
       - name: Sync to S3
         working-directory: frontend
         run: |
+          # Remove stale legacy directories that shouldn't have static HTML
+          for dir in dashboard login signup forgot-password; do
+            aws s3 rm s3://$S3_BUCKET/$dir/ --recursive || true
+          done
+
           # 1. Sync assets with long-lived immutable cache (fingerprinted JS/CSS)
           aws s3 sync dist/ s3://$S3_BUCKET/ --delete \
             --acl public-read \
@@ -118,7 +123,7 @@ jobs:
 
           # 3. HTML files (Root + Docs + any other subfolders): never cache
           # We use --include "*.html" to catch index.html and docs/index.html
-          aws s3 sync dist/ s3://$S3_BUCKET/ \
+          aws s3 sync dist/ s3://$S3_BUCKET/ --delete \
             --acl public-read \
             --cache-control "public, max-age=0, must-revalidate" \
             --exclude "*" \
@@ -128,7 +133,7 @@ jobs:
         run: |
           aws cloudfront create-invalidation \
             --distribution-id E33X26FANBG9K9 \
-            --paths "/index.html" "/docs/*" "/image.svg" "/robots.txt" "/sitemap.xml"
+            --paths "/*"
 
   # ─────────────────────────────────────────────
   # Job 3: Deploy backend to EC2 via SSH

@@ -68,6 +68,11 @@
 
 <body>
   <div id="app"><!--app-html--></div>
+  <script>
+    if (window.location.hostname === 'app.memwyre.tech') {
+      document.getElementById('app').innerHTML = '';
+    }
+  </script>
   <script type="module" src="/src/main.js"></script>
 </body>
 
