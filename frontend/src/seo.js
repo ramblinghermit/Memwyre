@@ -15,6 +15,7 @@ export const PRERENDER_ROUTES = [
   '/ai-memory-benchmark-locomo',
   '/research/what-is-ai-memory',
   '/research/context-engineering',
+  '/research/vector-database-vs-agent-memory',
   '/memwyre-vs-mem0',
   '/memwyre-vs-supermemory',
   '/memwyre-vs-zep',
@@ -23,8 +24,18 @@ export const PRERENDER_ROUTES = [
   '/cursor-memory',
   '/mcp-memory',
   '/grok-bot-memory',
+  '/opencode-memory',
+  '/openclaw-memory',
   '/privacy-policy',
-  '/terms'
+  '/terms',
+  '/blog/cursor-vs-claude-code-context',
+  '/blog/claude-code-memory-ingestion',
+  '/blog/mcp-persistent-memory',
+  '/blog/shared-memory-chatgpt-claude-cursor',
+  '/blog/vscode-mcp-persistent-memory',
+  '/blog/openclaw-autonomous-memory',
+  '/blog/state-of-ai-memory-2026',
+  '/blog/rag-vs-memory-long-term-knowledge'
 ];
 
 export const DEFAULT_SEO = {
@@ -90,6 +101,12 @@ export const PUBLIC_ROUTE_SEO = {
     title: 'Memwyre Blog | Guides, Updates & AI Memory Engineering Insights',
     description:
       'Explore deep dives on Model Context Protocol (MCP), developer tools integration, vector databases, and workflow optimization from the Memwyre team.',
+  },
+  '/blog/shared-memory-chatgpt-claude-cursor': {
+    title: 'Maintain Consistent Memory Across ChatGPT, Claude Code, and Cursor | Memwyre Blog',
+    description:
+      'Stop copy-pasting architecture context between ChatGPT, Claude Code, and Cursor. Build a synchronized cross-tool knowledge graph using Memwyre.',
+    ogImage: '/blog-covers/shared-memory-chatgpt-claude-cursor.png',
   },
   '/blog/mcp-persistent-memory': {
     title: 'How to Give Claude Desktop Persistent Memory using MCP | Memwyre Blog',
@@ -209,6 +226,23 @@ export const PUBLIC_ROUTE_SEO = {
   '/cursor-memory': {
     title: 'Cursor Memory | Long-Term Codebase Context for Cursor AI IDE',
     description: 'Enable sub-300ms persistent memory for Cursor Composer and Chat. Save developer rules and databases context to avoid index rebuilding.',
+  },
+  '/research/vector-database-vs-agent-memory': {
+    title: 'Vector Database vs. AI Agent Memory: The Architectural Difference | Memwyre Research',
+    description:
+      'A technical breakdown of vector databases vs AI agent memory systems. Why cosine similarity fails across sessions and why entity-profile routing provides better context.',
+    canonical: 'https://memwyre.tech/research/vector-database-vs-agent-memory',
+    ogType: 'article',
+  },
+  '/opencode-memory': {
+    title: 'OpenCode Persistent Memory | Solve Desktop RAM Leaks & CLI Reset',
+    description:
+      'Persistent memory integration for OpenCode CLI. Eliminate context amnesia, desktop RAM spikes, and maintain developer conventions across runs.',
+  },
+  '/openclaw-memory': {
+    title: 'OpenClaw Persistent Memory | Fix Context Compaction & Fact Loss',
+    description:
+      'Equip autonomous OpenClaw agents with long-term memory. Retain architectural decisions, dependency maps, and facts across tasks without silent compaction loss.',
   },
   '/mcp-memory': {
     title: 'MCP Memory Server | Universal Context Layer for All MCP Clients',
@@ -362,6 +396,7 @@ export function getSeoForPath(path = '/') {
   if (normalizedPath.startsWith('/blog/') && normalizedPath !== '/blog') {
     const slug = normalizedPath.split('/').pop();
     const blogDates = {
+      'shared-memory-chatgpt-claude-cursor': '2026-08-14T08:00:00Z',
       'mcp-persistent-memory': '2026-06-15T08:00:00Z',
       'vscode-mcp-persistent-memory': '2026-06-02T08:00:00Z',
       'claude-code-memory-ingestion': '2026-05-18T08:00:00Z',
@@ -394,11 +429,12 @@ export function getSeoForPath(path = '/') {
       },
       'url': canonical
     });
-  } else if (normalizedPath === '/research/what-is-ai-memory' || normalizedPath === '/ai-memory-benchmark-locomo' || normalizedPath === '/research/context-engineering') {
+  } else if (normalizedPath === '/research/what-is-ai-memory' || normalizedPath === '/ai-memory-benchmark-locomo' || normalizedPath === '/research/context-engineering' || normalizedPath === '/research/vector-database-vs-agent-memory') {
     const techDates = {
       '/research/what-is-ai-memory': '2026-03-10T08:00:00Z',
       '/ai-memory-benchmark-locomo': '2026-03-25T08:00:00Z',
-      '/research/context-engineering': '2026-03-20T08:00:00Z'
+      '/research/context-engineering': '2026-03-20T08:00:00Z',
+      '/research/vector-database-vs-agent-memory': '2026-04-01T08:00:00Z'
     };
     const pubDate = techDates[normalizedPath] || '2026-03-01T08:00:00Z';
     jsonLdData.push({
@@ -423,7 +459,7 @@ export function getSeoForPath(path = '/') {
       },
       'url': canonical
     });
-  } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory', '/grok-bot-memory'].includes(normalizedPath)) {
+  } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory', '/grok-bot-memory', '/opencode-memory', '/openclaw-memory'].includes(normalizedPath)) {
     jsonLdData.push({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',

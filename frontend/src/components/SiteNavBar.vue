@@ -126,14 +126,14 @@ watch(() => route.path, () => {
         </div>
 
         <div class="flex items-center gap-2 sm:gap-3">
-          <router-link to="/login/"
+          <a href="https://app.memwyre.tech/login"
             class="hidden lg:inline-block text-sm font-normal transition-colors duration-200 text-black/60 hover:text-black">
             Log in
-          </router-link>
-          <router-link to="/signup/"
+          </a>
+          <a href="https://app.memwyre.tech/signup"
             class="hidden sm:inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-black text-white text-xs sm:text-sm font-semibold rounded hover:bg-gray-800 transition-colors shadow-sm">
             Start Free
-          </router-link>
+          </a>
 
           <!-- Hamburger Menu Button -->
           <button 
@@ -234,20 +234,20 @@ watch(() => route.path, () => {
 
         <!-- Mobile CTAs (visible only on small screens) -->
         <div class="sm:hidden pt-2 space-y-3">
-          <router-link 
-            to="/signup/"
+          <a 
+            href="https://app.memwyre.tech/signup"
             class="block w-full text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded hover:bg-gray-800 transition-colors shadow-sm"
             @click="isMobileMenuOpen = false"
           >
             Start Free
-          </router-link>
-          <router-link 
-            to="/login/"
+          </a>
+          <a 
+            href="https://app.memwyre.tech/login"
             class="block w-full text-center px-4 py-2 border border-black/10 text-black text-sm font-medium rounded hover:bg-black/5 transition-colors"
             @click="isMobileMenuOpen = false"
           >
             Log in
-          </router-link>
+          </a>
         </div>
       </div>
     </transition>
