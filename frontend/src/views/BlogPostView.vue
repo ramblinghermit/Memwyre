@@ -20,14 +20,17 @@ const marked = new Marked({
     heading(text, level, raw) {
       let depth = level;
       let rawText = '';
+      let htmlText = '';
       if (typeof text === 'object' && text !== null) {
         rawText = text.text;
         depth = text.depth;
+        htmlText = this.parser.parseInline(text.tokens);
       } else {
         rawText = text;
+        htmlText = text;
       }
       const slug = slugify(rawText);
-      return `<h${depth} id="${slug}">${rawText}</h${depth}>`;
+      return `<h${depth} id="${slug}">${htmlText}</h${depth}>`;
     },
     code(code, infostring) {
       let text = '';
@@ -61,18 +64,17 @@ const activeSection = ref('');
 
 const parseToc = (md) => {
   if (!md) return;
+  const tokens = marked.lexer(md);
   const headings = [];
-  const lines = md.split(/\r?\n/);
   let sectionIndex = 1;
-  for (const line of lines) {
-    const match = line.match(/^(#{2,3})\s+(.+)$/);
-    if (match) {
-      const level = match[1].length;
-      const text = match[2].trim();
-      const slug = slugify(text);
-      headings.push({ level, text, slug, index: sectionIndex++ });
+  tokens.forEach(token => {
+    if (token.type === 'heading' && (token.depth === 2 || token.depth === 3)) {
+      // Remove Markdown formatting like ** or _ from the TOC text
+      const cleanText = token.text.replace(/[*_~`]/g, '');
+      const slug = slugify(token.text); // keep slugify matching the renderer
+      headings.push({ level: token.depth, text: cleanText, slug, index: sectionIndex++ });
     }
-  }
+  });
   toc.value = headings;
 };
 
