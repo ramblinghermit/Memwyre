@@ -24,11 +24,7 @@ export const PRERENDER_ROUTES = [
   '/mcp-memory',
   '/grok-bot-memory',
   '/privacy-policy',
-  '/terms',
-  '/login',
-  '/signup',
-  '/dashboard',
-  '/forgot-password'
+  '/terms'
 ];
 
 export const DEFAULT_SEO = {

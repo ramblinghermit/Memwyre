@@ -105,6 +105,32 @@ async function prerender() {
     const serverEntryUrl = `${pathToFileURL(serverBundlePath).href}?v=${Date.now()}`;
     const { render } = await import(serverEntryUrl);
 
+    // Generate clean SPA shell for application domain and authenticated routes (app.html)
+    // Injects an early-redirect script for app.memwyre.tech root to instantly route to /dashboard or /login without flash
+    const appRedirectScript = `<script>
+(function(){
+  if(window.location.hostname==='app.memwyre.tech'&&(window.location.pathname==='/'||window.location.pathname==='')){
+    try{
+      var token=localStorage.getItem('token');
+      if(token){
+        window.location.replace('/dashboard');
+      }else{
+        window.location.replace('/login');
+      }
+    }catch(e){}
+  }
+})();
+</script>`;
+    const appHtmlClean = template
+        .replace('<!--app-html-->', '')
+        .replace('</head>', `${appRedirectScript}</head>`);
+    await writeFile(path.join(distDir, 'app.html'), appHtmlClean, 'utf-8');
+
+    // Remove any legacy prerendered app directories to avoid stale unauthorized HTML on reload
+    for (const legacyAppDir of ['dashboard', 'login', 'signup', 'forgot-password']) {
+        await rm(path.join(distDir, legacyAppDir), { recursive: true, force: true });
+    }
+
     for (const route of PRERENDER_ROUTES) {
         const { appHtml } = await render(route);
         const seo = getSeoForPath(route);

@@ -453,6 +453,25 @@ export function createAppRouter({ ssr = false } = {}) {
                 name: 'demo-inbox',
                 component: () => import('../views/demo/DemoInbox.vue'),
                 meta: { requiresAuth: false }
+            },
+            {
+                path: '/broadcast',
+                redirect: '/dashboard'
+            },
+            {
+                path: '/:pathMatch(.*)*',
+                name: 'not-found',
+                beforeEnter(to, from, next) {
+                    if (typeof window !== 'undefined') {
+                        const hostname = window.location.hostname;
+                        if (hostname === 'app.memwyre.tech') {
+                            const authStore = useAuthStore();
+                            next(authStore.isAuthenticated ? '/dashboard' : '/login');
+                            return;
+                        }
+                    }
+                    next('/');
+                }
             }
         ]
     });
@@ -467,10 +486,26 @@ export function createAppRouter({ ssr = false } = {}) {
                 '/login', '/signup', '/verify-email', '/forgot-password', '/reset-password',
                 '/dashboard', '/inbox', '/projects', '/settings', '/integrations',
                 '/editor', '/prompts', '/map', '/chat', '/billing', '/admin',
-                '/retrieval-visualizer', '/redeem', '/slides', '/export-slide', '/demo'
+                '/retrieval-visualizer', '/redeem', '/slides', '/export-slide', '/demo',
+                '/broadcast'
+            ];
+
+            const MARKETING_ROUTES = [
+                '/use-cases', '/pricing', '/contact', '/connectors', '/mcp',
+                '/plugins', '/extension', '/blog', '/research', '/what-is-ai-memory',
+                '/ai-memory-benchmark-locomo', '/memwyre-vs-mem0', '/memwyre-vs-supermemory',
+                '/memwyre-vs-zep', '/chatgpt-memory', '/claude-memory', '/cursor-memory',
+                '/mcp-memory', '/openclaw-memory', '/grok-bot-memory', '/opencode-memory',
+                '/privacy-policy', '/terms'
             ];
 
             const isAppPath = APP_ROUTES.some(path => 
+                to.path === path || 
+                to.path === path + '/' || 
+                to.path.startsWith(path + '/')
+            );
+
+            const isMarketingPath = MARKETING_ROUTES.some(path => 
                 to.path === path || 
                 to.path === path + '/' || 
                 to.path.startsWith(path + '/')
@@ -495,7 +530,7 @@ export function createAppRouter({ ssr = false } = {}) {
                     }
                     return;
                 }
-                if (!isAppPath) {
+                if (isMarketingPath) {
                     window.location.href = `https://${MAIN_HOST}${to.fullPath}`;
                     return;
                 }

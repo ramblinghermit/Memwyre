@@ -1,7 +1,48 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/(dashboard|inbox|projects|settings|integrations|editor|prompts|map|chat|billing|admin|retrieval-visualizer|redeem|slides|export-slide|demo|login|signup|verify-email|forgot-password|reset-password)(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "memwyre.tech"
+        }
+      ],
+      "destination": "https://app.memwyre.tech/$1$2",
+      "permanent": false
+    },
+    {
+      "source": "/(dashboard|inbox|projects|settings|integrations|editor|prompts|map|chat|billing|admin|retrieval-visualizer|redeem|slides|export-slide|demo|login|signup|verify-email|forgot-password|reset-password)(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.memwyre.tech"
+        }
+      ],
+      "destination": "https://app.memwyre.tech/$1$2",
+      "permanent": false
+    }
+  ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "app.memwyre.tech"
+        }
+      ],
+      "destination": "/app.html"
+    },
+    {
+      "source": "/(dashboard|inbox|projects|settings|integrations|editor|prompts|map|chat|billing|admin|retrieval-visualizer|redeem|slides|export-slide|demo|login|signup|verify-email|forgot-password|reset-password)(.*)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
