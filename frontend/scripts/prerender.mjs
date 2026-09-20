@@ -151,9 +151,25 @@ async function prerender() {
         let routeHtml = withSeoAndContent(template, seo, appHtml, injectedScript);
 
         // For the root route, inject styles + script on app.memwyre.tech to hide
-        // prerendered landing page content and re-show #app once Vue loads.
+        // prerendered landing page content and instantly route to /dashboard or /login
         if (route === '/') {
-            const antiFlashStyle = `<style id="anti-flash">html[data-app-domain] #app{visibility:hidden}</style><script>if(window.location.hostname==='app.memwyre.tech')document.documentElement.setAttribute('data-app-domain','');</script>`;
+            const antiFlashStyle = `<style id="anti-flash">html[data-app-domain] #app{visibility:hidden}</style><script>
+(function(){
+  if(window.location.hostname==='app.memwyre.tech'){
+    document.documentElement.setAttribute('data-app-domain','');
+    if(window.location.pathname==='/'||window.location.pathname===''){
+      try{
+        var token=localStorage.getItem('token');
+        if(token){
+          window.location.replace('/dashboard');
+        }else{
+          window.location.replace('/login');
+        }
+      }catch(e){}
+    }
+  }
+})();
+</script>`;
             routeHtml = routeHtml.replace('</head>', `${antiFlashStyle}</head>`);
         }
 

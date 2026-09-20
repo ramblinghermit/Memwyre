@@ -4,7 +4,7 @@ import App from './App.vue';
 import router, { createAppRouter } from './router';
 
 export function createMemwyreApp({ ssr = false } = {}) {
-    const app = ssr ? createSSRApp(App) : createClientApp(App);
+    const app = createSSRApp(App);
     const pinia = createPinia();
     const appRouter = ssr ? createAppRouter({ ssr: true }) : router;
 

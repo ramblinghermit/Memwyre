@@ -71,6 +71,16 @@
   <script>
     if (window.location.hostname === 'app.memwyre.tech') {
       document.getElementById('app').innerHTML = '';
+      if (window.location.pathname === '/' || window.location.pathname === '') {
+        try {
+          var token = localStorage.getItem('token');
+          if (token) {
+            window.location.replace('/dashboard');
+          } else {
+            window.location.replace('/login');
+          }
+        } catch (e) {}
+      }
     }
   </script>
   <script type="module" src="/src/main.js"></script>
