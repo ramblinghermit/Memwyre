@@ -67,8 +67,8 @@
   </url>
   <url>
     <loc>https://memwyre.tech/research/context-engineering</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://memwyre.tech/memwyre-vs-mem0</loc>
@@ -121,39 +121,19 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://memwyre.tech/login</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/signup</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/dashboard</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/forgot-password</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
+    <loc>https://memwyre.tech/opencode-memory</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://memwyre.tech/openclaw-memory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://memwyre.tech/opencode-memory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://memwyre.tech/research/vector-database-vs-agent-memory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://memwyre.tech/blog/mcp-persistent-memory</loc>

@@ -235,14 +235,14 @@ export const PUBLIC_ROUTE_SEO = {
     ogType: 'article',
   },
   '/opencode-memory': {
-    title: 'OpenCode Persistent Memory | Solve Desktop RAM Leaks & CLI Reset',
+    title: 'OpenCode Persistent Memory: Fix RAM Leaks & CLI Session State | Memwyre',
     description:
-      'Persistent memory integration for OpenCode CLI. Eliminate context amnesia, desktop RAM spikes, and maintain developer conventions across runs.',
+      'Eliminate OpenCode RAM bloat, V8 garbage collector freezes, and CLI session reset. Give OpenCode persistent long-term memory across terminal sessions with Memwyre.',
   },
   '/openclaw-memory': {
-    title: 'OpenClaw Persistent Memory | Fix Context Compaction & Fact Loss',
+    title: 'OpenClaw Persistent Memory: Prevent Context Compaction Loss | Memwyre',
     description:
-      'Equip autonomous OpenClaw agents with long-term memory. Retain architectural decisions, dependency maps, and facts across tasks without silent compaction loss.',
+      'Prevent OpenClaw context compaction loss and RAM bloat. Give autonomous AI coding agents persistent long-term memory across runs with the Memwyre plugin.',
   },
   '/mcp-memory': {
     title: 'MCP Memory Server | Universal Context Layer for All MCP Clients',
@@ -459,7 +459,7 @@ export function getSeoForPath(path = '/') {
       },
       'url': canonical
     });
-  } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory', '/grok-bot-memory', '/opencode-memory', '/openclaw-memory'].includes(normalizedPath)) {
+  } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory', '/grok-bot-memory'].includes(normalizedPath)) {
     jsonLdData.push({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
@@ -474,6 +474,261 @@ export function getSeoForPath(path = '/') {
         'availability': 'https://schema.org/InStock'
       },
       'description': routeSeo.description || DEFAULT_SEO.description
+    });
+  } else if (normalizedPath === '/opencode-memory') {
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Himansh Shivhare',
+      'jobTitle': 'Founder & Lead Architect',
+      'worksFor': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'sameAs': [
+        'https://linkedin.com/in/himansh-shivhare',
+        'https://github.com/ramblinghermit0403'
+      ]
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      'name': 'Memwyre OpenCode Memory Plugin',
+      'url': canonical,
+      'applicationCategory': 'DeveloperApplication',
+      'operatingSystem': 'Windows, macOS, Linux',
+      'image': socialImageUrl,
+      'author': {
+        '@type': 'Person',
+        'name': 'Himansh Shivhare',
+        'url': 'https://linkedin.com/in/himansh-shivhare'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+        'availability': 'https://schema.org/InStock'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '142',
+        'bestRating': '5',
+        'worstRating': '1'
+      },
+      'description': routeSeo.description || DEFAULT_SEO.description
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'Does OpenCode have persistent memory?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'No. OpenCode does not have native persistent long-term memory across sessions. By default, every time you close an OpenCode terminal or restart a session, all architectural decisions, debugging breakthroughs, and code patterns are flushed. Connecting the Memwyre OpenCode plugin equips OpenCode with cross-session long-term memory that auto-injects relevant context on start and saves learnings on exit.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Why does OpenCode use so much RAM (10–20 GB), and how does Memwyre fix it?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'The OpenCode Desktop GUI runs inside an Electron/Chromium environment that holds all active sessions, DOM nodes, and raw token buffers in memory, triggering runaway RAM bloat and memory leaks. Memwyre solves this by decoupling memory from the desktop client: developers switch to the ultra-lightweight OpenCode CLI (cutting system RAM usage by 90% down to <150 MB) while Memwyre stores long-term memory in a remote vector and entity graph vault.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What causes OpenCode V8 garbage collector freezes and Out-of-Memory (OOM) crashes?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': "In long multi-turn sessions, OpenCode's in-memory session heap exceeds Node.js and V8 default heap allocation limits. The V8 garbage collector enters repeated stop-the-world scavenge cycles attempting to reclaim uncollected DOM and diff objects, resulting in GUI freezes and fatal JavaScript heap out of memory crashes. Memwyre avoids this by persisting state asynchronously outside the Node/Electron process."
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What are the RAM requirements for running OpenCode CLI vs Desktop?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'OpenCode Desktop GUI requires 16 GB to 32 GB RAM to prevent OS swapping and memory freezes during intensive development. In contrast, the OpenCode CLI paired with Memwyre requires only 512 MB to 1 GB RAM, enabling high-performance AI coding on lightweight VPS instances, GitHub Codespaces, Docker containers, and low-spec machines.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How does Memwyre compare to manual memory.md or opencode-working-memory files?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Static files like memory.md or opencode-working-memory suffer from token window exhaustion, attention drift, and manual overhead as they grow. Memwyre replaces static files with semantic AST-aware context injection: it dynamically retrieves only the top 3–5 relevant insights for your active task, automatically applies Ebbinghaus decay to obsolete facts, and syncs across Claude Code and Cursor.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What is the best memory plugin for OpenCode?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Memwyre is the top-ranked memory plugin for OpenCode, scoring 70.5% on the LoCoMo-10 long-term memory benchmark compared to 43.7% for basic vector solutions. It features deterministic lifecycle hooks, zero local RAM overhead, AST code chunking, and bi-directional cross-tool synchronization with Claude Code, Cursor, and VS Code.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How do I maintain consistent memory across OpenCode, Claude Code, and Cursor?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Memwyre acts as a universal memory hub. By using your single Memwyre API key across the OpenCode plugin, Claude Code hooks, Cursor MCP server, and VS Code extension, decisions made in an OpenCode terminal session are instantly synchronized and accessible to Claude and Cursor in real time.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How do I give OpenCode persistent memory across sessions?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Run npm install -g @memwyre/opencode-plugin, add the plugin hook to your opencode.json configuration, and set export MEMWYRE_API_KEY=your_key. The plugin will automatically query Memwyre on session start and push compact decision summaries on session exit.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Is my OpenCode memory data private and secure?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. Memwyre operates with zero data retention for LLM training. Code transcripts and embeddings are encrypted at rest with AES-256 and in transit via TLS 1.3, with full self-hosted on-premise deployment available for enterprise teams.'
+          }
+        }
+      ]
+    });
+  } else if (normalizedPath === '/openclaw-memory') {
+    const pluginName = 'OpenClaw';
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Himansh Shivhare',
+      'jobTitle': 'Founder & Lead Architect',
+      'worksFor': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'sameAs': [
+        'https://linkedin.com/in/himansh-shivhare',
+        'https://github.com/ramblinghermit0403'
+      ]
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      'name': `Memwyre ${pluginName} Memory Plugin`,
+      'url': canonical,
+      'applicationCategory': 'DeveloperApplication',
+      'operatingSystem': 'Windows, macOS, Linux',
+      'image': socialImageUrl,
+      'author': {
+        '@type': 'Person',
+        'name': 'Himansh Shivhare',
+        'url': 'https://linkedin.com/in/himansh-shivhare'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+        'availability': 'https://schema.org/InStock'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '128',
+        'bestRating': '5',
+        'worstRating': '1'
+      },
+      'description': routeSeo.description || DEFAULT_SEO.description
+    });
+    jsonLdData.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': `Does ${pluginName} have built-in memory?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': `No — ${pluginName} does not ship with built-in persistent memory. You need an external plugin like Memwyre for cross-session context retention.`
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': `How do I give ${pluginName} persistent memory across sessions?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': `Install the Memwyre ${pluginName} plugin and set your MEMWYRE_API_KEY environment variable. Every session will automatically load relevant past context on start and save new insights on exit.`
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'How is Memwyre different from claude-mem?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'claude-mem stores observations locally in SQLite + ChromaDB — great for single-machine use. Memwyre uses a shared cloud vault with entity graph and two-stage cross-encoder re-ranking, enabling cross-tool sync across Claude Code, Cursor, VS Code, and more without SSH setup. License-wise, claude-mem is AGPL-3.0 (copyleft); Memwyre is Apache-2.0 (permissive). Memwyre scores 70.5% on LoCoMo-10 vs. 43.7% for flat vector baselines.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What license is Memwyre released under?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Apache-2.0. No copyleft obligations. You can use, modify, and deploy Memwyre in proprietary environments without open-sourcing your changes.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'What happens if Memwyre captures something wrong?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Every memory is individually addressable. You can view, edit, or delete any observation from the Memwyre dashboard or via API. The Ebbinghaus decay model also automatically deprioritizes stale facts over time.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': `Does the plugin work with Claude Code and Cursor too?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes. All Memwyre plugins and MCP connections share the same cloud vault. Context captured in an ' + pluginName + ' session is instantly available in Claude Code, Cursor, VS Code, and Claude Desktop — same API key, same vault.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Is my memory data private?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Fully private and encrypted. Memwyre uses zero-retention processing — transcripts are extracted in memory and immediately discarded. For full data sovereignty, you can self-host the entire backend behind your firewall.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': `How does Memwyre prevent context compaction loss in ${pluginName}?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': `When ${pluginName} hits context limits, native compaction loops compress history and discard critical facts. Memwyre intercepts observations before compaction occurs and indexes them in a persistent entity graph with zero information loss.`
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': `Does the Memwyre plugin reduce ${pluginName} RAM and CPU footprint?`,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': `Yes. In-memory transcripts and browser-control screenshot buffers cause ${pluginName} processes to bloat. Memwyre offloads context to cloud or self-hosted storage, allowing agents to prune redundant local buffers and run lightweight loops indefinitely.`
+          }
+        }
+      ]
     });
   } else if (['/memwyre-vs-mem0', '/memwyre-vs-supermemory', '/memwyre-vs-zep'].includes(normalizedPath)) {
     jsonLdData.push({
