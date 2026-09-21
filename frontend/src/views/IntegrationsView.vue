@@ -569,7 +569,7 @@ import antigravityIcon from '@/assets/Google-Antigravity-Icon-Full-Color.png';
 import vscodeIcon from '@/assets/vscode.svg';
 import claudeIcon from '@/assets/claude-color.svg';
 import claudeCodeIcon from '@/assets/claudecode-color.svg';
-import grokIcon from '@/assets/grok-color.svg';
+import grokIcon from '@/assets/grok-bot.png';
 import openclawIcon from '@/assets/openclaw-color.svg';
 import gdriveIcon from '@/assets/google-drive.svg';
 import notionIcon from '@/assets/notion-svgrepo-com.svg';
