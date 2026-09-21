@@ -18,7 +18,7 @@
 
     <!-- Sidebar Container (Light & Dark Theme Responsive) -->
     <aside
-      class="fixed lg:static top-0 bottom-0 left-0 z-50 flex flex-col bg-gray-50 dark:bg-[#09090b] text-gray-700 dark:text-zinc-200 border-r border-gray-200 dark:border-zinc-800/80 transition-all duration-300 select-none shadow-2xl lg:shadow-none h-screen shrink-0"
+      class="fixed lg:static top-0 bottom-0 left-0 z-50 flex flex-col bg-gray-50 dark:bg-[#09090b] text-gray-950 dark:text-white border-r border-gray-200 dark:border-zinc-800/80 transition-all duration-300 select-none shadow-2xl lg:shadow-none h-screen shrink-0"
       :class="[
         isCollapsed ? 'w-[68px]' : 'w-[260px] sm:w-[280px]',
         isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
@@ -26,8 +26,8 @@
     >
       <!-- Top Header -->
       <div 
-        class="h-14 border-b border-gray-200/80 dark:border-zinc-800/50 shrink-0 flex items-center px-3"
-        :class="isCollapsed ? 'justify-center' : 'justify-between'"
+        class="h-14 border-b border-gray-200/80 dark:border-zinc-800/50 shrink-0 flex items-center"
+        :class="isCollapsed ? 'justify-center px-1.5' : 'justify-between px-3'"
       >
         <!-- Expanded: Logo + action buttons -->
         <template v-if="!isCollapsed">
@@ -48,7 +48,7 @@
             <button
               @click="toggleCollapse"
               title="Collapse Sidebar"
-              class="p-1.5 text-gray-500 hover:text-gray-900 hover:bg-gray-200/70 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800/80 rounded-lg transition-colors cursor-pointer hidden lg:flex items-center justify-center"
+              class="p-1.5 text-gray-700 hover:text-black hover:bg-gray-200/80 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800/80 rounded-lg transition-colors cursor-pointer hidden lg:flex items-center justify-center"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2" />
@@ -59,7 +59,7 @@
             <!-- Close Mobile Drawer -->
             <button
               @click="$emit('close-mobile')"
-              class="p-1.5 text-gray-500 hover:text-gray-900 hover:bg-gray-200/70 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 rounded-lg transition-colors cursor-pointer lg:hidden"
+              class="p-1.5 text-gray-700 hover:text-black hover:bg-gray-200/80 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800 rounded-lg transition-colors cursor-pointer lg:hidden"
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -68,26 +68,50 @@
           </div>
         </template>
 
-        <!-- Collapsed: Just the expand toggle button -->
+        <!-- Collapsed: Logo by default, sidebar retract icon on hover, with bubble text -->
         <template v-else>
-          <button
-            @click="toggleCollapse"
-            title="Expand Sidebar"
-            class="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-200/70 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800/80 rounded-lg transition-colors cursor-pointer flex items-center justify-center"
-          >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v18" />
-            </svg>
-          </button>
+          <div class="relative group/toggle flex items-center justify-center w-full">
+            <button
+              @click="toggleCollapse"
+              class="w-10 h-10 rounded-xl flex items-center justify-center text-gray-600 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/70 dark:hover:bg-zinc-800/80 transition-all duration-200 cursor-pointer relative"
+              aria-label="Expand sidebar"
+            >
+              <!-- Default state: Memwyre logo -->
+              <img 
+                src="/image.svg" 
+                alt="Memwyre" 
+                class="w-6 h-6 rounded-full object-contain transition-all duration-200 group-hover/toggle:opacity-0 group-hover/toggle:scale-75 shadow-xs ring-1 ring-black/10 dark:ring-white/20 select-none" 
+              />
+              <!-- Hover state: Sidebar retract / expand icon -->
+              <svg 
+                class="w-5 h-5 absolute inset-0 m-auto opacity-0 group-hover/toggle:opacity-100 scale-75 group-hover/toggle:scale-100 transition-all duration-200" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v18" />
+              </svg>
+            </button>
+
+            <!-- Bubble Text Tooltip -->
+            <div 
+              class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover/toggle:flex items-center"
+            >
+              <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-medium">
+                <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                <span class="relative z-10">Expand sidebar</span>
+              </div>
+            </div>
+          </div>
         </template>
       </div>
 
 
       <!-- Scrollable Navigation & Item Lists -->
       <div 
-        class="flex-1 overflow-y-auto no-scrollbar pt-2 flex flex-col justify-between"
-        :class="isCollapsed ? 'px-1.5' : 'px-2'"
+        class="flex-1 pt-2 flex flex-col justify-between"
+        :class="isCollapsed ? 'overflow-visible px-1.5' : 'overflow-y-auto no-scrollbar px-2'"
       >
         <!-- Top Nav & Pinned Group -->
         <div class="space-y-3">
@@ -96,87 +120,139 @@
             <!-- 1. Dashboard -->
             <router-link
               to="/dashboard"
-              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-200/60 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800/70 transition-colors group relative"
+              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
               :class="{ 
                 'justify-center px-0': isCollapsed, 
-                'bg-gray-200/80 text-gray-900 font-semibold dark:bg-zinc-800 dark:text-white': $route.path === '/dashboard' 
+                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/dashboard' 
               }"
-              title="Dashboard"
+              :title="isCollapsed ? undefined : 'Dashboard'"
             >
-            <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-700 dark:text-zinc-400 dark:group-hover:text-zinc-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-            </svg>
-            <span v-if="!isCollapsed" class="truncate flex-1">Dashboard</span>
-          </router-link>
+              <svg class="w-4 h-4 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+              <span v-if="!isCollapsed" class="truncate flex-1 font-medium">Dashboard</span>
 
-          <!-- 2. Inbox (with live count badge) -->
-          <router-link
-            to="/inbox"
-            class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-200/60 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800/70 transition-colors group relative"
-            :class="{ 
-              'justify-center px-0': isCollapsed, 
-              'bg-gray-200/80 text-gray-900 font-semibold dark:bg-zinc-800 dark:text-white': $route.path === '/inbox' 
-            }"
-            title="Inbox Approvals"
-          >
-            <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-700 dark:text-zinc-400 dark:group-hover:text-zinc-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-            </svg>
-            <span v-if="!isCollapsed" class="truncate flex-1">Inbox</span>
-            <span 
-              v-if="!isCollapsed && inboxCount > 0" 
-              class="text-[11px] font-bold bg-[#D97757] text-white px-1.5 py-0.2 rounded-full"
+              <!-- Bubble Text Tooltip in Collapsed State -->
+              <div 
+                v-if="isCollapsed" 
+                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+              >
+                <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
+                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                  <span class="relative z-10">Dashboard</span>
+                </div>
+              </div>
+            </router-link>
+
+            <!-- 2. Inbox (with live count badge) -->
+            <router-link
+              to="/inbox"
+              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
+              :class="{ 
+                'justify-center px-0': isCollapsed, 
+                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/inbox' 
+              }"
+              :title="isCollapsed ? undefined : 'Inbox Approvals'"
             >
-              {{ inboxCount }}
-            </span>
-          </router-link>
+              <div class="relative flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                </svg>
+                <!-- Dot indicator in collapsed mode -->
+                <span 
+                  v-if="isCollapsed && inboxCount > 0" 
+                  class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#D97757] ring-2 ring-gray-50 dark:ring-[#09090b]"
+                ></span>
+              </div>
+              <span v-if="!isCollapsed" class="truncate flex-1 font-medium">Inbox</span>
+              <span 
+                v-if="!isCollapsed && inboxCount > 0" 
+                class="text-[11px] font-bold bg-[#D97757] text-white px-1.5 py-0.2 rounded-full"
+              >
+                {{ inboxCount }}
+              </span>
 
-          <!-- 3. Ask AI / Chat -->
-          <router-link
-            to="/chat"
-            class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-200/60 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800/70 transition-colors group"
-            :class="{ 
-              'justify-center px-0': isCollapsed, 
-              'bg-gray-200/80 text-gray-900 font-semibold dark:bg-zinc-800 dark:text-white': $route.path.startsWith('/chat') 
-            }"
-            title="Ask AI & Chat"
-          >
-            <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-700 dark:text-zinc-400 dark:group-hover:text-zinc-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-            </svg>
-            <span v-if="!isCollapsed" class="truncate">Ask AI</span>
-          </router-link>
+              <!-- Bubble Text Tooltip in Collapsed State -->
+              <div 
+                v-if="isCollapsed" 
+                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+              >
+                <div class="sidebar-bubble-tooltip relative flex items-center gap-1.5 bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
+                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                  <span class="relative z-10">Inbox</span>
+                  <span v-if="inboxCount > 0" class="relative z-10 text-[10px] font-bold bg-[#D97757] text-white px-1.5 py-0.2 rounded-full">
+                    {{ inboxCount }}
+                  </span>
+                </div>
+              </div>
+            </router-link>
 
+            <!-- 3. Ask AI / Chat -->
+            <router-link
+              to="/chat"
+              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
+              :class="{ 
+                'justify-center px-0': isCollapsed, 
+                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path.startsWith('/chat') 
+              }"
+              :title="isCollapsed ? undefined : 'Ask AI & Chat'"
+            >
+              <svg class="w-4 h-4 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+              <span v-if="!isCollapsed" class="truncate font-medium">Ask AI</span>
 
+              <!-- Bubble Text Tooltip in Collapsed State -->
+              <div 
+                v-if="isCollapsed" 
+                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+              >
+                <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
+                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                  <span class="relative z-10">Ask AI</span>
+                </div>
+              </div>
+            </router-link>
 
-          <!-- 5. Integrations & MCP -->
-          <router-link
-            to="/integrations"
-            class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-200/60 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800/70 transition-colors group"
-            :class="{ 
-              'justify-center px-0': isCollapsed, 
-              'bg-gray-200/80 text-gray-900 font-semibold dark:bg-zinc-800 dark:text-white': $route.path === '/integrations' 
-            }"
-            title="Integrations & MCP"
-          >
-            <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-700 dark:text-zinc-400 dark:group-hover:text-zinc-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
-            </svg>
-            <span v-if="!isCollapsed" class="truncate">Integrations</span>
-          </router-link>
-        </nav>
+            <!-- 5. Integrations & MCP -->
+            <router-link
+              to="/integrations"
+              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
+              :class="{ 
+                'justify-center px-0': isCollapsed, 
+                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/integrations' 
+              }"
+              :title="isCollapsed ? undefined : 'Integrations & MCP'"
+            >
+              <svg class="w-4 h-4 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+              </svg>
+              <span v-if="!isCollapsed" class="truncate font-medium">Integrations</span>
+
+              <!-- Bubble Text Tooltip in Collapsed State -->
+              <div 
+                v-if="isCollapsed" 
+                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+              >
+                <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
+                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                  <span class="relative z-10">Integrations</span>
+                </div>
+              </div>
+            </router-link>
+          </nav>
 
         <!-- Pinned Section (Interactive Pinned Memories/Chats) -->
         <div v-if="!isCollapsed && pinnedItems.length > 0" class="pt-2">
-          <div class="px-2.5 pb-1 text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-zinc-500 flex items-center justify-between">
+          <div class="px-2.5 pb-1 text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-zinc-300 flex items-center justify-between">
             <span>Pinned</span>
-            <span class="text-[10px] text-gray-400 dark:text-zinc-500 font-mono">{{ pinnedItems.length }}</span>
+            <span class="text-[10px] text-gray-700 dark:text-zinc-300 font-mono font-semibold">{{ pinnedItems.length }}</span>
           </div>
           <div class="space-y-0.5">
             <div
               v-for="item in pinnedItems"
               :key="item.id"
-              class="group relative flex items-center justify-between px-2.5 py-1.5 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-200/60 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800/70 transition-colors cursor-pointer"
+              class="group relative flex items-center justify-between px-2.5 py-1.5 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors cursor-pointer"
               @click="handleSelectPinned(item)"
             >
               <div class="flex items-center gap-2 min-w-0 pr-2">
@@ -188,7 +264,7 @@
               <button 
                 @click.stop="unpinItem(item.id)" 
                 title="Unpin"
-                class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 p-0.5 rounded transition-opacity"
+                class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-500 p-0.5 rounded transition-opacity"
               >
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
@@ -197,11 +273,11 @@
         </div>
           <!-- Real Conversations in Chat Mode (Flows naturally from the top under nav) -->
           <div v-if="!isCollapsed && isChatMode" class="pt-2 space-y-1">
-            <div class="px-2.5 pb-1 text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-zinc-500 flex items-center justify-between">
+            <div class="px-2.5 pb-1 text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-zinc-300 flex items-center justify-between">
               <span>Conversations</span>
               <button 
                 @click="startNewChat" 
-                class="text-[10px] text-[#D97757] hover:underline font-semibold cursor-pointer"
+                class="text-[10px] text-[#D97757] hover:text-[#c66849] hover:underline font-bold cursor-pointer"
                 title="Start New Chat"
               >
                 + New Chat
@@ -212,11 +288,11 @@
                 v-for="recent in displayRecents"
                 :key="recent.id"
                 @click="handleSelectRecent(recent)"
-                class="group relative flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-colors cursor-pointer font-normal"
+                class="group relative flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-colors cursor-pointer font-medium"
                 :class="[
                   isSessionActive(recent.id)
-                    ? 'bg-gray-200/90 dark:bg-zinc-800 text-gray-900 dark:text-white font-medium'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/60 dark:text-zinc-300 dark:hover:text-white dark:hover:bg-zinc-800/70'
+                    ? 'bg-gray-200 dark:bg-zinc-800 text-black dark:text-white font-semibold shadow-2xs'
+                    : 'text-gray-900 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90'
                 ]"
               >
                 <span class="truncate pr-2">{{ recent.title }}</span>
@@ -224,14 +300,14 @@
                   <button
                     @click.stop="openDeleteChatModal(recent)"
                     title="Delete chat"
-                    class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 dark:hover:text-red-400 p-0.5 rounded transition-opacity cursor-pointer"
+                    class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-500 dark:hover:text-red-400 p-0.5 rounded transition-opacity cursor-pointer"
                   >
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                   </button>
                   <button
                     @click.stop="pinItem(recent)"
                     title="Pin this item"
-                    class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-[#D97757] p-0.5 rounded transition-opacity cursor-pointer"
+                    class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-[#D97757] p-0.5 rounded transition-opacity cursor-pointer"
                   >
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
                   </button>
@@ -239,7 +315,7 @@
               </div>
             </div>
             <div v-else class="px-2.5 py-2">
-              <p class="text-[11px] text-gray-400 dark:text-zinc-500 italic">No conversations yet</p>
+              <p class="text-[11px] text-gray-500 dark:text-zinc-400 italic">No conversations yet</p>
             </div>
           </div>
         </div>
@@ -253,18 +329,18 @@
         >
           <!-- Section Header & Carousel Controls -->
           <div class="px-2.5 flex items-center justify-between">
-            <span class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-zinc-500">Integrations</span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-gray-700 dark:text-zinc-300">Integrations</span>
             <div class="flex items-center gap-0.5">
               <button 
                 @click.stop="prevSlide" 
-                class="p-1 text-gray-400 hover:text-gray-700 dark:text-zinc-500 dark:hover:text-zinc-200 hover:bg-gray-200/60 dark:hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
+                class="p-1 text-gray-600 hover:text-black dark:text-zinc-300 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
                 title="Previous"
               >
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
               </button>
               <button 
                 @click.stop="nextSlide" 
-                class="p-1 text-gray-400 hover:text-gray-700 dark:text-zinc-500 dark:hover:text-zinc-200 hover:bg-gray-200/60 dark:hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
+                class="p-1 text-gray-600 hover:text-black dark:text-zinc-300 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
                 title="Next"
               >
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
@@ -274,14 +350,14 @@
 
           <!-- Slide Category Title & Indicator Dots -->
           <div class="px-2.5 flex items-center justify-between">
-            <span class="text-[11px] font-medium text-gray-600 dark:text-zinc-300">{{ integrationSlides[currentSlide].category }}</span>
+            <span class="text-[11px] font-semibold text-gray-900 dark:text-zinc-100">{{ integrationSlides[currentSlide].category }}</span>
             <div class="flex items-center gap-1 select-none">
               <span 
                 v-for="(_, dotIdx) in integrationSlides" 
                 :key="dotIdx" 
                 @click="setSlide(dotIdx)" 
                 class="h-1 rounded-full cursor-pointer transition-all duration-300"
-                :class="currentSlide === dotIdx ? 'bg-gray-800 dark:bg-zinc-200 w-3' : 'bg-gray-300 dark:bg-zinc-700 w-1.5 hover:bg-gray-400'"
+                :class="currentSlide === dotIdx ? 'bg-gray-950 dark:bg-zinc-100 w-3' : 'bg-gray-400 dark:bg-zinc-600 w-1.5 hover:bg-gray-600'"
               ></span>
             </div>
           </div>
@@ -292,24 +368,24 @@
               v-for="item in integrationSlides[currentSlide].items"
               :key="item.id"
               :to="item.to"
-              class="flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-gray-200/60 dark:hover:bg-zinc-800/70 text-gray-700 dark:text-zinc-300 transition-colors group cursor-pointer"
+              class="flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-gray-200/80 dark:hover:bg-zinc-800/90 text-gray-950 dark:text-zinc-100 transition-colors group cursor-pointer"
             >
               <div class="flex items-center gap-2.5 min-w-0">
                 <div class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 border border-gray-200/80 dark:border-zinc-700/60 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform overflow-hidden p-1">
                   <img :src="item.icon" class="w-full h-full object-contain" :class="{'dark:invert': item.darkInvert}" :alt="item.name" />
                 </div>
                 <div class="flex flex-col min-w-0">
-                  <span class="text-xs font-semibold text-gray-900 dark:text-zinc-100 group-hover:text-[#D97757] dark:group-hover:text-[#D97757] transition-colors truncate leading-tight">{{ item.name }}</span>
-                  <span class="text-[11px] text-gray-500 dark:text-zinc-400 truncate leading-tight mt-0.5">{{ item.desc }}</span>
+                  <span class="text-xs font-bold text-gray-950 dark:text-white group-hover:text-[#D97757] dark:group-hover:text-[#D97757] transition-colors truncate leading-tight">{{ item.name }}</span>
+                  <span class="text-[11px] text-gray-600 dark:text-zinc-300 truncate leading-tight mt-0.5 font-medium">{{ item.desc }}</span>
                 </div>
               </div>
-              <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-gray-600 dark:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+              <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-black dark:text-zinc-500 dark:group-hover:text-white transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
             </router-link>
           </div>
 
           <!-- All Integrations Footer Link -->
           <div class="px-2.5 pt-0.5 text-right">
-            <router-link to="/integrations" class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-500 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+            <router-link to="/integrations" class="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
               <span>All integrations</span>
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
             </router-link>
@@ -321,11 +397,11 @@
       <div 
         ref="userMenuRef"
         class="border-t border-gray-200/80 dark:border-zinc-800/80 shrink-0 bg-gray-50/80 dark:bg-[#09090b] relative"
-        :class="isCollapsed ? 'p-2' : 'p-3'"
+        :class="isCollapsed ? 'p-1.5' : 'p-3'"
       >
         <div 
           @click.stop="toggleUserMenu"
-          class="flex items-center rounded-xl hover:bg-gray-200/60 dark:hover:bg-zinc-800/70 cursor-pointer transition-colors"
+          class="flex items-center rounded-xl hover:bg-gray-200/60 dark:hover:bg-zinc-800/70 cursor-pointer transition-colors group relative"
           :class="isCollapsed ? 'justify-center p-1.5' : 'justify-between p-1.5'"
         >
           <div class="flex items-center gap-2.5 min-w-0">
@@ -335,16 +411,28 @@
             </div>
             
             <div v-if="!isCollapsed" class="flex flex-col min-w-0">
-              <span class="text-xs font-semibold text-gray-900 dark:text-white truncate leading-tight">{{ userName }}</span>
-              <span class="text-[11px] text-gray-500 dark:text-zinc-400 leading-tight">{{ userTier }}</span>
+              <span class="text-xs font-bold text-gray-950 dark:text-white truncate leading-tight">{{ userName }}</span>
+              <span class="text-[11px] font-medium text-gray-600 dark:text-zinc-300 leading-tight">{{ userTier }}</span>
             </div>
           </div>
 
-          <div v-if="!isCollapsed" class="text-gray-400 hover:text-gray-700 dark:text-zinc-400 dark:hover:text-white p-1 transition-colors">
+          <div v-if="!isCollapsed" class="text-gray-500 hover:text-black dark:text-zinc-400 dark:hover:text-white p-1 transition-colors">
             <!-- Settings / Account trigger icon -->
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
             </svg>
+          </div>
+
+          <!-- Bubble Text Tooltip in Collapsed State -->
+          <div 
+            v-if="isCollapsed && !isUserMenuOpen" 
+            class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+          >
+            <div class="sidebar-bubble-tooltip relative flex flex-col bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1.5 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-medium">
+              <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+              <span class="relative z-10 font-semibold">{{ userName }}</span>
+              <span class="relative z-10 text-[10px] text-zinc-400 font-normal">Account & Settings</span>
+            </div>
           </div>
         </div>
 
@@ -360,21 +448,21 @@
           <div 
             v-if="isUserMenuOpen" 
             @click.stop
-            class="absolute bottom-full left-0 mb-2 w-60 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-zinc-700/80 rounded-2xl shadow-2xl py-1.5 z-[100] text-sm text-gray-700 dark:text-zinc-200"
+            class="absolute bottom-full left-0 mb-2 w-60 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-zinc-700/80 rounded-2xl shadow-2xl py-1.5 z-[100] text-sm text-gray-800 dark:text-zinc-200"
           >
             <div class="px-3.5 py-2.5 border-b border-gray-100 dark:border-zinc-800">
-              <p class="text-[11px] font-medium text-gray-400 dark:text-zinc-500 uppercase tracking-wider">Signed in as</p>
-              <p class="text-xs font-semibold text-gray-900 dark:text-white truncate mt-0.5">{{ authStore.user?.email || 'user@memwyre.tech' }}</p>
+              <p class="text-[11px] font-semibold text-gray-500 dark:text-zinc-400 uppercase tracking-wider">Signed in as</p>
+              <p class="text-xs font-bold text-gray-950 dark:text-white truncate mt-0.5">{{ authStore.user?.email || 'user@memwyre.tech' }}</p>
             </div>
 
             <div class="p-1 space-y-0.5">
-              <router-link to="/settings" @click="isUserMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800/80 hover:text-gray-900 dark:hover:text-white transition-colors">
-                <svg class="w-4 h-4 text-gray-400 dark:text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
-                <span class="text-xs font-medium truncate">Account & Settings</span>
+              <router-link to="/settings" @click="isUserMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800/80 text-gray-800 hover:text-black dark:text-zinc-200 dark:hover:text-white transition-colors">
+                <svg class="w-4 h-4 text-gray-500 dark:text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
+                <span class="text-xs font-semibold truncate">Account & Settings</span>
               </router-link>
-              <router-link to="/billing" @click="isUserMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800/80 hover:text-gray-900 dark:hover:text-white transition-colors">
-                <svg class="w-4 h-4 text-gray-400 dark:text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                <span class="text-xs font-medium truncate">Subscription & Usage</span>
+              <router-link to="/billing" @click="isUserMenuOpen = false" class="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800/80 text-gray-800 hover:text-black dark:text-zinc-200 dark:hover:text-white transition-colors">
+                <svg class="w-4 h-4 text-gray-500 dark:text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                <span class="text-xs font-semibold truncate">Subscription & Usage</span>
               </router-link>
             </div>
 
@@ -822,5 +910,20 @@ function selectSearchResult(res) {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-4px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.sidebar-bubble-tooltip {
+  animation: tooltipFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 </style>
