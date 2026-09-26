@@ -1,14 +1,26 @@
 from datetime import datetime
 from typing import Optional
+from pydantic import BaseModel, Field, field_validator
 
-from pydantic import BaseModel
+
+class ProjectStats(BaseModel):
+    memories_count: int = 0
+    documents_count: int = 0
 
 
 class ProjectBase(BaseModel):
-    name: str
-    description: Optional[str] = None
-    color: Optional[str] = "#D97757"
-    icon: Optional[str] = "folder"
+    name: str = Field(..., min_length=1, max_length=100)
+    description: Optional[str] = Field(None, max_length=500)
+    color: Optional[str] = Field("#D97757", max_length=50)
+    icon: Optional[str] = Field("folder", max_length=50)
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, v: str) -> str:
+        cleaned = v.strip()
+        if not cleaned:
+            raise ValueError("Workspace name cannot be empty")
+        return cleaned
 
 
 class ProjectCreate(ProjectBase):
@@ -16,11 +28,21 @@ class ProjectCreate(ProjectBase):
 
 
 class ProjectUpdate(BaseModel):
-    name: Optional[str] = None
-    description: Optional[str] = None
-    color: Optional[str] = None
-    icon: Optional[str] = None
+    name: Optional[str] = Field(None, max_length=100)
+    description: Optional[str] = Field(None, max_length=500)
+    color: Optional[str] = Field(None, max_length=50)
+    icon: Optional[str] = Field(None, max_length=50)
     archived: Optional[bool] = None
+
+    @field_validator("name")
+    @classmethod
+    def validate_name_optional(cls, v: Optional[str]) -> Optional[str]:
+        if v is not None:
+            cleaned = v.strip()
+            if not cleaned:
+                raise ValueError("Workspace name cannot be empty")
+            return cleaned
+        return v
 
 
 class ProjectOut(ProjectBase):
@@ -29,6 +51,8 @@ class ProjectOut(ProjectBase):
     created_at: datetime
     updated_at: Optional[datetime] = None
     archived_at: Optional[datetime] = None
+    stats: Optional[ProjectStats] = None
 
     class Config:
         from_attributes = True
+

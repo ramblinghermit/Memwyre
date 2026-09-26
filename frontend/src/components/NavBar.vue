@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white/80 dark:bg-surface/80 backdrop-blur-md border-b border-gray-200 dark:border-border sticky top-0 z-50 transition-colors duration-300">
+  <nav class="bg-transparent relative z-50 transition-colors duration-300">
     <div class="w-full px-6">
       <div class="flex justify-between h-16">
         <div class="flex items-center">
@@ -44,7 +44,7 @@
             >
               <div v-if="isWorkspaceMenuOpen" class="absolute left-0 mt-2 top-10 w-64 bg-white dark:bg-elevated rounded-lg shadow-xl py-1.5 ring-1 ring-black ring-opacity-5 z-[60] border border-gray-100 dark:border-border">
                 <div class="px-3.5 py-1.5 border-b border-gray-100 dark:border-border">
-                  <p class="text-[11px] font-bold text-gray-400 dark:text-text-muted uppercase tracking-wider">Switch Workspace</p>
+                  <p class="text-[11px] font-bold text-gray-400 dark:text-text-muted uppercase tracking-wider">Switch Space</p>
                 </div>
                 
                 <div class="max-h-48 overflow-y-auto py-1">
@@ -53,10 +53,10 @@
                     :key="proj.id"
                     @click="selectWorkspace(proj.id)"
                     class="flex w-full items-center justify-between px-3.5 py-2 text-sm text-gray-700 dark:text-text-secondary hover:bg-gray-50 dark:hover:bg-surface-2 transition-colors text-left"
-                    :class="{ 'font-semibold text-primary dark:text-[#D97757] bg-primary/5 dark:bg-[#D97757]/10': proj.id === projectStore.currentProjectId }"
+                    :class="{ 'font-semibold text-gray-900 dark:text-white bg-gray-100 dark:bg-zinc-800': proj.id === projectStore.currentProjectId }"
                   >
                     <span class="truncate pr-2">{{ proj.name }}</span>
-                    <svg v-if="proj.id === projectStore.currentProjectId" class="w-4 h-4 text-primary dark:text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg v-if="proj.id === projectStore.currentProjectId" class="w-4 h-4 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                     </svg>
                   </button>
@@ -67,21 +67,21 @@
                     <input 
                       v-model="newWorkspaceName" 
                       @keyup.enter="handleCreateWorkspace"
-                      class="flex-1 min-w-0 text-xs border border-gray-200 dark:border-border rounded px-2 py-1 bg-white dark:bg-surface text-gray-900 dark:text-white focus:outline-none focus:border-[#D97757] transition-colors"
-                      placeholder="New workspace..."
+                      class="flex-1 min-w-0 text-xs border border-gray-200 dark:border-border rounded px-2 py-1 bg-white dark:bg-surface text-gray-900 dark:text-white focus:outline-none focus:border-gray-900 dark:focus:border-white transition-colors"
+                      placeholder="New space..."
                     />
                     <button 
                       @click="handleCreateWorkspace"
-                      class="shrink-0 text-xs px-2.5 py-1 rounded bg-[#D97757] hover:bg-[#C4654A] text-white font-bold transition-colors"
+                      class="shrink-0 text-xs px-2.5 py-1 rounded-md bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 font-bold transition-colors cursor-pointer"
                     >
                       Add
                     </button>
                   </div>
                   <router-link 
-                    to="/projects" 
+                    to="/spaces" 
                     class="block text-center text-[11px] font-semibold text-gray-400 hover:text-gray-600 dark:text-text-muted dark:hover:text-text-secondary transition-colors"
                   >
-                    Manage Workspaces
+                    Manage Spaces
                   </router-link>
                 </div>
               </div>
@@ -90,27 +90,34 @@
         </div>
 
         <div class="flex items-center gap-3">
-          <button id="tour-quick-actions" @click="isQuickCreateOpen = true" class="flex items-center gap-2 bg-[#D97757] text-white hover:bg-[#C4654A] px-4 py-2 rounded-full text-sm font-bold transition-all shadow-sm">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
-            Quick Add
-          </button>
-
-          <router-link to="/dashboard" class="flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
-            Dashboard
+          <router-link id="tour-ask" to="/chat" class="flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            Ask AI
           </router-link>
 
+          <div class="h-4 w-px bg-gray-200 dark:bg-divider mx-1"></div>
+
+          <router-link to="/memories" class="flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            Memories
+          </router-link>
 
           <router-link id="tour-inbox" to="/inbox" class="relative flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
             Inbox
             <span v-if="inboxCount > 0" class="absolute -top-1.5 -right-1.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white ring-2 ring-white dark:ring-gray-800">{{ inboxCount > 99 ? '99+' : inboxCount }}</span>
           </router-link>
 
-          <router-link id="tour-ask" to="/chat" class="flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
-            Ask
+          <router-link id="tour-quick-actions" to="/add-context" class="flex items-center gap-2 bg-gray-900 hover:bg-black text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-bold transition-all shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+            Add Context
           </router-link>
+
+          <div class="h-4 w-px bg-gray-200 dark:bg-divider mx-1"></div>
 
           <router-link to="/integrations" class="flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
             Integrations
+          </router-link>
+
+          <router-link to="/settings" class="flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            Settings
           </router-link>
 
           <div class="h-6 w-px bg-gray-200 dark:bg-divider mx-2"></div>
@@ -143,7 +150,6 @@
       </div>
     </div>
   </nav>
-  <QuickCreateModal :is-open="isQuickCreateOpen" :initial-tab="quickAddTab" @close="isQuickCreateOpen = false" />
 </template>
 
 <script setup>
@@ -153,7 +159,6 @@ import { useInboxStore } from '../stores/inbox';
 import { useAuthStore } from '../stores/auth';
 import { useProjectStore } from '../stores/project';
 import { useToast } from 'vue-toastification';
-import QuickCreateModal from './QuickCreateModal.vue';
 
 const projectStore = useProjectStore();
 const toast = useToast();
@@ -177,7 +182,7 @@ const closeWorkspaceMenu = () => {
 const selectWorkspace = (id) => {
   projectStore.setCurrentProjectId(id);
   isWorkspaceMenuOpen.value = false;
-  toast.success('Workspace switched');
+  toast.success('Space switched');
 };
 
 const handleCreateWorkspace = async () => {
@@ -187,9 +192,9 @@ const handleCreateWorkspace = async () => {
     await projectStore.createNewProject(name);
     newWorkspaceName.value = '';
     isWorkspaceMenuOpen.value = false;
-    toast.success(`Workspace "${name}" created`);
+    toast.success(`Space "${name}" created`);
   } catch (error) {
-    toast.error('Failed to create workspace');
+    toast.error('Failed to create space');
   }
 };
 

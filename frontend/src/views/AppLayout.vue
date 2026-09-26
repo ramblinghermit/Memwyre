@@ -1,15 +1,15 @@
 <template>
-  <div class="h-screen flex bg-[#F9FAFB] dark:bg-[#0B0B0C] text-gray-900 dark:text-white font-sans overflow-hidden transition-colors duration-300">
+  <div class="h-screen flex bg-gray-50 dark:bg-[#0B0B0C] text-gray-900 dark:text-white font-sans overflow-hidden transition-colors duration-300">
     <!-- Sidebar -->
     <MemwyreSidebar 
       :is-mobile-open="isMobileSidebarOpen"
       @close-mobile="isMobileSidebarOpen = false"
-      @open-quick-add="isQuickCreateOpen = true"
+      @open-quick-add="router.push('/add-context')"
       @open-review="showDailyReview = true"
     />
 
     <!-- Main Content Area -->
-    <div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+    <div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden bg-white dark:bg-[#0B0B0C]">
       <!-- Minimal Top Bar (Hidden in Editor mode so Editor header takes over the top) -->
       <header v-if="!isEditorRoute" class="h-16 px-4 sm:px-6 flex items-center justify-between shrink-0 z-20 w-full">
         <div class="flex items-center gap-3">
@@ -58,7 +58,7 @@
               >
                 <!-- Dropdown Header -->
                 <div class="px-2.5 py-1.5 flex items-center justify-between">
-                  <span class="text-[11px] font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wider">Workspaces</span>
+                  <span class="text-[11px] font-semibold text-gray-400 dark:text-zinc-500 uppercase tracking-wider">Spaces</span>
                   <span class="text-[10px] font-medium bg-gray-100 dark:bg-zinc-800 text-gray-500 dark:text-zinc-400 px-1.5 py-0.5 rounded-md">{{ projectStore.projects.length }}</span>
                 </div>
 
@@ -71,13 +71,13 @@
                   >
                     <div class="flex items-center gap-2.5 min-w-0">
                       <div class="w-6 h-6 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200/80 dark:border-zinc-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:border-gray-300 dark:group-hover:border-zinc-600 transition-colors">
-                        <svg class="w-3.5 h-3.5" :class="projectStore.currentProjectId === null ? 'text-[#D97757]' : 'text-gray-400 dark:text-zinc-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-3.5 h-3.5" :class="projectStore.currentProjectId === null ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-zinc-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                         </svg>
                       </div>
-                      <span class="truncate">All Workspaces</span>
+                      <span class="truncate">All Spaces</span>
                     </div>
-                    <svg v-if="projectStore.currentProjectId === null" class="w-4 h-4 text-[#D97757] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg v-if="projectStore.currentProjectId === null" class="w-4 h-4 text-gray-900 dark:text-white shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                     </svg>
                   </button>
@@ -90,31 +90,31 @@
                   >
                     <div class="flex items-center gap-2.5 min-w-0">
                       <div class="w-6 h-6 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200/80 dark:border-zinc-700 flex items-center justify-center shrink-0 shadow-2xs group-hover:border-gray-300 dark:group-hover:border-zinc-600 transition-colors">
-                        <svg class="w-3.5 h-3.5" :class="proj.id === projectStore.currentProjectId ? 'text-[#D97757]' : 'text-gray-400 dark:text-zinc-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-3.5 h-3.5" :class="proj.id === projectStore.currentProjectId ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-zinc-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                         </svg>
                       </div>
                       <span class="truncate">{{ proj.name }}</span>
                     </div>
-                    <svg v-if="proj.id === projectStore.currentProjectId" class="w-4 h-4 text-[#D97757] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg v-if="proj.id === projectStore.currentProjectId" class="w-4 h-4 text-gray-900 dark:text-white shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                     </svg>
                   </button>
                 </div>
 
-                <!-- Create Workspace Input Bar -->
+                <!-- Create Space Input Bar -->
                 <div class="mt-1 pt-2 border-t border-gray-100 dark:border-zinc-800 px-1 pb-0.5">
                   <div class="relative flex items-center">
                     <input 
                       v-model="newWorkspaceName" 
                       @keyup.enter="handleCreateWorkspace"
-                      placeholder="Create workspace..."
-                      class="w-full bg-gray-50 dark:bg-zinc-900 text-xs text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 rounded-xl pl-3 pr-14 py-2 border border-gray-200/80 dark:border-zinc-700/80 focus:border-[#D97757] dark:focus:border-[#D97757] focus:outline-none transition-all"
+                      placeholder="Create space..."
+                      class="w-full bg-gray-50 dark:bg-zinc-900 text-xs text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 rounded-xl pl-3 pr-14 py-2 border border-gray-200/80 dark:border-zinc-700/80 focus:border-gray-900 dark:focus:border-white focus:outline-none transition-all"
                     />
                     <button 
                       @click="handleCreateWorkspace"
                       :disabled="!newWorkspaceName.trim()"
-                      class="absolute right-1 px-2.5 py-1 text-[11px] font-semibold rounded-lg bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-2xs"
+                      class="absolute right-1 px-2.5 py-1 text-[11px] font-semibold rounded-lg bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-2xs"
                     >
                       Add
                     </button>
@@ -137,7 +137,7 @@
             </svg>
             <span 
               v-if="inboxStore.count > 0" 
-              class="absolute -top-0.5 -right-0.5 min-w-[20px] h-[20px] flex items-center justify-center text-[11px] font-bold bg-[#D97757] text-white rounded-full px-1 ring-2 ring-[#F9FAFB] dark:ring-[#0B0B0C]"
+              class="absolute -top-0.5 -right-0.5 min-w-[20px] h-[20px] flex items-center justify-center text-[11px] font-bold bg-[#1D9BF0] text-white rounded-full px-1 ring-2 ring-white dark:ring-[#0B0B0C]"
             >
               {{ inboxStore.count > 99 ? '99+' : inboxStore.count }}
             </span>
@@ -151,12 +151,6 @@
       </main>
     </div>
 
-    <!-- Quick Create Modal -->
-    <QuickCreateModal 
-      :is-open="isQuickCreateOpen" 
-      @close="isQuickCreateOpen = false" 
-    />
-
     <!-- Daily Review Modal -->
     <DailyReviewModal
       v-if="showDailyReview"
@@ -167,37 +161,36 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted, provide } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import MemwyreSidebar from '../components/MemwyreSidebar.vue';
-import QuickCreateModal from '../components/QuickCreateModal.vue';
 import DailyReviewModal from '../components/DailyReviewModal.vue';
 import { useProjectStore } from '../stores/project';
 import { useInboxStore } from '../stores/inbox';
 
 const route = useRoute();
+const router = useRouter();
 const projectStore = useProjectStore();
 const inboxStore = useInboxStore();
 
 const isEditorRoute = computed(() => route.name === 'editor' || route.path.startsWith('/editor/'));
 
 const isMobileSidebarOpen = ref(false);
-const isQuickCreateOpen = ref(false);
 const showDailyReview = ref(false);
 const isWorkspaceMenuOpen = ref(false);
 const newWorkspaceName = ref('');
 const workspaceDropdownRef = ref(null);
 
 const openQuickCreate = () => {
-  isQuickCreateOpen.value = true;
+  router.push('/add-context');
 };
 
 provide('openQuickCreate', openQuickCreate);
 
 const currentProjectName = computed(() => {
-  if (projectStore.currentProjectId === null) return 'All Workspaces';
-  if (!projectStore.projects.length) return 'All Workspaces';
+  if (projectStore.currentProjectId === null) return 'All Spaces';
+  if (!projectStore.projects.length) return 'All Spaces';
   const proj = projectStore.projects.find(p => p.id === projectStore.currentProjectId);
-  return proj?.name || 'All Workspaces';
+  return proj?.name || 'All Spaces';
 });
 
 function selectWorkspace(id) {
@@ -223,7 +216,7 @@ function handleClickOutside(e) {
 }
 
 const handleOpenQuickAddEvent = () => {
-  isQuickCreateOpen.value = true;
+  router.push('/add-context');
 };
 
 onMounted(async () => {

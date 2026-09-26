@@ -35,7 +35,7 @@
               class="p-3 bg-gray-50/70 dark:bg-zinc-900/50 border border-gray-100 dark:border-zinc-800/80 rounded-xl transition-colors"
             >
               <p class="text-xs font-semibold text-gray-900 dark:text-white mb-1.5 q-icon">{{ qa.question }}</p>
-              <p class="text-xs text-gray-600 dark:text-zinc-400 pl-3 border-l-2 border-[#D97757]/60 leading-relaxed">{{ qa.answer }}</p>
+              <p class="text-xs text-gray-600 dark:text-zinc-400 pl-3 border-l-2 border-gray-900/60 dark:border-white/60 leading-relaxed">{{ qa.answer }}</p>
             </div>
           </div>
         </section>
@@ -44,7 +44,7 @@
         <section v-if="activeChunk.entities && activeChunk.entities.length">
            <h3 class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-zinc-500 font-bold font-mono mb-2">Entities</h3>
            <div class="flex flex-wrap gap-1.5">
-             <span v-for="entity in activeChunk.entities" :key="entity" class="px-2.5 py-0.5 bg-[#D97757]/10 text-[#D97757] text-xs rounded-lg border border-[#D97757]/20 font-medium">
+             <span v-for="entity in activeChunk.entities" :key="entity" class="px-2.5 py-0.5 bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-200 text-xs rounded-lg border border-gray-200/80 dark:border-zinc-700 font-medium">
                {{ entity }}
              </span>
            </div>

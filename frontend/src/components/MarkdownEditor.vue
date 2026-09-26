@@ -32,7 +32,7 @@
         <button 
           @click="save" 
           :disabled="!form.title || !form.content || loading"
-          class="px-4 py-2 text-sm font-medium text-white bg-[#D97757] hover:bg-[#C4654A] disabled:opacity-50 disabled:cursor-not-allowed rounded-md transition-colors flex items-center gap-2"
+          class="px-4 py-2 text-sm font-medium text-white bg-[#1D9BF0] hover:bg-[#1A8CD8] disabled:opacity-50 disabled:cursor-not-allowed rounded-md transition-colors flex items-center gap-2 cursor-pointer"
         >
           <LoadingLogo v-if="loading" size="sm" class="w-4 h-4" />
           {{ loading ? 'Saving...' : 'Save Memory' }}

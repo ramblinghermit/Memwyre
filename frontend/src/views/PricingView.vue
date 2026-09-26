@@ -1,355 +1,393 @@
 <template>
-  <div class="force-light relative min-h-[100svh] bg-white text-text-primary transition-colors duration-300 font-sans overflow-x-hidden selection:bg-primary selection:text-white *:selection:bg-primary *:selection:text-white">
-    <div class="pt-16 pb-24 sm:pt-24 sm:pb-32">
-      <div id="pricing" class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div class="text-center mb-16">
-          <h2 class="text-sm font-bold uppercase tracking-widest text-text-muted mb-4">Pricing</h2>
-          <h1 class="hero-serif text-4xl sm:text-5xl tracking-tight text-gray-900 leading-[1.1]">
-            AI that works where <span class="italic font-medium">your team <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">works.</span></span>
-          </h1>
-          <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
-            Simple, transparent pricing for individuals and teams.
-          </p>
+  <div class="force-light relative min-h-[100svh] bg-white text-gray-900 font-sans selection:bg-[#D97757] selection:text-white [overflow-x:clip]">
 
-          <!-- Command Installer Codeblock in Hero -->
-          <div class="relative bg-zinc-50 border border-dashed border-zinc-200 rounded-none p-3.5 font-mono text-[11px] sm:text-xs text-zinc-600 flex items-center justify-between gap-3 max-w-sm mt-4 mx-auto select-none">
-            <div class="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none select-all py-0.5">
-              <span class="text-[#D97757] select-none font-bold">$</span>
-              <span>npx -y install-memwyre</span>
-            </div>
-            <button 
-              @click="copyCommand('npx -y install-memwyre')" 
-              class="text-[#D97757] hover:text-[#C4654A] font-semibold text-[10px] sm:text-xs tracking-wider uppercase shrink-0 transition-colors cursor-pointer select-none"
-            >
-              {{ copiedText === 'npx -y install-memwyre' ? 'Copied' : 'Copy' }}
-            </button>
-          </div>
-        </div>
+    <!-- 1. HERO & PRICING CARDS (Combined with background extending behind cards and fading out) -->
+    <div class="relative overflow-hidden">
+      
+      <!-- Artistic Watercolor Background (extends behind hero and cards) -->
+      <div class="absolute inset-x-0 top-0 bottom-0 pointer-events-none z-0 overflow-hidden select-none">
+        <img
+          :src="heroWatercolorBg"
+          alt=""
+          class="w-full h-full object-cover object-top opacity-85"
+        />
+        <!-- Subtle top softening -->
+        <div class="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent 30% to-transparent"></div>
+        <!-- Bottom fadeout into pure white surface -->
+        <div class="absolute bottom-0 inset-x-0 h-40 sm:h-52 bg-gradient-to-t from-white via-white/85 to-transparent"></div>
+      </div>
 
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          <!-- Free Plan -->
-          <div class="rounded-3xl bg-white border border-black/5 p-8 sm:p-10 relative transition-all duration-500 hover:-translate-y-1 hover:shadow-lg">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="text-xl font-bold text-gray-900">Free</div>
-            </div>
-            <div class="flex items-end gap-2 mb-3">
-              <div class="text-4xl font-extrabold tracking-tight text-gray-900">$0</div>
-              <div class="text-sm text-gray-500 mb-1">forever</div>
-            </div>
-            <p class="text-text-secondary mb-6">A great way to get started with building your persistent AI memory layer.</p>
+      <!-- Hero Header & Cards in Unified Container with proper headroom below navbar -->
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 text-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-14">
+        <!-- Main Heading: Simple, transparent pricing -->
+        <h1 class="hero-serif text-4xl sm:text-5xl md:text-6xl lg:text-[68px] tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] max-w-4xl mx-auto">
+          Simple, transparent pricing.
+        </h1>
 
-            <router-link to="/signup"
-              class="inline-flex w-full items-center justify-center rounded bg-gray-50 text-gray-900 border border-gray-200 px-4 py-3.5 text-sm font-bold hover:bg-gray-100 transition-all duration-300 hover:scale-[1.02]">
-              Get Started for Free
-            </router-link>
+        <!-- Subtitle -->
+        <p class="text-base sm:text-lg text-gray-600 leading-relaxed mt-3 sm:mt-3.5 max-w-2xl mx-auto font-normal">
+          Equip your models, IDEs, and terminal agents with persistent long-term memory. Start free forever or upgrade for unlimited memories and automated connectors.
+        </p>
 
-            <ul class="mt-8 space-y-3 text-sm text-text-secondary">
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Up to 50 memories
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Up to 10 document uploads
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Standard AI token budget
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                IDE Integration (MCP)
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Community Support
-              </li>
-            </ul>
-          </div>
+        <!-- Pricing Cards Grid (tight margin, well-proportioned ratio) -->
+        <div class="mt-8 sm:mt-10 text-left">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+            
+            <!-- Card 1: Free Tier -->
+            <div class="border border-gray-200/90 rounded-2xl bg-white p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <h3 class="text-xl sm:text-2xl font-bold text-gray-950">Free</h3>
+                  <span class="text-[10px] font-mono uppercase tracking-wider text-gray-400">Starter</span>
+                </div>
+                <p class="text-xs text-gray-500 leading-relaxed min-h-[32px]">
+                  Essential persistent memory for developers exploring Claude, Cursor, and ChatGPT.
+                </p>
+                
+                <div class="mt-4 flex items-baseline gap-1">
+                  <span class="text-4xl font-extrabold text-gray-950 tracking-tight">$0</span>
+                  <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">/forever</span>
+                </div>
 
-          <!-- Pro (Recommended) -->
-          <div class="rounded-3xl bg-white border border-black/5 p-8 sm:p-10 relative shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)]">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="text-xl font-bold text-gray-900">Pro</div>
-              <span class="text-xs font-bold px-3 py-1 rounded-full bg-gradient-to-r from-[#D97757] to-[#FF9A7B] text-white shadow-sm">
-                Recommended
-              </span>
-            </div>
-            <div class="flex items-end gap-2 mb-3">
-              <div class="text-4xl font-extrabold tracking-tight text-gray-900">$12</div>
-              <div class="text-sm text-gray-500 mb-1">/month</div>
-            </div>
-            <p class="text-text-secondary mb-6">Everything in Free, plus unlimited storage and priority features.
-            </p>
+                <router-link 
+                  to="/signup" 
+                  class="mt-5 w-full py-2.5 px-4 bg-white text-gray-900 font-bold rounded-lg border border-gray-300 hover:bg-gray-50 hover:border-gray-400 active:scale-[0.98] transition-all duration-200 text-xs sm:text-sm inline-flex items-center justify-center shadow-2xs"
+                >
+                  Get Started Free
+                </router-link>
 
-            <router-link to="/signup"
-              class="inline-flex w-full items-center justify-center rounded bg-gray-900 text-white px-4 py-3.5 text-sm font-bold shadow-[0_4px_14px_0_rgb(0,0,0,0.2)] hover:bg-gray-800 transition-all duration-300 hover:scale-[1.02]">
-              Get Started with Pro Memory
-            </router-link>
-
-            <div class="mt-6 flex flex-wrap items-center gap-2">
-              <span class="text-xs font-semibold uppercase tracking-widest text-text-muted mr-2">Integrations</span>
-              <img src="@/assets/vscode.svg" alt="VS Code" class="w-5 h-5" title="VS Code" />
-              <img src="@/assets/google-drive.svg" alt="Google Drive" class="w-5 h-5" title="Google Drive" />
-              <img src="@/assets/notion-svgrepo-com.svg" alt="Notion" class="w-5 h-5" title="Notion" />
-              <img src="@/assets/claude-color.svg" alt="Claude Desktop" class="w-5 h-5" title="Claude Desktop" />
-              <img src="@/assets/claudecode-color.svg" alt="Claude Code" class="w-5 h-5" title="Claude Code" />
-              <img src="@/assets/openclaw-color.svg" alt="OpenClaw" class="w-5 h-5" title="OpenClaw" />
+                <div class="mt-6 pt-5 border-t border-gray-100">
+                  <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-400 mb-3">Included in Free</div>
+                  <ul class="space-y-2.5 text-xs sm:text-[13px] text-gray-600">
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span><strong>50 persistent memories</strong></span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>10 document uploads (PDF, MD, Code)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Model Context Protocol (MCP) server</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>CLI session lifecycle hooks</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Community Discord support</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <ul class="mt-4 space-y-3 text-sm text-text-secondary">
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[#D97757] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Unlimited memories &amp; documents
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[#D97757] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Google Drive &amp; Notion sync
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[#D97757] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Claude Code, OpenCode &amp; OpenClaw plugins
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[#D97757] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Browser Extension &amp; MCP IDE Server
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[#D97757] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Extended daily AI chat quota &amp; support
-              </li>
-            </ul>
-          </div>
+            <!-- Card 2: Pro Tier (Recommended) -->
+            <div class="border-2 border-[#D97757] rounded-2xl bg-white p-6 sm:p-7 flex flex-col justify-between shadow-[0_12px_36px_-12px_rgba(217,119,87,0.22)] relative hover:shadow-[0_20px_48px_-12px_rgba(217,119,87,0.3)] transition-all duration-300 md:-translate-y-1">
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <h3 class="text-xl sm:text-2xl font-bold text-gray-950">Pro</h3>
+                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#D97757] text-white">Recommended</span>
+                </div>
+                <p class="text-xs text-gray-500 leading-relaxed min-h-[32px]">
+                  Unlimited capacity, cross-tool synchronization, and LoCoMo re-ranking for power developers.
+                </p>
+                
+                <div class="mt-4 flex items-baseline gap-1">
+                  <span class="text-4xl font-extrabold text-gray-950 tracking-tight">$12</span>
+                  <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">/month</span>
+                </div>
 
-          <!-- Enterprise -->
-          <div class="rounded-3xl bg-white border border-black/5 p-8 sm:p-10 relative transition-all duration-500 hover:-translate-y-1 hover:shadow-lg">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="text-xl font-bold text-gray-900">Enterprise</div>
+                <!-- Primary CTA Button -->
+                <router-link 
+                  to="/signup" 
+                  class="mt-5 w-full py-2.5 px-4 bg-[#050614] text-white font-bold rounded-lg hover:bg-neutral-800 active:scale-[0.98] transition-all duration-200 shadow-md text-xs sm:text-sm inline-flex items-center justify-center gap-1.5 hover:scale-[1.01]"
+                >
+                  <span>Get Started with Pro</span>
+                  <span>&rarr;</span>
+                </router-link>
+
+                <!-- Compact Connectors Bar -->
+                <div class="mt-3.5 px-2.5 py-1.5 bg-neutral-50 rounded-md border border-neutral-200/70 flex items-center justify-between">
+                  <span class="text-[10px] font-mono font-medium uppercase tracking-wider text-neutral-500">Connectors</span>
+                  <div class="flex items-center gap-1.5">
+                    <img :src="vscodeLogo" alt="VS Code" class="w-3.5 h-3.5 object-contain" title="VS Code" />
+                    <img :src="cursorLogo" alt="Cursor" class="w-3.5 h-3.5 object-contain" title="Cursor" />
+                    <img :src="claudeLogo" alt="Claude Desktop" class="w-3.5 h-3.5 object-contain" title="Claude Desktop" />
+                    <img :src="claudecodeLogo" alt="Claude Code" class="w-3.5 h-3.5 object-contain" title="Claude Code" />
+                    <img :src="openclawLogo" alt="OpenClaw" class="w-3.5 h-3.5 object-contain" title="OpenClaw" />
+                    <img :src="notionLogo" alt="Notion" class="w-3.5 h-3.5 object-contain" title="Notion" />
+                    <img :src="driveLogo" alt="Google Drive" class="w-3.5 h-3.5 object-contain" title="Google Drive" />
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                  <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#D97757] mb-3">Everything in Free, plus</div>
+                  <ul class="space-y-2.5 text-xs sm:text-[13px] text-gray-700">
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-[#D97757] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span><strong>Unlimited</strong> memories &amp; documents</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-[#D97757] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Google Drive &amp; Notion sync</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-[#D97757] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Claude Code, OpenCode &amp; OpenClaw plugins</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-[#D97757] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Cross-encoder re-ranking (LoCoMo 94.6%)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-[#D97757] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Priority developer support</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="flex items-end gap-2 mb-3">
-              <div class="text-4xl font-extrabold tracking-tight text-gray-900">Custom</div>
+
+            <!-- Card 3: Enterprise Tier -->
+            <div class="border border-gray-200/90 rounded-2xl bg-white p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <h3 class="text-xl sm:text-2xl font-bold text-gray-950">Enterprise</h3>
+                  <span class="text-[10px] font-mono uppercase tracking-wider text-gray-400">Team</span>
+                </div>
+                <p class="text-xs text-gray-500 leading-relaxed min-h-[32px]">
+                  Dedicated infrastructure, on-premise VPC self-hosting, and organizational governance.
+                </p>
+                
+                <div class="mt-4 flex items-baseline gap-1">
+                  <span class="text-4xl font-extrabold text-gray-950 tracking-tight">Custom</span>
+                </div>
+
+                <router-link 
+                  to="/contact" 
+                  class="mt-5 w-full py-2.5 px-4 bg-white text-gray-900 font-bold rounded-lg border border-gray-300 hover:bg-gray-50 hover:border-gray-400 active:scale-[0.98] transition-all duration-200 text-xs sm:text-sm inline-flex items-center justify-center shadow-2xs"
+                >
+                  Contact Sales
+                </router-link>
+
+                <div class="mt-6 pt-5 border-t border-gray-100">
+                  <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-400 mb-3">Everything in Pro, plus</div>
+                  <ul class="space-y-2.5 text-xs sm:text-[13px] text-gray-600">
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span><strong>Self-hosted / VPC deployment</strong></span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Organization shared memory vault</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>SAML 2.0 / Okta SSO &amp; RBAC</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Zero data retention &amp; legal BAA</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>99.9% uptime SLA &amp; dedicated Slack</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <p class="text-text-secondary mb-6">Tailored deployments for teams that need dedicated infrastructure, SSO, and volume pricing.</p>
 
-            <a href="mailto:shivharehimansh@gmail.com?subject=Memwyre%20Enterprise%20Inquiry"
-              class="inline-flex w-full items-center justify-center rounded bg-gray-50 text-gray-900 border border-gray-200 px-4 py-3.5 text-sm font-bold hover:bg-gray-100 transition-all duration-300 hover:scale-[1.02]">
-              Contact Sales
-            </a>
-
-            <ul class="mt-8 space-y-3 text-sm text-text-secondary">
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Everything in Pro
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Dedicated infrastructure
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                SSO &amp; team management
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Volume pricing
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Custom integrations &amp; SLA
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Dedicated support
-              </li>
-            </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Final CTA Section: Memory and Personality -->
-    <div
-      class="pt-20 pb-10 sm:pt-28 sm:pb-16 bg-white text-center px-6 relative overflow-hidden border-t border-black/5">
-      <!-- Logo-masked numeric background (INVERTED for white bg) -->
-      <LogoBgAnimation class="absolute inset-0 z-0 opacity-[0.08]" :invert="true" />
-
-      <div class="max-w-5xl mx-auto relative z-10">
-        <h2 class="font-display text-5xl sm:text-7xl lg:text-[7rem] font-medium tracking-tight mb-10 leading-[0.95]">
-          <span
-            class="bg-clip-text text-transparent bg-[repeating-linear-gradient(to_bottom,#111,#111_6px,white_6px,white_9px)]">
-            The Second Brain
-          </span><br />
-          <span class="text-black">
-            For Your AI.
-          </span>
+    <!-- 2. FREQUENTLY ASKED QUESTIONS (Matching Landing Page Accordion Pattern) -->
+    <div id="faq" class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-10 sm:pt-12 pb-10 sm:pb-12">
+      <!-- Header Row -->
+      <div class="mb-8 text-left">
+        <span class="text-xs font-bold text-[#D97757] tracking-widest uppercase mb-2 font-mono block">FAQ</span>
+        <h2 class="hero-serif text-3xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)]">
+          Frequently asked questions.
         </h2>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-          <router-link to="/signup"
-            class="w-full sm:w-auto px-10 py-4 bg-black text-white font-bold rounded hover:bg-gray-800 transition-all duration-300 shadow-xl hover:scale-105">
-            Get Started
-          </router-link>
-          <router-link to="/pricing"
-            class="w-full sm:w-auto px-10 py-4 bg-white text-black font-bold rounded border border-black/10 hover:bg-black/5 transition-all duration-300 hover:border-black/20">
-            Compare Plans
-          </router-link>
-        </div>
+        <p class="text-sm sm:text-base text-gray-500 leading-relaxed font-normal mt-2">
+          Everything you need to know about Memwyre plans, integrations, and data security.
+        </p>
       </div>
 
-      <div
-        class="max-w-5xl mx-auto px-8 lg:px-12 mt-12 relative z-10 border-t border-black/5 pt-10 flex flex-col md:flex-row justify-between items-start gap-8 text-left">
-        <div class="flex flex-col items-start gap-8">
-          <!-- Socials -->
-          <div class="flex items-center gap-5">
-            <a v-if="false" href="https://linkedin.com/company/memwyre" target="_blank"
-              class="text-black hover:text-gray-500 transition-all duration-300 transform hover:scale-110">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-              </svg>
-            </a>
-            <a href="https://twitter.com/Memwyre" target="_blank"
-              class="text-black hover:text-gray-500 transition-all duration-300 transform hover:scale-110">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-            <a href="https://github.com/ramblinghermit0403/Memwyre" target="_blank"
-              class="text-black hover:text-gray-500 transition-all duration-300 transform hover:scale-110">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-            </a>
-          </div>
-
-          <div class="flex items-center gap-2">
-            <img src="/image.svg" alt="Memwyre" class="w-6 h-6 rounded" />
-            <span class="font-medium text-2xl text-black tracking-tight"
-              style="font-family: 'Inter', system-ui, sans-serif;">Memwyre</span>
-          </div>
-          <p class="text-sm text-gray-500 max-w-xs leading-relaxed">
-            Building the unified memory layer for the next generation of AI agents and professionals.
-          </p>
-          <p class="text-xs text-black/30 font-medium">© 2026 Memwyre. Crafted for clarity.</p>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-12 sm:gap-16 w-full md:w-auto">
-          <div class="flex flex-col gap-4">
-            <h4 class="text-xs font-bold uppercase tracking-widest text-black/40">Product</h4>
-            <router-link to="/#features"
-              class="text-sm text-black hover:text-gray-500 transition-colors font-medium">Features</router-link>
-            <router-link to="/pricing" class="text-sm text-black hover:text-gray-500 transition-colors font-medium">Pricing</router-link>
-            <router-link to="/#ecosystem"
-              class="text-sm text-black hover:text-gray-500 transition-colors font-medium">Ecosystem</router-link>
-          </div>
-          <div class="flex flex-col gap-4">
-            <h4 class="text-xs font-bold uppercase tracking-widest text-black/40">Products</h4>
-            <router-link to="/extension"
-              class="text-sm text-black hover:text-gray-500 transition-colors font-medium">Chrome Extension</router-link>
-            <router-link to="/mcp"
-              class="text-sm text-black hover:text-gray-500 transition-colors font-medium">MCP</router-link>
-            <router-link to="/plugins"
-              class="text-sm text-black hover:text-gray-500 transition-colors font-medium">Plugins</router-link>
-          </div>
-          <div class="flex flex-col gap-4">
-            <h4 class="text-xs font-bold uppercase tracking-widest text-black/40">Support</h4>
-            <router-link to="/contact"
-              class="text-sm text-black hover:text-gray-500 transition-colors font-medium">Contact Us</router-link>
-            <a href="https://x.com/Memwyre" target="_blank"
-              class="text-sm text-black hover:text-gray-500 transition-colors font-medium">Twitter</a>
-          </div>
-          <div class="flex flex-col gap-4">
-            <h4 class="text-xs font-bold uppercase tracking-widest text-black/40">Legal</h4>
-            <router-link to="/privacy-policy"
-              class="text-sm text-black hover:text-gray-500 transition-colors font-medium">Privacy</router-link>
-            <router-link to="/terms"
-              class="text-sm text-black hover:text-gray-500 transition-colors font-medium">Terms</router-link>
+      <div class="border-t border-gray-200">
+        <div v-for="(faq, index) in pricingFaqs" :key="index" class="border-b border-gray-200">
+          <button 
+            @click="toggleFaq(index)" 
+            class="flex justify-between items-center w-full text-left py-5 sm:py-6 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97757]/50 rounded-sm px-2 -mx-2 transition-all duration-200 cursor-pointer"
+          >
+            <span class="text-base sm:text-lg font-semibold text-gray-900 group-hover:text-[#D97757] transition-colors duration-200 pr-4">
+              {{ faq.question }}
+            </span>
+            <span class="ml-4 flex-shrink-0 text-gray-400 font-light text-2xl leading-none transition-colors duration-200 group-hover:text-[#D97757]">
+              <span v-if="faq.isOpen">&minus;</span>
+              <span v-else>+</span>
+            </span>
+          </button>
+          <div v-show="faq.isOpen" class="text-gray-500 pb-6 leading-relaxed text-sm sm:text-base pr-8 max-w-4xl">
+            {{ faq.answer }}
           </div>
         </div>
       </div>
     </div>
 
+    <!-- 3. SIGNATURE CRAFT PAPER DARK CTA (Exact Match to Landing Page) -->
+    <div class="pt-10 sm:pt-14 pb-0 text-center relative overflow-hidden craft-paper-black z-30">
+      <!-- Craft Paper Noise & Fiber Texture -->
+      <div class="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.06),transparent_70%)]"></div>
+        <div class="absolute inset-0 opacity-30 mix-blend-screen"
+             style="background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px); background-size: 3px 3px;"></div>
+        <svg class="absolute inset-0 w-full h-full opacity-[0.065] mix-blend-screen" xmlns="http://www.w3.org/2000/svg">
+          <filter id="craft-paper-grain-pricing">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch" />
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#craft-paper-grain-pricing)" fill="white" />
+        </svg>
+      </div>
+
+      <!-- Numeric background animation -->
+      <NumericBgAnimation :invert="false" class="absolute inset-0 z-0 opacity-[0.13] pointer-events-none" />
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 text-left">
+        <div class="max-w-3xl text-left">
+          <h2 class="hero-serif text-4xl sm:text-6xl lg:text-[72px] tracking-[-0.02em] leading-[1.05] text-white">
+            Give your AI agents <br class="hidden sm:inline" />
+            <span class="block text-zinc-200">continuous memory today.</span>
+          </h2>
+          <p class="text-zinc-400 text-sm sm:text-base mt-4 max-w-xl font-normal leading-relaxed">
+            Set up in under 2 minutes. Free forever tier, no credit card required.
+          </p>
+
+          <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
+            <router-link 
+              to="/signup"
+              class="w-auto px-7 py-3 sm:px-9 sm:py-3.5 bg-white text-[#0c0d10] font-bold rounded-full hover:bg-zinc-100 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97757]/50 focus-visible:ring-offset-2 transition-all duration-200 shadow-md text-sm sm:text-base inline-flex items-center justify-center"
+            >
+              Start Free Now &rarr;
+            </router-link>
+            <router-link 
+              to="/contact"
+              class="w-auto px-7 py-3 sm:px-9 sm:py-3.5 bg-transparent text-white font-semibold rounded-full border border-white/20 hover:bg-white/10 active:scale-[0.98] transition-all duration-200 text-sm sm:text-base inline-flex items-center justify-center"
+            >
+              Contact Sales
+            </router-link>
+          </div>
+        </div>
+      </div>
+
+      <SiteFooter craft-paper class="!bg-transparent !mt-8 sm:!mt-10" />
+    </div>
 
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import LogoBgAnimation from '@/components/landing/LogoBgAnimation.vue';
+import heroWatercolorBg from '@/assets/hero-watercolor-bg.jpg';
+import notionLogo from '@/assets/notion-svgrepo-com.svg';
+import driveLogo from '@/assets/google-drive.svg';
+import vscodeLogo from '@/assets/vscode.svg';
+import cursorLogo from '@/assets/cursor_CUBE_2D_LIGHT.svg';
+import claudeLogo from '@/assets/claude-color.svg';
+import claudecodeLogo from '@/assets/claudecode-color.svg';
+import openclawLogo from '@/assets/openclaw-color.svg';
+import NumericBgAnimation from '@/components/landing/NumericBgAnimation.vue';
+import SiteFooter from '@/components/SiteFooter.vue';
 
-const copiedText = ref('');
-const copyCommand = (cmd) => {
-  navigator.clipboard.writeText(cmd);
-  copiedText.value = cmd;
-  setTimeout(() => {
-    copiedText.value = '';
-  }, 2000);
+const pricingFaqs = ref([
+  {
+    question: "Can I upgrade, downgrade, or cancel at any time?",
+    answer: "Yes, absolutely. You can upgrade to Pro directly from your dashboard whenever you need unlimited storage and connectors. If you cancel or downgrade, your existing memories remain safely preserved and searchable, and your account will simply adhere to the Free tier caps for new additions.",
+    isOpen: true
+  },
+  {
+    question: "Does the Free tier require a credit card?",
+    answer: "No credit card required. You can sign up with your email or GitHub account and immediately start using the Free tier with Cursor, VS Code, and terminal agents via MCP.",
+    isOpen: false
+  },
+  {
+    question: "How is Memwyre different from standard vector databases or Mem0/Zep?",
+    answer: "Vector databases only store raw embeddings and require you to build retrieval pipelines yourself. Infrastructure libraries like Mem0 or Zep require backend infrastructure and API plumbing. Memwyre is a turnkey memory platform: it includes ready-to-use plugins for Claude Desktop, Claude Code, Cursor, OpenClaw, and VS Code, automatically extracts entities, and uses temporal decay to prune obsolete context.",
+    isOpen: false
+  },
+  {
+    question: "Why not just use ChatGPT or Claude's built-in memory?",
+    answer: "Built-in memories are vendor-locked silos. Claude doesn't know what you solved in Cursor; ChatGPT has no idea about the architectural conventions in your terminal sessions. Memwyre acts as a universal, cross-tool memory layer that synchronizes knowledge across all your AI assistants simultaneously.",
+    isOpen: false
+  },
+  {
+    question: "How do I connect Memwyre to Cursor, VS Code, or Claude Code?",
+    answer: "Connecting takes less than two minutes via our official Model Context Protocol (MCP) server. You can install it using a single command (npx -y install-memwyre) or by adding the remote MCP server URL to your configuration file.",
+    isOpen: false
+  },
+  {
+    question: "Is my code, prompt data, and transcript private?",
+    answer: "Yes. Memwyre operates with a strict zero-retention policy for model training: your code, notes, and memories are never used to train public models. All data is encrypted in transit via TLS 1.3 and at rest with AES-256-GCM. Enterprise plans also offer self-hosted Docker and VPC deployment options.",
+    isOpen: false
+  },
+  {
+    question: "What happens when I exceed the 50 memories limit on the Free plan?",
+    answer: "You can continue querying and retrieving your existing memories without interruption. To add more memories, documents, or enable automated syncing from Notion and Google Drive, you can upgrade to Pro anytime with one click.",
+    isOpen: false
+  },
+  {
+    question: "Do you offer team and enterprise volume discounts?",
+    answer: "Yes. For engineering teams with 5+ developers or custom compliance requirements (SOC2, BAA, Okta SSO), our Enterprise plan offers volume billing, dedicated infrastructure clusters, and direct shared organization vaults.",
+    isOpen: false
+  }
+]);
+
+const toggleFaq = (index) => {
+  pricingFaqs.value[index].isOpen = !pricingFaqs.value[index].isOpen;
 };
 </script>
 
 <style scoped>
-.force-light,
-.force-light * {
-  --bg-app: #FAF6F0;
-  --bg-surface: #FFFFFF;
-  --bg-surface-2: #F7F6F3;
-  --bg-elevated: #FFFFFF;
-  --primary: #D97757;
-  --primary-600: #C4654A;
-  --accent: #D97757;
-  --accent-600: #C4654A;
-  --success: #059669;
-  --warning: #D97706;
-  --danger: #DC2626;
-  --info: #D97757;
-  --text-primary: #191919;
-  --text-secondary: #37352F99;
-  --text-muted: #37352F66;
-  --border: rgba(25, 25, 25, 0.06);
-  --divider-strong: rgba(25, 25, 25, 0.09);
-  --backdrop: rgba(0, 0, 0, 0.4);
-  --input-bg: #FFFFFF;
-  --input-border: rgba(25, 25, 25, 0.08);
-  --placeholder: #37352F66;
-  color-scheme: light;
+.hero-serif {
+  font-family: 'Aleo', 'DM Serif Text', serif;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
 }
 </style>

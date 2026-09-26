@@ -19,7 +19,7 @@ import {
           <span class="text-sm font-medium text-gray-900 tracking-tight">memwyre</span>
         </div>
         <!-- Toggle Switch -->
-        <div class="w-9 h-5 bg-blue-600 rounded-full relative p-0.5 flex items-center shadow-inner">
+        <div class="w-9 h-5 bg-[#1D9BF0] rounded-full relative p-0.5 flex items-center shadow-inner">
           <div class="w-4 h-4 bg-[#F7F6F3] rounded-full shadow-sm ml-auto"></div>
         </div>
       </div>

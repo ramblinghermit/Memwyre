@@ -16,8 +16,8 @@
 
       <!-- Header -->
       <div class="px-8 pt-6 pb-2">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Add Content</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm">Choose a method to add content to your Brain Vault.</p>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Add Context</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">Choose a method to add context to your Brain Vault.</p>
       </div>
 
       <!-- Main Content (Scrollable) -->
@@ -37,7 +37,7 @@
                   <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Create a new memory in the editor with full formatting support.</p>
                 </div>
               </div>
-              <button @click="navigateToEditor" class="w-full py-2 bg-[#D97757] hover:bg-[#C4654A] text-white rounded-lg transition-colors font-medium text-xs shadow-sm">
+              <button @click="navigateToEditor" class="w-full py-2 bg-gray-900 hover:bg-black text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 rounded-lg transition-colors font-medium text-xs shadow-sm cursor-pointer">
                 Open Editor
               </button>
             </div>
@@ -65,7 +65,7 @@
                   <input 
                     v-model="urlInput" 
                     type="url" 
-                    class="block w-full pl-9 pr-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#D97757] dark:bg-zinc-800 dark:text-white text-xs" 
+                    class="block w-full pl-9 pr-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900/20 dark:focus:ring-white/20 focus:border-gray-900 dark:focus:border-white dark:bg-zinc-800 dark:text-white text-xs" 
                     placeholder="https://example.com/article"
                     @keyup.enter="ingest"
                     @input="handleWebpageUrlChange"
@@ -74,7 +74,7 @@
                 <button
                   @click="ingest"
                   :disabled="!urlInput || uploading"
-                  class="px-4 py-2 text-xs font-semibold bg-[#D97757] hover:bg-[#C4654A] text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0 shadow-sm flex items-center gap-1.5"
+                  class="px-4 py-2 text-xs font-semibold bg-gray-900 hover:bg-black text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0 shadow-sm flex items-center gap-1.5 cursor-pointer"
                 >
                   <svg v-if="uploading && urlInput" class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

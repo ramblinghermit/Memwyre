@@ -41,6 +41,82 @@ function upsertJsonLd(content) {
     scriptTag.textContent = content;
 }
 
+const APP_ROUTE_TITLES = {
+    'overview': 'Memories',
+    'dashboard': 'Memories',
+    'memories': 'Memories',
+    'inbox': 'Inbox',
+    'add-context': 'Add Context',
+    'add-content': 'Add Context',
+    'spaces': 'Spaces',
+    'projects': 'Spaces',
+    'settings': 'Settings',
+    'billing': 'Billing',
+    'integrations': 'Integrations',
+    'integration-detail': 'Integrations',
+    'editor': 'Editor',
+    'prompts': 'Prompt Generator',
+    'map': 'Memory Map',
+    'chat': 'Chat',
+    'chat-session': 'Chat',
+    'retrieval-visualizer': 'Retrieval Visualizer',
+    'admin-insights': 'Admin Insights',
+    'admin-bypass': 'Admin Bypass',
+    'login': 'Log in',
+    'register': 'Sign up',
+    'verify-email': 'Verify Email',
+    'forgot-password': 'Forgot Password',
+    'reset-password': 'Reset Password',
+    'redeem': 'Redeem License',
+    'slides': 'Pitch Deck',
+    'export-slide': 'Export Slide',
+};
+
+const APP_PATH_TITLES = {
+    '/overview': 'Memories',
+    '/dashboard': 'Memories',
+    '/memories': 'Memories',
+    '/inbox': 'Inbox',
+    '/add-context': 'Add Context',
+    '/add-content': 'Add Context',
+    '/spaces': 'Spaces',
+    '/projects': 'Spaces',
+    '/settings': 'Settings',
+    '/billing': 'Billing',
+    '/integrations': 'Integrations',
+    '/editor': 'Editor',
+    '/prompts': 'Prompt Generator',
+    '/map': 'Memory Map',
+    '/chat': 'Chat',
+    '/retrieval-visualizer': 'Retrieval Visualizer',
+    '/admin': 'Admin Insights',
+    '/admin/bypass': 'Admin Bypass',
+    '/login': 'Log in',
+    '/signup': 'Sign up',
+    '/verify-email': 'Verify Email',
+    '/forgot-password': 'Forgot Password',
+    '/reset-password': 'Reset Password',
+    '/redeem': 'Redeem License',
+    '/slides': 'Pitch Deck',
+};
+
+function resolvePageTitle(to, defaultTitle, routeSeoTitle) {
+    if (to.meta?.title) {
+        return to.meta.title.includes('Memwyre') ? to.meta.title : `${to.meta.title} — Memwyre`;
+    }
+    if (routeSeoTitle) {
+        return routeSeoTitle;
+    }
+    if (to.name && APP_ROUTE_TITLES[to.name]) {
+        return `${APP_ROUTE_TITLES[to.name]} — Memwyre`;
+    }
+    const matchedPath = Object.keys(APP_PATH_TITLES).find(p => to.path === p || to.path.startsWith(`${p}/`));
+    if (matchedPath) {
+        return `${APP_PATH_TITLES[matchedPath]} — Memwyre`;
+    }
+    return defaultTitle;
+}
+
 function syncSeoHead(to) {
     if (typeof document === 'undefined') return;
 
@@ -48,10 +124,12 @@ function syncSeoHead(to) {
     const defaultSeo = getSeoForPath(normalizedPath);
     const routeSeo = to.meta?.seo || {};
     const isIndexableRoute = PRERENDER_ROUTE_SET.has(normalizedPath);
+    const title = resolvePageTitle(to, defaultSeo.title, routeSeo.title);
 
     const seo = {
         ...defaultSeo,
         ...routeSeo,
+        title,
         canonical: defaultSeo.canonical,
         ogUrl: defaultSeo.canonical,
         robots: isIndexableRoute ? (routeSeo.robots || 'index, follow') : 'noindex, nofollow',
@@ -306,84 +384,124 @@ export function createAppRouter({ ssr = false } = {}) {
                 meta: { requiresAuth: true },
                 children: [
                     {
-                        path: 'dashboard',
-                        name: 'dashboard',
+                        path: 'overview',
+                        redirect: '/memories',
+                    },
+                    {
+                        path: 'memories',
+                        name: 'memories',
                         component: () => import('../views/DashboardView.vue'),
+                        meta: { title: 'Memories' },
+                    },
+                    {
+                        path: 'dashboard',
+                        redirect: '/memories',
                     },
                     {
                         path: 'inbox',
                         name: 'inbox',
                         component: () => import('../views/InboxView.vue'),
+                        meta: { title: 'Inbox' },
+                    },
+                    {
+                        path: 'add-context',
+                        name: 'add-context',
+                        component: () => import('../views/AddContentView.vue'),
+                        meta: { title: 'Add Context' },
+                    },
+                    {
+                        path: 'add-content',
+                        redirect: '/add-context',
+                    },
+                    {
+                        path: 'add',
+                        redirect: '/add-context',
+                    },
+                    {
+                        path: 'spaces',
+                        name: 'spaces',
+                        component: () => import('../views/ProjectsView.vue'),
+                        meta: { title: 'Spaces' },
                     },
                     {
                         path: 'projects',
-                        name: 'projects',
-                        component: () => import('../views/ProjectsView.vue'),
+                        redirect: '/spaces',
                     },
                     {
                         path: 'settings',
                         name: 'settings',
                         component: () => import('../views/SettingsView.vue'),
+                        meta: { title: 'Settings' },
                     },
                     {
                         path: 'billing',
                         name: 'billing',
                         component: () => import('../views/BillingView.vue'),
+                        meta: { title: 'Billing' },
                     },
                     {
                         path: 'integrations',
                         name: 'integrations',
                         component: () => import('../views/IntegrationsView.vue'),
+                        meta: { title: 'Integrations' },
                     },
                     {
                         path: 'integrations/:id',
                         name: 'integration-detail',
                         component: () => import('../views/IntegrationsView.vue'),
+                        meta: { title: 'Integrations' },
+                    },
+                    {
+                        path: 'editor',
+                        redirect: '/editor/new',
                     },
                     {
                         path: 'editor/:id',
                         name: 'editor',
                         component: () => import('../views/EditorView.vue'),
+                        meta: { title: 'Editor' },
                     },
                     {
                         path: 'prompts',
                         name: 'prompts',
                         component: () => import('../views/PromptGeneratorView.vue'),
+                        meta: { title: 'Prompt Generator' },
                     },
                     {
                         path: 'map',
                         name: 'map',
                         component: () => import('../views/MemoryMapView.vue'),
+                        meta: { title: 'Memory Map' },
                     },
                     {
                         path: 'chat',
                         name: 'chat',
                         component: () => import('../views/ChatView.vue'),
+                        meta: { title: 'Chat' },
                     },
                     {
                         path: 'chat/:id',
                         name: 'chat-session',
                         component: () => import('../views/ChatView.vue'),
-                    },
-                    {
-                        path: 'billing',
-                        name: 'billing',
-                        component: () => import('../views/BillingView.vue'),
+                        meta: { title: 'Chat' },
                     },
                     {
                         path: 'admin',
                         name: 'admin-insights',
                         component: () => import('../views/AdminInsightsView.vue'),
+                        meta: { title: 'Admin Insights' },
                     },
                     {
                         path: 'admin/bypass',
                         name: 'admin-bypass',
                         component: () => import('../views/AdminBypassView.vue'),
+                        meta: { title: 'Admin Bypass' },
                     },
                     {
                         path: 'retrieval-visualizer',
                         name: 'retrieval-visualizer',
                         component: () => import('../views/RetrievalVisualizerView.vue'),
+                        meta: { title: 'Retrieval Visualizer' },
                     },
                 ]
             },
@@ -392,32 +510,38 @@ export function createAppRouter({ ssr = false } = {}) {
             {
                 path: '/login',
                 name: 'login',
-                component: () => import('../views/LoginView.vue')
+                component: () => import('../views/LoginView.vue'),
+                meta: { title: 'Log in' }
             },
             {
                 path: '/signup',
                 name: 'register',
-                component: () => import('../views/RegisterView.vue')
+                component: () => import('../views/RegisterView.vue'),
+                meta: { title: 'Sign up' }
             },
             {
                 path: '/verify-email',
                 name: 'verify-email',
-                component: () => import('../views/VerifyEmailView.vue')
+                component: () => import('../views/VerifyEmailView.vue'),
+                meta: { title: 'Verify Email' }
             },
             {
                 path: '/forgot-password',
                 name: 'forgot-password',
-                component: () => import('../views/ForgotPasswordView.vue')
+                component: () => import('../views/ForgotPasswordView.vue'),
+                meta: { title: 'Forgot Password' }
             },
             {
                 path: '/reset-password',
                 name: 'reset-password',
-                component: () => import('../views/ResetPasswordView.vue')
+                component: () => import('../views/ResetPasswordView.vue'),
+                meta: { title: 'Reset Password' }
             },
             {
                 path: '/redeem',
                 name: 'redeem',
-                component: () => import('../views/RedeemView.vue')
+                component: () => import('../views/RedeemView.vue'),
+                meta: { title: 'Redeem License' }
             },
             {
                 path: '/slides',
@@ -456,7 +580,7 @@ export function createAppRouter({ ssr = false } = {}) {
             },
             {
                 path: '/broadcast',
-                redirect: '/dashboard'
+                redirect: '/memories'
             },
             {
                 path: '/:pathMatch(.*)*',
@@ -466,7 +590,7 @@ export function createAppRouter({ ssr = false } = {}) {
                         const hostname = window.location.hostname;
                         if (hostname === 'app.memwyre.tech') {
                             const authStore = useAuthStore();
-                            next(authStore.isAuthenticated ? '/dashboard' : '/login');
+                            next(authStore.isAuthenticated ? '/memories' : '/login');
                             return;
                         }
                     }
@@ -483,8 +607,9 @@ export function createAppRouter({ ssr = false } = {}) {
             const MAIN_HOST = 'memwyre.tech';
 
             const APP_ROUTES = [
+                '/overview', '/dashboard', '/memories', '/inbox', '/add-context', '/add-content', '/add',
                 '/login', '/signup', '/verify-email', '/forgot-password', '/reset-password',
-                '/dashboard', '/inbox', '/projects', '/settings', '/integrations',
+                '/spaces', '/projects', '/settings', '/integrations',
                 '/editor', '/prompts', '/map', '/chat', '/billing', '/admin',
                 '/retrieval-visualizer', '/redeem', '/slides', '/export-slide', '/demo',
                 '/broadcast'
@@ -524,7 +649,7 @@ export function createAppRouter({ ssr = false } = {}) {
                 if (to.path === '/' || to.path === '') {
                     const authStore = useAuthStore();
                     if (authStore.isAuthenticated) {
-                        next('/dashboard');
+                        next('/memories');
                     } else {
                         next('/login');
                     }
@@ -552,20 +677,20 @@ export function createAppRouter({ ssr = false } = {}) {
             authStore.isAuthenticated &&
             authStore.user &&
             authStore.user.is_verified === false &&
-            !['settings', 'dashboard'].includes(to.name)
+            !['settings', 'dashboard', 'memories'].includes(to.name)
         ) {
             next('/settings');
         }
-        // If they are verified but haven't completed onboarding, trap them securely in dashboard
+        // If they are verified but haven't completed onboarding, trap them securely in memories
         else if (
             to.meta.requiresAuth &&
             authStore.isAuthenticated &&
             authStore.user &&
             authStore.user.is_verified &&
             authStore.hasCompletedOnboarding === false &&
-            !['dashboard', 'editor', 'admin-insights', 'admin-bypass', 'retrieval-visualizer'].includes(to.name)
+            !['dashboard', 'memories', 'editor', 'admin-insights', 'admin-bypass', 'retrieval-visualizer'].includes(to.name)
         ) {
-            next('/dashboard');
+            next('/memories');
         }
         else {
             next();

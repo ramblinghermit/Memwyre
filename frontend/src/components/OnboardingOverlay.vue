@@ -212,7 +212,7 @@
 
         <button
           @click="handleNext"
-          class="text-xs px-6 py-3 bg-white text-zinc-950 hover:bg-zinc-100 font-semibold rounded-xl transition-all shadow-sm flex items-center gap-2 group"
+          class="text-xs px-6 py-3 bg-[#1D9BF0] text-white hover:bg-[#1A8CD8] font-semibold rounded-xl transition-all shadow-sm flex items-center gap-2 group cursor-pointer"
         >
           <span>{{ currentStep === 4 ? 'Complete Setup' : 'Continue' }}</span>
           <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -361,8 +361,8 @@ const skipOnboarding = async () => {
     workspace_name: workspaceName.value.trim() || 'Personal Vault',
     default_project_id: projectStore.currentProjectId,
   });
-  if (router.currentRoute.value.path !== '/dashboard') {
-    router.push('/dashboard');
+  if (router.currentRoute.value.path !== '/memories') {
+    router.push('/memories');
   }
 };
 
@@ -381,9 +381,9 @@ const completeSetup = async () => {
     router.push('/mcp');
   } else if (selectedAction.value === 'extension') {
     window.open('https://chrome.google.com/webstore', '_blank');
-    router.push('/dashboard');
+    router.push('/memories');
   } else {
-    router.push('/dashboard');
+    router.push('/memories');
   }
 };
 </script>

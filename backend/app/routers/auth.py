@@ -72,7 +72,7 @@ async def register(
     if user:
         raise HTTPException(
             status_code=400,
-            detail="The user with this username already exists in the system.",
+            detail="An account with this email already exists.",
         )
 
     hashed_password = security.get_password_hash(user_in.password)

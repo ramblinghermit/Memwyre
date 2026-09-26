@@ -2,11 +2,11 @@
   <div v-if="visible" class="mx-auto max-w-2xl my-8 animate-fade-in">
     <div class="relative overflow-hidden bg-white dark:bg-surface rounded-xl border border-gray-200 dark:border-border shadow-sm p-6">
       <!-- Accent bar -->
-      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D97757] via-[#E8956E] to-[#D97757]"></div>
+      <div class="absolute top-0 left-0 right-0 h-1 bg-gray-900 dark:bg-white"></div>
 
       <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-        <div class="flex-shrink-0 p-3 bg-[#D97757]/10 dark:bg-[#D97757]/20 rounded-lg">
-          <svg class="w-6 h-6 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex-shrink-0 p-3 bg-gray-100 dark:bg-zinc-800 rounded-lg">
+          <svg class="w-6 h-6 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
         </div>
@@ -18,7 +18,7 @@
         </div>
         <router-link
           to="/billing"
-          class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold rounded-lg text-white bg-[#D97757] hover:bg-[#C4654A] transition-all shadow-sm whitespace-nowrap"
+          class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold rounded-lg text-white bg-gray-900 hover:bg-black dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 transition-all shadow-sm whitespace-nowrap cursor-pointer"
         >
           Upgrade to Pro
         </router-link>

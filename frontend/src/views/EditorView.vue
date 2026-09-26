@@ -48,7 +48,7 @@
             <button 
               v-if="isViewMode"
               @click="isViewMode = false"
-              class="px-5 py-2 bg-[#D97757] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all hover:bg-[#C4654A] cursor-pointer shadow-2xs active:scale-95"
+              class="px-5 py-2 bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer shadow-2xs active:scale-95"
             >
               Edit
             </button>
@@ -56,7 +56,7 @@
               v-if="!isViewMode"
               @click="saveDocument"
               :disabled="saving"
-              class="px-5 py-2 bg-[#D97757] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all hover:bg-[#C4654A] disabled:opacity-50 cursor-pointer shadow-2xs active:scale-95"
+              class="px-5 py-2 bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all disabled:opacity-50 cursor-pointer shadow-2xs active:scale-95"
             >
               Save Changes
             </button>
@@ -141,7 +141,7 @@
                    class="flex-1 py-1 text-xs rounded-md transition-all cursor-pointer text-center flex items-center justify-center gap-1.5"
                  >
                    <span>Intelligence</span>
-                   <span v-if="activeChunk" class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                   <span v-if="activeChunk" class="w-1.5 h-1.5 rounded-full bg-gray-900 dark:bg-white"></span>
                  </button>
                  <button
                    @click="activeInspectorTab = 'properties'"
@@ -202,7 +202,7 @@
                         <button 
                           @click="generateTags" 
                           :disabled="generatingTags || !content || isViewMode"
-                          class="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors text-[#D97757] disabled:opacity-30 disabled:hover:bg-transparent flex items-center gap-1.5 cursor-pointer"
+                          class="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors text-gray-900 dark:text-white disabled:opacity-30 disabled:hover:bg-transparent flex items-center gap-1.5 cursor-pointer"
                           title="Auto-generate tags"
                         >
                              <span v-if="generatingTags" class="text-[10px] italic text-gray-400">Generating...</span>
@@ -232,7 +232,7 @@
                               @keydown.down.prevent="navigateSuggestions(1)"
                               @keydown.up.prevent="navigateSuggestions(-1)"
                               @keydown.enter.prevent="selectActiveSuggestion"
-                              class="w-full bg-white dark:bg-zinc-900/60 border border-gray-200/80 dark:border-zinc-700 text-gray-900 dark:text-zinc-200 rounded-xl px-3 py-2 text-xs focus:ring-1 focus:ring-[#D97757] focus:border-[#D97757] outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-zinc-500 resize-none h-24 leading-relaxed"
+                              class="w-full bg-white dark:bg-zinc-900/60 border border-gray-200/80 dark:border-zinc-700 text-gray-900 dark:text-zinc-200 rounded-xl px-3 py-2 text-xs focus:ring-1 focus:ring-gray-900/20 dark:focus:ring-white/20 focus:border-gray-900 dark:focus:border-white outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-zinc-500 resize-none h-24 leading-relaxed"
                               placeholder="Enter tags separated by commas..."
                             ></textarea>
                             
@@ -524,7 +524,7 @@ const fetchDocument = async () => {
     }
 
     if (!found) {
-        router.push('/dashboard');
+        router.push('/memories');
     } else {
         // Fetch Chunks for Enrichment Sidebar
         fetchChunks(resolvedId.value);
@@ -680,7 +680,7 @@ const isDeletingMemory = ref(false);
 
 const deleteDocument = async () => {
   if (documentId.value === 'new') {
-    router.push('/dashboard');
+    router.push('/memories');
     return;
   }
   showDeleteModal.value = true;
@@ -694,7 +694,7 @@ const confirmDeleteDocument = async () => {
     // Usually API takes the ID passed.
     await api.delete(`/memory/${targetId}`);
     toast.success('Document deleted');
-    router.push('/dashboard');
+    router.push('/memories');
   } catch (error) {
     console.error('Error deleting document:', error);
     const status = error.response?.status;

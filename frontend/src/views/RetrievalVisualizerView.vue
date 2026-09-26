@@ -14,7 +14,7 @@
               type="text" 
               v-model="searchQuery" 
               placeholder="Enter a test query..." 
-              class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md py-2 px-3 text-gray-900 dark:text-white focus:ring-[#D97757] focus:border-[#D97757]"
+              class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md py-2 px-3 text-gray-900 dark:text-white focus:ring-1 focus:ring-gray-900/20 dark:focus:ring-white/20 focus:border-gray-900 dark:focus:border-white"
               required
             >
           </div>
@@ -24,14 +24,14 @@
               type="number" 
               v-model="topK" 
               min="1" 
-              max="20"
-              class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md py-2 px-3 text-gray-900 dark:text-white focus:ring-[#D97757] focus:border-[#D97757]"
+              max="20" 
+              class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md py-2 px-3 text-gray-900 dark:text-white focus:ring-1 focus:ring-gray-900/20 dark:focus:ring-white/20 focus:border-gray-900 dark:focus:border-white"
             >
           </div>
           <button 
             type="submit" 
             :disabled="loading"
-            class="px-6 py-2 bg-[#D97757] hover:bg-[#C4654A] text-white rounded-md font-medium transition-colors disabled:opacity-70 flex items-center justify-center min-w-[120px]"
+            class="px-6 py-2 bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white rounded-md font-medium transition-colors disabled:opacity-70 flex items-center justify-center min-w-[120px] cursor-pointer"
           >
             <span v-if="loading" class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
             <span v-else>Run Pipeline</span>
@@ -231,7 +231,7 @@
           <!-- Step 4: Reranking -->
           <div class="bg-white dark:bg-surface shadow rounded-lg p-6 border border-gray-200 dark:border-border">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span class="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200 py-1 px-3 rounded-full text-sm">Step 4</span>
+              <span class="bg-gray-100 text-gray-800 dark:bg-zinc-800 dark:text-zinc-200 py-1 px-3 rounded-full text-sm">Step 4</span>
               Cross-Encoder Reranking
             </h2>
 
@@ -242,7 +242,7 @@
                 </div>
                 <div class="text-gray-300 dark:text-gray-600">→</div>
                 <div class="text-center">
-                    <p class="text-2xl font-bold text-orange-600 dark:text-orange-400">{{ debugData.reranking.filter(i => !i.is_dropped).length }}</p>
+                    <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ debugData.reranking.filter(i => !i.is_dropped).length }}</p>
                     <p class="text-xs text-gray-500">Final Top K Selected</p>
                 </div>
             </div>
@@ -277,7 +277,7 @@
                           </td>
                           <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-300" :class="{'line-through decoration-red-400': item.is_dropped}">{{ item.text }}</td>
                           <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400 line-through decoration-gray-400">{{ Number(item.original_score).toFixed(3) }}</td>
-                          <td class="px-4 py-3 text-sm font-bold" :class="item.is_dropped ? 'text-red-500' : 'text-[#D97757]'">{{ Number(item.rerank_score).toFixed(3) }}</td>
+                          <td class="px-4 py-3 text-sm font-bold" :class="item.is_dropped ? 'text-red-500' : 'text-gray-900 dark:text-white'">{{ Number(item.rerank_score).toFixed(3) }}</td>
                         </tr>
                         <tr v-if="!debugData.reranking?.length">
                           <td colspan="5" class="px-4 py-4 text-center text-sm text-gray-500">No items reached reranking stage.</td>

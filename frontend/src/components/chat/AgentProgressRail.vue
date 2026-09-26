@@ -16,7 +16,7 @@
             >
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
-            <span class="animate-pulse text-[#D97757] font-semibold">Thinking...</span>
+            <span class="animate-pulse text-gray-900 dark:text-white font-semibold">Thinking...</span>
             <span v-if="steps.length > 0" class="text-[11px] text-gray-400 dark:text-zinc-600 font-mono">
               ({{ steps.filter(s => s.status === 'completed').length }}/{{ steps.length }})
             </span>

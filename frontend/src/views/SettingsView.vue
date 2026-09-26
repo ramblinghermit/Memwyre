@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 no-scrollbar flex flex-col min-h-0 overflow-y-auto overflow-x-hidden select-none">
+  <div class="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-5 lg:px-6 py-6 no-scrollbar flex flex-col min-h-0 overflow-y-auto overflow-x-hidden select-none">
     
     <!-- Top Header -->
     <div class="mb-6 shrink-0">
@@ -55,27 +55,14 @@
             </div>
             <button 
               @click="toggleAutoApprove" 
-              :class="settings.auto_approve ? 'bg-[#D97757]' : 'bg-gray-200 dark:bg-zinc-700'" 
-              class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D97757]"
+              :class="settings.auto_approve ? 'bg-[#1D9BF0]' : 'bg-gray-200 dark:bg-zinc-700'" 
+              class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1D9BF0]"
             >
               <span 
                 aria-hidden="true" 
-                :class="settings.auto_approve ? 'translate-x-5' : 'translate-x-0'" 
-                class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-xs transform ring-0 transition ease-in-out duration-200"
+                :class="settings.auto_approve ? 'translate-x-5 bg-white' : 'translate-x-0 bg-white'" 
+                class="pointer-events-none inline-block h-5 w-5 rounded-full shadow-xs transform ring-0 transition ease-in-out duration-200"
               ></span>
-            </button>
-          </div>
-
-          <div class="flex items-center justify-between gap-4 py-3">
-            <div>
-              <span class="text-sm font-semibold text-gray-900 dark:text-zinc-100">Product Tour</span>
-              <p class="text-xs sm:text-[13px] text-gray-500 dark:text-zinc-400 mt-0.5">Restart the guided interactive onboarding walkthrough.</p>
-            </div>
-            <button
-              @click="restartTour"
-              class="px-3.5 py-1.5 text-xs sm:text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-zinc-300 dark:hover:text-white bg-gray-100 hover:bg-gray-200/80 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded-xl transition-colors cursor-pointer shadow-2xs"
-            >
-              Reset Tour
             </button>
           </div>
         </div>
@@ -112,7 +99,7 @@
             <button 
               @click="resendVerification" 
               :disabled="resendingEmail" 
-              class="inline-flex items-center px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg text-white bg-[#D97757] hover:bg-[#C4654A] transition-colors disabled:opacity-50 cursor-pointer shadow-2xs shrink-0"
+              class="inline-flex items-center px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg text-white bg-[#1D9BF0] hover:bg-[#1A8CD8] transition-colors disabled:opacity-50 cursor-pointer shadow-2xs shrink-0"
             >
               <svg v-if="resendingEmail" class="animate-spin -ml-1 mr-1.5 h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
               {{ resendingEmail ? 'Sending...' : 'Resend Verification' }}
@@ -130,7 +117,7 @@
           </div>
           <button
             @click="showAddKeyForm = !showAddKeyForm"
-            class="bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 font-semibold px-3.5 py-1.5 rounded-full text-xs sm:text-sm flex items-center gap-1.5 transition-all shadow-xs cursor-pointer active:scale-95 shrink-0 self-start sm:self-auto"
+            class="bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white font-semibold px-3.5 py-1.5 rounded-full text-xs sm:text-sm flex items-center gap-1.5 transition-all shadow-xs cursor-pointer active:scale-95 shrink-0 self-start sm:self-auto"
           >
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
@@ -147,12 +134,12 @@
               v-model="newKeyName"
               @keyup.enter="generateKey"
               placeholder="e.g. Cursor IDE, Claude CLI..."
-              class="flex-1 min-w-0 bg-white dark:bg-zinc-900 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 rounded-xl px-3.5 py-2 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:border-[#D97757]"
+              class="flex-1 min-w-0 bg-white dark:bg-zinc-900 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 rounded-xl px-3.5 py-2 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:border-gray-900 dark:focus:border-white"
             />
             <button
               @click="generateKey"
               :disabled="generatingKey || !newKeyName.trim()"
-              class="px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-[#D97757] hover:bg-[#C4654A] rounded-xl transition-all disabled:opacity-50 cursor-pointer shadow-2xs"
+              class="px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-[#1D9BF0] hover:bg-[#1A8CD8] rounded-xl transition-all disabled:opacity-50 cursor-pointer shadow-2xs"
             >
               {{ generatingKey ? 'Generating...' : 'Generate' }}
             </button>
@@ -226,7 +213,6 @@ import apiKeysService from '../services/apiKeys';
 import ThemeToggle from '../components/ThemeToggle.vue';
 import ConfirmationModal from '../components/ConfirmationModal.vue';
 import { useToast } from 'vue-toastification';
-import { writeScopedBoolean } from '../utils/onboardingState';
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -276,18 +262,6 @@ const toggleAutoApprove = async () => {
     settings.value.auto_approve = !newVal;
     toast.error("Failed to update preferences");
   }
-};
-
-const restartTour = () => {
-  if (authStore.user?.id) {
-    writeScopedBoolean(localStorage, authStore.user.id, 'tour_completed', false);
-    writeScopedBoolean(localStorage, authStore.user.id, 'tour_requested', true);
-  } else {
-    localStorage.removeItem('tour_completed');
-    localStorage.setItem('tour_requested', 'true');
-  }
-  toast.info("Tour reset. Returning to Dashboard...");
-  setTimeout(() => router.push('/dashboard'), 1000);
 };
 
 const resendVerification = async () => {

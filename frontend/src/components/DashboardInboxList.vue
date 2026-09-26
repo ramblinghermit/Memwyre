@@ -58,7 +58,7 @@
                    </svg>
                    {{ formatSource(item) }}
                  </span>
-                 <h4 class="text-base font-medium text-gray-900 dark:text-white truncate group-hover:text-black dark:group-hover:text-white transition-colors">{{ item.details || 'Inbox Item' }}</h4>
+                 <h4 class="text-xs sm:text-sm font-medium text-gray-900 dark:text-white truncate group-hover:text-black dark:group-hover:text-white transition-colors">{{ item.details || 'Inbox Item' }}</h4>
                </div>
                <p class="text-sm text-gray-500 dark:text-gray-400 truncate mt-0.5 line-clamp-1">{{ item.content }}</p>
              </div>

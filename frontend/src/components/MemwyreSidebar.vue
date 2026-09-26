@@ -32,7 +32,7 @@
         <!-- Expanded: Logo + action buttons -->
         <template v-if="!isCollapsed">
           <router-link 
-            to="/dashboard" 
+            to="/memories" 
             class="flex items-center gap-2 overflow-hidden transition-opacity hover:opacity-90 px-1 py-1 rounded-md group"
             title="Memwyre Dashboard"
           >
@@ -117,77 +117,8 @@
         <div class="space-y-3">
           <!-- Main Navigation Links -->
           <nav class="space-y-0.5">
-            <!-- 1. Dashboard -->
-            <router-link
-              to="/dashboard"
-              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
-              :class="{ 
-                'justify-center px-0': isCollapsed, 
-                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/dashboard' 
-              }"
-              :title="isCollapsed ? undefined : 'Dashboard'"
-            >
-              <svg class="w-4 h-4 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-              </svg>
-              <span v-if="!isCollapsed" class="truncate flex-1 font-medium">Dashboard</span>
 
-              <!-- Bubble Text Tooltip in Collapsed State -->
-              <div 
-                v-if="isCollapsed" 
-                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
-              >
-                <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
-                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
-                  <span class="relative z-10">Dashboard</span>
-                </div>
-              </div>
-            </router-link>
-
-            <!-- 2. Inbox (with live count badge) -->
-            <router-link
-              to="/inbox"
-              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
-              :class="{ 
-                'justify-center px-0': isCollapsed, 
-                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/inbox' 
-              }"
-              :title="isCollapsed ? undefined : 'Inbox Approvals'"
-            >
-              <div class="relative flex items-center justify-center shrink-0">
-                <svg class="w-4 h-4 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                </svg>
-                <!-- Dot indicator in collapsed mode -->
-                <span 
-                  v-if="isCollapsed && inboxCount > 0" 
-                  class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#D97757] ring-2 ring-gray-50 dark:ring-[#09090b]"
-                ></span>
-              </div>
-              <span v-if="!isCollapsed" class="truncate flex-1 font-medium">Inbox</span>
-              <span 
-                v-if="!isCollapsed && inboxCount > 0" 
-                class="text-[11px] font-bold bg-[#D97757] text-white px-1.5 py-0.2 rounded-full"
-              >
-                {{ inboxCount }}
-              </span>
-
-              <!-- Bubble Text Tooltip in Collapsed State -->
-              <div 
-                v-if="isCollapsed" 
-                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
-              >
-                <div class="sidebar-bubble-tooltip relative flex items-center gap-1.5 bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
-                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
-                  <span class="relative z-10">Inbox</span>
-                  <span v-if="inboxCount > 0" class="relative z-10 text-[10px] font-bold bg-[#D97757] text-white px-1.5 py-0.2 rounded-full">
-                    {{ inboxCount }}
-                  </span>
-                </div>
-              </div>
-            </router-link>
-
-            <!-- 3. Ask AI / Chat -->
+            <!-- 1. Ask AI / Chat -->
             <router-link
               to="/chat"
               class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
@@ -197,7 +128,7 @@
               }"
               :title="isCollapsed ? undefined : 'Ask AI & Chat'"
             >
-              <svg class="w-4 h-4 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
               </svg>
               <span v-if="!isCollapsed" class="truncate font-medium">Ask AI</span>
@@ -214,6 +145,143 @@
               </div>
             </router-link>
 
+            <!-- Memory Section Header -->
+            <div v-if="!isCollapsed" class="px-2.5 pt-3 pb-1 text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-zinc-400">
+              Memory
+            </div>
+            <div v-else class="my-1.5 border-t border-gray-200/80 dark:border-zinc-800/80 mx-1"></div>
+
+            <!-- 2. Memories (formerly Dashboard) -->
+            <router-link
+              to="/memories"
+              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
+              :class="{ 
+                'justify-center px-0': isCollapsed, 
+                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/memories' || $route.path === '/dashboard' || $route.path === '/overview' 
+              }"
+              :title="isCollapsed ? undefined : 'Memories'"
+            >
+              <!-- Folders Icon -->
+              <svg class="w-5 h-5 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+              </svg>
+              <span v-if="!isCollapsed" class="truncate flex-1 font-medium">Memories</span>
+
+              <!-- Bubble Text Tooltip in Collapsed State -->
+              <div 
+                v-if="isCollapsed" 
+                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+              >
+                <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
+                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                  <span class="relative z-10">Memories</span>
+                </div>
+              </div>
+            </router-link>
+
+            <!-- 2.5 Spaces -->
+            <router-link
+              to="/spaces"
+              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
+              :class="{ 
+                'justify-center px-0': isCollapsed, 
+                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/spaces' || $route.path === '/projects' 
+              }"
+              :title="isCollapsed ? undefined : 'Spaces'"
+            >
+              <svg class="w-5 h-5 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+              <span v-if="!isCollapsed" class="truncate flex-1 font-medium">Spaces</span>
+
+              <!-- Bubble Text Tooltip in Collapsed State -->
+              <div 
+                v-if="isCollapsed" 
+                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+              >
+                <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
+                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                  <span class="relative z-10">Spaces</span>
+                </div>
+              </div>
+            </router-link>
+
+            <!-- 3. Inbox (with live count badge) -->
+            <router-link
+              to="/inbox"
+              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
+              :class="{ 
+                'justify-center px-0': isCollapsed, 
+                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/inbox' 
+              }"
+              :title="isCollapsed ? undefined : 'Inbox Approvals'"
+            >
+              <div class="relative flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                </svg>
+                <!-- Dot indicator in collapsed mode -->
+                <span 
+                  v-if="isCollapsed && inboxCount > 0" 
+                  class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-gray-900 dark:bg-white ring-2 ring-gray-50 dark:ring-[#09090b]"
+                ></span>
+              </div>
+              <span v-if="!isCollapsed" class="truncate flex-1 font-medium">Inbox</span>
+              <span 
+                v-if="!isCollapsed && inboxCount > 0" 
+                class="text-[11px] font-bold bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-1.5 py-0.2 rounded-full"
+              >
+                {{ inboxCount }}
+              </span>
+
+              <!-- Bubble Text Tooltip in Collapsed State -->
+              <div 
+                v-if="isCollapsed" 
+                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+              >
+                <div class="sidebar-bubble-tooltip relative flex items-center gap-1.5 bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
+                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                  <span class="relative z-10">Inbox</span>
+                  <span v-if="inboxCount > 0" class="relative z-10 text-[10px] font-bold bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-1.5 py-0.2 rounded-full">
+                    {{ inboxCount }}
+                  </span>
+                </div>
+              </div>
+            </router-link>
+
+            <!-- 4. Add Context -->
+            <router-link
+              to="/add-context"
+              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
+              :class="{ 
+                'justify-center px-0': isCollapsed, 
+                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/add-context' || $route.path === '/add-content' 
+              }"
+              :title="isCollapsed ? undefined : 'Add Context'"
+            >
+              <svg class="w-5 h-5 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              <span v-if="!isCollapsed" class="truncate font-medium">Add Context</span>
+
+              <!-- Bubble Text Tooltip in Collapsed State -->
+              <div 
+                v-if="isCollapsed" 
+                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+              >
+                <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
+                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                  <span class="relative z-10">Add Context</span>
+                </div>
+              </div>
+            </router-link>
+
+            <!-- Setup Section Header -->
+            <div v-if="!isCollapsed" class="px-2.5 pt-3 pb-1 text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-zinc-400">
+              Setup
+            </div>
+            <div v-else class="my-1.5 border-t border-gray-200/80 dark:border-zinc-800/80 mx-1"></div>
+
             <!-- 5. Integrations & MCP -->
             <router-link
               to="/integrations"
@@ -224,7 +292,7 @@
               }"
               :title="isCollapsed ? undefined : 'Integrations & MCP'"
             >
-              <svg class="w-4 h-4 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
               </svg>
               <span v-if="!isCollapsed" class="truncate font-medium">Integrations</span>
@@ -237,6 +305,33 @@
                 <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
                   <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
                   <span class="relative z-10">Integrations</span>
+                </div>
+              </div>
+            </router-link>
+
+            <!-- 6. Settings -->
+            <router-link
+              to="/settings"
+              class="flex items-center gap-3 px-2.5 py-2 rounded-lg text-sm text-gray-950 hover:text-black hover:bg-gray-200/80 dark:text-zinc-100 dark:hover:text-white dark:hover:bg-zinc-800/90 font-medium transition-colors group relative"
+              :class="{ 
+                'justify-center px-0': isCollapsed, 
+                'bg-gray-200 text-black font-semibold dark:bg-zinc-800 dark:text-white shadow-2xs': $route.path === '/settings' 
+              }"
+              :title="isCollapsed ? undefined : 'Settings'"
+            >
+              <svg class="w-5 h-5 text-gray-700 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              </svg>
+              <span v-if="!isCollapsed" class="truncate font-medium">Settings</span>
+
+              <!-- Bubble Text Tooltip in Collapsed State -->
+              <div 
+                v-if="isCollapsed" 
+                class="pointer-events-none absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-[70] hidden group-hover:flex items-center"
+              >
+                <div class="sidebar-bubble-tooltip relative flex items-center bg-zinc-900 dark:bg-zinc-800 text-white px-2.5 py-1 rounded-lg shadow-xl border border-zinc-800 dark:border-zinc-700/80 whitespace-nowrap text-xs font-semibold">
+                  <span class="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-800 rotate-45 border-l border-b border-zinc-800 dark:border-zinc-700/80"></span>
+                  <span class="relative z-10">Settings</span>
                 </div>
               </div>
             </router-link>
@@ -256,7 +351,7 @@
               @click="handleSelectPinned(item)"
             >
               <div class="flex items-center gap-2 min-w-0 pr-2">
-                <svg class="w-3.5 h-3.5 text-[#D97757] shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <svg class="w-3.5 h-3.5 text-gray-900 dark:text-white shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" />
                 </svg>
                 <span class="truncate text-xs font-medium">{{ item.title }}</span>
@@ -277,7 +372,7 @@
               <span>Conversations</span>
               <button 
                 @click="startNewChat" 
-                class="text-[10px] text-[#D97757] hover:text-[#c66849] hover:underline font-bold cursor-pointer"
+                class="text-[10px] text-gray-900 hover:text-black dark:text-zinc-100 dark:hover:text-white hover:underline font-bold cursor-pointer"
                 title="Start New Chat"
               >
                 + New Chat
@@ -307,7 +402,7 @@
                   <button
                     @click.stop="pinItem(recent)"
                     title="Pin this item"
-                    class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-[#D97757] p-0.5 rounded transition-opacity cursor-pointer"
+                    class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-gray-900 dark:hover:text-white p-0.5 rounded transition-opacity cursor-pointer"
                   >
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
                   </button>
@@ -317,78 +412,6 @@
             <div v-else class="px-2.5 py-2">
               <p class="text-[11px] text-gray-500 dark:text-zinc-400 italic">No conversations yet</p>
             </div>
-          </div>
-        </div>
-
-        <!-- Bottom Section: Integration Spotlight in Non-Chat Modes -->
-        <div 
-          v-if="!isCollapsed && !isChatMode" 
-          class="mt-auto pt-3 pb-1 px-1 space-y-2"
-          @mouseenter="stopSlideTimer"
-          @mouseleave="startSlideTimer"
-        >
-          <!-- Section Header & Carousel Controls -->
-          <div class="px-2.5 flex items-center justify-between">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-gray-700 dark:text-zinc-300">Integrations</span>
-            <div class="flex items-center gap-0.5">
-              <button 
-                @click.stop="prevSlide" 
-                class="p-1 text-gray-600 hover:text-black dark:text-zinc-300 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
-                title="Previous"
-              >
-                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-              </button>
-              <button 
-                @click.stop="nextSlide" 
-                class="p-1 text-gray-600 hover:text-black dark:text-zinc-300 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
-                title="Next"
-              >
-                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Slide Category Title & Indicator Dots -->
-          <div class="px-2.5 flex items-center justify-between">
-            <span class="text-[11px] font-semibold text-gray-900 dark:text-zinc-100">{{ integrationSlides[currentSlide].category }}</span>
-            <div class="flex items-center gap-1 select-none">
-              <span 
-                v-for="(_, dotIdx) in integrationSlides" 
-                :key="dotIdx" 
-                @click="setSlide(dotIdx)" 
-                class="h-1 rounded-full cursor-pointer transition-all duration-300"
-                :class="currentSlide === dotIdx ? 'bg-gray-950 dark:bg-zinc-100 w-3' : 'bg-gray-400 dark:bg-zinc-600 w-1.5 hover:bg-gray-600'"
-              ></span>
-            </div>
-          </div>
-
-          <!-- Slide Items List -->
-          <div class="space-y-0.5">
-            <router-link
-              v-for="item in integrationSlides[currentSlide].items"
-              :key="item.id"
-              :to="item.to"
-              class="flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-gray-200/80 dark:hover:bg-zinc-800/90 text-gray-950 dark:text-zinc-100 transition-colors group cursor-pointer"
-            >
-              <div class="flex items-center gap-2.5 min-w-0">
-                <div class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-zinc-800 border border-gray-200/80 dark:border-zinc-700/60 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform overflow-hidden p-1">
-                  <img :src="item.icon" class="w-full h-full object-contain" :class="{'dark:invert': item.darkInvert}" :alt="item.name" />
-                </div>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-xs font-bold text-gray-950 dark:text-white group-hover:text-[#D97757] dark:group-hover:text-[#D97757] transition-colors truncate leading-tight">{{ item.name }}</span>
-                  <span class="text-[11px] text-gray-600 dark:text-zinc-300 truncate leading-tight mt-0.5 font-medium">{{ item.desc }}</span>
-                </div>
-              </div>
-              <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-black dark:text-zinc-500 dark:group-hover:text-white transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-            </router-link>
-          </div>
-
-          <!-- All Integrations Footer Link -->
-          <div class="px-2.5 pt-0.5 text-right">
-            <router-link to="/integrations" class="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
-              <span>All integrations</span>
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-            </router-link>
           </div>
         </div>
       </div>
@@ -405,8 +428,8 @@
           :class="isCollapsed ? 'justify-center p-1.5' : 'justify-between p-1.5'"
         >
           <div class="flex items-center gap-2.5 min-w-0">
-            <!-- Orange Initials Avatar -->
-            <div class="w-8 h-8 rounded-full bg-[#D97757] flex items-center justify-center text-xs font-bold text-white shrink-0 shadow-xs ring-1 ring-black/5 dark:ring-white/10">
+            <!-- User Initials Avatar -->
+            <div class="w-8 h-8 rounded-full bg-gray-900 dark:bg-white flex items-center justify-center text-xs font-bold text-white dark:text-gray-900 shrink-0 shadow-xs ring-1 ring-black/5 dark:ring-white/10">
               {{ userInitials }}
             </div>
             
@@ -871,15 +894,16 @@ async function handleSelectRecent(recent) {
 
 // Search Results Computation across pages and data
 const appPages = [
-  { id: 'page-dash', title: 'Dashboard & Timeline', type: 'page', path: '/dashboard' },
-  { id: 'page-inbox', title: 'Inbox & Approvals', type: 'page', path: '/inbox' },
   { id: 'page-chat', title: 'Ask AI Chat Assistant', type: 'page', path: '/chat' },
-  { id: 'page-proj', title: 'Projects & Workspaces', type: 'page', path: '/projects' },
+  { id: 'page-memories', title: 'Memories & Timeline', type: 'page', path: '/memories' },
+  { id: 'page-inbox', title: 'Inbox & Approvals', type: 'page', path: '/inbox' },
+  { id: 'page-add', title: 'Add Context (Editor, Webpage, Files)', type: 'page', path: '/add-context' },
   { id: 'page-integ', title: 'Integrations & MCP', type: 'page', path: '/integrations' },
+  { id: 'page-settings', title: 'Settings & API Keys', type: 'page', path: '/settings' },
+  { id: 'page-proj', title: 'Spaces', type: 'page', path: '/spaces' },
   { id: 'page-prompts', title: 'Prompt Studio', type: 'page', path: '/prompts' },
   { id: 'page-map', title: 'Memory Map Graph', type: 'page', path: '/map' },
   { id: 'page-vis', title: 'Retrieval Visualizer', type: 'page', path: '/retrieval-visualizer' },
-  { id: 'page-settings', title: 'Settings & API Keys', type: 'page', path: '/settings' },
   { id: 'page-billing', title: 'Billing & Plans', type: 'page', path: '/billing' }
 ];
 

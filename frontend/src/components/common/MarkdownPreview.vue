@@ -113,7 +113,7 @@ const html = computed(() => renderChatMarkdown(props.content || ''));
 }
 
 .mw-markdown :deep(a) {
-  color: var(--primary, #d97757);
+  color: var(--primary, #111827);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

@@ -172,7 +172,7 @@ function handleOpenSource(source) {
             <!-- User Message Card -->
             <div v-if="msg.role === 'user'" class="flex justify-end my-3">
               <div class="max-w-[85%] min-w-0 flex flex-col items-end">
-                <div class="bg-gradient-to-r from-[#D97757] to-[#e5896c] text-white px-5 py-3.5 rounded-2xl rounded-tr-xs shadow-xs text-sm md:text-base leading-relaxed">
+                <div class="bg-[#ecece8] text-[#151515] px-5 py-3.5 rounded-2xl rounded-tr-xs shadow-xs text-sm md:text-base leading-relaxed">
                   <p class="whitespace-pre-wrap">{{ msg.content }}</p>
                 </div>
                 <div class="text-right mt-1 text-[10px] font-mono text-gray-400 dark:text-zinc-500 tracking-wide mr-1 flex items-center space-x-1">
@@ -207,7 +207,7 @@ function handleOpenSource(source) {
       <!-- Floating Input Composer (When messages exist) -->
       <div class="px-4 pt-2 pb-6 z-10 shrink-0" v-if="chatStore.messages.length > 0 && chatStore.currentSession">
         <div class="max-w-3xl mx-auto">
-          <div class="bg-white dark:bg-[#141416] rounded-2xl transition-all shadow-xs border border-gray-200/80 dark:border-zinc-800 p-2.5 focus-within:border-[#D97757]/60 focus-within:ring-1 focus-within:ring-[#D97757]/30">
+          <div class="bg-white dark:bg-[#141416] rounded-2xl transition-all shadow-xs border border-gray-200/80 dark:border-zinc-800 p-2.5 focus-within:border-gray-900 dark:focus-within:border-white focus-within:ring-1 focus-within:ring-gray-900/20 dark:focus-within:ring-white/20">
             <textarea
               v-model="inputContent"
               @keydown.enter.prevent="handleSend"
@@ -227,7 +227,7 @@ function handleOpenSource(source) {
                 <button
                   @click="handleSend"
                   :disabled="!inputContent.trim() || chatStore.thinking"
-                  class="p-2 bg-[#D97757] text-white rounded-xl hover:bg-[#C4654A] disabled:opacity-50 transition-all active:scale-95 shadow-xs flex items-center justify-center w-8 h-8 cursor-pointer"
+                  class="p-2 bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white disabled:opacity-50 transition-all active:scale-95 shadow-xs flex items-center justify-center w-8 h-8 rounded-lg cursor-pointer"
                 >
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
                 </button>
@@ -248,7 +248,7 @@ function handleOpenSource(source) {
           </div>
 
           <!-- Composer Box -->
-          <div class="bg-white dark:bg-[#141416] rounded-2xl shadow-xs border border-gray-200/80 dark:border-zinc-800 p-3 transition-all focus-within:border-[#D97757]/60 focus-within:ring-1 focus-within:ring-[#D97757]/30">
+          <div class="bg-white dark:bg-[#141416] rounded-2xl shadow-xs border border-gray-200/80 dark:border-zinc-800 p-3 transition-all focus-within:border-gray-900 dark:focus-within:border-white focus-within:ring-1 focus-within:ring-gray-900/20 dark:focus-within:ring-white/20">
             <textarea
               v-model="inputContent"
               @keydown.enter.prevent="handleSend"
@@ -266,7 +266,7 @@ function handleOpenSource(source) {
               <button
                 @click="handleSend"
                 :disabled="!inputContent.trim() || chatStore.thinking"
-                class="px-4 py-2 bg-[#D97757] text-white rounded-xl hover:bg-[#C4654A] disabled:opacity-50 transition-all font-medium flex items-center space-x-1 shadow-xs cursor-pointer"
+                class="px-4 py-2 bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white disabled:opacity-50 transition-all font-medium flex items-center space-x-1 shadow-xs cursor-pointer rounded-xl"
               >
                 <span>Send</span>
                 <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>

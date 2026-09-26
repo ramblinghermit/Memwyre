@@ -8,7 +8,7 @@
     <div class="relative w-[700px] h-[600px] overflow-hidden rounded-xl bg-white dark:bg-zinc-900 text-left shadow-2xl transition-all flex flex-col">
       
       <!-- Close Button -->
-      <button @click="close" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors z-10">
+      <button @click="close" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors z-10 cursor-pointer">
         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -38,7 +38,7 @@
              </div>
              <h3 class="text-xl font-bold text-gray-900 dark:text-white">All Caught Up!</h3>
              <p class="text-gray-500 dark:text-gray-400 max-w-xs mx-auto">You've reviewed all queued memories for today. Great job keeping your knowledge fresh.</p>
-             <button @click="close" class="mt-2 px-6 py-2 bg-[#D97757] text-white rounded-lg hover:bg-[#C4654A] transition-colors font-medium">
+             <button @click="close" class="mt-2 px-6 py-2 bg-gray-900 hover:bg-black text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 rounded-lg transition-colors font-medium cursor-pointer">
                  Return to Dashboard
              </button>
         </div>
@@ -76,7 +76,7 @@
           <button 
             @click="prev" 
             :disabled="currentIndex === 0"
-            class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 border border-gray-300 dark:border-zinc-700 rounded-lg hover:bg-white dark:hover:bg-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 border border-gray-300 dark:border-zinc-700 rounded-lg hover:bg-white dark:hover:bg-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
           >
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -86,7 +86,7 @@
           
           <button 
             @click="next" 
-            class="px-6 py-2 text-sm font-medium bg-[#D97757] text-white hover:opacity-80 rounded-lg transition-colors shadow-sm flex items-center gap-2"
+            class="px-6 py-2 text-sm font-medium bg-gray-900 hover:bg-black text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 rounded-lg transition-colors shadow-sm flex items-center gap-2 cursor-pointer"
           >
               {{ isLast ? 'Finish Review' : 'Next Memory' }}
               <svg v-if="!isLast" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

@@ -22,7 +22,7 @@
             v-model="searchQuery"
             type="text"
             placeholder="Search"
-            class="w-full bg-gray-100/80 dark:bg-[#18181b] border border-gray-200/80 dark:border-zinc-800 rounded-full pl-9 pr-8 py-1.5 text-xs sm:text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#D97757] dark:focus:border-[#D97757] transition-all"
+            class="w-full bg-gray-100/80 dark:bg-[#18181b] border border-gray-200/80 dark:border-zinc-800 rounded-full pl-9 pr-8 py-1.5 text-xs sm:text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 focus:outline-none focus:border-gray-900 dark:focus:border-white transition-all"
           />
           <button
             v-if="searchQuery"
@@ -100,10 +100,10 @@
                 :key="sort.id"
                 @click="currentSort = sort.id; isSortMenuOpen = false"
                 class="w-full px-3 py-1.5 text-xs text-left flex items-center justify-between text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-                :class="{ 'font-semibold text-[#D97757] dark:text-[#D97757]': currentSort === sort.id }"
+                :class="{ 'font-semibold text-gray-900 dark:text-white': currentSort === sort.id }"
               >
                 <span>{{ sort.label }}</span>
-                <svg v-if="currentSort === sort.id" class="w-3.5 h-3.5 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg v-if="currentSort === sort.id" class="w-3.5 h-3.5 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                 </svg>
               </button>
@@ -160,15 +160,74 @@
     <!-- Main Content Area -->
     <div v-if="loading" class="flex-1 flex items-center justify-center text-sm text-gray-400 dark:text-zinc-500 py-12">
       <div class="flex flex-col items-center gap-2">
-        <svg class="w-6 h-6 animate-spin text-[#D97757]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="w-6 h-6 animate-spin text-gray-900 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582M20 20v-5h-.581M5.582 9A7.97 7.97 0 0112 4a8 8 0 017.446 5.032M18.418 15A7.97 7.97 0 0112 20a8 8 0 01-7.446-5.032" />
         </svg>
         <span>Loading memories...</span>
       </div>
     </div>
 
-    <!-- Empty State -->
-    <div v-else-if="filteredItems.length === 0" class="flex-1 relative overflow-hidden mt-4">
+    <!-- Empty State: No search results -->
+    <div v-else-if="searchQuery && filteredItems.length === 0" class="h-64 flex flex-col items-center justify-center text-center p-8">
+      <div class="w-12 h-12 rounded-2xl bg-gray-100 dark:bg-zinc-800/80 flex items-center justify-center text-gray-400 dark:text-zinc-500 mb-3 shadow-2xs">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+      <h3 class="text-sm font-semibold text-gray-900 dark:text-zinc-100">No memories found</h3>
+      <p class="text-xs text-gray-400 dark:text-zinc-500 mt-1 max-w-sm">No results match "{{ searchQuery }}".</p>
+      <button @click="searchQuery = ''" class="mt-4 text-xs font-semibold text-[#1D9BF0] hover:underline cursor-pointer">
+        Clear search
+      </button>
+    </div>
+
+    <!-- Empty State: Workspace has memories, but current filter has no items -->
+    <div v-else-if="items.length > 0 && filteredItems.length === 0" class="h-64 flex flex-col items-center justify-center text-center p-8">
+      <div class="w-12 h-12 rounded-2xl bg-gray-100 dark:bg-zinc-800/80 flex items-center justify-center text-gray-400 dark:text-zinc-500 mb-3 shadow-2xs">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+      </div>
+      <h3 class="text-sm font-semibold text-gray-900 dark:text-zinc-100">No memories in this view</h3>
+      <p class="text-xs text-gray-400 dark:text-zinc-500 mt-1 max-w-sm">
+        There are no memories under this filter.
+      </p>
+      <button @click="activeCategory = 'all'" class="mt-4 text-xs font-semibold text-[#1D9BF0] hover:underline cursor-pointer">
+        View all memories
+      </button>
+    </div>
+
+    <!-- Empty State: Absolutely NO memories in workspace at all (Get Started Guide) -->
+    <div v-else-if="items.length === 0" class="flex-1 overflow-y-auto custom-scrollbar min-h-0 pt-2 pb-8 space-y-5">
+      <!-- Top Banner: No memories yet -->
+      <div class="rounded-2xl border border-gray-200/90 dark:border-zinc-800 bg-white dark:bg-[#121214] p-5 sm:p-6 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-start sm:items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-[#1D9BF0]/10 text-[#1D9BF0] flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">No memories yet</h2>
+              <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-0.5 leading-relaxed">
+                Your memory vault is empty. Connect an IDE or agent using the setup guide below to start syncing project context automatically.
+              </p>
+            </div>
+          </div>
+          <router-link
+            to="/add-context"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-[#1D9BF0] hover:bg-[#1A8CD8] transition-all shadow-xs shrink-0 self-start sm:self-auto cursor-pointer"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Create memory</span>
+          </router-link>
+        </div>
+      </div>
+
+      <!-- Quick Setup Guide -->
       <EmptyStateCarousel />
     </div>
 
@@ -176,7 +235,7 @@
     <div v-else-if="viewMode === 'list'" class="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar min-h-0">
       
       <!-- Table Header Row -->
-      <div class="grid grid-cols-12 gap-3 px-3 py-2 text-xs font-medium text-gray-400 dark:text-zinc-500 border-b border-gray-100 dark:border-zinc-800/40 sticky top-0 bg-[#F9FAFB] dark:bg-[#0B0B0C] z-10">
+      <div class="grid grid-cols-12 gap-3 px-3 py-2 text-xs font-medium text-gray-400 dark:text-zinc-500 border-b border-gray-100 dark:border-zinc-800/40 sticky top-0 bg-white dark:bg-[#0B0B0C] z-10">
         <div class="col-span-7 sm:col-span-6 md:col-span-7">Name</div>
         <div class="col-span-3 sm:col-span-3 md:col-span-3 text-left">Modified</div>
         <div class="col-span-2 sm:col-span-3 md:col-span-2 text-right">Size</div>
@@ -207,7 +266,7 @@
 
             <!-- Title & Snippet Preview -->
             <div class="min-w-0 flex-1">
-              <p class="text-xs sm:text-sm font-medium text-gray-900 dark:text-zinc-200 group-hover:text-[#D97757] dark:group-hover:text-[#D97757] truncate transition-colors">
+              <p class="text-xs sm:text-sm font-medium text-gray-900 dark:text-zinc-200 group-hover:text-black dark:group-hover:text-white truncate transition-colors">
                 {{ item.title || 'Untitled Memory' }}
               </p>
               <p v-if="item.tags && item.tags.length > 0" class="text-[11px] text-gray-400 dark:text-zinc-500 truncate mt-0.5">
@@ -218,7 +277,7 @@
 
           <!-- Modified Date -->
           <div class="col-span-3 sm:col-span-3 md:col-span-3 text-left">
-            <span class="text-xs text-gray-500 dark:text-zinc-400 whitespace-nowrap">
+            <span class="text-xs text-gray-400 dark:text-zinc-500 whitespace-nowrap">
               {{ formatRelativeDate(item.created_at || item.updated_at) }}
             </span>
           </div>
@@ -292,7 +351,7 @@
               </span>
             </div>
 
-            <h4 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-[#D97757] line-clamp-1 transition-colors">
+            <h4 class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-black dark:group-hover:text-white line-clamp-1 transition-colors">
               {{ item.title || 'Untitled Memory' }}
             </h4>
             <p class="text-xs text-gray-500 dark:text-zinc-400 line-clamp-2 mt-1 leading-relaxed">

@@ -176,6 +176,6 @@
   animation: float 6s ease-in-out infinite;
 }
 .hero-serif {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Aleo', 'DM Serif Text', serif;
 }
 </style>

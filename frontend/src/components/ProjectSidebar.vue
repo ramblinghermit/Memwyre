@@ -3,8 +3,8 @@
     <div class="p-4 border-b border-gray-100 dark:border-gray-700 space-y-3">
       <h3 class="text-sm font-bold text-gray-900 dark:text-white">Projects</h3>
       <div class="flex gap-2">
-        <input v-model="newProjectName" @keyup.enter="create" class="flex-1 min-w-0 text-xs border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1 bg-white dark:bg-surface text-gray-900 dark:text-white" placeholder="New project" />
-        <button @click="create" class="shrink-0 text-xs px-2.5 py-1 rounded-md bg-[#D97757] hover:bg-[#C4654A] text-white font-bold transition-colors">Add</button>
+        <input v-model="newProjectName" @keyup.enter="create" class="flex-1 min-w-0 text-xs border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1 bg-white dark:bg-surface text-gray-900 dark:text-white focus:outline-none focus:border-gray-900 dark:focus:border-white transition-colors" placeholder="New project" />
+        <button @click="create" class="shrink-0 text-xs px-2.5 py-1 rounded-md bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white font-bold transition-colors cursor-pointer">Add</button>
       </div>
     </div>
     <div class="flex-1 overflow-y-auto p-2 space-y-1">

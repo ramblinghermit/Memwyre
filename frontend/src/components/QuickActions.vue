@@ -30,7 +30,7 @@
     <!-- Main Toggle Button -->
     <button 
       @click="isOpen = !isOpen"
-      :class="['flex items-center justify-center w-14 h-14 bg-[#D97757] text-white rounded-full shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#D97757]/30', isOpen ? 'rotate-45' : '']"
+      :class="['flex items-center justify-center w-14 h-14 bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white rounded-full shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#1D9BF0]/20 cursor-pointer', isOpen ? 'rotate-45' : '']"
     >
       <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
     </button>
@@ -105,7 +105,7 @@ const actions = [
   { 
     label: 'Review Inbox', 
     icon: InboxIcon, 
-    color: 'bg-orange-500', 
+    color: 'bg-gray-900 text-white dark:bg-white dark:text-gray-900', 
     handler: () => router.push('/inbox') 
   },
   // { 

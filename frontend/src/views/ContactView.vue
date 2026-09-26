@@ -222,7 +222,7 @@ const resetForm = () => {
 
 <style scoped>
 .hero-serif {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Aleo', 'DM Serif Text', serif;
 }
 
 .fade-slide-enter-active,

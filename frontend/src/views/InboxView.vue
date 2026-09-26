@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 no-scrollbar flex flex-col min-h-0 overflow-y-auto overflow-x-hidden lg:overflow-hidden select-none">
+  <div class="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-5 lg:px-6 py-6 no-scrollbar flex flex-col min-h-0 overflow-y-auto overflow-x-hidden lg:overflow-hidden select-none">
     
     <!-- Top Header: Title, Count Badge, Search Pill, and Approve All -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 shrink-0">
@@ -20,7 +20,7 @@
             v-model="searchQuery"
             type="text"
             placeholder="Search inbox..."
-            class="w-full bg-gray-100/80 dark:bg-[#18181b] border border-gray-200/80 dark:border-zinc-800 rounded-full pl-9 pr-8 py-1.5 text-xs sm:text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#D97757] dark:focus:border-[#D97757] transition-all"
+            class="w-full bg-gray-100/80 dark:bg-[#18181b] border border-gray-200/80 dark:border-zinc-800 rounded-full pl-9 pr-8 py-1.5 text-xs sm:text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 focus:outline-none focus:border-gray-900 dark:focus:border-white transition-all"
           />
           <button
             v-if="searchQuery"
@@ -110,12 +110,12 @@
             <span class="text-xs font-medium text-gray-600 dark:text-zinc-400 truncate">
               {{ item.source === 'agent_drop' ? 'External AI Agent' : (item.source || 'Direct Entry') }}
             </span>
-            <span v-if="item.status === 'approved'" class="inline-flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+            <span v-if="item.status === 'approved'" class="inline-flex items-center gap-1.5 text-[11px] px-2 py-0.5 rounded-full font-medium bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40 shrink-0">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
               Approved
             </span>
-            <span v-else class="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 font-medium">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0"></span>
+            <span v-else class="inline-flex items-center gap-1.5 text-[11px] px-2 py-0.5 rounded-full font-medium bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-zinc-400 border border-gray-200/70 dark:border-zinc-700/60 shrink-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-zinc-500 shrink-0"></span>
               Pending
             </span>
           </div>
@@ -127,9 +127,9 @@
 
         <!-- Card Title & Raw Text Snippet (Email style) -->
         <div class="mb-2.5">
-          <h3 class="text-sm sm:text-base font-semibold text-gray-900 dark:text-zinc-100 leading-snug">
+          <h4 class="text-xs sm:text-sm font-semibold text-gray-900 dark:text-zinc-100 leading-snug">
             {{ item.details || 'Untitled Memory' }}
-          </h3>
+          </h4>
           
           <p v-if="item.content" class="text-xs text-gray-500 dark:text-zinc-400 mt-1 line-clamp-2 leading-relaxed font-normal">
             {{ getRawPreview(item.content) }}
@@ -178,7 +178,7 @@
               @blur="activeTagInputId = null; quickTagText = ''"
               placeholder="tag..."
               autofocus
-              class="text-xs w-20 px-2 py-0.5 rounded-md bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-200 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:border-[#D97757]"
+              class="text-xs w-20 px-2 py-0.5 rounded-md bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-200 border border-gray-200 dark:border-zinc-700 focus:outline-none focus:border-gray-900 dark:focus:border-white"
             />
           </div>
 
@@ -214,7 +214,7 @@
               v-if="item.status !== 'approved'"
               @click="approveItem(item)"
               :disabled="actionLoading[item.id]"
-              class="px-3.5 py-1.5 text-xs font-semibold text-white bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 dark:text-gray-900 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-2xs active:scale-95 ml-1"
+              class="px-3.5 py-1.5 text-xs font-semibold text-white dark:text-gray-900 bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-2xs active:scale-95 ml-1"
             >
               <LoadingLogo v-if="actionLoading[item.id] === 'approve'" size="sm" class="w-3.5 h-3.5" />
               <svg v-else class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

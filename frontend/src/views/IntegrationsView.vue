@@ -2,7 +2,7 @@
   <div class="h-full flex-1 flex flex-col transition-colors duration-300 font-sans overflow-hidden bg-transparent">
     
     <!-- 1. DETAIL VIEW (When an integration is selected or route is /integrations/:id) -->
-    <main v-if="currentDetailItem" class="flex-1 overflow-y-auto custom-scrollbar w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col animate-fade-in">
+    <main v-if="currentDetailItem" class="flex-1 overflow-y-auto custom-scrollbar w-full max-w-5xl mx-auto py-6 px-4 sm:px-5 lg:px-6 flex flex-col animate-fade-in">
       
       <!-- Back Navigation Link -->
       <button 
@@ -52,7 +52,7 @@
             class="px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer shadow-xs"
             :class="isItemConnected(currentDetailItem) 
               ? 'bg-gray-200 dark:bg-zinc-800 text-gray-900 dark:text-zinc-200 hover:bg-gray-300 dark:hover:bg-zinc-700' 
-              : 'bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200'"
+              : 'bg-[#1D9BF0] text-white hover:bg-[#1A8CD8]'"
           >
             <span v-if="isItemConnected(currentDetailItem)">
               {{ currentDetailItem.id === 'notion' ? 'Sync Workspace' : 'Installed' }}
@@ -168,7 +168,7 @@
             </div>
             <button
               @click="handleDetailPrimaryAction"
-              class="px-4 py-2 rounded-xl text-xs font-semibold bg-[#D97757] hover:bg-[#c66849] text-white transition-colors cursor-pointer shrink-0 shadow-xs"
+              class="px-4 py-2 rounded-xl text-xs font-semibold bg-[#1D9BF0] hover:bg-[#1A8CD8] text-white transition-colors cursor-pointer shrink-0 shadow-xs"
             >
               {{ connectionsStatus[currentDetailItem.id]?.connected ? 'Sync Workspace Now' : 'Connect with OAuth' }}
             </button>
@@ -186,7 +186,7 @@
               <a 
                 href="https://chromewebstore.google.com" 
                 target="_blank"
-                class="px-4 py-2 rounded-xl text-xs font-semibold bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-colors shrink-0"
+                class="px-4 py-2 rounded-xl text-xs font-semibold bg-[#1D9BF0] text-white hover:bg-[#1A8CD8] transition-colors shrink-0"
               >
                 Chrome Web Store ↗
               </a>
@@ -270,7 +270,7 @@
     </main>
 
     <!-- 2. MAIN STORE VIEW (Grid & Search) -->
-    <main v-else class="flex-1 overflow-y-auto custom-scrollbar w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col">
+    <main v-else class="flex-1 overflow-y-auto custom-scrollbar w-full max-w-5xl mx-auto py-6 px-4 sm:px-5 lg:px-6 flex flex-col">
       
       <!-- Top Header & Search Bar -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
@@ -287,7 +287,7 @@
           <input
             v-model="searchQuery"
             placeholder="Search integrations"
-            class="w-full bg-gray-100/90 dark:bg-[#18181b] text-xs sm:text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 rounded-full pl-9 pr-8 py-2 border border-gray-200/80 dark:border-zinc-800/90 focus:border-[#D97757] dark:focus:border-[#D97757] focus:outline-none transition-all"
+            class="w-full bg-gray-100/90 dark:bg-[#18181b] text-xs sm:text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-zinc-500 rounded-full pl-9 pr-8 py-2 border border-gray-200/80 dark:border-zinc-800/90 focus:border-gray-900 dark:focus:border-white focus:outline-none transition-all"
           />
           <button 
             v-if="searchQuery" 
@@ -374,7 +374,7 @@
 
               <div class="min-w-0">
                 <div class="flex items-center gap-1.5">
-                  <h4 class="text-sm font-semibold text-gray-900 dark:text-zinc-100 group-hover:text-[#D97757] transition-colors truncate">{{ item.name }}</h4>
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-zinc-100 group-hover:text-black dark:group-hover:text-white transition-colors truncate">{{ item.name }}</h4>
                   <span v-if="item.isComingSoon" class="px-1 py-0.2 text-[9px] uppercase font-bold tracking-wider rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">Soon</span>
                   <span v-else-if="item.isPro" class="px-1 py-0.2 text-[9px] uppercase font-bold tracking-wider rounded bg-blue-500/10 text-blue-600 dark:text-blue-400">PRO</span>
                 </div>
@@ -441,7 +441,7 @@
 
                 <div class="min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <h4 class="text-sm font-semibold text-gray-900 dark:text-zinc-100 group-hover:text-[#D97757] transition-colors truncate">{{ item.name }}</h4>
+                    <h4 class="text-sm font-semibold text-gray-900 dark:text-zinc-100 group-hover:text-black dark:group-hover:text-white transition-colors truncate">{{ item.name }}</h4>
                     <span v-if="item.isComingSoon" class="px-1 py-0.2 text-[9px] uppercase font-bold tracking-wider rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">Soon</span>
                     <span v-else-if="item.isPro" class="px-1 py-0.2 text-[9px] uppercase font-bold tracking-wider rounded bg-blue-500/10 text-blue-600 dark:text-blue-400">PRO</span>
                   </div>

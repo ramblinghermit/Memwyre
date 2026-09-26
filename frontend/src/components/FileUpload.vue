@@ -5,7 +5,7 @@
         @dragleave.prevent="isDragging = false" 
         @drop.prevent="handleDrop"
         :class="['relative border-2 border-dashed rounded-xl p-4 text-center transition-all duration-200 ease-in-out cursor-pointer group', 
-                 isDragging ? 'border-black bg-gray-50 dark:border-white dark:bg-white/10' : 'border-gray-200 dark:border-gray-700 hover:border-[#D97757] hover:bg-gray-50 dark:hover:bg-gray-700/50']"
+                 isDragging ? 'border-black bg-gray-50 dark:border-white dark:bg-white/10' : 'border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:bg-gray-50 dark:hover:bg-gray-700/50']"
       >
           <input type="file" ref="fileInput" @change="handleFileChange" class="hidden" />
           
@@ -23,7 +23,7 @@
                    </div>
                    <span class="text-sm font-medium text-gray-900 dark:text-white truncate">{{ selectedFile.name }}</span>
                </div>
-               <button @click.stop="uploadFile" class="px-3 py-1.5 bg-[#D97757] text-white hover:bg-[#C4654A] text-xs font-bold rounded-md transition-colors shadow-sm">
+               <button @click.stop="uploadFile" class="px-3 py-1.5 bg-gray-900 hover:bg-black text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 text-xs font-bold rounded-md transition-colors shadow-sm cursor-pointer">
                    Upload
                </button>
           </div>

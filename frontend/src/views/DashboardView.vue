@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 no-scrollbar flex flex-col min-h-0 overflow-y-auto overflow-x-hidden lg:overflow-hidden">
+  <div class="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-5 lg:px-6 py-6 no-scrollbar flex flex-col min-h-0 overflow-y-auto overflow-x-hidden lg:overflow-hidden">
     <div class="flex-1 min-h-0 flex flex-col h-full w-full">
       <div id="tour-timeline" class="flex-1 min-h-0 flex flex-col overflow-hidden">
         <AIInteractionTimeline 
@@ -60,9 +60,9 @@ const newWorkspaceName = ref('');
 const workspaceDropdownRef = ref(null);
 
 const currentProjectName = computed(() => {
-  if (projectStore.currentProjectId === null) return 'All Workspaces';
+  if (projectStore.currentProjectId === null) return 'All Spaces';
   const proj = projectStore.projects.find((p) => p.id === projectStore.currentProjectId);
-  return proj ? proj.name : 'All Workspaces';
+  return proj ? proj.name : 'All Spaces';
 });
 
 const selectWorkspace = (id) => {
@@ -80,9 +80,9 @@ const handleCreateWorkspace = async () => {
     }
     newWorkspaceName.value = '';
     isWorkspaceMenuOpen.value = false;
-    toast.success('Workspace created');
+    toast.success('Space created');
   } catch (err) {
-    toast.error('Failed to create workspace');
+    toast.error('Failed to create space');
   }
 };
 
