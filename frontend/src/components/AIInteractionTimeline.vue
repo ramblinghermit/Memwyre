@@ -235,10 +235,10 @@
     <div v-else-if="viewMode === 'list'" class="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar min-h-0">
       
       <!-- Table Header Row -->
-      <div class="grid grid-cols-12 gap-3 px-3 py-2 text-xs font-medium text-gray-400 dark:text-zinc-500 border-b border-gray-100 dark:border-zinc-800/40 sticky top-0 bg-white dark:bg-[#0B0B0C] z-10">
-        <div class="col-span-7 sm:col-span-6 md:col-span-7">Name</div>
-        <div class="col-span-3 sm:col-span-3 md:col-span-3 text-left">Modified</div>
-        <div class="col-span-2 sm:col-span-3 md:col-span-2 text-right">Size</div>
+      <div class="grid grid-cols-12 gap-2 sm:gap-3 px-3 py-2 text-xs font-medium text-gray-400 dark:text-zinc-500 border-b border-gray-100 dark:border-zinc-800/40 sticky top-0 bg-white dark:bg-[#0B0B0C] z-10">
+        <div class="col-span-8 sm:col-span-6 md:col-span-7">Name</div>
+        <div class="col-span-4 sm:col-span-3 md:col-span-3 text-right sm:text-left">Modified</div>
+        <div class="hidden sm:block col-span-3 md:col-span-2 text-right">Size</div>
       </div>
 
       <!-- Item Rows -->
@@ -247,20 +247,20 @@
           v-for="item in paginatedItems"
           :key="item.id"
           @click="$emit('open-item', item)"
-          class="grid grid-cols-12 gap-3 px-3 py-3 rounded-xl hover:bg-gray-100/80 dark:hover:bg-zinc-900/60 cursor-pointer transition-colors group items-center"
+          class="grid grid-cols-12 gap-2 sm:gap-3 px-3 py-3 rounded-xl hover:bg-gray-100/80 dark:hover:bg-zinc-900/60 cursor-pointer transition-colors group items-center"
         >
           <!-- Name & Icon -->
-          <div class="col-span-7 sm:col-span-6 md:col-span-7 flex items-center gap-3 min-w-0 pr-2">
+          <div class="col-span-8 sm:col-span-6 md:col-span-7 flex items-center gap-2.5 sm:gap-3 min-w-0 pr-1 sm:pr-2">
             <!-- Icon/Thumbnail Container -->
-            <div class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
               <template v-if="getItemThumbnail(item)">
                 <img :src="getItemThumbnail(item)" class="w-full h-full object-cover rounded-lg" />
               </template>
               <template v-else-if="getTimelineIcon(item).type === 'svg'">
-                <div v-html="getTimelineIcon(item).content" class="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center"></div>
+                <div v-html="getTimelineIcon(item).content" class="w-5 h-5 sm:w-7 sm:h-7 flex items-center justify-center"></div>
               </template>
               <template v-else>
-                <img :src="getTimelineIcon(item).content" class="w-6 h-6 sm:w-7 sm:h-7 object-contain" :class="isOpenAIItem(item) ? 'dark:invert' : ''" />
+                <img :src="getTimelineIcon(item).content" class="w-5 h-5 sm:w-7 sm:h-7 object-contain" :class="isOpenAIItem(item) ? 'dark:invert' : ''" />
               </template>
             </div>
 
@@ -269,21 +269,21 @@
               <p class="text-xs sm:text-sm font-medium text-gray-900 dark:text-zinc-200 group-hover:text-black dark:group-hover:text-white truncate transition-colors">
                 {{ item.title || 'Untitled Memory' }}
               </p>
-              <p v-if="item.tags && item.tags.length > 0" class="text-[11px] text-gray-400 dark:text-zinc-500 truncate mt-0.5">
-                {{ item.tags.slice(0, 3).map(t => `#${t}`).join(' ') }}
+              <p class="text-[10px] sm:text-[11px] text-gray-400 dark:text-zinc-500 truncate mt-0.5">
+                {{ (item.tags && item.tags.length > 0) ? item.tags.slice(0, 3).map(t => `#${t}`).join(' ') : (item.summary || item.snippet || item.content || '') }}
               </p>
             </div>
           </div>
 
           <!-- Modified Date -->
-          <div class="col-span-3 sm:col-span-3 md:col-span-3 text-left">
-            <span class="text-xs text-gray-400 dark:text-zinc-500 whitespace-nowrap">
+          <div class="col-span-4 sm:col-span-3 md:col-span-3 text-right sm:text-left">
+            <span class="text-[11px] sm:text-xs text-gray-400 dark:text-zinc-500 whitespace-nowrap">
               {{ formatRelativeDate(item.created_at || item.updated_at) }}
             </span>
           </div>
 
-          <!-- Size / Token Count + Actions on Hover -->
-          <div class="col-span-2 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-2 text-right">
+          <!-- Size / Token Count + Actions on Hover (hidden on mobile) -->
+          <div class="hidden sm:flex col-span-3 md:col-span-2 items-center justify-end gap-2 text-right">
             <span class="text-xs text-gray-400 dark:text-zinc-500 whitespace-nowrap group-hover:hidden">
               {{ formatItemSize(item) }}
             </span>

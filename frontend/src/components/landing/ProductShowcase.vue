@@ -48,7 +48,10 @@
                       <span class="text-xs text-gray-500 font-medium">perplexity</span>
                     </div>
                     <span
-                      class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold w-fit bg-orange-100 text-orange-700">Pending</span>
+                      class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium w-fit bg-gray-100 text-gray-600 border border-gray-200/70">
+                      <span class="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0"></span>
+                      Pending
+                    </span>
                   </div>
                   <span class="text-[10px] text-gray-400">Just now</span>
                 </div>
@@ -63,7 +66,10 @@
                       <span class="text-xs text-gray-500 font-medium">gemini</span>
                     </div>
                     <span
-                      class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold w-fit bg-orange-100 text-orange-700">Pending</span>
+                      class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium w-fit bg-gray-100 text-gray-600 border border-gray-200/70">
+                      <span class="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0"></span>
+                      Pending
+                    </span>
                   </div>
                   <span class="text-[10px] text-gray-400">5h ago</span>
                 </div>
@@ -78,7 +84,10 @@
                       <span class="text-xs text-gray-500 font-medium">openclaw</span>
                     </div>
                     <span
-                      class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold w-fit bg-green-100 text-green-700">Approved</span>
+                      class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium w-fit bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+                      Approved
+                    </span>
                   </div>
                   <span class="text-[10px] text-gray-400">8d ago</span>
                 </div>

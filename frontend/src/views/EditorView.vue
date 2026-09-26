@@ -179,8 +179,8 @@
                         <div class="grid grid-cols-[70px_1fr] items-center gap-2">
                              <label class="text-xs text-gray-400 dark:text-zinc-500 font-medium">Status</label>
                              <div class="flex items-center gap-1.5">
-                                 <span class="w-1.5 h-1.5 rounded-full" :class="docMetadata.status === 'approved' ? 'bg-emerald-500' : 'bg-amber-500'"></span>
-                                 <span class="text-xs font-medium capitalize" :class="docMetadata.status === 'approved' ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'">
+                                 <span class="w-1.5 h-1.5 rounded-full" :class="docMetadata.status === 'approved' ? 'bg-emerald-500' : 'bg-gray-400 dark:bg-zinc-500'"></span>
+                                 <span class="text-xs font-medium capitalize" :class="docMetadata.status === 'approved' ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-zinc-400'">
                                      {{ docMetadata.status || 'Active' }}
                                  </span>
                              </div>

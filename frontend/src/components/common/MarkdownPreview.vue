@@ -31,6 +31,15 @@ const html = computed(() => renderChatMarkdown(props.content || ''));
   line-height: 1.65;
 }
 
+.mw-markdown--compact :deep(h1) { font-size: 1.15rem !important; margin: 0.75rem 0 0.4rem !important; line-height: 1.35 !important; }
+.mw-markdown--compact :deep(h2) { font-size: 1.05rem !important; margin: 0.65rem 0 0.35rem !important; line-height: 1.35 !important; }
+.mw-markdown--compact :deep(h3) { font-size: 0.95rem !important; margin: 0.55rem 0 0.25rem !important; line-height: 1.35 !important; }
+.mw-markdown--compact :deep(h4) { font-size: 0.88rem !important; margin: 0.45rem 0 0.2rem !important; line-height: 1.35 !important; }
+.mw-markdown--compact :deep(p) { margin: 0.35rem 0 !important; line-height: 1.58 !important; }
+.mw-markdown--compact :deep(pre) { margin: 0.5rem 0 !important; padding: 0.6rem 0.8rem !important; font-size: 0.8em !important; }
+.mw-markdown--compact :deep(ul),
+.mw-markdown--compact :deep(ol) { margin: 0.35rem 0 0.5rem 1.2rem !important; }
+
 .mw-markdown :deep(h1),
 .mw-markdown :deep(h2),
 .mw-markdown :deep(h3),

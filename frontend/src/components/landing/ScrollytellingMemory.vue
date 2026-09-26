@@ -10,41 +10,21 @@
     <!-- Subtle tactile background texture -->
     <div class="absolute inset-0 bg-[radial-gradient(#d1ccc2_1px,transparent_1px)] [background-size:20px_20px] opacity-35 pointer-events-none"></div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-8 sm:px-8 lg:px-12">
-      <!-- Sticky Header: Breadcrumb + Headline + Mobile Stepper -->
-      <div class="sticky top-0 z-50 bg-[#F5F2EC]/95 backdrop-blur-md -mx-8 sm:-mx-8 lg:-mx-12 px-8 sm:px-8 lg:px-12 pt-6 sm:pt-8 pb-4 sm:pb-6 mb-8 border-b border-gray-200/60 shadow-[0_4px_20px_rgba(245,242,236,0.8)]">
-
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <!-- Header: Breadcrumb + Headline (Sticky on Desktop, Natural Scroll on Mobile) -->
+      <div class="relative lg:sticky lg:top-0 z-20 lg:z-50 bg-transparent lg:bg-[#F5F2EC]/95 lg:backdrop-blur-md pt-6 sm:pt-8 pb-3 sm:pb-5 lg:pb-6 mb-4 sm:mb-6 lg:mb-8 lg:-mx-12 lg:px-12 lg:border-b lg:border-gray-200/60 lg:shadow-[0_4px_20px_rgba(245,242,236,0.8)]">
         <!-- Headline & Subtitle -->
-        <div class="max-w-3xl mb-4 sm:mb-6 lg:mb-0">
-          <h2 class="hero-serif text-3xl sm:text-4xl lg:text-[44px] tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] mb-3.5">
+        <div class="max-w-3xl">
+          <h2 class="hero-serif text-2xl sm:text-4xl lg:text-[44px] tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] mb-2.5 sm:mb-3.5">
             The memory that self-compiles.
           </h2>
-          <p class="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+          <p class="text-xs sm:text-base text-gray-600 leading-relaxed font-normal">
             Work happens in your tools. Memwyre compiles it into continuous shared memory, then recalls it before any tool acts.
           </p>
         </div>
-
-        <!-- Mobile Quick Stepper Navigation (visible on < lg) -->
-        <div class="lg:hidden flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
-          <button
-            v-for="(step, idx) in steps"
-            :key="idx"
-            @click="selectStep(idx)"
-            class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border"
-            :class="activeStep === idx 
-              ? 'bg-white text-gray-900 border-gray-300 shadow-xs' 
-              : idx < activeStep
-                ? 'bg-white/90 text-gray-800 border-gray-200'
-                : 'bg-white/60 text-gray-400 border-gray-200/60 hover:text-gray-700'"
-          >
-            <img v-if="step.iconSrc" :src="step.iconSrc" :alt="step.navLabel" class="w-3.5 h-3.5 object-contain" />
-            <span v-else class="w-1.5 h-1.5 rounded-full" :class="activeStep === idx ? 'bg-[#D97756]' : 'bg-gray-300'"></span>
-            <span>{{ step.navLabel }}</span>
-          </button>
-        </div>
       </div>
 
-      <!-- Main Two-Column Centered Stage Container -->
+      <!-- Main Stage Container (Responsive Flex: Col on Mobile with sticky top sheet, Row on Desktop) -->
       <div ref="containerRef" class="relative flex flex-col lg:flex-row items-start justify-center gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 w-full">
         
         <!-- SVG Connecting Curve (Desktop Only, z-40 to stay visible OVER right div) -->
@@ -76,14 +56,14 @@
           </g>
         </svg>
 
-        <!-- Left Column: Compact Scrolling Event Stream Cards -->
-        <div class="w-full lg:w-[440px] xl:w-[460px] shrink-0 flex flex-col space-y-16 sm:space-y-20 lg:space-y-24 xl:space-y-28 pt-[216px] pb-[40px] lg:pb-[150px]">
+        <!-- Left Column: Compact Scrolling Event Stream Cards (Scrolls behind sticky sheet on mobile) -->
+        <div class="w-full lg:w-[440px] xl:w-[460px] shrink-0 flex flex-col space-y-16 sm:space-y-20 lg:space-y-24 xl:space-y-28 pt-8 sm:pt-10 lg:pt-[216px] pb-24 lg:pb-[150px] relative z-10 order-last lg:order-first">
           <div
             v-for="(step, idx) in steps"
             :key="idx"
             :ref="el => { if (el) cardRefs[idx] = el }"
             @click="selectStep(idx, true)"
-            class="relative rounded-[22px] p-5 sm:p-6 cursor-pointer group transition-all duration-300 ease-out"
+            class="relative rounded-[22px] p-5 sm:p-6 cursor-pointer group transition-all duration-300 ease-out z-10"
             :class="[
               activeStep === idx
                 ? 'bg-white border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.05)] opacity-100'
@@ -120,12 +100,12 @@
           </div>
         </div>
 
-        <!-- Right Column: Minimal Compact Sticky Living Memory Sheet (Slightly Bigger) -->
+        <!-- Right Column: Living Memory Sheet (Direct child of containerRef: Sticky on Top on Mobile, Sticky at Offset on Desktop) -->
         <div 
           ref="rightCardRef"
-          class="w-full lg:w-[500px] xl:w-[540px] shrink-0 sticky top-[220px] lg:top-[240px] self-start z-20"
+          class="w-full lg:w-[500px] xl:w-[540px] shrink-0 sticky top-0 lg:top-[220px] xl:top-[240px] self-start z-30 order-first lg:order-last bg-[#F5F2EC] lg:bg-transparent pt-2 pb-3 lg:pt-0 lg:pb-0"
         >
-          <div class="bg-white rounded-[24px] p-7 sm:p-8 md:p-9 border border-black/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.04),0_1px_3px_rgba(0,0,0,0.02)] relative">
+          <div class="bg-white rounded-2xl sm:rounded-[24px] p-5 sm:p-7 md:p-9 border border-black/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.04),0_1px_3px_rgba(0,0,0,0.02)] relative">
             
             <!-- Subtle Header -->
             <div class="text-[11px] text-gray-400 font-normal mb-2.5">
@@ -235,7 +215,6 @@
 
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -353,40 +332,42 @@ const selectStep = (idx, scroll = false) => {
 let scrollRaf = null;
 
 const onScroll = () => {
-    if (typeof window === 'undefined') return;
-    if (scrollRaf) cancelAnimationFrame(scrollRaf);
-  
-    scrollRaf = requestAnimationFrame(() => {
-      if (!cardRefs.value.length) return;
-      
-      let newActiveIndex = -1;
-      let focalY = window.innerHeight * 0.45; // Default focal line for mobile
+  if (typeof window === 'undefined') return;
+  if (scrollRaf) cancelAnimationFrame(scrollRaf);
 
-      // Dynamically use the bottom of the right div as the focal line on desktop
-      if (rightCardRef.value && window.innerWidth >= 1024) {
-        focalY = rightCardRef.value.getBoundingClientRect().bottom - 20; 
+  scrollRaf = requestAnimationFrame(() => {
+    if (!cardRefs.value.length) return;
+    
+    let newActiveIndex = -1;
+    let focalY = window.innerHeight * 0.45;
+
+    if (rightCardRef.value) {
+      const sheetBottom = rightCardRef.value.getBoundingClientRect().bottom;
+      if (window.innerWidth >= 1024) {
+        // Desktop: Align relative to bottom of sticky sheet
+        focalY = sheetBottom - 20;
+      } else {
+        // Mobile: Trigger as card approaches bottom of sticky top sheet
+        focalY = sheetBottom + 40;
       }
-  
-      cardRefs.value.forEach((card, idx) => {
-        if (!card) return;
-        const rect = card.getBoundingClientRect();
-        
-        // Use the top of the card for alignment on desktop, center for mobile
-        const cardTarget = window.innerWidth >= 1024 ? rect.top : (rect.top + rect.height / 2);
-        
-        // If the card has crossed the focal line, it becomes the active step candidate.
-        // Because cards are sequential, the last one to cross the line wins.
-        if (cardTarget <= focalY) {
-          newActiveIndex = idx;
-        }
-      });
-  
-      if (newActiveIndex !== activeStep.value) {
-        activeStep.value = newActiveIndex;
+    }
+
+    cardRefs.value.forEach((card, idx) => {
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const cardTarget = rect.top;
+      
+      if (cardTarget <= focalY) {
+        newActiveIndex = idx;
       }
-      updateConnector();
     });
-  };
+
+    if (newActiveIndex !== activeStep.value) {
+      activeStep.value = newActiveIndex;
+    }
+    updateConnector();
+  });
+};
 
 let resizeObserver = null;
 

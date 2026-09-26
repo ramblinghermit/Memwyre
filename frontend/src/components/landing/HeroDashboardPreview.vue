@@ -4,7 +4,7 @@
     <div class="absolute inset-x-8 sm:inset-x-16 top-10 bottom-2 bg-black/[0.08] blur-3xl rounded-[3rem] pointer-events-none -z-10"></div>
 
     <!-- Outer Window Chrome (Mac Style) -->
-    <div class="w-full max-w-[1020px] lg:max-w-[1120px] rounded-xl overflow-hidden ring-1 ring-gray-200/80 flex flex-col h-[560px] sm:h-[650px] lg:h-[740px] bg-white shadow-[0_25px_70px_-15px_rgba(0,0,0,0.12),0_12px_32px_-10px_rgba(0,0,0,0.08),0_4px_12px_-2px_rgba(0,0,0,0.04)] relative z-10">
+    <div class="w-full max-w-[1020px] lg:max-w-[1120px] rounded-xl overflow-hidden ring-1 ring-gray-200/80 flex flex-col h-[590px] xs:h-[640px] sm:h-[690px] lg:h-[740px] bg-white shadow-[0_25px_70px_-15px_rgba(0,0,0,0.12),0_12px_32px_-10px_rgba(0,0,0,0.08),0_4px_12px_-2px_rgba(0,0,0,0.04)] relative z-10">
       
       <!-- Fake Browser Bar -->
       <div class="h-8 sm:h-9 bg-[#F9FAFB] border-b border-gray-200/80 flex items-center px-3.5 shrink-0 justify-between">
@@ -325,10 +325,10 @@
             <div class="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar min-h-0">
               
               <!-- Table Header Row -->
-              <div class="grid grid-cols-12 gap-3 px-3 py-2 text-xs font-medium text-gray-400 border-b border-gray-100 sticky top-0 bg-white z-10">
-                <div class="col-span-7 sm:col-span-6 md:col-span-7">Name</div>
-                <div class="col-span-3 sm:col-span-3 md:col-span-3 text-left">Modified</div>
-                <div class="col-span-2 sm:col-span-3 md:col-span-2 text-right">Size</div>
+              <div class="grid grid-cols-12 gap-2 sm:gap-3 px-3 py-2 text-xs font-medium text-gray-400 border-b border-gray-100 sticky top-0 bg-white z-10">
+                <div class="col-span-8 sm:col-span-6 md:col-span-7">Name</div>
+                <div class="col-span-4 sm:col-span-3 md:col-span-3 text-right sm:text-left">Modified</div>
+                <div class="hidden sm:block col-span-3 md:col-span-2 text-right">Size</div>
               </div>
 
               <!-- Item Rows -->
@@ -337,34 +337,34 @@
                   v-for="(item, index) in filteredMemories"
                   :key="item.id || index"
                   @click="openMemory(item)"
-                  class="grid grid-cols-12 gap-3 px-3 py-3 rounded-xl hover:bg-gray-100/80 cursor-pointer transition-colors group items-center"
+                  class="grid grid-cols-12 gap-2 sm:gap-3 px-3 py-3 rounded-xl hover:bg-gray-100/80 cursor-pointer transition-colors group items-center"
                 >
                   <!-- Name & Icon -->
-                  <div class="col-span-7 sm:col-span-6 md:col-span-7 flex items-center gap-3 min-w-0 pr-2">
-                    <div class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
-                      <img v-if="item.iconSrc" :src="item.iconSrc" class="w-6 h-6 sm:w-7 sm:h-7 object-contain" :class="item.iconClass" />
-                      <div v-else v-html="item.iconSvg" class="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center"></div>
+                  <div class="col-span-8 sm:col-span-6 md:col-span-7 flex items-center gap-2.5 sm:gap-3 min-w-0 pr-1 sm:pr-2">
+                    <div class="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
+                      <img v-if="item.iconSrc" :src="item.iconSrc" class="w-5 h-5 sm:w-7 sm:h-7 object-contain" :class="item.iconClass" />
+                      <div v-else v-html="item.iconSvg" class="w-5 h-5 sm:w-7 sm:h-7 flex items-center justify-center"></div>
                     </div>
                     
                     <div class="min-w-0 flex-1">
                       <p class="text-xs sm:text-sm font-medium text-gray-900 truncate transition-colors">
                         {{ item.title || item.details || 'Untitled Memory' }}
                       </p>
-                      <p class="text-[11px] text-gray-400 truncate mt-0.5">
+                      <p class="text-[10px] sm:text-[11px] text-gray-400 truncate mt-0.5">
                         {{ item.content || item.snippet || item.summary || '' }}
                       </p>
                     </div>
                   </div>
 
                   <!-- Modified Date -->
-                  <div class="col-span-3 sm:col-span-3 md:col-span-3 text-left">
-                    <span class="text-xs text-gray-400 whitespace-nowrap">
+                  <div class="col-span-4 sm:col-span-3 md:col-span-3 text-right sm:text-left">
+                    <span class="text-[11px] sm:text-xs text-gray-400 whitespace-nowrap">
                       {{ item.time }}
                     </span>
                   </div>
 
-                  <!-- Size / Token Count -->
-                  <div class="col-span-2 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-2 text-right">
+                  <!-- Size / Token Count (hidden on mobile) -->
+                  <div class="hidden sm:flex col-span-3 md:col-span-2 items-center justify-end gap-2 text-right">
                     <span class="text-xs text-gray-400 whitespace-nowrap group-hover:hidden">
                       {{ item.size }}
                     </span>
@@ -1045,6 +1045,56 @@
                 </div>
               </aside>
             </div>
+          </div>
+
+          <!-- Mobile Bottom Navigation Bar (sm:hidden) -->
+          <div class="sm:hidden flex items-center justify-around border-t border-gray-200/90 bg-white/95 backdrop-blur-md px-2 py-1.5 shrink-0 z-30">
+            <!-- Home / Memories -->
+            <button
+              @click="setView('memories')"
+              class="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-[10px] font-medium transition-colors"
+              :class="(currentView === 'memories' || (currentView === 'view-memory' && previousView === 'memories')) ? 'text-gray-950 font-bold' : 'text-gray-500 hover:text-gray-900'"
+            >
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+              <span>Home</span>
+            </button>
+
+            <!-- Spaces -->
+            <button
+              @click="setView('spaces')"
+              class="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-[10px] font-medium transition-colors relative"
+              :class="(currentView === 'spaces' || (currentView === 'view-memory' && previousView === 'spaces')) ? 'text-gray-950 font-bold' : 'text-gray-500 hover:text-gray-900'"
+            >
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+              <span>Spaces</span>
+            </button>
+
+            <!-- Inbox -->
+            <button
+              @click="setView('inbox')"
+              class="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-[10px] font-medium transition-colors relative"
+              :class="(currentView === 'inbox' || (currentView === 'view-memory' && previousView === 'inbox')) ? 'text-gray-950 font-bold' : 'text-gray-500 hover:text-gray-900'"
+            >
+              <div class="relative">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                </svg>
+                <span v-if="inboxItems.length > 0" class="absolute -top-1 -right-2 min-w-[14px] h-[14px] flex items-center justify-center text-[9px] font-bold bg-[#D97757] text-white rounded-full px-0.5 ring-1 ring-white">{{ inboxItems.length }}</span>
+              </div>
+              <span>Inbox</span>
+            </button>
+
+            <!-- Ask AI -->
+            <button
+              @click="setView('chat')"
+              class="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg text-[10px] font-medium transition-colors"
+              :class="currentView === 'chat' ? 'text-gray-950 font-bold' : 'text-gray-500 hover:text-gray-900'"
+            >
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+              <span>Ask AI</span>
+            </button>
           </div>
         </div>
       </div>

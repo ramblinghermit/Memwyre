@@ -201,7 +201,7 @@ const resourceSections = [
     class="absolute top-0 left-0 right-0 z-50 transition-colors duration-200"
     :class="isMobileMenuOpen ? 'bg-white shadow-xs' : 'bg-transparent'"
   >
-    <div class="w-full px-6 sm:px-8 lg:px-12">
+    <div class="w-full px-4 sm:px-6 lg:px-12">
       <div class="flex justify-between items-center h-16">
         <!-- Logo -->
         <router-link to="/" class="flex items-center group">

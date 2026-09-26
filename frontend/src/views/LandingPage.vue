@@ -19,12 +19,12 @@
       </div>
 
       <div
-        class="max-w-7xl mx-auto px-8 sm:px-8 lg:px-12 flex flex-col items-center relative z-20 w-full pt-6 sm:pt-10 lg:pt-12">
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col items-center relative z-20 w-full pt-4 sm:pt-10 lg:pt-12">
 
         <div class="text-center w-full flex flex-col items-center px-0 sm:px-4">
 
           <h1
-            class="animate-fade-in-up hero-serif font-normal text-3xl sm:text-4xl md:text-5xl lg:text-[62px] xl:text-[68px] tracking-[-0.02em] leading-[1.16] lg:leading-[76px] xl:leading-[82px] text-[rgb(1,1,16)] max-w-4xl mx-auto">
+            class="animate-fade-in-up hero-serif font-normal text-[28px] xs:text-3xl sm:text-4xl md:text-5xl lg:text-[62px] xl:text-[68px] tracking-[-0.02em] leading-[1.16] lg:leading-[76px] xl:leading-[82px] text-[rgb(1,1,16)] max-w-4xl mx-auto">
             Your AI should remember<span class="inline sm:hidden">&nbsp;</span><br class="hidden sm:inline" />
             <span class="inline-grid grid-cols-1 grid-rows-1 text-center align-baseline">
               <Transition name="word-rotate">
@@ -36,7 +36,7 @@
           </h1>
 
           <p
-            class="animate-fade-in-up animation-delay-150 text-balance text-sm sm:text-base text-gray-600 leading-relaxed mt-3.5 sm:mt-4 max-w-2xl font-normal mx-auto">
+            class="animate-fade-in-up animation-delay-150 text-balance text-xs sm:text-base text-gray-600 leading-relaxed mt-3 sm:mt-4 max-w-2xl font-normal mx-auto px-1 sm:px-0">
             Memwyre is the AI Memory Platform that gives every AI tool, agent,<br class="hidden sm:inline" /> and conversation a persistent, shared memory.
           </p>
 
@@ -45,13 +45,13 @@
             <!-- Buttons with rounded corners -->
             <div class="flex flex-row items-center justify-center gap-2.5 sm:gap-3 w-full">
               <router-link to="/signup"
-                class="w-1/2 flex-1 min-w-0 h-10 sm:h-11 px-3 sm:px-4 bg-black text-white font-medium sm:font-semibold rounded-lg border border-transparent hover:bg-gray-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/50 focus-visible:ring-offset-2 transition-all duration-200 shadow-2xs text-xs sm:text-sm inline-flex items-center justify-center text-center">
+                class="w-1/2 flex-1 min-w-0 h-11 px-3 sm:px-4 bg-black text-white font-medium sm:font-semibold rounded-lg border border-transparent hover:bg-gray-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/50 focus-visible:ring-offset-2 transition-all duration-200 shadow-2xs text-xs sm:text-sm inline-flex items-center justify-center text-center">
                 Get Started
               </router-link>
               <button
                 type="button"
                 @click="copyAgentPrompt"
-                class="relative w-1/2 flex-1 min-w-0 h-10 sm:h-11 px-3 sm:px-3.5 bg-white text-gray-800 font-medium sm:font-semibold rounded-lg border border-white hover:border-white hover:bg-gray-50 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/50 focus-visible:ring-offset-2 transition-all duration-200 text-xs sm:text-sm inline-flex items-center justify-between gap-1.5 sm:gap-2 shadow-2xs group cursor-pointer"
+                class="relative w-1/2 flex-1 min-w-0 h-11 px-3 sm:px-3.5 bg-white text-gray-800 font-medium sm:font-semibold rounded-lg border border-white hover:border-white hover:bg-gray-50 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/50 focus-visible:ring-offset-2 transition-all duration-200 text-xs sm:text-sm inline-flex items-center justify-between gap-1.5 sm:gap-2 shadow-2xs group cursor-pointer"
                 title="Copy agent setup prompt"
               >
                 <span class="truncate">{{ agentPromptCopied ? 'Copied!' : 'Setup for Agent' }}</span>
@@ -89,7 +89,7 @@
         </div>
 
         <!-- Dashboard UI below centered text -->
-        <div class="w-full mt-10 sm:mt-12 lg:mt-14 relative flex justify-center">
+        <div class="w-full mt-7 sm:mt-12 lg:mt-14 relative flex justify-center">
           <HeroDashboardPreview />
         </div>
 
@@ -379,22 +379,22 @@
 
     <!-- Works with every LLM & Tool Section (Ecosystem) -->
     <div id="ecosystem" data-theme="light" class="relative z-20 pt-8 sm:pt-10 lg:pt-12 pb-0 bg-white scroll-mt-20">
-      <div class="max-w-7xl mx-auto px-8 sm:px-8 lg:px-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
         <div class="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <h2 class="hero-serif text-2xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] mb-3 sm:mb-4">
             One memory layer. Every tool connected.
           </h2>
-          <p class="text-sm sm:text-base text-gray-500 leading-relaxed font-normal">
+          <p class="text-xs sm:text-base text-gray-500 leading-relaxed font-normal px-1 sm:px-0">
             Memwyre is not a standalone chatbot. It is a universal context layer that plugs directly into the models, editors, and terminal tools you already use every day.
           </p>
         </div>
 
         <!-- Continuous Horizontal Logo Marquee with Official Brand Lockups -->
-        <div class="-mx-6 sm:-mx-8 lg:-mx-12 bg-white relative z-20 mb-4 sm:mb-6 overflow-hidden py-2 sm:py-3 [mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
+        <div class="-mx-4 sm:-mx-6 lg:-mx-12 bg-white relative z-20 mb-4 sm:mb-6 overflow-hidden py-2 sm:py-3 [mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
           <!-- Gradient Fade Edges -->
-          <div class="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-32 md:w-44 bg-gradient-to-r from-white via-white/90 to-transparent z-20"></div>
-          <div class="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-32 md:w-44 bg-gradient-to-l from-white via-white/90 to-transparent z-20"></div>
+          <div class="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 md:w-44 bg-gradient-to-r from-white via-white/90 to-transparent z-20"></div>
+          <div class="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 md:w-44 bg-gradient-to-l from-white via-white/90 to-transparent z-20"></div>
 
           <div class="flex overflow-hidden select-none group">
             <!-- Track 1 -->
@@ -445,17 +445,17 @@
 
         <!-- Snippets of Use Cases (IDE/Agent Integrations & Multi-Model compatibility) -->
         <div class="relative z-20">
-          <div class="flex lg:grid flex-nowrap lg:grid-cols-3 items-stretch gap-4 sm:gap-5 lg:gap-5 overflow-x-auto no-scrollbar scrollbar-none snap-x snap-mandatory pb-1">
+          <div class="grid grid-cols-1 lg:grid-cols-3 items-stretch gap-5 sm:gap-6 lg:gap-5 w-full">
             
             <!-- Column 1: IDE Integration -->
-            <div class="w-[290px] sm:w-[390px] lg:w-full shrink-0 snap-align-start p-5 sm:p-7 md:p-8 flex flex-col text-left bg-white border border-gray-300/80 rounded-2xl overflow-hidden shadow-2xs">
+            <div class="w-full p-5 sm:p-7 md:p-8 flex flex-col text-left bg-white border border-gray-300/80 rounded-2xl overflow-hidden shadow-2xs">
               <div class="flex-1">
                 <h3 class="font-display text-xl font-extrabold text-gray-900 mb-2 sm:mb-3 tracking-tight">Native IDE Memory</h3>
                 <p class="text-gray-500 text-xs sm:text-sm leading-relaxed font-normal">
                   Connect your IDE directly via MCP. Past bug fixes, configuration choices, and API schemas become instantly searchable context inside Cursor, VS Code, or Windsurf.
                 </p>
               </div>
-              <div class="mt-4 sm:mt-5 -mx-5 sm:-mx-7 md:-mx-8 -mb-5 sm:-mb-7 md:-mb-8 flex items-center justify-center h-60 sm:h-68 md:h-76 overflow-hidden border-t border-gray-200/80 bg-[#F3C969] relative">
+              <div class="mt-4 sm:mt-5 -mx-5 sm:-mx-7 md:-mx-8 -mb-5 sm:-mb-7 md:-mb-8 flex items-center justify-center h-56 sm:h-68 md:h-76 overflow-hidden border-t border-gray-200/80 bg-[#F3C969] relative">
                 <!-- Subtle ambient curves matching the card aesthetic -->
                 <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full border border-white/40 pointer-events-none"></div>
                 <div class="absolute -bottom-28 -right-20 w-80 h-80 rounded-full border border-white/30 pointer-events-none"></div>
@@ -468,14 +468,14 @@
             </div>
             
             <!-- Column 2: Terminal Agents -->
-            <div class="w-[290px] sm:w-[390px] lg:w-full shrink-0 snap-align-start p-5 sm:p-7 md:p-8 flex flex-col text-left bg-white border border-gray-300/80 rounded-2xl overflow-hidden shadow-2xs">
+            <div class="w-full p-5 sm:p-7 md:p-8 flex flex-col text-left bg-white border border-gray-300/80 rounded-2xl overflow-hidden shadow-2xs">
               <div class="flex-1">
                 <h3 class="font-display text-xl font-extrabold text-gray-900 mb-2 sm:mb-3 tracking-tight">Code Agents</h3>
                 <p class="text-gray-500 text-xs sm:text-sm leading-relaxed font-normal">
                   Empower terminal tools like Claude Code and OpenClaw. Agents save debug results and project conventions, building cumulative operational memory.
                 </p>
               </div>
-              <div class="mt-4 sm:mt-5 -mx-5 sm:-mx-7 md:-mx-8 -mb-5 sm:-mb-7 md:-mb-8 h-60 sm:h-68 md:h-76 overflow-hidden border-t border-gray-200/80 bg-[#DB765A] relative flex items-start justify-start pt-7 pl-7 sm:pt-8 sm:pl-8">
+              <div class="mt-4 sm:mt-5 -mx-5 sm:-mx-7 md:-mx-8 -mb-5 sm:-mb-7 md:-mb-8 h-56 sm:h-68 md:h-76 overflow-hidden border-t border-gray-200/80 bg-[#DB765A] relative flex items-start justify-start pt-7 pl-7 sm:pt-8 sm:pl-8">
                 <!-- Subtle ambient curves matching Claude aesthetic -->
                 <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full border border-white/15 pointer-events-none"></div>
                 <div class="absolute -bottom-28 -right-20 w-80 h-80 rounded-full border border-white/10 pointer-events-none"></div>
@@ -489,14 +489,14 @@
             </div>
 
             <!-- Column 3: Multi-Model -->
-            <div class="w-[290px] sm:w-[390px] lg:w-full shrink-0 snap-align-start p-5 sm:p-7 md:p-8 flex flex-col text-left bg-white border border-gray-300/80 rounded-2xl overflow-hidden shadow-2xs">
+            <div class="w-full p-5 sm:p-7 md:p-8 flex flex-col text-left bg-white border border-gray-300/80 rounded-2xl overflow-hidden shadow-2xs">
               <div class="flex-1">
                 <h3 class="font-display text-xl font-extrabold text-gray-900 mb-2 sm:mb-3 tracking-tight">Works With Every LLM</h3>
                 <p class="text-gray-500 text-xs sm:text-sm leading-relaxed font-normal">
                   One shared memory layer across Claude, ChatGPT, and Gemini. If you explain a code pattern in ChatGPT, your Cursor agent retrieves it instantly when you ask.
                 </p>
               </div>
-              <div class="mt-4 sm:mt-5 -mx-5 sm:-mx-7 md:-mx-8 -mb-5 sm:-mb-7 md:-mb-8 flex items-center justify-center h-60 sm:h-68 md:h-76 overflow-hidden border-t border-gray-200/80 bg-[#3B828E] relative">
+              <div class="mt-4 sm:mt-5 -mx-5 sm:-mx-7 md:-mx-8 -mb-5 sm:-mb-7 md:-mb-8 flex items-center justify-center h-56 sm:h-68 md:h-76 overflow-hidden border-t border-gray-200/80 bg-[#3B828E] relative">
                 <!-- Subtle ambient curves matching style of card 2 in contrasting teal -->
                 <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full border border-white/20 pointer-events-none"></div>
                 <div class="absolute -bottom-28 -left-20 w-80 h-80 rounded-full border border-white/15 pointer-events-none"></div>
@@ -994,16 +994,16 @@
     <div id="benchmark" ref="benchmarkSectionRef" data-theme="light"
       class="relative pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 text-gray-900 z-25">
 
-      <div class="relative z-10 max-w-7xl mx-auto px-8 sm:px-8 lg:px-12">
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           <!-- Left Column: Title, Subtitle, and Metrics -->
           <div class="lg:col-span-5 text-left flex flex-col justify-end h-full">
             <div class="flex flex-col items-start mb-6">
-              <h2 class="hero-serif text-3xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] mb-3">
+              <h2 class="hero-serif text-2xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] mb-3">
                 The LoCoMo Benchmark.
               </h2>
-              <p class="text-gray-500 text-sm sm:text-base font-medium mb-3">1,540 questions &bull; 5 categories</p>
-              <p class="text-base text-gray-500 leading-relaxed font-normal mb-5 max-w-xl text-left">
+              <p class="text-gray-500 text-xs sm:text-base font-medium mb-3">1,540 questions &bull; 5 categories</p>
+              <p class="text-xs sm:text-base text-gray-500 leading-relaxed font-normal mb-5 max-w-xl text-left">
                 If your memory platform returns noisy facts or misses key details, your AI writes broken code. Retrieval quality dictates the quality of your AI outcomes. Here is how Memwyre v2 compares against Memwyre v1 on the LoCoMo long-context benchmark dataset:
               </p>
               
@@ -1018,19 +1018,19 @@
             </div>
             
             <!-- Metric Cards stacked vertically -->
-            <div class="space-y-3.5 w-full">
-              <div class="relative flex items-center gap-5 bg-white border border-gray-200/90 rounded-2xl p-5 shadow-2xs transition-all duration-200 hover:border-gray-300">
-                <div class="text-[#da765a] text-3xl sm:text-4xl font-extrabold tracking-tight font-display shrink-0">70.5%</div>
+            <div class="space-y-3 w-full">
+              <div class="relative flex items-center gap-4 sm:gap-5 bg-white border border-gray-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs transition-all duration-200 hover:border-gray-300">
+                <div class="text-[#da765a] text-2xl sm:text-4xl font-extrabold tracking-tight font-display shrink-0">70.5%</div>
                 <div class="text-left">
-                  <div class="text-gray-900 font-semibold text-sm sm:text-base leading-tight">Non-Adversarial Accuracy</div>
-                  <div class="text-gray-400 text-xs font-medium mt-1">Full 1,540 benchmark evaluation suite</div>
+                  <div class="text-gray-900 font-semibold text-xs sm:text-base leading-tight">Non-Adversarial Accuracy</div>
+                  <div class="text-gray-400 text-[11px] sm:text-xs font-medium mt-0.5 sm:mt-1">Full 1,540 benchmark evaluation suite</div>
                 </div>
               </div>
-              <div class="relative flex items-center gap-5 bg-white border border-gray-200/90 rounded-2xl p-5 shadow-2xs transition-all duration-200 hover:border-gray-300">
-                <div class="text-gray-900 text-3xl sm:text-4xl font-extrabold tracking-tight font-display shrink-0">4.9k</div>
+              <div class="relative flex items-center gap-4 sm:gap-5 bg-white border border-gray-200/90 rounded-2xl p-4 sm:p-5 shadow-2xs transition-all duration-200 hover:border-gray-300">
+                <div class="text-gray-900 text-2xl sm:text-4xl font-extrabold tracking-tight font-display shrink-0">4.9k</div>
                 <div class="text-left">
-                  <div class="text-gray-900 font-semibold text-sm sm:text-base leading-tight">Mean Context Tokens</div>
-                  <div class="text-gray-400 text-xs font-medium mt-1">vs 26k+ raw conversation tokens</div>
+                  <div class="text-gray-900 font-semibold text-xs sm:text-base leading-tight">Mean Context Tokens</div>
+                  <div class="text-gray-400 text-[11px] sm:text-xs font-medium mt-0.5 sm:mt-1">vs 26k+ raw conversation tokens</div>
                 </div>
               </div>
             </div>
@@ -1038,10 +1038,10 @@
 
           <!-- Right Column: Bar Chart -->
           <div class="lg:col-span-7 w-full h-full flex flex-col">
-            <div class="bg-white border border-gray-200/90 rounded-2xl p-6 sm:px-8 sm:pt-6 sm:pb-7 shadow-xs h-full flex flex-col justify-between">
-              <div class="hidden md:flex flex-col justify-between relative w-full h-full">
+            <div class="bg-white border border-gray-200/90 rounded-2xl p-4 sm:p-6 sm:px-8 sm:pt-6 sm:pb-7 shadow-xs h-full flex flex-col justify-between">
+              <div class="flex flex-col justify-between relative w-full h-full">
                 <!-- Chart Area -->
-                <div class="relative z-10 h-72 sm:h-96 flex items-end justify-between px-2 sm:px-4 xl:px-6 mb-4 sm:mb-5">
+                <div class="relative z-10 h-72 sm:h-96 flex items-end justify-between px-2 sm:px-4 xl:px-6 mb-2 sm:mb-5">
                   <!-- Horizontal subtle gridlines perfectly contained in chart area -->
                   <div class="absolute inset-x-2 sm:inset-x-4 xl:inset-x-6 inset-y-0 flex flex-col justify-between pointer-events-none z-0">
                     <div class="w-full border-t border-dashed border-gray-200/60"></div>
@@ -1160,8 +1160,16 @@
                   </div>
                 </div>
 
-                <!-- Bottom Segmented Category Filter (Modern Pill Tabs) -->
-                <div class="p-1 bg-gray-100/90 border border-gray-200/80 rounded-xl grid grid-cols-4 gap-1 text-xs sm:text-sm font-medium">
+                <!-- Mobile Category Labels directly under the bars -->
+                <div class="grid grid-cols-4 px-2 mb-3.5 sm:hidden text-center">
+                  <span class="text-[11px] font-medium text-gray-600">Single-hop</span>
+                  <span class="text-[11px] font-medium text-gray-600">Multi-hop</span>
+                  <span class="text-[11px] font-medium text-gray-600">Adversarial</span>
+                  <span class="text-[11px] font-medium text-gray-600">Temporal</span>
+                </div>
+
+                <!-- Bottom Segmented Category Filter (Modern Pill Tabs, desktop only) -->
+                <div class="hidden sm:grid p-1 bg-gray-100/90 border border-gray-200/80 rounded-xl grid-cols-4 gap-1 text-xs sm:text-sm font-medium">
                   <button 
                     @click="activeBenchmarkCategory = activeBenchmarkCategory === 'single' ? 'all' : 'single'" 
                     :class="activeBenchmarkCategory === 'single' ? 'bg-white text-gray-900 font-semibold shadow-2xs' : 'text-gray-500 hover:text-gray-800 hover:bg-white/60'"
@@ -1188,8 +1196,8 @@
                   </button>
                 </div>
 
-                <!-- Interactive Category Insight Card -->
-                <div class="mt-3.5 p-4 bg-gray-50/80 border border-gray-200/70 rounded-xl text-left transition-all">
+                <!-- Interactive Category Insight Card (desktop only) -->
+                <div class="hidden sm:block mt-3.5 p-4 bg-gray-50/80 border border-gray-200/70 rounded-xl text-left transition-all">
                   <div class="flex items-center justify-between text-xs font-semibold text-gray-900 mb-1">
                     <span>{{ benchmarkInsights[activeBenchmarkCategory].title }}</span>
                     <span class="text-[11px] text-gray-400 font-normal">
@@ -1202,9 +1210,9 @@
                 </div>
 
                 <!-- Legend and Footer -->
-                <div class="flex justify-between items-center mt-5 px-1 relative z-10 text-xs">
+                <div class="flex justify-center sm:justify-between items-center mt-3 sm:mt-5 px-1 relative z-10 text-xs">
                   <!-- Legend -->
-                  <div class="flex items-center gap-5">
+                  <div class="flex items-center gap-4 sm:gap-5">
                     <div class="flex items-center gap-2">
                       <span class="w-2.5 h-2.5 rounded-full bg-zinc-300 shrink-0"></span>
                       <span class="text-xs text-gray-500 font-medium">Memwyre v1</span>
@@ -1214,111 +1222,12 @@
                       <span class="text-xs text-gray-900 font-semibold">Memwyre v2</span>
                     </div>
                   </div>
-                  <!-- Sublabel -->
-                  <div class="text-[11px] text-gray-400 font-medium">
+                  <!-- Sublabel (desktop only) -->
+                  <div class="hidden sm:block text-[11px] text-gray-400 font-medium">
                     LoCoMo Long-Context Benchmark
                   </div>
                 </div>
 
-              </div>
-
-              <!-- Mobile horizontal chart version (visible on mobile only) -->
-              <div class="block md:hidden relative w-full text-left">
-                <div class="flex justify-between items-center mb-4">
-                  <h4 class="text-xs font-semibold text-gray-900">Accuracy Metrics</h4>
-                  <div class="flex items-center gap-3 text-xs">
-                    <span class="text-gray-400">Memwyre v1</span>
-                    <span class="text-[#da765a] font-bold">Memwyre v2</span>
-                  </div>
-                </div>
-                
-                <div class="space-y-4">
-                  <!-- Category 1: Single-hop -->
-                  <div class="space-y-1.5">
-                    <div class="flex justify-between items-center text-xs font-semibold text-gray-800">
-                      <span>Single-hop</span>
-                      <span class="text-[11px] text-gray-400">v1: 53.0% / <span class="text-[#da765a] font-bold">v2: 78.6%</span></span>
-                    </div>
-                    <div class="space-y-1">
-                      <!-- Previous Bar -->
-                      <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden relative">
-                        <div class="bg-zinc-300 h-full rounded-full transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '53.0%' : '0%' }"></div>
-                      </div>
-                      <!-- Memwyre Bar -->
-                      <div class="w-full bg-[#da765a]/15 h-2.5 rounded-full overflow-hidden relative">
-                        <div class="bg-[#da765a] h-full rounded-full transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '78.6%' : '0%' }"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Category 2: Multi-hop -->
-                  <div class="space-y-1.5">
-                    <div class="flex justify-between items-center text-xs font-semibold text-gray-800">
-                      <span>Multi-hop</span>
-                      <span class="text-[11px] text-gray-400">v1: 24.0% / <span class="text-[#da765a] font-bold">v2: 57.5%</span></span>
-                    </div>
-                    <div class="space-y-1">
-                      <!-- Previous Bar -->
-                      <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden relative">
-                        <div class="bg-zinc-300 h-full rounded-full transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '24.0%' : '0%' }"></div>
-                      </div>
-                      <!-- Memwyre Bar -->
-                      <div class="w-full bg-[#da765a]/15 h-2.5 rounded-full overflow-hidden relative">
-                        <div class="bg-[#da765a] h-full rounded-full transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '57.5%' : '0%' }"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Category 3: Adversarial -->
-                  <div class="space-y-1.5">
-                    <div class="flex justify-between items-center text-xs font-semibold text-gray-800">
-                      <span>Adversarial</span>
-                      <span class="text-[11px] text-gray-400">v1: 50.0% / <span class="text-[#da765a] font-bold">v2: 67.7%</span></span>
-                    </div>
-                    <div class="space-y-1">
-                      <!-- Previous Bar -->
-                      <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden relative">
-                        <div class="bg-zinc-300 h-full rounded-full transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '50.0%' : '0%' }"></div>
-                      </div>
-                      <!-- Memwyre Bar -->
-                      <div class="w-full bg-[#da765a]/15 h-2.5 rounded-full overflow-hidden relative">
-                        <div class="bg-[#da765a] h-full rounded-full transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '67.7%' : '0%' }"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Category 4: Temporal -->
-                  <div class="space-y-1.5">
-                    <div class="flex justify-between items-center text-xs font-semibold text-gray-800">
-                      <span>Temporal</span>
-                      <span class="text-[11px] text-gray-400">v1: 48.0% / <span class="text-[#da765a] font-bold">v2: 64.2%</span></span>
-                    </div>
-                    <div class="space-y-1">
-                      <!-- Previous Bar -->
-                      <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden relative">
-                        <div class="bg-zinc-300 h-full rounded-full transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '48.0%' : '0%' }"></div>
-                      </div>
-                      <!-- Memwyre Bar -->
-                      <div class="w-full bg-[#da765a]/15 h-2.5 rounded-full overflow-hidden relative">
-                        <div class="bg-[#da765a] h-full rounded-full transition-all duration-1000 ease-out origin-left scale-x-0" :class="{ 'scale-x-100': animateBars }" :style="{ width: animateBars ? '64.2%' : '0%' }"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Mobile Legend -->
-                <div class="flex justify-between items-center mt-6 text-xs text-gray-500 font-medium">
-                  <div class="flex items-center gap-4">
-                    <div class="flex items-center gap-1.5">
-                      <span class="w-2.5 h-2.5 bg-zinc-300 rounded-full"></span>
-                      <span>Memwyre v1</span>
-                    </div>
-                    <div class="flex items-center gap-1.5">
-                      <span class="w-2.5 h-2.5 bg-[#da765a] rounded-full"></span>
-                      <span class="text-gray-900 font-semibold">Memwyre v2</span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -1477,19 +1386,19 @@
 
     <!-- Blogs Section -->
     <div id="blog-section" data-theme="light" class="relative z-20 pt-8 sm:pt-10 lg:pt-12 pb-10 md:pb-16 bg-white">
-      <div class="max-w-7xl mx-auto px-8 sm:px-8 lg:px-12 text-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
         
         <!-- Heading -->
-        <h2 class="hero-serif text-3xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] mb-12">
+        <h2 class="hero-serif text-2xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)] mb-6 sm:mb-12">
           Latest from the Memwyre Blog
         </h2>
         
         <!-- Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12 text-left">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-8 lg:gap-12 text-left">
           
           <!-- Blog Card 1: OpenCode -->
-          <router-link to="/opencode-memory" class="group flex flex-row md:flex-col items-start md:items-stretch gap-4 md:gap-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 p-1">
-            <div class="w-24 h-16 md:w-full md:h-auto md:aspect-[16/10] shrink-0 rounded-md overflow-hidden border border-gray-200/85 bg-gray-50 flex items-center justify-center relative">
+          <router-link to="/opencode-memory" class="group flex flex-col items-stretch rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 hover:bg-gray-50/70 md:hover:bg-transparent transition-colors">
+            <div class="w-full aspect-[16/10] shrink-0 rounded-xl md:rounded-lg overflow-hidden border border-gray-200/85 bg-gray-50 flex items-center justify-center relative">
               <img 
                 src="/blog-covers/opencode-persistent-memory.png" 
                 alt="OpenCode Persistent Memory: Fix RAM Leaks & CLI Session Reset" 
@@ -1498,19 +1407,19 @@
                 @error="$event.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'"
               />
             </div>
-            <div class="flex-1">
-              <h3 class="text-sm md:text-base lg:text-lg font-bold text-[rgb(1,1,16)] leading-snug group-hover:text-[#D97756] transition-colors duration-250 md:mt-5 md:mb-2 font-sans">
+            <div class="flex-1 min-w-0 mt-3.5 sm:mt-4 md:mt-5">
+              <h3 class="text-base sm:text-base md:text-base lg:text-lg font-bold text-[rgb(1,1,16)] leading-snug group-hover:text-[#D97756] transition-colors duration-250 mb-1.5 md:mb-2 font-sans line-clamp-2">
                 OpenCode Persistent Memory: Fix RAM Leaks & CLI Session Reset
               </h3>
-              <div class="text-[10px] md:text-xs text-gray-500 font-sans mt-1 md:mt-0">
+              <div class="text-xs text-gray-500 font-sans">
                 August 4, 2026 &nbsp;&bull;&nbsp; CLI Plugins
               </div>
             </div>
           </router-link>
 
           <!-- Blog Card 2: Grok Bot -->
-          <router-link to="/grok-bot-memory" class="group flex flex-row md:flex-col items-start md:items-stretch gap-4 md:gap-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 p-1">
-            <div class="w-24 h-16 md:w-full md:h-auto md:aspect-[16/10] shrink-0 rounded-md overflow-hidden border border-gray-200/85 bg-gray-50 flex items-center justify-center relative">
+          <router-link to="/grok-bot-memory" class="group flex flex-col items-stretch rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 hover:bg-gray-50/70 md:hover:bg-transparent transition-colors">
+            <div class="w-full aspect-[16/10] shrink-0 rounded-xl md:rounded-lg overflow-hidden border border-gray-200/85 bg-gray-50 flex items-center justify-center relative">
               <img 
                 src="/blog-covers/grok-bot-shared-memory.png" 
                 alt="Grok Bot & Grok Build Shared Memory: Cross-Bot Agent State" 
@@ -1519,19 +1428,19 @@
                 @error="$event.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'"
               />
             </div>
-            <div class="flex-1">
-              <h3 class="text-sm md:text-base lg:text-lg font-bold text-[rgb(1,1,16)] leading-snug group-hover:text-[#D97756] transition-colors duration-250 md:mt-5 md:mb-2 font-sans">
+            <div class="flex-1 min-w-0 mt-3.5 sm:mt-4 md:mt-5">
+              <h3 class="text-base sm:text-base md:text-base lg:text-lg font-bold text-[rgb(1,1,16)] leading-snug group-hover:text-[#D97756] transition-colors duration-250 mb-1.5 md:mb-2 font-sans line-clamp-2">
                 Grok Bot & Grok Build Shared Memory: Cross-Bot Agent State
               </h3>
-              <div class="text-[10px] md:text-xs text-gray-500 font-sans mt-1 md:mt-0">
+              <div class="text-xs text-gray-500 font-sans">
                 August 4, 2026 &nbsp;&bull;&nbsp; Agent Memory
               </div>
             </div>
           </router-link>
 
           <!-- Blog Card 3: Claude Code -->
-          <router-link to="/blog/claude-code-memory-ingestion" class="group flex flex-row md:flex-col items-start md:items-stretch gap-4 md:gap-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 p-1">
-            <div class="w-24 h-16 md:w-full md:h-auto md:aspect-[16/10] shrink-0 rounded-md overflow-hidden border border-gray-200/85 bg-gray-50 flex items-center justify-center relative">
+          <router-link to="/blog/claude-code-memory-ingestion" class="group flex flex-col items-stretch rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 hover:bg-gray-50/70 md:hover:bg-transparent transition-colors">
+            <div class="w-full aspect-[16/10] shrink-0 rounded-xl md:rounded-lg overflow-hidden border border-gray-200/85 bg-gray-50 flex items-center justify-center relative">
               <img 
                 src="/blog-covers/claude-code-memory-ingestion.png" 
                 alt="Building Persistent Terminal Sessions: Claude Code Memory Ingestion" 
@@ -1540,11 +1449,11 @@
                 @error="$event.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'"
               />
             </div>
-            <div class="flex-1">
-              <h3 class="text-sm md:text-base lg:text-lg font-bold text-[rgb(1,1,16)] leading-snug group-hover:text-[#D97756] transition-colors duration-250 md:mt-5 md:mb-2 font-sans">
+            <div class="flex-1 min-w-0 mt-3.5 sm:mt-4 md:mt-5">
+              <h3 class="text-base sm:text-base md:text-base lg:text-lg font-bold text-[rgb(1,1,16)] leading-snug group-hover:text-[#D97756] transition-colors duration-250 mb-1.5 md:mb-2 font-sans line-clamp-2">
                 Building Persistent Terminal Sessions: Claude Code Memory Ingestion
               </h3>
-              <div class="text-[10px] md:text-xs text-gray-500 font-sans mt-1 md:mt-0">
+              <div class="text-xs text-gray-500 font-sans">
                 May 18, 2026 &nbsp;&bull;&nbsp; CLI Plugins
               </div>
             </div>
@@ -1559,26 +1468,26 @@
     <div class="w-full h-px bg-gray-300/80 pointer-events-none select-none relative z-30"></div>
 
     <div id="faq" data-theme="light" class="pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 bg-white relative z-25">
-      <div class="max-w-7xl mx-auto px-8 sm:px-8 lg:px-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
         <!-- Header Row -->
-        <div class="mb-10 text-left">
-          <h2 class="hero-serif text-3xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)]">
+        <div class="mb-6 sm:mb-10 text-left">
+          <h2 class="hero-serif text-2xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)]">
             Frequently asked questions.
           </h2>
         </div>
 
         <div class="border-t border-gray-200">
           <div v-for="(faq, index) in faqs" :key="index" class="border-b border-gray-200">
-            <button @click="toggleFaq(index)" class="flex justify-between items-center w-full text-left py-5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 rounded-sm px-2 -mx-2 transition-all duration-200">
-              <span class="text-base font-semibold text-gray-900 group-hover:text-[#D97756] transition-colors duration-200">{{
+            <button @click="toggleFaq(index)" class="flex justify-between items-center w-full text-left py-4 sm:py-5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 rounded-sm px-1 -mx-1 transition-all duration-200 cursor-pointer">
+              <span class="text-sm sm:text-base font-semibold text-gray-900 group-hover:text-[#D97756] transition-colors duration-200 pr-3">{{
                 faq.question }}</span>
-              <span class="ml-4 flex-shrink-0 text-gray-400 font-light text-2xl leading-none transition-colors duration-200 group-hover:text-[#D97756]">
+              <span class="ml-2 sm:ml-4 flex-shrink-0 text-gray-400 font-light text-2xl leading-none transition-colors duration-200 group-hover:text-[#D97756]">
                 <span v-if="faq.isOpen">&minus;</span>
                 <span v-else>+</span>
               </span>
             </button>
-            <div v-show="faq.isOpen" class="text-gray-500 pb-6 leading-relaxed text-sm sm:text-base pr-8">
+            <div v-show="faq.isOpen" class="text-gray-500 pb-5 leading-relaxed text-xs sm:text-base pr-4 sm:pr-8">
               {{ faq.answer }}
             </div>
           </div>
@@ -1591,7 +1500,7 @@
 
     <!-- Final CTA Section: Memory and Personality -->
     <div
-      class="pt-16 sm:pt-24 pb-8 sm:pb-12 text-center relative overflow-hidden craft-paper-black z-30">
+      class="pt-14 sm:pt-24 pb-8 sm:pb-12 text-center relative overflow-hidden craft-paper-black z-30">
       <!-- Craft Paper Noise & Fiber Texture -->
       <div class="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
         <!-- Studio top lighting falloff -->
@@ -1612,14 +1521,14 @@
       <!-- Numeric background animation -->
       <NumericBgAnimation :invert="false" class="absolute inset-0 z-0 opacity-[0.13] pointer-events-none" />
 
-      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 text-left">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 text-left">
         <div class="max-w-3xl text-left">
-          <h2 class="hero-serif text-4xl sm:text-6xl lg:text-[72px] tracking-[-0.02em] leading-[1.05] text-white">
+          <h2 class="hero-serif text-3xl sm:text-5xl lg:text-[72px] tracking-[-0.02em] leading-[1.08] text-white">
             The second brain <br class="hidden sm:inline" />
             <span class="block text-zinc-200">for your AI.</span>
           </h2>
 
-          <div class="mt-8 sm:mt-10">
+          <div class="mt-6 sm:mt-10">
             <router-link to="/signup"
               class="w-auto px-7 py-3 sm:px-9 sm:py-3.5 bg-white text-[#0c0d10] font-bold rounded-full hover:bg-zinc-100 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D97756]/50 focus-visible:ring-offset-2 transition-all duration-200 shadow-md text-sm sm:text-base inline-flex items-center justify-center">
               Get Started
@@ -2519,20 +2428,16 @@ html {
 }
 
 /* General mobile optimizations for all mobile screens */
-@media (max-width: 512px) {
+@media (max-width: 640px) {
   .hero-wash {
-    padding-top: 3rem !important;
+    padding-top: 4.5rem !important;
     padding-bottom: 2rem !important;
-    min-height: calc(100svh - 64px) !important;
-  }
-
-  .hero-wash .pt-20 {
-    padding-top: 1.5rem !important;
+    min-height: auto !important;
   }
 
   .hero-wash h1 {
-    font-size: 2.25rem !important;
-    line-height: 1.25 !important;
+    font-size: 1.875rem !important;
+    line-height: 1.2 !important;
   }
 
   .hero-wash h1 br {
@@ -2542,22 +2447,13 @@ html {
   .hero-wash p {
     margin-top: 0.75rem !important;
     font-size: 0.875rem !important;
-    line-height: 1.45 !important;
+    line-height: 1.5 !important;
   }
 
-  .hero-wash .relative.inline-flex.p-3 {
-    margin-top: 1rem !important;
-    padding: 0.375rem !important;
-  }
-
-  /* Compact padding for sections to reduce scroll depth */
-  #what-we-do,
-  #llm-compatibility,
-  #comparison,
-  #features,
+  /* Compact padding for active sections to reduce scroll depth */
   #how-it-works,
-  #benchmark,
   #ecosystem,
+  #benchmark,
   #blog-section,
   #faq {
     padding-top: 2rem !important;
@@ -2565,70 +2461,21 @@ html {
   }
 
   /* Compact section headings */
-  #what-we-do h2,
-  #llm-compatibility h2,
-  #comparison h2,
-  #features h2,
   #how-it-works h2,
-  #benchmark h2,
   #ecosystem h2,
+  #benchmark h2,
   #blog-section h2,
   #faq h2 {
-    font-size: 1.75rem !important;
+    font-size: 1.625rem !important;
     margin-bottom: 0.75rem !important;
     line-height: 1.2 !important;
   }
 
   /* Reduce margins on division lines */
-  #what-we-do .mb-12,
-  #llm-compatibility .mb-12,
-  #comparison .mb-8,
-  #features .mb-12,
-  #how-it-works .mb-12,
-  #benchmark .mb-8,
   #ecosystem .mb-16,
   #blog-section .mb-12,
   #faq .mb-16 {
     margin-bottom: 1.25rem !important;
-  }
-}
-
-/* Specific optimizations for tall aspect ratio mobile viewports (19.5:9, 20:9, 21:9) */
-@media (max-width: 512px) and (max-aspect-ratio: 9/17) {
-  .hero-wash {
-    min-height: calc(100svh - 64px) !important;
-    padding-top: 4.5rem !important;
-    padding-bottom: 4.5rem !important;
-  }
-  
-  .hero-wash h1 {
-    font-size: 2.375rem !important;
-    line-height: 1.2 !important;
-  }
-
-  .hero-wash p {
-    margin-top: 1.25rem !important;
-    font-size: 0.95rem !important;
-    line-height: 1.5 !important;
-  }
-
-  .hero-wash .relative.inline-flex.p-3 {
-    margin-top: 2rem !important;
-    padding: 0.5rem !important;
-  }
-
-  /* Give sections a bit more breathing room on tall flagships */
-  #what-we-do,
-  #llm-compatibility,
-  #comparison,
-  #features,
-  #how-it-works,
-  #benchmark,
-  #ecosystem,
-  #blog-section,
-  #faq {
-    padding-top: 3.5rem !important;
-    padding-bottom: 3.5rem !important;
   }
 }
 
