@@ -4,7 +4,7 @@
     <!-- Top Header -->
     <div class="mb-6 shrink-0">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Settings</h2>
-      <p class="text-sm text-gray-500 dark:text-zinc-400 mt-1">Manage your workspace preferences, appearance, and account credentials.</p>
+      <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-1">Manage your workspace preferences, appearance, and account credentials.</p>
     </div>
 
     <!-- Category Filter Tabs -->

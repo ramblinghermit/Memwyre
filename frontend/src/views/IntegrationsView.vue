@@ -276,7 +276,7 @@
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Integrations</h1>
-          <p class="text-sm text-gray-500 dark:text-zinc-400 mt-1">Work with Memwyre across your favorite tools and agent backplanes.</p>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-1">Work with Memwyre across your favorite tools and agent backplanes.</p>
         </div>
 
         <!-- Search Bar Capsule -->

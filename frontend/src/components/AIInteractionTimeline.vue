@@ -10,6 +10,9 @@
             {{ filteredItems.length }}
           </span>
         </div>
+        <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-1">
+          Browse, filter, and search your captured AI memories and context.
+        </p>
       </div>
 
       <div class="flex items-center gap-3 w-full sm:w-auto">

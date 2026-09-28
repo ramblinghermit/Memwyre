@@ -3,11 +3,16 @@
     
     <!-- Top Header: Title, Count Badge, Search Pill, and Approve All -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 shrink-0">
-      <div class="flex items-center gap-2.5">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Inbox</h2>
-        <span v-if="filteredItems.length > 0" class="text-xs px-2 py-0.5 rounded-full font-semibold bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300">
-          {{ filteredItems.length }}
-        </span>
+      <div>
+        <div class="flex items-center gap-2.5">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Inbox</h2>
+          <span v-if="filteredItems.length > 0" class="text-xs px-2 py-0.5 rounded-full font-semibold bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300">
+            {{ filteredItems.length }}
+          </span>
+        </div>
+        <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-1">
+          Review, approve, or discard captured context before it syncs to memory.
+        </p>
       </div>
 
       <div class="flex items-center gap-3 w-full sm:w-auto">

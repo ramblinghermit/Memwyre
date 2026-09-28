@@ -495,7 +495,7 @@ const toast = useToast();
 
 const activeTab = ref('active');
 const searchQuery = ref('');
-const viewMode = ref('grid');
+const viewMode = ref('list');
 
 const isWorkspaceModalOpen = ref(false);
 const editingProject = ref(null);

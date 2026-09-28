@@ -13,7 +13,7 @@
             {{ billing.plan || 'Free' }}
           </span>
         </div>
-        <p class="text-sm text-gray-500 dark:text-zinc-400 mt-1">Manage your membership, daily token allowances, and renewal settings.</p>
+        <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-1">Manage your membership, daily token allowances, and renewal settings.</p>
       </div>
 
       <!-- Dev Mode Badge -->

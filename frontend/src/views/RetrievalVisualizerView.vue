@@ -2,8 +2,8 @@
   <div class="h-screen flex flex-col transition-colors duration-300 font-sans overflow-hidden bg-gray-50 dark:bg-[#121212]">
     <main class="flex-1 overflow-hidden w-full max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8 flex flex-col h-full">
       <div class="flex-none mb-6">
-          <h1 class="text-3xl font-bold text-gray-900 dark:text-text-primary">Retrieval Pipeline Visualizer</h1>
-          <p class="text-gray-500 dark:text-gray-400 mt-2">Debug and visualize the internal steps of the vector retrieval and reranking process.</p>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Retrieval Pipeline Visualizer</h1>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-1">Debug and visualize the internal steps of the vector retrieval and reranking process.</p>
       </div>
 
       <div class="flex-none bg-white dark:bg-surface shadow rounded-lg p-6 border border-gray-200 dark:border-border mb-6">

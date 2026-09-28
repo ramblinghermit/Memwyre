@@ -5,7 +5,7 @@
     <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6 shrink-0">
       <div>
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Add Context</h2>
-        <p class="text-sm text-gray-500 dark:text-zinc-400 mt-1">
+        <p class="text-xs sm:text-sm text-gray-500 dark:text-zinc-400 mt-1">
           Choose a method to add context, memories, articles, and documents to your Brain Vault.
         </p>
       </div>

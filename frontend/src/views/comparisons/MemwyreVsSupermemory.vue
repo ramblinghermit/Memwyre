@@ -94,14 +94,6 @@
                 </button>
               </div>
             </div>
-
-            <!-- AltHunt Featured Badge -->
-            <div class="pt-6 border-t border-gray-100 dark:border-gray-900">
-              <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">FEATURED COMPARISON</div>
-              <a href="https://althunt.io/compare/memwyre-vs-supermemory" target="_blank" rel="noopener" class="inline-block hover:opacity-90 transition-opacity">
-                <img src="https://althunt.io/badges/featured-light.svg" alt="Featured on AltHunt" width="168" height="36" class="rounded shadow-sm" />
-              </a>
-            </div>
           </div>
         </aside>
 

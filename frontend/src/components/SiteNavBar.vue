@@ -1,9 +1,14 @@
 <script setup>
-import { ref, watch, onUnmounted } from 'vue';
+import { ref, computed, watch, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
 const router = useRouter();
+
+const isSolidNav = computed(() => {
+  const p = route.path;
+  return p.startsWith('/blog') || p.startsWith('/research') || p.startsWith('/ai-memory-benchmark-locomo');
+});
 
 const scrollToSection = (hash) => {
   closeAll();
@@ -198,8 +203,12 @@ const resourceSections = [
 
 <template>
   <header 
-    class="absolute top-0 left-0 right-0 z-50 transition-colors duration-200"
-    :class="isMobileMenuOpen ? 'bg-white shadow-xs' : 'bg-transparent'"
+    class="top-0 left-0 right-0 z-50 transition-colors duration-200"
+    :class="[
+      isSolidNav 
+        ? 'fixed bg-white border-b border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.02)]' 
+        : (isMobileMenuOpen ? 'absolute bg-white shadow-xs' : 'absolute bg-transparent')
+    ]"
   >
     <div class="w-full px-4 sm:px-6 lg:px-12">
       <div class="flex justify-between items-center h-16">
