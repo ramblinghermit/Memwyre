@@ -1562,6 +1562,9 @@
       <a href="https://turbo0.com/item/memwyre" target="_blank" rel="noopener noreferrer">
         <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0" style="height: 54px; width: auto;" loading="lazy" />
       </a>
+      <a href="https://navfolders.com" target="_blank" rel="noopener noreferrer">
+        <img src="https://navfolders.com/badge/nav_transparent.svg" alt="NavFolders" width="200" height="54" loading="lazy" />
+      </a>
     </div>
 
   </div>
