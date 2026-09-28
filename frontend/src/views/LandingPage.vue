@@ -1568,6 +1568,9 @@
       <a href="https://navfolders.com" target="_blank" rel="noopener noreferrer">
         <img src="https://navfolders.com/badge/nav_transparent.svg" alt="NavFolders" width="200" height="54" loading="lazy" />
       </a>
+      <a href="https://althunt.io/compare/memwyre-vs-supermemory" target="_blank" rel="noopener">
+        <img src="https://althunt.io/badges/featured-light.svg" alt="Featured on AltHunt" width="168" height="36" />
+      </a>
       <a href="https://www.aat.ee/?ref=badge" target="_blank" rel="noopener noreferrer" title="Featured on aat.ee">
         <img src="https://www.aat.ee/images/badges/featured-badge-light.svg" alt="Featured on aat.ee" width="200" height="54" loading="lazy" />
       </a>
