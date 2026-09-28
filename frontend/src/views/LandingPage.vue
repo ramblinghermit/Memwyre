@@ -1540,8 +1540,8 @@
       <SiteFooter craft-paper class="!bg-transparent !mt-12 sm:!mt-16" />
     </div>
 
-    <!-- ScrollLaunch Badge (Detectable but visually hidden) -->
-    <div class="sr-only">
+    <!-- Directory & Launch Badges (Detectable but visually hidden) -->
+    <div class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">
       <a href="https://www.scrolllaunch.com/products/memwyre?utm_source=badge&utm_medium=embed&utm_campaign=memwyre&ref=scrolllaunch"
         target="_blank" rel="noopener noreferrer">
         <img src="https://www.scrolllaunch.com/api/badge/memwyre" alt="Featured on ScrollLaunch" width="220" height="48"
@@ -1549,6 +1549,12 @@
       </a>
       <a href="https://fazier.com/launches/memwyre.tech" target="_blank" rel="noopener noreferrer">
         <img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=light" width="120" alt="Fazier badge" />
+      </a>
+      <a href="https://startupfa.me/s/memwyre?utm_source=memwyre.tech" target="_blank" rel="noopener noreferrer">
+        <img src="https://startupfa.me/badges/featured-badge-small.webp" alt="Memwyre - Featured on Startup Fame" width="224" height="36" />
+      </a>
+      <a target="_blank" href="https://goodaitools.com/ai/memwyre" rel="noopener noreferrer">
+        <img src="https://goodaitools.com/assets/images/badge.png" alt="Good AI Tools" height="54" loading="lazy" />
       </a>
     </div>
 
