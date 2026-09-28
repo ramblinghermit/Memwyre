@@ -1559,6 +1559,9 @@
       <a target="_blank" href="https://acidtools.com/ai/memwyre" rel="noopener noreferrer">
         <img src="https://acidtools.com/assets/images/badge.png" alt="Acid Tools" height="54" loading="lazy" />
       </a>
+      <a href="https://turbo0.com/item/memwyre" target="_blank" rel="noopener noreferrer">
+        <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0" style="height: 54px; width: auto;" loading="lazy" />
+      </a>
     </div>
 
   </div>
