@@ -1,7 +1,11 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import SiteFooter from '@/components/SiteFooter.vue';
 import NumericBgAnimation from '@/components/landing/NumericBgAnimation.vue';
+
+const route = useRoute();
+const router = useRouter();
 
 const copiedText = ref('');
 const copyCommand = (cmd) => {
@@ -12,10 +16,62 @@ const copyCommand = (cmd) => {
   }, 2000);
 };
 
-const selectedCategory = ref('All');
 const categories = ['All', 'Workflows', 'MCP Server', 'CLI Plugins', 'Comparisons', 'Architecture'];
+const selectedCategory = ref(
+  (route.query.category && categories.includes(route.query.category))
+    ? route.query.category
+    : 'All'
+);
+
+watch(() => route.query.category, (newCat) => {
+  if (newCat && categories.includes(newCat)) {
+    selectedCategory.value = newCat;
+  } else if (!newCat) {
+    selectedCategory.value = 'All';
+  }
+});
 
 const posts = ref([
+  {
+    slug: 'muse-code-persistent-memory',
+    category: 'CLI Plugins',
+    title: 'How to Give Muse Code Persistent Memory: The Complete Developer Guide to Lifecycle Hooks, MCP, and Cross-Agent Context Sync',
+    excerpt: "Meta's Muse Code resets its context on every session. This guide reveals how to bypass the memory cliff using deterministic lifecycle hooks, explains why standard export MEMWYRE_API_KEY fails, and provides a production-ready plugin with file-based auth, MCP tools, and slash command skills.",
+    readTime: '14 min read',
+    date: 'Oct 01, 2026'
+  },
+  {
+    slug: 'openai-dots-memory',
+    category: 'MCP Server',
+    title: 'How to Give OpenAI Dots Persistent Memory with Memwyre',
+    excerpt: "OpenAI Dots are always-on ChatGPT agents powered by GPT-6 Astra. Connect Memwyre's MCP server to ChatGPT to give your Dots true cross-tool institutional memory.",
+    readTime: '5 min read',
+    date: 'Oct 01, 2026'
+  },
+  {
+    slug: 'best-ai-agent-memories',
+    category: 'Architecture',
+    title: 'Best AI Agent Memory Systems in 2026: Architectures, Benchmarks & Comparison',
+    excerpt: 'An in-depth breakdown of the leading AI agent memory systems in 2026. Compare Memwyre, Mem0, Letta, Zep, and LangMem across SPO triples, token efficiency, and benchmarks.',
+    readTime: '8 min read',
+    date: 'Sep 29, 2026'
+  },
+  {
+    slug: 'best-alternatives-to-mem0',
+    category: 'Comparisons',
+    title: 'The 5 Best Alternatives to Mem0 in 2026: Features, Tradeoffs & Benchmarks',
+    excerpt: 'Looking for Mem0 alternatives? Compare the top 5 memory frameworks for AI agents and LLMs including Memwyre, Letta, Zep, LangMem, and Supermemory.',
+    readTime: '7 min read',
+    date: 'Sep 29, 2026'
+  },
+  {
+    slug: 'how-to-vibe-code-without-hitting-daily-limits',
+    category: 'Workflows',
+    title: 'How to Vibe Code Without Worrying About Hitting Daily Limits',
+    excerpt: 'Learn why heavy vibe coding burns your daily Claude and Cursor limits in hours, and master the 5-step playbook to code continuously with external MCP memory.',
+    readTime: '6 min read',
+    date: 'Sep 29, 2026'
+  },
   {
     slug: 'shared-memory-chatgpt-claude-cursor',
     category: 'Workflows',
@@ -95,39 +151,11 @@ const filteredPosts = computed(() => {
 
     <!-- Hero & Articles Section -->
     <div class="relative pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-16">
-      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 text-left pb-6 sm:pb-8">
-        <!-- Monospaced Kicker with Status Indicator -->
-        <div class="inline-flex items-center gap-2 mb-2.5 sm:mb-3 px-3 py-1 rounded-full bg-white/80 border border-gray-200/80 shadow-2xs">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#D97756] animate-pulse"></span>
-          <span class="text-[11px] font-bold font-mono tracking-[0.15em] uppercase text-gray-500">Engineering Insights & Guides</span>
-        </div>
-
-        <!-- Headline (Larger presence) -->
-        <h1 class="hero-serif text-4xl sm:text-5xl md:text-6xl lg:text-[66px] tracking-[-0.02em] leading-[1.08] text-[rgb(1,1,16)] max-w-4xl">
-          The Memwyre Blog
-        </h1>
-
-        <!-- Subtitle (Clean compact size) -->
-        <p class="text-xs sm:text-[14px] text-gray-500 leading-relaxed mt-2.5 sm:mt-3 max-w-2xl font-normal">
-          Deep dives into Model Context Protocol (MCP), persistent context caching, vector graphs, and stateful agent workflows.
-        </p>
-
-        <!-- Command Installer Snippet -->
-        <div class="mt-4 sm:mt-5 flex items-center justify-start">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/90 border border-gray-200/90 shadow-2xs font-mono text-[11px] sm:text-xs text-gray-700">
-            <span class="text-[#D97756] font-bold select-none">$</span>
-            <span class="select-all">npx -y install-memwyre</span>
-            <button 
-              @click="copyCommand('npx -y install-memwyre')" 
-              class="ml-2 text-[10px] sm:text-[11px] font-semibold text-gray-500 hover:text-black transition-colors cursor-pointer"
-            >
-              {{ copiedText === 'npx -y install-memwyre' ? 'Copied!' : 'Copy' }}
-            </button>
-          </div>
-        </div>
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 text-left pb-4 sm:pb-6">
+        <h1 class="sr-only">The Memwyre Blog</h1>
 
         <!-- Interactive Category Filter Pills -->
-        <div class="mt-5 sm:mt-6 flex items-center justify-start flex-wrap gap-1.5 sm:gap-2">
+        <div class="flex items-center justify-start flex-wrap gap-1.5 sm:gap-2">
           <button
             v-for="cat in categories"
             :key="cat"
@@ -152,18 +180,21 @@ const filteredPosts = computed(() => {
         <article 
           v-for="post in filteredPosts" 
           :key="post.slug"
-          class="group relative flex flex-col justify-between p-6 sm:p-7 bg-white border border-gray-200/90 rounded-[22px] hover:border-gray-400 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
+          class="group relative flex flex-col justify-between p-6 sm:p-7 bg-white border border-gray-200/90 rounded-none hover:border-gray-400 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
         >
           <div>
-            <!-- Cover Image (clean 16:9 ratio with rounded-xl) -->
-            <div class="w-full aspect-[16/9] rounded-xl overflow-hidden mb-5 bg-gray-50 border border-gray-100 flex items-center justify-center">
+            <!-- Cover Image (clickable, sharp edges) -->
+            <router-link 
+              :to="`/blog/${post.slug}`" 
+              class="block w-full aspect-[16/9] rounded-none overflow-hidden mb-5 bg-gray-50 border border-gray-100 cursor-pointer"
+            >
               <img 
                 :src="`/blog-covers/${post.slug}.png`" 
                 :alt="post.title" 
                 class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
                 @error="$event.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'"
               />
-            </div>
+            </router-link>
 
             <!-- Category & Read Time -->
             <div class="flex items-center justify-between mb-3">
@@ -176,14 +207,14 @@ const filteredPosts = computed(() => {
             </div>
             
             <!-- Title -->
-            <h2 class="text-[17px] font-semibold text-gray-900 group-hover:text-black mb-2.5 leading-snug tracking-tight">
+            <h2 class="text-[17px] font-bold text-black group-hover:text-black mb-2.5 leading-snug tracking-tight">
               <router-link :to="`/blog/${post.slug}`">
                 {{ post.title }}
               </router-link>
             </h2>
             
             <!-- Excerpt -->
-            <p class="text-[13.5px] text-gray-600 leading-relaxed font-normal mb-5 line-clamp-3">
+            <p class="text-[13.5px] text-neutral-800 leading-relaxed font-normal mb-5 line-clamp-3">
               {{ post.excerpt }}
             </p>
           </div>

@@ -1,4 +1,4 @@
-# Persistent Memory for Autonomous Agents: OpenClaw and Memwyre Integration
+﻿# Persistent Memory for Autonomous Agents: OpenClaw and Memwyre Integration
 
 > 📖 **Official Guide:** Looking for the full OpenClaw persistent memory plugin installation and context compaction guide? Visit the [OpenClaw Persistent Memory Integration Guide](/openclaw-memory).
 
@@ -17,7 +17,7 @@ By integrating the **Memwyre OpenClaw Plugin**, you can give your autonomous age
 In long-running autonomous agent loops, managing state is one of the hardest challenges. 
 
 ### Why Context Windows Fail
-If an agent relies on pure conversational history (short-term memory), its context window fills up rapidly. For every step the agent takes—reading a file, running a shell command, checking a compiler warning—the log is appended to its history.
+If an agent relies on pure conversational history (short-term memory), its context window fills up rapidly. For every step the agent takes - reading a file, running a shell command, checking a compiler warning - the log is appended to its history.
 - Within 15 to 20 turns, the context window can exceed 50,000 tokens.
 - **Cost Explosion**: The agent repeats the entire history on every new step, causing token costs to compound quadratically.
 - **Attention Degradation**: As the prompt grows longer, LLMs suffer from "lost-in-the-middle" syndrome, failing to recall facts buried in the middle of the context window.
@@ -146,4 +146,5 @@ This background reconciliation ensures that your agent always operates on a clea
 Integrating Memwyre with OpenClaw transforms autonomous agents from simple, stateless executors into continuous, learning co-developers. 
 
 For complete plugin configuration, multi-agent context sharing, and setup commands, visit our official [OpenClaw Persistent Memory Guide](/openclaw-memory) or equip your autonomous agents at [memwyre.tech](https://memwyre.tech).
+
 

@@ -27,7 +27,7 @@
             </h1>
 
             <p class="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl font-normal">
-              Memwyre plugins for Claude Code, Grok Bot, OpenClaw, and OpenCode. Automatic context injection on session start and automated transcript capture on exit.
+              Memwyre plugins for Claude Code, Grok Bot, Muse Code, OpenClaw, OpenCode, and OpenAI Dots. Automatic context injection on session start and automated transcript capture on exit.
             </p>
             
             <!-- Clean Action Buttons -->
@@ -176,7 +176,7 @@
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 text-left">
           <!-- 1. Claude Code -->
           <router-link 
             to="/claude-memory"
@@ -215,7 +215,26 @@
             </div>
           </router-link>
 
-          <!-- 3. OpenClaw -->
+          <!-- 3. Muse Code -->
+          <a 
+            href="https://docs.memwyre.tech/integrations/plugins/muse" target="_blank"
+            class="p-6 border border-gray-200/90 rounded-2xl bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200 flex flex-col justify-between min-h-[190px] cursor-pointer group"
+          >
+            <div>
+              <div class="flex items-center gap-3 mb-2.5">
+                <img :src="museLogo" class="w-7 h-7 shrink-0 object-contain" alt="Muse Code" />
+                <div class="font-bold text-gray-900 group-hover:text-[#D97757] transition-colors text-base leading-tight">Muse Code</div>
+              </div>
+              <p class="text-xs text-gray-500 leading-relaxed">
+                @memwyre/muse-plugin file-based auth hooks for Meta's Muse Code terminal agent.
+              </p>
+            </div>
+            <div class="inline-flex items-center gap-1.5 text-[10px] font-mono text-neutral-700 font-semibold uppercase tracking-wider mt-4">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>v1.0.0 New
+            </div>
+          </a>
+
+          <!-- 4. OpenClaw -->
           <router-link 
             to="/openclaw-memory"
             class="p-6 border border-gray-200/90 rounded-2xl bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200 flex flex-col justify-between min-h-[190px] cursor-pointer group"
@@ -234,7 +253,7 @@
             </div>
           </router-link>
 
-          <!-- 4. OpenCode -->
+          <!-- 5. OpenCode -->
           <router-link 
             to="/opencode-memory"
             class="p-6 border border-gray-200/90 rounded-2xl bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200 flex flex-col justify-between min-h-[190px] cursor-pointer group"
@@ -252,8 +271,29 @@
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>Marketplace v1.1.5
             </div>
           </router-link>
+
+          <!-- 6. OpenAI Dots -->
+          <a 
+            href="https://docs.memwyre.tech/integrations/plugins/dots" target="_blank"
+            class="p-6 border border-gray-200/90 rounded-2xl bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200 flex flex-col justify-between min-h-[190px] cursor-pointer group"
+          >
+            <div>
+              <div class="flex items-center gap-3 mb-2.5">
+                <img :src="openaiDotsLogo" class="w-7 h-7 shrink-0 object-contain" alt="OpenAI Dots" />
+                <div class="font-bold text-gray-900 group-hover:text-[#D97757] transition-colors text-base leading-tight">OpenAI Dots</div>
+              </div>
+              <p class="text-xs text-gray-500 leading-relaxed">
+                MCP connector for always-on ChatGPT Dots agents — full vault access via server.memwyre.tech/mcp.
+              </p>
+            </div>
+            <div class="inline-flex items-center gap-1.5 text-[10px] font-mono text-neutral-700 font-semibold uppercase tracking-wider mt-4">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>MCP New
+            </div>
+          </a>
         </div>
+
       </div>
+
 
       <!-- 4b. DETAILED TECHNICAL SPECIFICATIONS -->
       <div class="py-12 sm:py-16 border-t border-gray-150">
@@ -269,13 +309,16 @@
             Memwyre developer plugins integrate directly into command-line and agent execution cycles. For CLI tools like Claude Code, the package (<code>@memwyre/claude-memwyre</code>) exposes two primary lifecycle hooks in <code>hooks.json</code>: <code>SessionStart</code> which executes <code>inject-memory.cjs</code> to retrieve workspace memories matching your project directory, and <code>Stop</code> which executes <code>capture-session.cjs</code> to parse and upload your session transcript upon exit.
           </p>
           <p>
+            For Meta's Muse Code, the plugin (<code>@memwyre/muse-plugin</code>) uses the same lifecycle hook pattern as Grok Build. A key architectural difference: Muse Code clears the shell environment before running hooks, so credentials are stored in <code>~/.muse-memwyre/credentials.json</code> via a one-time <code>login.js</code> bootstrap script, ensuring hooks work reliably regardless of shell state. The plugin also includes a <code>mcp.json</code> config and slash-command skills (<code>/memwyre:index</code>, <code>/memwyre:status</code>).
+          </p>
+          <p>
             For autonomous frameworks like OpenClaw, the plugin (<code>@memwyre/openclaw-plugin@2.0.14</code>) implements a persistent memory provider. When agent tool profiles are configured to <code>full</code> or <code>coding</code>, OpenClaw gains direct access to <code>save_memory</code> and <code>search_memwyre</code>, enabling continuous cross-run recall.
           </p>
           <p>
             In multi-bot environments like Grok Bot, the plugin (<code>@memwyre/grok-plugin</code>) enables cross-bot shared memory. Built with zero external npm dependencies, it ensures that findings discovered by your Researcher bot are instantly available when your Coder or Ops bot initializes, eliminating duplicate work across your roster.
           </p>
           <p>
-            For OpenCode, the plugin injects shared architecture decisions and conventions via <code>get_conventions</code> and <code>search_memwyre</code>, preventing stylistic deviations and ensuring generated code complies with your team's established standards.
+            For OpenAI Dots — ChatGPT's always-on persistent agents — Memwyre connects via the existing MCP server at <code>server.memwyre.tech/mcp</code>. No plugin SDK exists for Dots; instead, users connect via ChatGPT Settings → Connected Apps. This gives Dots access to all 10 Memwyre MCP tools, with cross-tool sync from Claude Code, Cursor, and Grok sessions.
           </p>
         </div>
       </div>
@@ -341,6 +384,8 @@ import claudecodeLogo from '@/assets/claudecode-color.svg';
 import grokLogo from '@/assets/grok-color.svg';
 import openclawLogo from '@/assets/openclaw-color.svg';
 import opencodeLogo from '@/assets/opencode-color.svg';
+import museLogo from '@/assets/muse-color.svg';
+import openaiDotsLogo from '@/assets/openai-dots-color.svg';
 import NumericBgAnimation from '@/components/landing/NumericBgAnimation.vue';
 import SiteFooter from '@/components/SiteFooter.vue';
 </script>

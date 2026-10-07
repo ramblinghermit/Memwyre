@@ -3,39 +3,11 @@
 
     <!-- Hero & Papers Section -->
     <div class="relative pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-16">
-      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 text-left pb-6 sm:pb-8">
-        <!-- Monospaced Kicker with Status Indicator -->
-        <div class="inline-flex items-center gap-2 mb-2.5 sm:mb-3 px-3 py-1 rounded-full bg-white/80 border border-gray-200/80 shadow-2xs">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#D97756] animate-pulse"></span>
-          <span class="text-[11px] font-bold font-mono tracking-[0.15em] uppercase text-gray-500">Memwyre Research Lab</span>
-        </div>
-
-        <!-- Headline (Larger presence) -->
-        <h1 class="hero-serif text-4xl sm:text-5xl md:text-6xl lg:text-[66px] tracking-[-0.02em] leading-[1.08] text-[rgb(1,1,16)] max-w-4xl">
-          Advancing AI Long-Term Memory
-        </h1>
-
-        <!-- Subtitle (Clean compact size) -->
-        <p class="text-xs sm:text-[14px] text-gray-500 leading-relaxed mt-2.5 sm:mt-3 max-w-2xl font-normal">
-          Peer-reviewed benchmark datasets, architecture studies, and evaluations exploring hierarchical entity graphs, context compression, and stateful agent systems.
-        </p>
-
-        <!-- Command Installer Snippet -->
-        <div class="mt-4 sm:mt-5 flex items-center justify-start">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/90 border border-gray-200/90 shadow-2xs font-mono text-[11px] sm:text-xs text-gray-700">
-            <span class="text-[#D97756] font-bold select-none">$</span>
-            <span class="select-all">npx -y install-memwyre</span>
-            <button 
-              @click="copyCommand('npx -y install-memwyre')" 
-              class="ml-2 text-[10px] sm:text-[11px] font-semibold text-gray-500 hover:text-black transition-colors cursor-pointer"
-            >
-              {{ copiedText === 'npx -y install-memwyre' ? 'Copied!' : 'Copy' }}
-            </button>
-          </div>
-        </div>
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 text-left pb-4 sm:pb-6">
+        <h1 class="sr-only">Advancing AI Long-Term Memory - Memwyre Research Lab</h1>
 
         <!-- Research Highlights Badges -->
-        <div class="mt-5 sm:mt-6 flex items-center justify-start flex-wrap gap-2">
+        <div class="flex items-center justify-start flex-wrap gap-2">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-gray-200/80 text-xs font-medium text-gray-700 shadow-2xs">
             <span class="text-[#D97756] font-mono font-bold">LoCoMo:</span>
             <span>70.5% Accuracy · 79.9% Hit@10</span>
@@ -57,17 +29,20 @@
         <article 
           v-for="paper in papers" 
           :key="paper.title"
-          class="group relative flex flex-col justify-between p-6 sm:p-7 bg-white border border-gray-200/90 rounded-[22px] hover:border-gray-400 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
+          class="group relative flex flex-col justify-between p-6 sm:p-7 bg-white border border-gray-200/90 rounded-none hover:border-gray-400 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
         >
           <div>
-            <!-- Cover Image (16:9 ratio with rounded-xl) -->
-            <div class="w-full aspect-[16/9] rounded-xl overflow-hidden mb-5 bg-gray-50 border border-gray-100 flex items-center justify-center">
+            <!-- Cover Image (clickable, sharp edges) -->
+            <router-link 
+              :to="paper.link" 
+              class="block w-full aspect-[16/9] rounded-none overflow-hidden mb-5 bg-gray-50 border border-gray-100 cursor-pointer"
+            >
               <img 
                 :src="paper.cover" 
                 :alt="paper.title" 
                 class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
               />
-            </div>
+            </router-link>
 
             <!-- Category & Read Time -->
             <div class="flex items-center justify-between mb-3">
@@ -80,14 +55,14 @@
             </div>
             
             <!-- Title -->
-            <h2 class="text-[17px] font-semibold text-gray-900 group-hover:text-black mb-2.5 leading-snug tracking-tight">
+            <h2 class="text-[17px] font-bold text-black group-hover:text-black mb-2.5 leading-snug tracking-tight">
               <router-link :to="paper.link">
                 {{ paper.title }}
               </router-link>
             </h2>
             
             <!-- Excerpt -->
-            <p class="text-[13.5px] text-gray-600 leading-relaxed font-normal mb-5 line-clamp-3">
+            <p class="text-[13.5px] text-neutral-800 leading-relaxed font-normal mb-5 line-clamp-3">
               {{ paper.excerpt }}
             </p>
           </div>

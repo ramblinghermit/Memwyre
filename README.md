@@ -22,6 +22,7 @@
 [![Chrome Extension](https://img.shields.io/badge/Extension-Chrome%20Web%20Store-orange.svg?style=flat-square&logo=google-chrome)](https://chromewebstore.google.com/detail/memwyre/biplnkodgfdgejgblohhjeckiclfpekn)
 [![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-lightgrey.svg?style=flat-square)](https://modelcontextprotocol.io/)
 [![LoCoMo Accuracy](https://img.shields.io/badge/LoCoMo%20Accuracy-73.5%25-brightgreen.svg?style=flat-square)](https://github.com/ramblinghermit0403/Memwyre#-the-locomo-benchmark-evaluation)
+[![Featured on AltHunt](https://althunt.io/badges/featured-light.svg)](https://althunt.io/compare/memwyre-vs-supermemory)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 
 Memwyre is an open-source, universal memory infrastructure and persistent knowledge retrieval layer for Large Language Models (LLMs), AI agents, and custom applications.

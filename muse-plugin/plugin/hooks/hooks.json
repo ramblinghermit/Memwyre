@@ -1,0 +1,29 @@
+{
+  "description": "Memwyre: Persistent autonomous memory",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${MUSE_PLUGIN_ROOT:-$HOME/.muse/plugins/memwyre}/scripts/inject-memory.js\"",
+            "timeout": 30,
+            "statusMessage": "Memwyre: Loading project memories..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${MUSE_PLUGIN_ROOT:-$HOME/.muse/plugins/memwyre}/scripts/capture-session.js\"",
+            "timeout": 30,
+            "statusMessage": "Memwyre: Capturing session..."
+          }
+        ]
+      }
+    ]
+  }
+}

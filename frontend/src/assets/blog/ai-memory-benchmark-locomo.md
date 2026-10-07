@@ -1,4 +1,4 @@
-# LoCoMo Benchmark: Evaluation of AI Memory
+﻿# LoCoMo Benchmark: Evaluation of AI Memory
 
 LoCoMo-10 is a widely accepted standard for evaluating long-term memory performance in AI agents and conversational assistants. Below is the detailed analysis of Memwyre's retrieval capabilities on this benchmark.
 
@@ -8,9 +8,9 @@ LoCoMo-10 is a widely accepted standard for evaluating long-term memory performa
 
 **Key Metrics:**
 
-- **70.5%** — Overall Accuracy (Benchmark Score)
-- **3,000** — Mean Tokens (Average Context Size)
-- **26k** — Tokens Per Dialog (Up to 32 sessions)
+- **70.5%** - Overall Accuracy (Benchmark Score)
+- **3,000** - Mean Tokens (Average Context Size)
+- **26k** - Tokens Per Dialog (Up to 32 sessions)
 
 ## 1. Introduction
 
@@ -78,7 +78,7 @@ The chart below illustrates Memwyre's performance on the four primary evaluation
 
 ### Why Memwyre Performs So Well
 
-Memwyre's exceptional results on the LoCoMo-10 benchmark—such as achieving an 80% accuracy on Single-hop recall and a 74% score on Temporal alignment—are powered by a combination of targeted technological mechanisms:
+Memwyre's exceptional results on the LoCoMo-10 benchmark - such as achieving an 80% accuracy on Single-hop recall and a 74% score on Temporal alignment - are powered by a combination of targeted technological mechanisms:
 
 **Dynamic Pruning**
 
@@ -98,11 +98,11 @@ Memwyre's strict semantic containment blocks hallucinations. When presented with
 
 Our performance analysis indicates that retrieval recall remains extremely strong (especially on complex multi-hop correlations). The remaining delta is primarily a downstream bottleneck, which we are addressing through:
 
-**Reranking Quality** — Prioritizing the highest-scoring context items to match generation context bounds.
+**Reranking Quality** - Prioritizing the highest-scoring context items to match generation context bounds.
 
-**Evidence Selection** — Extracting specific targets, filtering out ambient chat noise and distractors.
+**Evidence Selection** - Extracting specific targets, filtering out ambient chat noise and distractors.
 
-**Answer Synthesis** — Ensuring details from different sessions compile cleanly in the response.
+**Answer Synthesis** - Ensuring details from different sessions compile cleanly in the response.
 
 ---
 
@@ -111,3 +111,4 @@ Our performance analysis indicates that retrieval recall remains extremely stron
 Download our complete evaluation logs (JSON format).
 
 [View GitHub Repository →](https://github.com/ramblinghermit0403/Memwyre/tree/main/.benchmarks)
+

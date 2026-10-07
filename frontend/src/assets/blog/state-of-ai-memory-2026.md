@@ -1,6 +1,6 @@
-# State of AI Memory 2026: The Shift from Stateless to Stateful Agent Networks
+﻿# State of AI Memory 2026: The Shift from Stateless to Stateful Agent Networks
 
-> **TL;DR:** Infinite context windows suffer from quadratic compute scaling, high token costs, and attention dilution. Stateful memory networks solve this by actively pruning raw logs, applying temporal forgetting curves, and re-ranking memories—retaining only critical long-term facts above the fold to keep agent execution fast and cost-effective.
+> **TL;DR:** Infinite context windows suffer from quadratic compute scaling, high token costs, and attention dilution. Stateful memory networks solve this by actively pruning raw logs, applying temporal forgetting curves, and re-ranking memories - retaining only critical long-term facts above the fold to keep agent execution fast and cost-effective.
 
 As large language models (LLMs) continue to scale their context windows to millions of tokens, a common architectural misconception has emerged: that infinite context windows render long-term memory retrieval systems obsolete. 
 
@@ -135,16 +135,16 @@ In 2026, persistent memory is transitioning from basic database queries to an ac
 ### The Three Memory Views
 
 1. **Episodic Memory (The Narrative Log)**
-   - **Focus**: Captures a sequential, high-fidelity log of session events—including user prompts, agent thoughts, file changes, terminal command outputs, and tool execution logs.
-   - **Under the Hood**: Functions as a circular, time-bounded buffer. To prevent storage bloat, older episodes are processed asynchronously by a background worker to extract abstract facts before the raw logs are archived.
+  - **Focus**: Captures a sequential, high-fidelity log of session events - including user prompts, agent thoughts, file changes, terminal command outputs, and tool execution logs.
+  - **Under the Hood**: Functions as a circular, time-bounded buffer. To prevent storage bloat, older episodes are processed asynchronously by a background worker to extract abstract facts before the raw logs are archived.
 
 2. **Semantic Memory (The Knowledge Base)**
-   - **Focus**: Serves as the consolidated repository of verified facts, permanent coding preferences, workspace rules, and structural constraints.
-   - **Under the Hood**: Facts are stored as unified entities. When new observations contradict stored records (e.g., upgrading a dependency), a conflict-resolution pipeline deprecates the outdated node and commits the update.
+  - **Focus**: Serves as the consolidated repository of verified facts, permanent coding preferences, workspace rules, and structural constraints.
+  - **Under the Hood**: Facts are stored as unified entities. When new observations contradict stored records (e.g., upgrading a dependency), a conflict-resolution pipeline deprecates the outdated node and commits the update.
 
 3. **Episodic State Graph (The Temporal Web)**
-   - **Focus**: Links semantic entities, files, and events into a multi-dimensional graph where edges represent relationships (e.g., `modified_by`, `imports`, `depends_on`) with temporal timestamps.
-   - **Under the Hood**: Enables multi-hop reasoning. If a variable is declared in `config.py` and updated in `db.py`, the graph maintains the temporal links, allowing retrieval queries to walk the edges chronologically.
+  - **Focus**: Links semantic entities, files, and events into a multi-dimensional graph where edges represent relationships (e.g., `modified_by`, `imports`, `depends_on`) with temporal timestamps.
+  - **Under the Hood**: Enables multi-hop reasoning. If a variable is declared in `config.py` and updated in `db.py`, the graph maintains the temporal links, allowing retrieval queries to walk the edges chronologically.
 
 ---
 
@@ -173,4 +173,5 @@ To see the co-processor in action, consider a developer asking: *"Which database
 
 The shift from stateless prompt injection to stateful agent memory represents a critical paradigm shift in AI infrastructure. By moving computational overhead from the LLM attention buffer to a specialized memory co-processor, systems can bypass the quadratic cost and latency penalties of growing contexts. 
 
-Dynamic context pruning, logarithmic vector decay, and two-stage cross-encoder re-ranking are not merely optimizations—they are foundational requirements for building persistent, reliable, and financially viable agentic networks capable of operating over infinite horizons.
+Dynamic context pruning, logarithmic vector decay, and two-stage cross-encoder re-ranking are not merely optimizations - they are foundational requirements for building persistent, reliable, and financially viable agentic networks capable of operating over infinite horizons.
+

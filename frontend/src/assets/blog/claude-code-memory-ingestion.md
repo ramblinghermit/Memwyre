@@ -1,4 +1,4 @@
-# Building Persistent Terminal Sessions: Claude Code Memory Ingestion
+﻿# Building Persistent Terminal Sessions: Claude Code Memory Ingestion
 
 > 📖 **Official Guide:** Looking for the official Claude Code persistent memory plugin, installation commands, and architecture teardown? Visit the [Claude Code Persistent Memory Integration Guide](/claude-memory).
 
@@ -31,7 +31,7 @@ However, looking into the compiler files reveals two major limits built into Cla
 - **200-Line Limit**: The `MEMORY.md` index file is strictly capped at **200 lines**. If your memory file grows larger, the CLI silently truncates additional lines. It appends a tiny markdown warning inside the file itself, but because the truncation is silent, Claude receives a cut-off system prompt and has no idea that the older memories fell off the index.
 - **25KB Size Limit**: A separate binary cap designed to prevent token inflation from unusually long lines.
 
-If your codebase accumulates more than 200 lines of guidelines, the local system begins losing context. More importantly, this memory is siloed locally—it does not sync to other development devices or your IDE environments.
+If your codebase accumulates more than 200 lines of guidelines, the local system begins losing context. More importantly, this memory is siloed locally - it does not sync to other development devices or your IDE environments.
 
 ---
 
@@ -136,8 +136,8 @@ When you exit using `/exit` or `Ctrl + C`, the capture script processes the conv
 ```
 [Memwyre] Analyzing session transcript...
 [Memwyre] Captured 2 new codebase memories:
-  - "Updated AuthMiddleware to handle token expiration gracefully"
-  - "Configured Redis cache pool in app/config.py"
+ - "Updated AuthMiddleware to handle token expiration gracefully"
+ - "Configured Redis cache pool in app/config.py"
 [Memwyre] Ingestion complete.
 ```
 
@@ -148,4 +148,5 @@ When you exit using `/exit` or `Ctrl + C`, the capture script processes the conv
 With Memwyre, Claude Code becomes an extension of your own long-term memory. You no longer lose progress when switching tasks, closing terminal tabs, or rebooting your computer.
 
 For full CLI installation instructions, terminal lifecycle hook schemas, and cross-tool sync configuration with Cursor and VS Code, read our official [Claude Code Persistent Memory Integration Guide](/claude-memory) or start building your memory vault today at [memwyre.tech](https://memwyre.tech).
+
 

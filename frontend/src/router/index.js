@@ -579,6 +579,23 @@ export function createAppRouter({ ssr = false } = {}) {
                 meta: { requiresAuth: false }
             },
             {
+                path: '/demo/animation',
+                name: 'demo-animation',
+                component: () => import('../views/MarketingVideoView.vue'),
+                meta: { requiresAuth: false }
+            },
+            // ── Standalone Marketing Video Animation ─────────────────────
+            {
+                path: '/marketing-video',
+                name: 'marketing-video',
+                component: () => import('../views/MarketingVideoView.vue'),
+                meta: { requiresAuth: false }
+            },
+            {
+                path: '/animation',
+                redirect: '/marketing-video'
+            },
+            {
                 path: '/broadcast',
                 redirect: '/memories'
             },
@@ -621,7 +638,7 @@ export function createAppRouter({ ssr = false } = {}) {
                 '/ai-memory-benchmark-locomo', '/memwyre-vs-mem0', '/memwyre-vs-supermemory',
                 '/memwyre-vs-zep', '/chatgpt-memory', '/claude-memory', '/cursor-memory',
                 '/mcp-memory', '/openclaw-memory', '/grok-bot-memory', '/opencode-memory',
-                '/privacy-policy', '/terms'
+                '/privacy-policy', '/terms', '/marketing-video', '/animation', '/demo/animation'
             ];
 
             const isAppPath = APP_ROUTES.some(path => 

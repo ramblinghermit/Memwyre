@@ -1,0 +1,27 @@
+{
+  "name": "@memwyre/muse-plugin",
+  "version": "1.0.0",
+  "description": "Persistent memory and automated session lifecycle hooks for Muse Code, powered by Memwyre.",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node -e \"console.log('No build step needed — pure Node.js CJS scripts.')\"",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "plugin"
+  ],
+  "keywords": [
+    "muse",
+    "muse-code",
+    "meta",
+    "plugin",
+    "memwyre",
+    "memory",
+    "hooks"
+  ],
+  "author": "Memwyre",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

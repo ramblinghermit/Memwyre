@@ -1,104 +1,25 @@
 <template>
-  <div class="relative min-h-screen bg-white dark:bg-[#0c0c0c] pt-28 pb-0 font-sans">
-    <!-- Grid Blueprint background line effects -->
-    <div class="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-    </div>
+  <ArticleLayout
+    section-label="Comparisons"
+    section-to="/"
+    category="Memwyre vs Mem0"
+    date="Updated 2026"
+    read-time="8 MIN READ"
+    author-name="Himansh Shivhare"
+    author-role=""
+    author-avatar="https://avatars.githubusercontent.com/u/170114968?v=4"
+    :toc="toc"
+    v-model:active-section="activeSection"
+    share-label="SHARE THIS ARTICLE"
+  >
+    <template #title>
+      <h1 class="font-sans font-normal text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] leading-[1.2] text-black dark:text-white">
+        Memwyre vs Mem0: <br />
+        <span class="font-normal text-neutral-900 dark:text-gray-100">Which is Right for <span class="inline-block bg-[#D97757] text-white px-2.5 py-0.5 font-normal rounded-xs">Long-Term Context?</span></span>
+      </h1>
+    </template>
 
-    <!-- Global Vertical Grid Lines -->
-    <div class="hidden lg:block absolute top-0 bottom-0 left-6 sm:left-8 lg:left-[calc(50%-640px)] w-px bg-gray-300/80 dark:bg-gray-800/60 pointer-events-none select-none z-30"></div>
-    <div class="hidden lg:block absolute top-0 bottom-0 right-6 sm:right-8 lg:right-[calc(50%-640px)] w-px bg-gray-300/80 dark:bg-gray-800/60 pointer-events-none select-none z-30"></div>
-
-    <div class="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10 animate-fade-in">
-      
-      <!-- Back Navigation Header -->
-      <div class="pt-6 mb-8">
-        <router-link 
-          to="/" 
-          class="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
-        >
-          <span class="inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 dark:border-zinc-800 text-[10px]">&larr;</span>
-          Back to Home
-        </router-link>
-      </div>
-
-      <!-- Header Section -->
-      <div class="space-y-4 mb-8 text-left max-w-4xl">
-        <div class="text-xs font-bold uppercase tracking-wider text-[#D97757] font-mono">
-          COMPARISONS 
-          <span class="text-gray-300 dark:text-gray-700 mx-2">/</span> 
-          MEMWYRE VS MEM0
-        </div>
-        
-        <h1 class="hero-serif text-4xl sm:text-5xl lg:text-6xl tracking-[-0.02em] leading-[1.1] text-gray-950 dark:text-white">
-          Memwyre vs Mem0: <br />
-          <span class="italic font-medium text-gray-900 dark:text-gray-100">Which is Right for <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">Long-Term Context?</span></span>
-        </h1>
-
-        <div class="text-[10px] tracking-wider uppercase font-bold font-mono text-gray-400 dark:text-gray-500 pt-2">
-          UPDATED 2026
-        </div>
-      </div>
-
-      <!-- Section Separator Line -->
-      <div class="-mx-6 sm:-mx-8 lg:-mx-12 h-px bg-gray-200 dark:bg-gray-850 pointer-events-none select-none"></div>
-
-      <!-- Main Content Layout (3-Column Blog Article Template) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-0 pb-24">
-        
-        <!-- Left Sidebar (Author Info & Social Sharing) -->
-        <aside class="lg:col-span-2 lg:border-r border-gray-200 dark:border-gray-800 lg:pr-8 pt-8 lg:pt-12 text-left">
-          <div class="sticky top-24 space-y-8">
-            <!-- Author Card -->
-            <div class="flex items-center gap-3">
-              <img 
-                src="https://avatars.githubusercontent.com/u/170114968?v=4" 
-                alt="Himansh Shivhare" 
-                class="w-10 h-10 rounded-full object-cover border border-gray-200 dark:border-zinc-800"
-                @error="$event.target.src = 'https://ui-avatars.com/api/?name=Himansh+Shivhare&background=f3f4f6&color=333'"
-              />
-              <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                Himansh Shivhare
-              </span>
-            </div>
-
-            <!-- Share Buttons -->
-            <div class="space-y-3 pt-6 border-t border-gray-100 dark:border-gray-900">
-              <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold">SHARE THIS ARTICLE</div>
-              <div class="flex items-center gap-2">
-                <a 
-                  :href="`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`" 
-                  target="_blank"
-                  class="w-9 h-9 rounded border border-gray-200 dark:border-zinc-800 flex items-center justify-center text-gray-500 hover:text-[#D97757] dark:hover:text-[#D97757] transition-all bg-white dark:bg-[#111]"
-                >
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                  </svg>
-                </a>
-                <a 
-                  :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}`" 
-                  target="_blank"
-                  class="w-9 h-9 rounded border border-gray-200 dark:border-zinc-800 flex items-center justify-center text-gray-500 hover:text-[#D97757] dark:hover:text-[#D97757] transition-all bg-white dark:bg-[#111]"
-                >
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                </a>
-                <button 
-                  @click="copyLink"
-                  class="w-9 h-9 rounded border border-gray-200 dark:border-zinc-800 flex items-center justify-center text-gray-500 hover:text-[#D97757] dark:hover:text-[#D97757] transition-all bg-white dark:bg-[#111] cursor-pointer"
-                >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </aside>
-
-        <main class="lg:col-span-8 px-0 lg:px-8 pt-0 lg:pt-12 text-left">
-          <article class="markdown-content space-y-12">
+    <article class="markdown-content space-y-12">
             
             <!-- Quick Verdict / TL;DR -->
             <div class="relative p-6 bg-white dark:bg-[#111] border border-dashed border-gray-300 dark:border-zinc-800 rounded-xl shadow-sm">
@@ -319,38 +240,11 @@
             </div>
 
           </article>
-        </main>
-
-        <!-- Right Sidebar (Dynamic Table of Contents) -->
-        <aside class="hidden lg:block lg:col-span-2 lg:border-l border-gray-200 dark:border-gray-800 lg:pl-8 pt-12 text-left">
-          <div class="sticky top-24 space-y-4">
-            <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold">ON THIS PAGE</div>
-            <nav class="space-y-3 text-sm relative pl-4 border-l border-gray-100 dark:border-zinc-900">
-              <a 
-                v-for="heading in toc" 
-                :key="heading.slug" 
-                :href="`#${heading.slug}`" 
-                class="block font-medium text-gray-500 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors leading-snug relative"
-                :class="{ 'text-[#D97757] font-semibold': activeSection === heading.slug }"
-              >
-                <!-- Active Indicator vertical line -->
-                <div 
-                  v-if="activeSection === heading.slug" 
-                  class="absolute -left-[17px] top-0 bottom-0 w-0.5 bg-[#D97757]"
-                ></div>
-                {{ heading.text }}
-              </a>
-            </nav>
-          </div>
-        </aside>
-
-      </div>
-    </div>
-    <SiteFooter />
-  </div>
+  </ArticleLayout>
 </template>
 
 <script setup>
+import ArticleLayout from '@/components/ArticleLayout.vue';
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import SiteFooter from '@/components/SiteFooter.vue';
 
@@ -365,10 +259,37 @@ const copyLink = () => {
 
 const activeSection = ref('');
 const toc = [
-  { text: 'At a Glance', slug: 'at-a-glance' },
-  { text: 'Deep-Dive Features', slug: 'deep-dive' },
-  { text: 'Final Recommendation', slug: 'recommendation' },
-  { text: 'FAQ', slug: 'faq' }
+  {
+    text: 'Overview & At a Glance',
+    slug: 'at-a-glance',
+    children: [
+      { text: 'Executive Summary', slug: 'at-a-glance' }
+    ]
+  },
+  {
+    text: 'Architecture & Performance',
+    slug: 'deep-dive',
+    children: [
+      { text: 'Knowledge Graph vs Flat Vectors', slug: 'deep-dive' },
+      { text: 'Benchmarks & Retrieval Latency', slug: 'deep-dive' }
+    ]
+  },
+  {
+    text: 'Deployment & IDE Integration',
+    slug: 'deep-dive',
+    children: [
+      { text: 'Self-Hosting & Local MCP', slug: 'deep-dive' },
+      { text: 'Developer Tool Integration', slug: 'deep-dive' }
+    ]
+  },
+  {
+    text: 'Recommendation & FAQ',
+    slug: 'recommendation',
+    children: [
+      { text: 'Architectural Recommendation', slug: 'recommendation' },
+      { text: 'Frequently Asked Questions', slug: 'faq' }
+    ]
+  }
 ];
 
 // Scrollspy Observer

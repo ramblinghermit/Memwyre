@@ -1,76 +1,19 @@
 <template>
-  <div class="relative min-h-screen bg-white dark:bg-[#0c0c0c] pt-28 pb-0 [overflow-x:clip] font-sans">
-    <!-- Grid Blueprint background line effects -->
-    <div class="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-    </div>
-
-    <!-- Global Vertical Grid Lines -->
-    <div class="hidden lg:block absolute top-0 bottom-0 left-6 sm:left-8 lg:left-[calc(50%-640px)] w-px bg-gray-300/80 dark:bg-gray-800/60 pointer-events-none select-none z-30"></div>
-    <div class="hidden lg:block absolute top-0 bottom-0 right-6 sm:right-8 lg:right-[calc(50%-640px)] w-px bg-gray-300/80 dark:bg-gray-800/60 pointer-events-none select-none z-30"></div>
-
-    <div class="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 animate-fade-in">
-      
-      <!-- Back Navigation Header -->
-      <div class="pt-6 mb-8">
-        <router-link 
-          to="/plugins" 
-          class="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
-        >
-          <span class="inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 dark:border-zinc-800 text-[10px]">&larr;</span>
-          All Plugins
-        </router-link>
-      </div>
-
-      <!-- Header Section -->
-      <div class="space-y-4 mb-8 text-left">
-        <div class="text-xs font-bold uppercase tracking-wider text-[#D97757] font-mono">
-          INTEGRATION <span class="text-gray-300 dark:text-gray-700 mx-2">/</span> AUGUST 2026
-        </div>
-        
-        <h1 class="hero-serif text-4xl sm:text-5xl lg:text-6xl tracking-[-0.02em] leading-[1.1] text-gray-950 dark:text-white">
-          Cursor AI Persistent Memory <br />
-          <span class="italic font-medium text-gray-900 dark:text-gray-100">Long-Term Context for <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">Composer &amp; Chat.</span></span>
-        </h1>
-
-        <div class="text-[10px] tracking-wider uppercase font-bold font-mono text-gray-400 dark:text-gray-500 pt-2">
-          12 MIN READ · TECHNICAL SPECIFICATION &amp; BENCHMARKS
-        </div>
-      </div>
-
-      <!-- Section Separator Line -->
-      <div class="-mx-6 sm:-mx-8 lg:-mx-12 h-px bg-gray-200 dark:bg-gray-850 pointer-events-none select-none"></div>
-
-      <!-- 3-Column Layout Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-0 pb-24">
-        
-        <!-- Left Sidebar (Author Info & Outbound E-E-A-T Links) -->
-        <aside class="lg:col-span-2 lg:border-r border-gray-200 dark:border-gray-800 lg:pr-8 pt-8 lg:pt-12 text-left">
-          <div class="sticky top-24 space-y-8">
-            <!-- Author Card -->
-            <div class="flex items-center gap-3">
-              <a href="https://linkedin.com/in/himansh-shivhare" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 hover:opacity-80 transition-opacity">
-                <img 
-                  src="https://avatars.githubusercontent.com/u/170114968?v=4" 
-                  alt="Himansh Shivhare" 
-                  class="w-10 h-10 rounded-full object-cover border border-gray-200 dark:border-zinc-800"
-                  @error="$event.target.src = 'https://ui-avatars.com/api/?name=Himansh+Shivhare&background=f3f4f6&color=333'"
-                />
-              </a>
-              <div class="flex flex-col">
-                <a href="https://linkedin.com/in/himansh-shivhare" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-gray-900 dark:text-white hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors">
-                  Himansh Shivhare
-                </a>
-                <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                  Founder &amp; Lead Architect
-                </span>
-                <span class="text-[10px] text-gray-400 dark:text-gray-500 mt-1 uppercase tracking-wide font-mono">
-                  Last Updated: August 2026
-                </span>
-              </div>
-            </div>
-
-            <!-- Official Resources Outbound Links (E-E-A-T) -->
+  <ArticleLayout
+    section-label="Plugins"
+    section-to="/plugins"
+    category="Cursor AI"
+    date="AUGUST 2026"
+    read-time="12 MIN READ · TECHNICAL SPECIFICATION &amp; BENCHMARKS"
+    author-name="Himansh Shivhare"
+    author-role="Founder & Lead Architect"
+    author-avatar="https://avatars.githubusercontent.com/u/170114968?v=4"
+    :toc="toc"
+    v-model:active-section="activeSection"
+    share-label="SHARE THIS PAGE"
+  >
+    <template #sidebar-links>
+      <!-- Official Resources Outbound Links (E-E-A-T) -->
             <div class="space-y-2 pt-6 border-t border-gray-100 dark:border-gray-900">
               <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">OFFICIAL RESOURCES</div>
               <a 
@@ -155,14 +98,17 @@
                 </button>
               </div>
             </div>
-          </div>
-        </aside>
+    </template>
 
-        <!-- Middle Column (Article Content) -->
-        <main class="lg:col-span-8 px-0 lg:px-8 pt-0 lg:pt-12 text-left">
-          
-          <div class="markdown-content mb-16 animate-fade-in">
-            <!-- Verified Environment & E-E-A-T Trust Badge -->
+    <template #title>
+      <h1 class="font-sans font-normal text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] leading-[1.2] text-black dark:text-white">
+        Cursor AI Persistent Memory <br />
+          <span class="font-normal text-neutral-900 dark:text-gray-100">Long-Term Context for <span class="inline-block bg-[#D97757] text-white px-2.5 py-0.5 font-normal rounded-xs">Composer &amp; Chat.</span></span>
+      </h1>
+    </template>
+
+    <div class="markdown-content space-y-12 animate-fade-in">
+      <!-- Verified Environment & E-E-A-T Trust Badge -->
             <div class="mb-8 p-3.5 rounded-md border border-gray-200 dark:border-zinc-800 bg-gray-50/60 dark:bg-zinc-900/40 flex flex-wrap items-center justify-between gap-3 text-xs text-gray-600 dark:text-gray-400 font-mono">
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -727,39 +673,12 @@
                 Start Free
               </router-link>
             </div>
-          </div>
-        </main>
-
-        <!-- Right Sidebar (Dynamic Table of Contents) -->
-        <aside class="hidden lg:block lg:col-span-2 lg:border-l border-gray-200 dark:border-gray-800 lg:pl-8 pt-12 text-left">
-          <div class="sticky top-24 space-y-4">
-            <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold">ON THIS PAGE</div>
-            <nav class="space-y-3 text-sm relative pl-4 border-l border-gray-100 dark:border-zinc-900">
-              <a 
-                v-for="heading in toc" 
-                :key="heading.slug" 
-                :href="`#${heading.slug}`" 
-                @click.prevent="scrollTo(heading.slug)"
-                class="block font-medium text-gray-500 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors leading-snug relative"
-                :class="{ 'text-[#D97757] font-semibold': activeSection === heading.slug, 'pl-4 text-xs opacity-80': heading.level === 3 }"
-              >
-                <div 
-                  v-if="activeSection === heading.slug" 
-                  class="absolute -left-[17px] top-0 bottom-0 w-0.5 bg-[#D97757]"
-                ></div>
-                {{ heading.text }}
-              </a>
-            </nav>
-          </div>
-        </aside>
-
-      </div>
     </div>
-    <SiteFooter />
-  </div>
+  </ArticleLayout>
 </template>
 
 <script setup>
+import ArticleLayout from '@/components/ArticleLayout.vue';
 import { ref, onMounted, computed, onUnmounted, nextTick } from 'vue';
 import SiteFooter from '@/components/SiteFooter.vue';
 
@@ -776,23 +695,53 @@ const copyLink = () => {
 
 // TOC and Scrollspy
 const toc = [
-  { level: 2, text: 'TL;DR', slug: 'tldr' },
-  { level: 2, text: 'The Problem', slug: 'the-problem' },
-  { level: 2, text: '.cursorrules Masterclass', slug: 'cursorrules-masterclass' },
-  { level: 3, text: 'Hierarchy & MDC Rules', slug: 'cursorrules-hierarchy' },
-  { level: 3, text: 'Production Template', slug: 'cursorrules-template' },
-  { level: 2, text: 'Context Symbols (@)', slug: 'cursor-context-symbols' },
-  { level: 2, text: 'Composer Context Fatigue', slug: 'composer-context-fatigue' },
-  { level: 2, text: 'Token Economics & ROI', slug: 'token-efficiency' },
-  { level: 2, text: 'Context Architecture', slug: 'cursor-context-architecture' },
-  { level: 3, text: '.cursorrules', slug: 'layer-cursorrules' },
-  { level: 3, text: 'Codebase Indexing', slug: 'layer-codebase-indexing' },
-  { level: 3, text: 'Memwyre Graph', slug: 'layer-memwyre-graph' },
-  { level: 2, text: 'Comparison', slug: 'comparison' },
-  { level: 2, text: 'Setup Guide', slug: 'setup' },
-  { level: 2, text: 'Composer Workflows', slug: 'composer-workflows' },
-  { level: 2, text: 'Benchmark', slug: 'benchmark' },
-  { level: 2, text: 'FAQ', slug: 'faq' }
+  {
+    text: 'Overview & Context Problem',
+    slug: 'tldr',
+    children: [
+      { text: 'Core Takeaway (TL;DR)', slug: 'tldr' },
+      { text: 'The Context Rot Problem', slug: 'the-problem' },
+      { text: 'Composer Context Fatigue', slug: 'composer-context-fatigue' }
+    ]
+  },
+  {
+    text: 'Cursorrules & Context Symbols',
+    slug: 'cursorrules-masterclass',
+    children: [
+      { text: 'Hierarchy & MDC Rules', slug: 'cursorrules-hierarchy' },
+      { text: 'Production Template', slug: 'cursorrules-template' },
+      { text: 'Context Symbols (@)', slug: 'cursor-context-symbols' }
+    ]
+  },
+  {
+    text: 'Architecture & Token Economics',
+    slug: 'cursor-context-architecture',
+    children: [
+      { text: 'Layer 1: .cursorrules', slug: 'layer-cursorrules' },
+      { text: 'Layer 2: Codebase Indexing', slug: 'layer-codebase-indexing' },
+      { text: 'Layer 3: Memwyre Graph', slug: 'layer-memwyre-graph' },
+      { text: 'Token Economics & ROI', slug: 'token-efficiency' }
+    ]
+  },
+  {
+    text: 'Setup & Composer Workflows',
+    slug: 'setup',
+    children: [
+      { text: 'Step 1: Open Settings', slug: 'step-open-settings' },
+      { text: 'Step 2: Add MCP Server', slug: 'step-add-server' },
+      { text: 'Step 3: Verify Connection', slug: 'step-verify' },
+      { text: 'Composer Workflows', slug: 'composer-workflows' }
+    ]
+  },
+  {
+    text: 'Benchmarks, Comparison & FAQ',
+    slug: 'benchmark',
+    children: [
+      { text: 'Comparison Matrix', slug: 'comparison' },
+      { text: 'LoCoMo Benchmark', slug: 'benchmark' },
+      { text: 'Frequently Asked Questions', slug: 'faq' }
+    ]
+  }
 ];
 
 const activeSection = ref('tldr');

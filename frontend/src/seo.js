@@ -35,7 +35,10 @@ export const PRERENDER_ROUTES = [
   '/blog/vscode-mcp-persistent-memory',
   '/blog/openclaw-autonomous-memory',
   '/blog/state-of-ai-memory-2026',
-  '/blog/rag-vs-memory-long-term-knowledge'
+  '/blog/rag-vs-memory-long-term-knowledge',
+  '/blog/best-ai-agent-memories',
+  '/blog/best-alternatives-to-mem0',
+  '/blog/how-to-vibe-code-without-hitting-daily-limits'
 ];
 
 export const DEFAULT_SEO = {
@@ -150,6 +153,36 @@ export const PUBLIC_ROUTE_SEO = {
     description:
       'An inspection of context window explosion and why stateless attention buffers create substantial financial and latency overheads for enterprise codebase scale.',
     ogImage: '/blog-covers/state-of-ai-memory-2026.png',
+  },
+  '/blog/best-ai-agent-memories': {
+    title: 'Best AI Agent Memory Systems in 2026: Architectures & Comparison | Memwyre Blog',
+    description:
+      'Compare top AI agent memory architectures including Memwyre, Mem0, Letta, Zep, and LangMem. Benchmark retrieval latency, SPO triples, and token reduction.',
+    ogImage: '/blog-covers/best-ai-agent-memories.png',
+  },
+  '/blog/best-alternatives-to-mem0': {
+    title: '5 Best Alternatives to Mem0 in 2026: Features, Tradeoffs & Benchmarks | Memwyre Blog',
+    description:
+      'Discover the top 5 alternatives to Mem0 for persistent AI memory. Compare Memwyre, Letta, Zep, LangMem, and Supermemory across benchmarks, MCP, and pricing.',
+    ogImage: '/blog-covers/best-alternatives-to-mem0.png',
+  },
+  '/blog/how-to-vibe-code-without-hitting-daily-limits': {
+    title: 'How to Vibe Code Without Hitting Daily Limits: The Playbook | Memwyre Blog',
+    description:
+      'Stop crushing Claude and Cursor daily request limits. Master the 5-step playbook using modular resets, token pruning, and external MCP memory.',
+    ogImage: '/blog-covers/how-to-vibe-code-without-hitting-daily-limits.png',
+  },
+  '/blog/muse-code-persistent-memory': {
+    title: 'How to Give Muse Code Persistent Memory | Memwyre Blog',
+    description:
+      'Complete guide to lifecycle hooks, MCP, and cross-agent context sync for Meta Muse Code CLI using Memwyre.',
+    ogImage: '/blog-covers/muse-code-persistent-memory.png',
+  },
+  '/blog/openai-dots-memory': {
+    title: 'How to Give OpenAI Dots Persistent Memory with Memwyre | Memwyre Blog',
+    description:
+      'Connect Memwyre MCP server to ChatGPT to provide your OpenAI Dots with persistent cross-tool context.',
+    ogImage: '/blog-covers/openai-dots-memory.png',
   },
   '/blog/:slug': {
     title: 'Memwyre Blog | Engineering Insights & Developer Guides',
@@ -404,7 +437,10 @@ export function getSeoForPath(path = '/') {
       'grok-bot-shared-memory': '2026-09-16T08:00:00Z',
       'cursor-vs-claude-code-context': '2026-04-20T08:00:00Z',
       'state-of-ai-memory-2026': '2026-04-18T08:00:00Z',
-      'rag-vs-memory-long-term-knowledge': '2026-04-09T08:00:00Z'
+      'rag-vs-memory-long-term-knowledge': '2026-04-09T08:00:00Z',
+      'best-ai-agent-memories': '2026-09-29T08:00:00Z',
+      'best-alternatives-to-mem0': '2026-09-29T08:00:00Z',
+      'how-to-vibe-code-without-hitting-daily-limits': '2026-09-29T08:00:00Z'
     };
     const pubDate = blogDates[slug] || '2026-03-01T08:00:00Z';
     jsonLdData.push({

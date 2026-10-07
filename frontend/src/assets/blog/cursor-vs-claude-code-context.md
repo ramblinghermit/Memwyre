@@ -1,4 +1,4 @@
-# Cursor AI vs Claude Code: Managing Context and Memory in IDEs
+﻿# Cursor AI vs Claude Code: Managing Context and Memory in IDEs
 
 > **TL;DR:** Cursor AI relies on static codebase vector indexing, while Claude Code CLI focuses on dynamic terminal command loops. Both are stateless across chats and sessions. By connecting both tools to a unified Memwyre memory vault (using MCP for Cursor and lifecycle hooks for Claude Code), you can synchronize project context, styling guidelines, and debugging histories across both environments.
 
@@ -83,9 +83,9 @@ To add persistent memory to Cursor:
 1. Open Cursor Settings -> **Features** -> **MCP**.
 2. Click **+ Add New MCP Server**.
 3. Configure the server:
-   - **Name**: `memwyre-memory`
-   - **Type**: `command`
-   - **Command**: `npx -y mcp-remote https://server.memwyre.tech/mcp --header "Authorization:Bearer YOUR_MEMWYRE_API_TOKEN"`
+  - **Name**: `memwyre-memory`
+  - **Type**: `command`
+  - **Command**: `npx -y mcp-remote https://server.memwyre.tech/mcp --header "Authorization:Bearer YOUR_MEMWYRE_API_TOKEN"`
 
 ### 2. Connecting Memwyre to Claude Code
 To add persistent memory to Claude Code, register the Memwyre server using the built-in MCP configuration command:
@@ -119,5 +119,6 @@ Cursor queries the Memwyre MCP server, retrieves the WSL integration note writte
 
 ## Conclusion
 
-Choosing between Cursor and Claude Code depends on your development style — whether you prefer a visual IDE or a command-line terminal agent. However, both benefit from persistent, cross-session memory. Connect them with Memwyre to stop repeating context and accelerate your development loop. Sign up at [memwyre.tech](https://memwyre.tech).
+Choosing between Cursor and Claude Code depends on your development style - whether you prefer a visual IDE or a command-line terminal agent. However, both benefit from persistent, cross-session memory. Connect them with Memwyre to stop repeating context and accelerate your development loop. Sign up at [memwyre.tech](https://memwyre.tech).
+
 

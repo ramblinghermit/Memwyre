@@ -1,6 +1,6 @@
-# How to Maintain Consistent Memory Across ChatGPT, Claude Code, and Cursor
+﻿# How to Maintain Consistent Memory Across ChatGPT, Claude Code, and Cursor
 
-> **TL;DR:** The modern AI coding workflow is fragmented across three distinct tools: **ChatGPT** for architectural planning, **Cursor** for graphical IDE editing, and **Claude Code** for terminal-native agent execution. Because each tool stores memory in an isolated silo (or has no memory at all), developers waste hours re-explaining context and copy-pasting decisions. By connecting all three environments to a unified **Memwyre** memory vault—via MCP in Cursor, lifecycle hooks in Claude Code, and web/API integration in ChatGPT—you maintain a persistent, bidirectional knowledge graph that synchronizes decisions, API contracts, and team conventions across your entire developer toolchain.
+> **TL;DR:** The modern AI coding workflow is fragmented across three distinct tools: **ChatGPT** for architectural planning, **Cursor** for graphical IDE editing, and **Claude Code** for terminal-native agent execution. Because each tool stores memory in an isolated silo (or has no memory at all), developers waste hours re-explaining context and copy-pasting decisions. By connecting all three environments to a unified **Memwyre** memory vault - via MCP in Cursor, lifecycle hooks in Claude Code, and web/API integration in ChatGPT - you maintain a persistent, bidirectional knowledge graph that synchronizes decisions, API contracts, and team conventions across your entire developer toolchain.
 
 ---
 
@@ -98,7 +98,7 @@ sequenceDiagram
 
 1. Sign up for a free account at [memwyre.tech/signup](https://memwyre.tech/signup).
 2. Generate your personal API Key from the **API Keys** tab in the dashboard.
-3. Keep your `MEMWYRE_API_KEY` ready—this single credential unlocks synchronized access across all your tools.
+3. Keep your `MEMWYRE_API_KEY` ready - this single credential unlocks synchronized access across all your tools.
 
 ---
 
@@ -252,3 +252,4 @@ Stop wasting time re-explaining your architecture every time you switch between 
 2. Connect Cursor MCP: `npx -y mcp-remote https://server.memwyre.tech/mcp --header Authorization:Bearer bv_sk_your_api_key_here`
 3. Connect Claude Code: `claude plugin install @memwyre/claude-code-plugin`
 4. Experience seamless, universal AI memory across your entire development workflow.
+

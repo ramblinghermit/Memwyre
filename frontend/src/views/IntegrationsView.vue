@@ -581,6 +581,8 @@ import chromeIcon from '@/assets/chrome-logo-svgrepo-com.svg';
 import windsurfIcon from '@/assets/windsurf-color.svg';
 import codexIcon from '@/assets/codex-color.svg';
 import opencodeIcon from '@/assets/opencode-color.svg';
+import museIcon from '@/assets/muse-color.svg';
+import openaiDotsIcon from '@/assets/openai-dots-color.svg';
 
 const route = useRoute();
 const router = useRouter();
@@ -926,6 +928,48 @@ const integrationCategories = ref([
         setupSectionTitle: 'Plugin Configuration',
         isPlugin: true,
         docsLink: 'https://docs.memwyre.tech/integrations/mcp-server'
+      },
+      { 
+        id: 'muse-code', 
+        name: 'Muse Code', 
+        subtitle: 'Persistent memory and session lifecycle hooks for Meta\'s Muse coding agent',
+        desc: 'Persistent memory for Meta Muse Code terminal sessions', 
+        samplePrompt: 'Retrieve past architectural decisions and inject project context into this Muse session',
+        fullDesc: 'The Memwyre Muse plugin gives Meta\'s Muse Code terminal agent persistent memory across sessions. Past project decisions are automatically injected on session start, and new insights are captured on exit. Uses file-based credential storage to work within Muse\'s security model.',
+        features: [
+          { title: 'SessionStart injection', desc: 'Automatically retrieves project memories when a Muse session starts' },
+          { title: 'Stop hook capture', desc: 'Parses and uploads session transcripts for async memory extraction' },
+          { title: 'File-based auth', desc: 'Credentials stored in ~/.muse-memwyre/credentials.json — works even when Muse clears the shell env' },
+          { title: 'MCP + skills', desc: 'Includes MCP server config and /memwyre:index slash command skills' }
+        ],
+        icon: museIcon,
+        isPro: true,
+        protocol: 'Muse Code Hooks Protocol + MCP',
+        typeLabel: 'CLI Terminal Plugin',
+        appSubtitle: 'Muse Code Lifecycle Hook Plugin',
+        setupSectionTitle: 'Plugin Installation & Auth',
+        isPlugin: true,
+        docsLink: 'https://docs.memwyre.tech/integrations/plugins/muse'
+      },
+      { 
+        id: 'openai-dots', 
+        name: 'OpenAI Dots', 
+        subtitle: 'Connect OpenAI Dots to your Memwyre vault via MCP for persistent cross-session memory',
+        desc: 'Persistent cross-session memory for OpenAI Dots agents', 
+        samplePrompt: 'Search my Memwyre vault for past architectural decisions before starting this project task',
+        fullDesc: 'OpenAI Dots are always-on ChatGPT agents (powered by GPT-6 Astra) that need structured project knowledge beyond ChatGPT\'s native memory. Connect Memwyre\'s MCP server to give your Dots access to a cross-tool vault synced with Claude Code, Cursor, and Grok.',
+        features: [
+          { title: 'MCP connector', desc: 'Connect via ChatGPT Settings → Connected Apps → server.memwyre.tech/mcp' },
+          { title: 'Cross-tool sync', desc: 'Memories from Claude Code, Cursor, and Grok sessions are instantly available to your Dots' },
+          { title: 'Full tool access', desc: 'search_memwyre, save_memory, list_memories, get_inbox, and 6 more tools' }
+        ],
+        icon: openaiDotsIcon,
+        isPro: true,
+        protocol: 'Model Context Protocol (MCP)',
+        typeLabel: 'Always-On Agent Connector',
+        appSubtitle: 'ChatGPT MCP Connector',
+        setupSectionTitle: 'MCP Configuration',
+        docsLink: 'https://docs.memwyre.tech/integrations/plugins/dots'
       }
     ]
   },
@@ -1163,6 +1207,7 @@ const mapIntegrationToTab = (id) => {
   if (id === 'opencode') return 'opencode';
   if (id === 'windsurf') return 'windsurf';
   if (id === 'chatgpt') return 'openai';
+  if (id === 'muse-code') return 'muse';
   if (id === 'gemini') return 'gemini';
   if (id === 'perplexity') return 'perplexity';
   return 'claude';

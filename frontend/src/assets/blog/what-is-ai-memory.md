@@ -1,4 +1,4 @@
-# What is AI Memory? The Architecture of Long-Term Context
+﻿# What is AI Memory? The Architecture of Long-Term Context
 
 As LLMs transition from chatbots to agentic developers, the cost of statelessness has become unsustainable. Traditional retrieval systems fail to capture state, while massive context windows lead to high latency and cognitive degradation. This guide analyzes the engineering principles behind persistent, long-term AI memory.
 
@@ -18,15 +18,15 @@ In a typical professional environment, developer context is multi-faceted: it co
 
 To combat statelessness, AI providers began increasing context windows, expanding from 4,000 tokens in early GPT models to 200,000 and even 2 million tokens in Google's Gemini models. While a massive context window allows you to upload an entire codebase at once, relying on it as a surrogate for "long-term memory" introduces three distinct engineering challenges:
 
-**01 / Cost Overhead — Linear Token Costs**
+**01 / Cost Overhead - Linear Token Costs**
 
 As context grows, every token sent in the prompt is billed repeatedly. A 100k context session costs 100x more per prompt than a 1k session.
 
-**02 / Latency Spike — Processing Overhead**
+**02 / Latency Spike - Processing Overhead**
 
 Attention mechanism calculations grow quadratically (O(N²)) or line-linearly, leading to noticeable delays for every token processed.
 
-**03 / Attention Decay — Lost in the Middle**
+**03 / Attention Decay - Lost in the Middle**
 
 Studies show LLMs struggle to recall information buried in the middle of giant context windows, reducing general output accuracy.
 
@@ -50,7 +50,7 @@ For example, if you ask: "Why is the authentication middleware throwing a 403 er
 
 ### Semantic Linkage Map: Memory Graph Approach
 
-**Entity: BillingRoute** (`/api/billing.js`) — *depends_on (Active Relation)* → **Entity: AuthMiddleware** (`roleValidation()`) — *modified_by (Change Relation)* → **User: Developer** (`Himansh (Prisma update)`)
+**Entity: BillingRoute** (`/api/billing.js`) - *depends_on (Active Relation)* → **Entity: AuthMiddleware** (`roleValidation()`) - *modified_by (Change Relation)* → **User: Developer** (`Himansh (Prisma update)`)
 
 A **Memory Graph** structures knowledge as nodes (entities, concepts, files) and edges (relationships, dependencies, edits). When a new conversation occurs, the memory engine extracts new entities, merges them with existing nodes, updates their weight based on usage frequency, and constructs links between them. During retrieval, the model queries both the vector database (for semantic similarity) and traverses the adjacent nodes on the graph (for relationship context). This hybrid graph-vector approach provides a multi-hop reasoning capability that flat vectors cannot match.
 
@@ -120,3 +120,4 @@ Stop repeating project context, coding rules, and database schemas. Set up Memwy
 [Get Started Free](/signup/) · [View LoCoMo Benchmarks](/ai-memory-benchmark-locomo/)
 
 [/ Research Hub](/research/) · [/ MCP Integration](/mcp/) · [/ Memwyre vs Mem0](/memwyre-vs-mem0/) · [/ Documentation](https://docs.memwyre.tech)
+

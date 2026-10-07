@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch, nextTick, computed, onServerPrefetch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import SiteFooter from '@/components/SiteFooter.vue';
+import ArticleLayout from '@/components/ArticleLayout.vue';
 import { Marked } from 'marked';
 import mermaid from 'mermaid';
 
@@ -65,17 +65,71 @@ const activeSection = ref('');
 const parseToc = (md) => {
   if (!md) return;
   const tokens = marked.lexer(md);
-  const headings = [];
-  let sectionIndex = 1;
+  const rawHeadings = [];
+  
   tokens.forEach(token => {
     if (token.type === 'heading' && (token.depth === 2 || token.depth === 3)) {
-      // Remove Markdown formatting like ** or _ from the TOC text
       const cleanText = token.text.replace(/[*_~`]/g, '');
-      const slug = slugify(token.text); // keep slugify matching the renderer
-      headings.push({ level: token.depth, text: cleanText, slug, index: sectionIndex++ });
+      const slug = slugify(token.text);
+      rawHeadings.push({ depth: token.depth, text: cleanText, slug });
     }
   });
-  toc.value = headings;
+
+  if (rawHeadings.length === 0) {
+    toc.value = [];
+    return;
+  }
+
+  // Group into major sections (H2) and sub-points (H3)
+  const sections = [];
+  let currentSection = null;
+
+  rawHeadings.forEach(h => {
+    if (h.depth === 2 || !currentSection) {
+      currentSection = {
+        text: h.text,
+        slug: h.slug,
+        children: []
+      };
+      sections.push(currentSection);
+    } else if (h.depth === 3 && currentSection) {
+      currentSection.children.push({
+        text: h.text,
+        slug: h.slug
+      });
+    }
+  });
+
+  // Ensure at most 4 to 5 major points
+  let finalToc = [];
+  if (sections.length <= 5) {
+    finalToc = sections;
+  } else {
+    // Cluster sections into at most 4-5 groups
+    const targetCount = sections.length <= 8 ? 4 : 5;
+    const chunkSize = Math.ceil(sections.length / targetCount);
+    for (let i = 0; i < sections.length; i += chunkSize) {
+      const chunk = sections.slice(i, i + chunkSize);
+      const primary = chunk[0];
+      const combinedChildren = [...primary.children];
+      for (let j = 1; j < chunk.length; j++) {
+        combinedChildren.push({ text: chunk[j].text, slug: chunk[j].slug });
+        if (chunk[j].children && chunk[j].children.length > 0) {
+          combinedChildren.push(...chunk[j].children);
+        }
+      }
+      finalToc.push({
+        text: primary.text,
+        slug: primary.slug,
+        children: combinedChildren
+      });
+    }
+  }
+
+  toc.value = finalToc;
+  if (finalToc.length > 0 && !activeSection.value) {
+    activeSection.value = finalToc[0].slug;
+  }
 };
 
 watch(rawContent, (newContent) => {
@@ -84,6 +138,46 @@ watch(rawContent, (newContent) => {
 
 // Get meta info for other articles sidebar
 const recentPosts = [
+  {
+    slug: 'muse-code-persistent-memory',
+    title: 'How to Give Muse Code Persistent Memory: The Complete Developer Guide to Lifecycle Hooks, MCP, and Cross-Agent Context Sync',
+    category: 'CLI Plugins',
+    author: 'Himansh Shivhare',
+    fullDate: 'October 01, 2026',
+    readTime: '14 MIN'
+  },
+  {
+    slug: 'openai-dots-memory',
+    title: 'How to Give OpenAI Dots Persistent Memory with Memwyre',
+    category: 'MCP Server',
+    author: 'Himansh Shivhare',
+    fullDate: 'October 01, 2026',
+    readTime: '5 MIN'
+  },
+  {
+    slug: 'best-ai-agent-memories',
+    title: 'Best AI Agent Memory Systems in 2026: Architectures, Benchmarks & Comparison',
+    category: 'Architecture',
+    author: 'Himansh Shivhare',
+    fullDate: 'September 29, 2026',
+    readTime: '8 MIN'
+  },
+  {
+    slug: 'best-alternatives-to-mem0',
+    title: 'The 5 Best Alternatives to Mem0 in 2026: Features, Tradeoffs & Benchmarks',
+    category: 'Comparisons',
+    author: 'Himansh Shivhare',
+    fullDate: 'September 29, 2026',
+    readTime: '7 MIN'
+  },
+  {
+    slug: 'how-to-vibe-code-without-hitting-daily-limits',
+    title: 'How to Vibe Code Without Worrying About Hitting Daily Limits',
+    category: 'Workflows',
+    author: 'Himansh Shivhare',
+    fullDate: 'September 29, 2026',
+    readTime: '6 MIN'
+  },
   {
     slug: 'shared-memory-chatgpt-claude-cursor',
     title: 'How to Maintain Consistent Memory Across ChatGPT, Claude Code, and Cursor',
@@ -319,212 +413,89 @@ watch(() => route.params.slug, (newSlug) => {
 });
 
 // Meta helpers
+const currentPost = computed(() => recentPosts.find(p => p.slug === route.params.slug));
 const pageUrl = computed(() => typeof window !== 'undefined' ? window.location.href : '');
-const pageTitle = computed(() => {
-  const currentPost = recentPosts.find(p => p.slug === route.params.slug);
-  return currentPost ? currentPost.title : 'Memwyre Guide';
-});
-
-const copyLink = () => {
-  if (typeof window !== 'undefined') {
-    navigator.clipboard.writeText(window.location.href);
-    alert('Article link copied to clipboard!');
-  }
-};
+const pageTitle = computed(() => currentPost.value ? currentPost.value.title : 'Memwyre Guide');
 </script>
 
 <template>
-  <div class="relative min-h-screen bg-white dark:bg-[#0c0c0c] pt-28 pb-0 [overflow-x:clip] font-sans">
-    <!-- Grid Blueprint background line effects -->
-    <div class="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-    </div>
-
-    <!-- Global Vertical Grid Lines -->
-    <div class="hidden lg:block absolute top-0 bottom-0 left-6 sm:left-8 lg:left-[calc(50%-640px)] w-px bg-gray-300/80 dark:bg-gray-800/60 pointer-events-none select-none z-30"></div>
-    <div class="hidden lg:block absolute top-0 bottom-0 right-6 sm:right-8 lg:right-[calc(50%-640px)] w-px bg-gray-300/80 dark:bg-gray-800/60 pointer-events-none select-none z-30"></div>
-
-    <div class="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 animate-fade-in">
-      
-      <!-- Back Navigation Header -->
-      <div class="pt-6 mb-8">
-        <router-link 
-          :to="recentPosts.find(p => p.slug === route.params.slug)?.category === 'Research' ? '/research' : '/blog'" 
-          class="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
-        >
-          <span class="inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 dark:border-zinc-800 text-[10px]">&larr;</span>
-          {{ recentPosts.find(p => p.slug === route.params.slug)?.category === 'Research' ? 'All research' : 'All articles' }}
-        </router-link>
-      </div>
-
-      <!-- Loading State -->
-      <div v-if="isLoading" class="flex flex-col items-center justify-center py-32">
-        <div class="w-10 h-10 border-4 border-gray-300 dark:border-gray-800 border-t-[#D97757] rounded-full animate-spin"></div>
-        <p class="mt-4 text-sm text-gray-400 dark:text-gray-500">Loading article...</p>
-      </div>
-
-      <!-- Error State -->
-      <div v-else-if="error" class="bg-red-500/5 border border-red-500/20 text-red-500 rounded p-8 text-center my-10">
-        <h2 class="text-lg font-semibold mb-2">Error</h2>
-        <p class="text-sm font-light mb-6">{{ error }}</p>
-        <router-link to="/blog" class="px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-150 transition-colors">
-          Return to Blog Home
-        </router-link>
-      </div>
-
-      <!-- Article Flow -->
-      <div v-else>
-        <!-- Header Section -->
-        <div class="space-y-4 mb-8 text-left">
-          <div class="text-xs font-bold uppercase tracking-wider text-[#D97757] font-mono">
-            {{ recentPosts.find(p => p.slug === route.params.slug)?.category || 'Engineering' }} 
-            <span class="text-gray-300 dark:text-gray-700 mx-2">/</span> 
-            {{ recentPosts.find(p => p.slug === route.params.slug)?.fullDate || 'June 24, 2026' }}
-          </div>
-          
-          <h1 v-if="route.params.slug === 'what-is-ai-memory'" class="hero-serif text-4xl sm:text-5xl lg:text-6xl tracking-[-0.02em] leading-[1.1] text-gray-950 dark:text-white">
-            What is AI Memory? <br />
-            <span class="italic font-medium text-gray-900 dark:text-gray-100">The Architecture of <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">Long-Term Context.</span></span>
-          </h1>
-          <h1 v-else-if="route.params.slug === 'ai-memory-benchmark-locomo'" class="hero-serif text-4xl sm:text-5xl lg:text-6xl tracking-[-0.02em] leading-[1.1] text-gray-950 dark:text-white">
-            LoCoMo Benchmark <br />
-            <span class="italic font-medium text-gray-900 dark:text-gray-100">Evaluation of <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">AI Memory.</span></span>
-          </h1>
-          <h1 v-else class="hero-serif text-4xl sm:text-5xl lg:text-6xl tracking-[-0.02em] leading-[1.1] text-gray-950 dark:text-white">
-            {{ recentPosts.find(p => p.slug === route.params.slug)?.title || 'Memwyre Guide' }}
-          </h1>
-
-          <div class="text-[10px] tracking-wider uppercase font-bold font-mono text-gray-400 dark:text-gray-500 pt-2">
-            {{ recentPosts.find(p => p.slug === route.params.slug)?.readTime || '5 MIN' }} READ
-          </div>
-        </div>
-
-        <!-- Section Separator Line -->
-        <div class="-mx-6 sm:-mx-8 lg:-mx-12 h-px bg-gray-200 dark:bg-gray-850 pointer-events-none select-none"></div>
-
-        <!-- 3-Column Layout Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-0 pb-24">
-          
-          <!-- Left Sidebar (Author Info & Social Sharing) -->
-          <aside class="lg:col-span-2 lg:border-r border-gray-200 dark:border-gray-800 lg:pr-8 pt-8 lg:pt-12 text-left">
-            <div class="sticky top-24 space-y-8">
-              <!-- Author Card -->
-              <div class="flex items-center gap-3">
-                <img 
-                  src="https://avatars.githubusercontent.com/u/170114968?v=4" 
-                  alt="Himansh Shivhare" 
-                  class="w-10 h-10 rounded-full object-cover border border-gray-200 dark:border-zinc-800"
-                  @error="$event.target.src = 'https://ui-avatars.com/api/?name=Himansh+Shivhare&background=f3f4f6&color=333'"
-                />
-                <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                  Himansh Shivhare
-                </span>
-              </div>
-
-              <!-- Share Buttons -->
-              <div class="space-y-3 pt-6 border-t border-gray-100 dark:border-gray-900">
-                <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold">SHARE THIS ARTICLE</div>
-                <div class="flex items-center gap-2">
-                  <a 
-                    :href="`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`" 
-                    target="_blank"
-                    class="w-9 h-9 rounded border border-gray-200 dark:border-zinc-800 flex items-center justify-center text-gray-500 hover:text-[#D97757] dark:hover:text-[#D97757] transition-all bg-white dark:bg-[#111]"
-                  >
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    </svg>
-                  </a>
-                  <a 
-                    :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}`" 
-                    target="_blank"
-                    class="w-9 h-9 rounded border border-gray-200 dark:border-zinc-800 flex items-center justify-center text-gray-500 hover:text-[#D97757] dark:hover:text-[#D97757] transition-all bg-white dark:bg-[#111]"
-                  >
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                  </a>
-                  <button 
-                    @click="copyLink"
-                    class="w-9 h-9 rounded border border-gray-200 dark:border-zinc-800 flex items-center justify-center text-gray-500 hover:text-[#D97757] dark:hover:text-[#D97757] transition-all bg-white dark:bg-[#111] cursor-pointer"
-                  >
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </aside>
-
-          <!-- Middle Column (Banner & Article Body) -->
-          <main class="lg:col-span-8 px-0 lg:px-8 pt-0 lg:pt-12 text-left">
-            <!-- Cover Image -->
-            <div class="w-full aspect-[2/1] rounded-xl overflow-hidden mb-10 bg-gray-50 border border-gray-150 dark:bg-zinc-900/30 dark:border-zinc-800/80">
-              <img 
-                :src="`/blog-covers/${route.params.slug}.png`" 
-                :alt="recentPosts.find(p => p.slug === route.params.slug)?.title || 'Blog Cover'" 
-                class="w-full h-full object-cover"
-                @error="$event.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80'"
-              />
-            </div>
-
-            <!-- Parsed Markdown HTML -->
-            <div class="markdown-content mb-16 animate-fade-in" v-html="parsedHtml"></div>
-
-            <!-- Read Next section -->
-            <div class="pt-10 border-t border-gray-100 dark:border-gray-900">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-6 pb-2 border-b border-gray-100 dark:border-gray-900 font-mono">
-                Read Next
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div 
-                  v-for="post in recentPosts.filter(p => p.slug !== route.params.slug).slice(0, 3)" 
-                  :key="post.slug"
-                  class="group flex flex-col justify-between p-4 rounded-lg border border-gray-150 dark:border-zinc-800 hover:border-[#D97757] dark:hover:border-[#D97757] transition-all duration-200 bg-gray-50/35 dark:bg-[#151515]/25"
-                >
-                  <h4 class="text-xs font-semibold text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors leading-snug mb-3">
-                    <router-link :to="post.category === 'Research' ? `/research/${post.slug}` : `/blog/${post.slug}`">
-                      {{ post.title }}
-                    </router-link>
-                  </h4>
-                  <router-link 
-                    :to="post.category === 'Research' ? `/research/${post.slug}` : `/blog/${post.slug}`"
-                    class="inline-flex items-center gap-1 text-[11px] font-bold text-[#D97757] hover:text-[#c05c3d] transition-colors duration-150 font-mono"
-                  >
-                    Read &rarr;
-                  </router-link>
-                </div>
-              </div>
-            </div>
-          </main>
-
-          <!-- Right Sidebar (Dynamic Table of Contents) -->
-          <aside class="hidden lg:block lg:col-span-2 lg:border-l border-gray-200 dark:border-gray-800 lg:pl-8 pt-12 text-left">
-            <div class="sticky top-24 space-y-4">
-              <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold">ON THIS PAGE</div>
-              <nav class="space-y-3 text-sm relative pl-4 border-l border-gray-100 dark:border-zinc-900">
-                <a 
-                  v-for="heading in toc" 
-                  :key="heading.slug" 
-                  :href="`#${heading.slug}`" 
-                  class="block font-medium text-gray-500 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors leading-snug relative"
-                  :class="{ 'text-[#D97757] font-semibold': activeSection === heading.slug, 'pl-4 text-xs opacity-80': heading.level === 3 }"
-                >
-                  <!-- Active Indicator vertical line -->
-                  <div 
-                    v-if="activeSection === heading.slug" 
-                    class="absolute -left-[17px] top-0 bottom-0 w-0.5 bg-[#D97757]"
-                  ></div>
-                  {{ heading.text }}
-                </a>
-              </nav>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </div>
-    <SiteFooter />
+  <!-- Loading State -->
+  <div v-if="isLoading" class="min-h-screen bg-white dark:bg-[#0c0c0c] pt-24 flex flex-col items-center justify-center font-sans">
+    <div class="w-10 h-10 border-4 border-gray-300 dark:border-gray-800 border-t-[#D97757] rounded-full animate-spin"></div>
+    <p class="mt-4 text-sm text-gray-400 dark:text-gray-500 font-mono">Loading article...</p>
   </div>
+
+  <!-- Error State -->
+  <div v-else-if="error" class="min-h-screen bg-white dark:bg-[#0c0c0c] pt-24 px-6 flex flex-col items-center justify-center font-sans">
+    <div class="bg-red-500/5 border border-red-500/20 text-red-500 rounded p-8 text-center max-w-md w-full">
+      <h2 class="text-lg font-semibold mb-2">Error</h2>
+      <p class="text-sm font-light mb-6">{{ error }}</p>
+      <router-link to="/blog" class="px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-150 transition-colors">
+        Return to Blog Home
+      </router-link>
+    </div>
+  </div>
+
+  <!-- Article Flow with Unified ArticleLayout -->
+  <ArticleLayout
+    v-else
+    :section="currentPost?.category === 'Research' ? 'Research' : 'Blog'"
+    :section-to="currentPost?.category === 'Research' ? '/research' : '/blog'"
+    :category="currentPost?.category || 'Engineering'"
+    :category-to="currentPost?.category && currentPost?.category !== 'Research' ? { path: '/blog', query: { category: currentPost?.category } } : null"
+    :date="currentPost?.fullDate || 'June 24, 2026'"
+    :read-time="currentPost?.readTime || '5 MIN'"
+    :toc="toc"
+    v-model:active-section="activeSection"
+    :share-title="pageTitle"
+    :cover-image="`/blog-covers/${route.params.slug}.png`"
+    :cover-alt="currentPost?.title || 'Blog Cover'"
+  >
+    <template #title>
+      <h1 v-if="route.params.slug === 'what-is-ai-memory'" class="font-sans font-normal text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] leading-[1.2] text-black dark:text-white">
+        What is AI Memory? <br />
+        <span class="font-normal text-neutral-900 dark:text-gray-100">The Architecture of <span class="inline-block bg-[#D97757] text-white px-2.5 py-0.5 font-normal rounded-xs">Long-Term Context.</span></span>
+      </h1>
+      <h1 v-else-if="route.params.slug === 'ai-memory-benchmark-locomo'" class="font-sans font-normal text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] leading-[1.2] text-black dark:text-white">
+        LoCoMo Benchmark <br />
+        <span class="font-normal text-neutral-900 dark:text-gray-100">Evaluation of <span class="inline-block bg-[#D97757] text-white px-2.5 py-0.5 font-normal rounded-xs">AI Memory.</span></span>
+      </h1>
+      <h1 v-else class="font-sans font-normal text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] leading-[1.2] text-black dark:text-white">
+        {{ currentPost?.title || 'Memwyre Guide' }}
+      </h1>
+    </template>
+
+    <!-- Parsed Markdown HTML -->
+    <div class="markdown-content mb-16 animate-fade-in" v-html="parsedHtml"></div>
+
+    <!-- Read Next section -->
+    <template #footer>
+      <div class="pt-10 border-t border-gray-100 dark:border-gray-900">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-6 pb-2 border-b border-gray-100 dark:border-gray-900 font-mono">
+          Read Next
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div 
+            v-for="post in recentPosts.filter(p => p.slug !== route.params.slug).slice(0, 3)" 
+            :key="post.slug"
+            class="group flex flex-col justify-between p-4 rounded-none border border-gray-150 dark:border-zinc-800 hover:border-[#D97757] dark:hover:border-[#D97757] transition-all duration-200 bg-gray-50/35 dark:bg-[#151515]/25"
+          >
+            <h4 class="text-xs font-semibold text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors leading-snug mb-3">
+              <router-link :to="post.category === 'Research' ? `/research/${post.slug}` : `/blog/${post.slug}`">
+                {{ post.title }}
+              </router-link>
+            </h4>
+            <router-link 
+              :to="post.category === 'Research' ? `/research/${post.slug}` : `/blog/${post.slug}`"
+              class="inline-flex items-center gap-1 text-[11px] font-bold text-[#D97757] hover:text-[#c05c3d] transition-colors duration-150 font-mono"
+            >
+              Read &rarr;
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ArticleLayout>
 </template>
 
 <style>
@@ -592,8 +563,8 @@ const copyLink = () => {
 .markdown-content h2,
 .markdown-content h3,
 .markdown-content h4 {
-  font-family: 'Playfair Display', Georgia, serif;
-  color: #111827;
+  font-family: inherit;
+  color: #000000;
   line-height: 1.25;
   margin-top: 36px;
   margin-bottom: 16px;
@@ -604,18 +575,18 @@ const copyLink = () => {
 .dark .markdown-content h2,
 .dark .markdown-content h3,
 .dark .markdown-content h4 {
-  color: #f3f4f6;
+  color: #ffffff;
 }
 
 .markdown-content h1 {
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
 .markdown-content h2 {
   font-size: 26px;
-  font-weight: 500;
+  font-weight: 450;
   letter-spacing: -0.015em;
   border-bottom: 1px solid rgba(0,0,0,0.06);
   padding-bottom: 8px;
@@ -627,16 +598,21 @@ const copyLink = () => {
 
 .markdown-content h3 {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
 .markdown-content p {
-  font-size: 15px;
-  line-height: 1.7;
-  font-weight: 300;
+  font-size: 15.5px;
+  line-height: 1.75;
+  font-weight: 400;
+  color: #111111;
   margin-top: 0;
   margin-bottom: 20px;
+}
+
+.dark .markdown-content p {
+  color: #d1d5db;
 }
 
 .markdown-content a {
@@ -658,10 +634,15 @@ const copyLink = () => {
 }
 
 .markdown-content li {
-  font-size: 15px;
-  line-height: 1.7;
-  font-weight: 300;
+  font-size: 15.5px;
+  line-height: 1.75;
+  font-weight: 400;
+  color: #111111;
   margin-bottom: 8px;
+}
+
+.dark .markdown-content li {
+  color: #d1d5db;
 }
 
 .markdown-content pre {

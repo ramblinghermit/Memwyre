@@ -30,9 +30,9 @@
           JUNE 24, 2026
         </div>
         
-        <h1 class="hero-serif text-4xl sm:text-5xl lg:text-6xl tracking-[-0.02em] leading-[1.1] text-gray-950 dark:text-white">
+        <h1 class="font-sans font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-[-0.03em] leading-[1.1] text-black dark:text-white">
           What is AI Memory? <br />
-          <span class="italic font-medium text-gray-900 dark:text-gray-100">The Architecture of <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 italic font-medium">Long-Term Context.</span></span>
+          <span class="font-bold text-neutral-900 dark:text-gray-100">The Architecture of <span class="inline-block bg-[#D97757] text-white px-3 py-0.5 font-bold">Long-Term Context.</span></span>
         </h1>
 
         <div class="text-[10px] tracking-wider uppercase font-bold font-mono text-gray-400 dark:text-gray-500 pt-2">
@@ -530,16 +530,14 @@ const copyLink = () => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-
 .hero-serif {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: inherit;
 }
 
 .markdown-content h2,
 .markdown-content h3 {
-  font-family: 'Playfair Display', Georgia, serif;
-  color: #111827;
+  font-family: inherit;
+  color: #000000;
   line-height: 1.25;
   margin-top: 36px;
   margin-bottom: 16px;
@@ -548,6 +546,6 @@ const copyLink = () => {
 
 .dark .markdown-content h2,
 .dark .markdown-content h3 {
-  color: #f3f4f6;
+  color: #ffffff;
 }
 </style>

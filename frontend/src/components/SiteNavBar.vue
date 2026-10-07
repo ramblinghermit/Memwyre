@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, onUnmounted } from 'vue';
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
@@ -7,7 +7,22 @@ const router = useRouter();
 
 const isSolidNav = computed(() => {
   const p = route.path;
-  return p.startsWith('/blog') || p.startsWith('/research') || p.startsWith('/ai-memory-benchmark-locomo');
+  return p !== '/' && p !== '';
+});
+
+const isScrolled = ref(false);
+
+const handleScroll = () => {
+  if (typeof window !== 'undefined') {
+    isScrolled.value = window.scrollY > 20;
+  }
+};
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
 });
 
 const scrollToSection = (hash) => {
@@ -84,6 +99,9 @@ const vClickOutside = {
 
 onUnmounted(() => {
   if (closeTimer) clearTimeout(closeTimer);
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('scroll', handleScroll);
+  }
 });
 
 // Reset state on route change
@@ -205,7 +223,7 @@ const resourceSections = [
   <header 
     class="top-0 left-0 right-0 z-50 transition-colors duration-200"
     :class="[
-      isSolidNav 
+      isSolidNav || isScrolled
         ? 'fixed bg-white border-b border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.02)]' 
         : (isMobileMenuOpen ? 'absolute bg-white shadow-xs' : 'absolute bg-transparent')
     ]"

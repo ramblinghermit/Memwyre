@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "memwyre": {
+      "transport": "streamable-http",
+      "url": "https://server.memwyre.tech/mcp",
+      "description": "Memwyre persistent memory vault — search, save, and retrieve memories across sessions.",
+      "note": "Auth is handled via `muse mcp login` or by passing a Bearer token. Run `node scripts/login.js` first to store credentials locally."
+    }
+  }
+}
