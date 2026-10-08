@@ -181,6 +181,40 @@ async function prerender() {
         await writeFile(outputPath, routeHtml, 'utf-8');
     }
 
+    // Auto-generate updated sitemap.xml in public/ and dist/
+    function getPriority(route) {
+        if (route === '/') return '1.0';
+        if (route === '/blog' || route === '/research') return '0.9';
+        if (['/opencode-memory', '/openclaw-memory'].includes(route)) return '0.9';
+        if (['/plugins', '/extension', '/connectors', '/mcp', '/use-cases', '/pricing'].includes(route)) return '0.8';
+        if (route.startsWith('/research/')) return '0.8';
+        if (['/cursor-memory', '/claude-memory', '/chatgpt-memory', '/grok-bot-memory', '/mcp-memory'].includes(route)) return '0.7';
+        if (['/memwyre-vs-mem0', '/memwyre-vs-supermemory', '/memwyre-vs-zep', '/ai-memory-benchmark-locomo'].includes(route)) return '0.7';
+        if (route.startsWith('/blog/')) return '0.7';
+        if (route === '/contact') return '0.6';
+        if (route === '/privacy-policy' || route === '/terms') return '0.3';
+        return '0.7';
+    }
+
+    function getChangefreq(route) {
+        if (route === '/') return 'daily';
+        if (['/blog', '/research', '/plugins', '/extension', '/connectors', '/mcp', '/use-cases', '/pricing'].includes(route)) return 'weekly';
+        if (['/opencode-memory', '/openclaw-memory', '/research/context-engineering', '/research/vector-database-vs-agent-memory'].includes(route)) return 'weekly';
+        if (route.startsWith('/blog/')) return 'monthly';
+        if (route === '/privacy-policy' || route === '/terms') return 'yearly';
+        return 'monthly';
+    }
+
+    let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+    PRERENDER_ROUTES.forEach((route) => {
+        const loc = `https://memwyre.tech${route === '/' ? '/' : route}`;
+        sitemapXml += `  <url>\n    <loc>${loc}</loc>\n    <changefreq>${getChangefreq(route)}</changefreq>\n    <priority>${getPriority(route)}</priority>\n  </url>\n`;
+    });
+    sitemapXml += `</urlset>\n`;
+
+    await writeFile(path.join(frontendDir, 'public', 'sitemap.xml'), sitemapXml, 'utf-8');
+    await writeFile(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf-8');
+
     await rm(serverDir, { recursive: true, force: true });
 }
 

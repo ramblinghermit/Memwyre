@@ -38,7 +38,9 @@ export const PRERENDER_ROUTES = [
   '/blog/rag-vs-memory-long-term-knowledge',
   '/blog/best-ai-agent-memories',
   '/blog/best-alternatives-to-mem0',
-  '/blog/how-to-vibe-code-without-hitting-daily-limits'
+  '/blog/how-to-vibe-code-without-hitting-daily-limits',
+  '/blog/muse-code-persistent-memory',
+  '/blog/openai-dots-memory'
 ];
 
 export const DEFAULT_SEO = {
