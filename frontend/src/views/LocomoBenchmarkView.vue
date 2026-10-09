@@ -51,6 +51,27 @@
           <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
           Vector DB vs Agent Memory
         </router-link>
+        <router-link 
+          to="/blog/best-ai-agent-memories"
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          Best Agent Memories Guide
+        </router-link>
+        <router-link 
+          to="/blog/best-alternatives-to-mem0"
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          Best Alternatives to Mem0
+        </router-link>
+        <router-link 
+          to="/opencode-memory"
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          OpenCode Memory Plugin
+        </router-link>
       </div>
     </template>
 
@@ -526,6 +547,36 @@
               </div>
 
               <!-- Open Data & External Links Box -->
+              <!-- Related Architecture Studies & In-Depth Guides -->
+              <div class="my-10 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-950/40">
+                <div class="text-xs font-mono font-bold uppercase tracking-wider text-[#D97757] mb-1">EXPLORE RELATED STUDIES</div>
+                <h3 class="text-lg font-bold text-gray-950 dark:text-white hero-serif mb-4">In-Depth Architecture & Agent Tooling Guides</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <router-link to="/blog/best-ai-agent-memories" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                    <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Best AI Agent Memories →</div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Architectures, SPO triples, and benchmark comparisons for 2026.</p>
+                  </router-link>
+                  <router-link to="/blog/best-alternatives-to-mem0" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                    <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Top Alternatives to Mem0 →</div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">How next-gen memory layers solve context window inflation.</p>
+                  </router-link>
+                  <router-link to="/opencode-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                    <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenCode Agent Memory →</div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Benchmark-validated persistent memory for the OpenCode ecosystem.</p>
+                  </router-link>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                  <router-link to="/blog/how-to-vibe-code-without-hitting-daily-limits" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                    <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Vibe Coding Without Daily Limits →</div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">How token pruning in LoCoMo translates to 88% fewer billed API tokens.</p>
+                  </router-link>
+                  <router-link to="/blog/muse-code-persistent-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                    <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Muse Code Persistent Memory →</div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Solving the compaction retention cliff in Meta Muse Code.</p>
+                  </router-link>
+                </div>
+              </div>
+
               <div class="p-6 bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-zinc-800 rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-8">
                 <div>
                   <h4 class="font-bold text-gray-950 dark:text-white">Explore the Open Benchmarks &amp; Data</h4>

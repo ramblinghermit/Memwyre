@@ -1,6 +1,6 @@
 ﻿# How to Give OpenAI Dots Persistent Memory with Memwyre
 
-> **TL;DR:** OpenAI Dots (announced September 2026) are always-on ChatGPT agents powered by GPT-6 Astra. They manage their own cloud computers, browsers, and task queues - but their built-in memory is a consumer-grade silo disconnected from your developer tools. By connecting Memwyre's MCP server to ChatGPT, your Dots gain access to a structured, cross-tool memory vault that syncs with Claude Code, Cursor, Grok, and Muse Code - giving them true institutional memory about your projects.
+> **TL;DR:** OpenAI Dots (announced September 2026) are always-on ChatGPT agents powered by GPT-6 Astra. They manage their own cloud computers, browsers, and task queues - but their built-in memory is a consumer-grade silo disconnected from your developer tools. By connecting Memwyre's MCP server to ChatGPT, your Dots gain access to a structured, cross-tool memory vault that syncs with [Claude Code](/claude-memory), [Cursor](/cursor-memory), [OpenCode](/opencode-memory), [Grok](/grok-bot-memory), and [Muse Code](/blog/muse-code-persistent-memory) - giving them true institutional memory about your projects.
 
 ---
 
@@ -129,6 +129,10 @@ This is an OpenAI platform safety constraint and cannot be bypassed with Custom 
 
 ---
 
+> 📊 **Evaluation Backing:** Wondering how cross-tool memory performs at scale? Read our [LoCoMo-10 Benchmark Report](/ai-memory-benchmark-locomo) showing a 70.5% accuracy rate and 88% token reduction, or explore our research on [Vector Database vs. Agent Memory](/research/vector-database-vs-agent-memory).
+
+---
+
 ## Real-World Use Cases
 
 ### 1. Project Kickoff Researcher Dot
@@ -164,6 +168,16 @@ When a new developer joins a project, their Dot can onboard them automatically:
 ## Privacy & Security
 
 All communication between ChatGPT and Memwyre happens over HTTPS (TLS 1.3). Your API key is sent as a Bearer token per request - it is never cached by the MCP server. Memory data is encrypted at rest (AES-256). See [memwyre.tech/privacy](https://memwyre.tech/privacy).
+
+---
+
+## Related Reading & Agent Plugins
+
+- [**Best AI Agent Memory Systems in 2026**](/blog/best-ai-agent-memories): Review of Memwyre, Mem0, Letta, and Zep.
+- [**OpenCode Memory Plugin**](/opencode-memory): High-performance persistent memory for the open agent runtime.
+- [**LoCoMo Benchmark Report**](/ai-memory-benchmark-locomo): Long-term context recall evaluation.
+- [**How to Vibe Code Without Limits**](/blog/how-to-vibe-code-without-hitting-daily-limits): Prevent API quota exhaustion.
+- [**Muse Code Persistent Memory**](/blog/muse-code-persistent-memory): Lifecycle hooks for Meta Muse Code.
 
 ---
 

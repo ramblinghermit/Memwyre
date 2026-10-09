@@ -52,6 +52,27 @@
                 <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
                 Memwyre OpenCode Plugin Docs
               </a>
+              <router-link 
+                to="/ai-memory-benchmark-locomo"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                LoCoMo-10 Benchmark (70.5%)
+              </router-link>
+              <router-link 
+                to="/blog/best-ai-agent-memories"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Best Agent Memories (2026)
+              </router-link>
+              <router-link 
+                to="/blog/how-to-vibe-code-without-hitting-daily-limits"
+                class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+                Vibe Coding Without Limits
+              </router-link>
             </div>
 
             <!-- Share Buttons -->
@@ -638,8 +659,22 @@ export default {
             <!-- Connected Ecosystem & Related Integrations -->
             <div class="my-10 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-950/40">
               <div class="text-xs font-mono font-bold uppercase tracking-wider text-[#D97757] mb-1">CONNECTED ECOSYSTEM</div>
-              <h3 class="text-lg font-bold text-gray-950 dark:text-white hero-serif mb-4">Explore More Agent Memory Integrations</h3>
+              <h3 class="text-lg font-bold text-gray-950 dark:text-white hero-serif mb-4">Explore Related Memory Guides & Integrations</h3>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <router-link to="/blog/best-ai-agent-memories" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Best Agent Memories (2026) →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Compare Memwyre, Mem0, Letta, and Zep across token efficiency benchmarks.</p>
+                </router-link>
+                <router-link to="/blog/how-to-vibe-code-without-hitting-daily-limits" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Vibe Coding Without Limits →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">5-step playbook to stop context bloat and rate-limit cooldowns.</p>
+                </router-link>
+                <router-link to="/blog/muse-code-persistent-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Muse Code Memory Guide →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Lifecycle hook integration for Meta's multi-agent terminal CLI.</p>
+                </router-link>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
                 <router-link to="/claude-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
                   <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Claude Code Memory →</div>
                   <p class="text-xs text-gray-500 dark:text-gray-400">Overcome CLAUDE.md limits with automated CLI session ingestion.</p>
@@ -648,9 +683,9 @@ export default {
                   <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">Cursor AI Memory →</div>
                   <p class="text-xs text-gray-500 dark:text-gray-400">Eliminate Composer chat amnesia with persistent project memory.</p>
                 </router-link>
-                <router-link to="/openclaw-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
-                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenClaw Autonomous →</div>
-                  <p class="text-xs text-gray-500 dark:text-gray-400">Multi-agent shared memory bus without prompt token duplication.</p>
+                <router-link to="/blog/openai-dots-memory" class="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 hover:border-[#D97757]/60 transition-all group block">
+                  <div class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#D97757] transition-colors mb-1">OpenAI Dots Memory →</div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Always-on cross-tool persistent memory for continuous ChatGPT Dots.</p>
                 </router-link>
               </div>
             </div>

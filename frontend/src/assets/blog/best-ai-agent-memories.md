@@ -84,7 +84,7 @@ Unlike basic vector wrappers, Memwyre combines **dense vector embeddings** with 
 
 #### Key Strengths:
 - **Parallel RAG**: Queries relational facts and vector embeddings simultaneously, achieving single-digit millisecond retrieval.
-- **88% Token Reduction**: Compresses conversation and project state down to ~3,000 high-signal tokens (compared to ~26,000 in raw RAG buffers), drastically reducing API costs and preventing context window limits.
+- **88% Token Reduction**: Compresses conversation and project state down to ~3,000 high-signal tokens (compared to ~26,000 in raw RAG buffers), drastically reducing API costs and preventing context window limits (see our complete guide to [Vibe Coding Without Hitting Daily Limits](/blog/how-to-vibe-code-without-hitting-daily-limits)).
 - **Native MCP Ecosystem**: Out-of-the-box support for Cursor AI, Claude Desktop, VS Code (Cline/Roo-Code), and Claude Code CLI.
 - **Human-in-the-Loop Inbox**: Review, edit, or reject auto-captured memories before they commit to permanent storage.
 - **License**: Open Source (Apache 2.0).
@@ -92,6 +92,8 @@ Unlike basic vector wrappers, Memwyre combines **dense vector embeddings** with 
 ---
 
 ### 2. Mem0 (Formerly Embedchain)
+
+> 🔍 *Looking for deeper architectural comparisons? Read our dedicated breakdown on the [5 Best Alternatives to Mem0 in 2026](/blog/best-alternatives-to-mem0) and our head-to-head [Memwyre vs Mem0 comparison](/memwyre-vs-mem0).*
 **Best for**: Application developers building multi-user personalization and conversational chatbots.
 
 Mem0 has gained significant popularity as a managed and self-hosted memory layer for personalized AI applications. It focuses on user-level, session-level, and agent-level memory persistence.
@@ -162,7 +164,7 @@ LangMem is LangChain's official library for extracting and managing agent memory
 
 How do these memory strategies perform when subjected to rigorous testing? 
 
-Snap Research's **LoCoMo-10** benchmark evaluates long-term memory systems across **32 distinct conversational sessions** and over **26,000 tokens** per conversation, testing single-hop recall, multi-hop reasoning, and temporal alignment.
+Snap Research's [**LoCoMo-10 Benchmark**](/ai-memory-benchmark-locomo) evaluates long-term memory systems across **32 distinct conversational sessions** (read our full [Vector DB vs. Agent Memory architectural analysis](/research/vector-database-vs-agent-memory)) and over **26,000 tokens** per conversation, testing single-hop recall, multi-hop reasoning, and temporal alignment.
 
 Here is how flat vector RAG compares against an atomic, temporal memory architecture (Memwyre):
 
@@ -246,6 +248,18 @@ Now, when you prompt Cursor or Claude Code:
 - **Choose Letta (MemGPT)** if you are building autonomous agents that need to autonomously manage, page, and edit their own internal memory buffers.
 - **Choose Zep (Graphiti)** if your application hinges on complex temporal relationships and historical event tracking across long customer support dialogs.
 - **Choose LangMem** if your entire agent architecture is already standardized on LangGraph and you prefer writing custom memory graph nodes.
+
+---
+
+## Related Architecture Guides & Benchmarks
+
+- [**LoCoMo-10 Benchmark Full Report**](/ai-memory-benchmark-locomo): Deep-dive into long-context recall, entity traversal, and temporal consistency scores.
+- [**Vector Database vs. AI Agent Memory**](/research/vector-database-vs-agent-memory): The fundamental engineering differences between static semantic vectors and stateful cognition.
+- [**The 5 Best Alternatives to Mem0**](/blog/best-alternatives-to-mem0): Feature teardown, self-hosting tradeoffs, and graph memory pricing.
+- [**How to Give OpenCode Persistent Memory**](/opencode-memory): Eliminate Desktop Electron RAM leaks and CLI state amnesia.
+- [**How to Vibe Code Without Hitting Daily Limits**](/blog/how-to-vibe-code-without-hitting-daily-limits): 5-step playbook for continuous AI pair-programming.
+- [**How to Give Muse Code Persistent Memory**](/blog/muse-code-persistent-memory): Complete developer guide to Meta Muse Code lifecycle hooks.
+- [**How to Give OpenAI Dots Persistent Memory**](/blog/openai-dots-memory): Cross-tool context syncing for autonomous ChatGPT Dots.
 
 ---
 

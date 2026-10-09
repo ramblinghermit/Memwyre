@@ -39,6 +39,27 @@
           <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
           Context Engineering Guide
         </router-link>
+        <router-link 
+          to="/blog/best-ai-agent-memories" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          Best Agent Memories (2026)
+        </router-link>
+        <router-link 
+          to="/blog/best-alternatives-to-mem0" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          5 Best Alternatives to Mem0
+        </router-link>
+        <router-link 
+          to="/opencode-memory" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          OpenCode Memory Plugin
+        </router-link>
         <a 
           href="https://arxiv.org/abs/2402.17753" 
           target="_blank" 

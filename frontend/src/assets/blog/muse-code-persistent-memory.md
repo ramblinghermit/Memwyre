@@ -15,7 +15,7 @@ Muse Code has four mechanisms that look like "memory" but behave very differentl
 **1. `AGENTS.md` - Static Project Instructions**
 A plain Markdown file in your project root that Muse reads at session start and injects into the system prompt. You generate it with `muse init`. It is excellent for declaring your tech stack, build commands, and coding style rules. But it is never updated automatically - if Muse discovers a critical architectural constraint during a session, that insight does not flow back into `AGENTS.md`. You must manually edit it, which defeats the purpose of an autonomous agent.
 
-Muse also supports nested `AGENTS.md` files in subdirectories, scoping rules to specific areas of the codebase. It falls back to reading `CLAUDE.md` if no `AGENTS.md` exists - a nod to the agent-instruction convention that Anthropic popularised.
+Muse also supports nested `AGENTS.md` files in subdirectories, scoping rules to specific areas of the codebase. It falls back to reading `CLAUDE.md` if no `AGENTS.md` exists - a nod to the agent-instruction convention that Anthropic popularised (see our [Claude Code memory guide](/claude-memory) and [OpenCode memory guide](/opencode-memory)).
 
 **2. Event Log (`session.jsonl`) - Crash Recovery, Not Memory**
 An append-only JSONL file written during every session. Each line is a self-contained JSON object representing one event. Muse's "Replay-Exact" runtime design means if the process crashes mid-task, it reads this log to reconstruct state and resume from the exact point of failure.
@@ -41,7 +41,7 @@ As the conversation grows, Muse Spark triggers **compaction checkpoints** - comp
 Compaction is smart within a session. But `compaction_checkpoint` records inside the event log are only used for in-session crash recovery. **When the session ends, compaction summaries are not carried forward.**
 
 **4. The 1M-Token Context Window**
-Muse Spark 1.3 supports 1,048,576 input tokens and 131,072 output tokens. In practice, many frameworks default to ~500K to balance performance, cost (\$1.25/M input on Standard tier), and latency. The window is large enough to hold an entire mid-sized repository during a session - but it is a scratchpad, not a database. It is empty at next session start.
+Muse Spark 1.3 supports 1,048,576 input tokens and 131,072 output tokens. In practice, many frameworks default to ~500K to balance performance, cost (\$1.25/M input on Standard tier), and latency. The window is large enough to hold an entire mid-sized repository during a session - but it is a scratchpad, not a database. As proven in the [LoCoMo-10 Benchmark](/ai-memory-benchmark-locomo), long unpruned context buffers actually degrade multi-hop reasoning accuracy by up to 47%. It is empty at next session start.
 
 ### The Core Problem
 
@@ -204,6 +204,16 @@ The plugin also connects Muse to the Memwyre MCP server (`server.memwyre.tech/mc
 | `delete_memory` | Remove outdated memories |
 
 Three slash commands are also installed: `/memwyre:index` (index codebase architecture), `/memwyre:status` (show auth and memory count), `/memwyre:logout` (clear credentials).
+
+---
+
+## Related Guides & Agent Integrations
+
+- [**OpenCode Persistent Memory Plugin**](/opencode-memory): The desktop & CLI companion to Muse Code with zero-overhead memory.
+- [**LoCoMo Benchmark Evaluation**](/ai-memory-benchmark-locomo): Comprehensive empirical benchmarks across long-session AI agents.
+- [**Best AI Agent Memory Systems in 2026**](/blog/best-ai-agent-memories): Architectural comparison of top memory engines.
+- [**How to Vibe Code Without Hitting Daily Limits**](/blog/how-to-vibe-code-without-hitting-daily-limits): Techniques to prevent context thrashing.
+- [**OpenAI Dots Persistent Memory**](/blog/openai-dots-memory): Always-on memory sync for ChatGPT Dots.
 
 ---
 

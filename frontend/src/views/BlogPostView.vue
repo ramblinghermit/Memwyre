@@ -465,6 +465,48 @@ const pageTitle = computed(() => currentPost.value ? currentPost.value.title : '
       </h1>
     </template>
 
+        <template #sidebar-links>
+      <!-- Core Studies & Agent Integrations (Interlinked for SEO Authority) -->
+      <div class="space-y-2 pt-6 border-t border-gray-100 dark:border-gray-900">
+        <div class="text-[11px] font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase font-bold mb-3">KEY AGENT PLATFORMS</div>
+        <router-link 
+          to="/opencode-memory" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          OpenCode Memory Plugin
+        </router-link>
+        <router-link 
+          to="/ai-memory-benchmark-locomo" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          LoCoMo Benchmark (70.5%)
+        </router-link>
+        <router-link 
+          to="/cursor-memory" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          Cursor AI Integration
+        </router-link>
+        <router-link 
+          to="/claude-memory" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          Claude Code Memory
+        </router-link>
+        <router-link 
+          to="/research/vector-database-vs-agent-memory" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          Vector DB vs Agent Memory
+        </router-link>
+      </div>
+    </template>
+
     <!-- Parsed Markdown HTML -->
     <div class="markdown-content mb-16 animate-fade-in" v-html="parsedHtml"></div>
 

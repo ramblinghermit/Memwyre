@@ -4,7 +4,7 @@
 
 ---
 
-"Vibe coding" - a term popularized by Andrej Karpathy - captures the modern development state of flow: opening an AI-first IDE like Cursor or a terminal agent like Claude Code, describing features in plain English, accepting diffs, and letting the model write 95% of the codebase.
+"Vibe coding" - a term popularized by Andrej Karpathy - captures the modern development state of flow: opening an AI-first IDE like [Cursor](/cursor-memory), a local runtime like [OpenCode](/opencode-memory), or a terminal agent like [Claude Code](/claude-memory), describing features in plain English, accepting diffs, and letting the model write 95% of the codebase.
 
 Until suddenly, the flow breaks.
 
@@ -205,6 +205,16 @@ Your agent queries Memwyre, loads the verified configuration in under 400 tokens
 
 ---
 
+## Recommended Companion Guides
+
+- [**OpenCode Persistent Memory Integration**](/opencode-memory): Stop Electron context memory leaks and session drops.
+- [**LoCoMo Benchmark Report**](/ai-memory-benchmark-locomo): Empirical evidence on why lean memory models beat context-stuffed prompts.
+- [**Best AI Agent Memory Systems in 2026**](/blog/best-ai-agent-memories): Comparative analysis of Memwyre, Mem0, Letta, and Zep.
+- [**Persistent Memory for Muse Code**](/blog/muse-code-persistent-memory): Hook-based memory ingestion for Meta's multi-agent CLI.
+- [**OpenAI Dots Persistent Memory**](/blog/openai-dots-memory): Cross-tool persistent memory for continuous ChatGPT Dots.
+
+---
+
 ## Summary Checklist for Infinite Vibe Coding
 
 | Tactic | Old Habit (Limit Busters) | New Habit (Infinite Vibe) |
@@ -213,7 +223,7 @@ Your agent queries Memwyre, loads the verified configuration in under 400 tokens
 | **Memory Retention** | Re-explaining rules in prompts | Memwyre MCP automatic memory retrieval |
 | **Workspace Context** | `@Codebase` on every prompt | Targeted `@file` or `@diff` slices |
 | **Model Selection** | Sonnet 3.7 for every CSS fix | Flash/Haiku for boilerplate; Sonnet for core logic |
-| **Context Strategy** | Giant copy-paste text dumps | Atomic SPO fact triples (~88% fewer tokens) |
+| **Context Strategy** | Giant copy-paste text dumps | Atomic SPO fact triples (proven in the [LoCoMo-10 Benchmark](/ai-memory-benchmark-locomo) to cut tokens by 88%) |
 
 Vibe coding is the future of software development. But like any powerful tool, it requires clean ergonomics. Decouple your memory, prune your context, and vibe code all day without ever seeing a rate-limit screen again.
 
