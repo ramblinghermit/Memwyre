@@ -1,4 +1,4 @@
-﻿# How to Give OpenAI Dots Persistent Memory with Memwyre
+# How to Give OpenAI Dots Persistent Memory with Memwyre
 
 > **TL;DR:** OpenAI Dots (announced September 2026) are always-on ChatGPT agents powered by GPT-6 Astra. They manage their own cloud computers, browsers, and task queues - but their built-in memory is a consumer-grade silo disconnected from your developer tools. By connecting Memwyre's MCP server to ChatGPT, your Dots gain access to a structured, cross-tool memory vault that syncs with [Claude Code](/claude-memory), [Cursor](/cursor-memory), [OpenCode](/opencode-memory), [Grok](/grok-bot-memory), and [Muse Code](/blog/muse-code-persistent-memory) - giving them true institutional memory about your projects.
 
@@ -167,7 +167,7 @@ When a new developer joins a project, their Dot can onboard them automatically:
 
 ## Privacy & Security
 
-All communication between ChatGPT and Memwyre happens over HTTPS (TLS 1.3). Your API key is sent as a Bearer token per request - it is never cached by the MCP server. Memory data is encrypted at rest (AES-256). See [memwyre.tech/privacy](https://memwyre.tech/privacy).
+All communication between ChatGPT and Memwyre happens over HTTPS (TLS 1.3). Your API key is sent as a Bearer token per request - it is never cached by the MCP server. Memory data is encrypted at rest (AES-256). See [memwyre.tech/privacy-policy](https://memwyre.tech/privacy-policy).
 
 ---
 

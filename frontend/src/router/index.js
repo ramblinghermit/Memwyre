@@ -201,6 +201,10 @@ export function createAppRouter({ ssr = false } = {}) {
                         meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/privacy-policy'] }
                     },
                     {
+                        path: 'privacy',
+                        redirect: '/privacy-policy'
+                    },
+                    {
                         path: 'terms',
                         name: 'terms',
                         component: () => import('../views/TermsView.vue'),

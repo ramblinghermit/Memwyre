@@ -45,7 +45,7 @@
               <p class="text-xs sm:text-sm text-gray-600 dark:text-zinc-400 leading-relaxed max-w-4xl">
                 Memwyre uses essential cookies and storage to maintain your authenticated session, remember workspace preferences, and optimize knowledge retrieval speeds across your connected AI agents. Learn more in our
                 <router-link
-                  to="/privacy"
+                  to="/privacy-policy"
                   class="font-medium text-[#D97756] hover:underline underline-offset-2 transition-colors ml-0.5"
                 >
                   Privacy Policy

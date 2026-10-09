@@ -181,6 +181,32 @@ async function prerender() {
         await writeFile(outputPath, routeHtml, 'utf-8');
     }
 
+    // Generate static redirect pages to prevent 404 on historical/external links
+    const redirects = [
+        { from: 'privacy', to: '/privacy-policy', title: 'Redirecting to Privacy Policy...' },
+        { from: 'memories', to: 'https://app.memwyre.tech/memories', title: 'Redirecting to Memwyre Dashboard...' },
+    ];
+    for (const { from, to, title } of redirects) {
+        const redirectDir = path.join(distDir, from);
+        await mkdir(redirectDir, { recursive: true });
+        const targetCanonical = to.startsWith('http') ? to : `https://memwyre.tech${to}`;
+        const redirectHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, follow">
+  <meta http-equiv="refresh" content="0; url=${to}">
+  <link rel="canonical" href="${targetCanonical}">
+  <title>${title}</title>
+  <script>window.location.replace("${to}");</script>
+</head>
+<body>
+  <p>Redirecting to <a href="${to}">${to}</a>...</p>
+</body>
+</html>`;
+        await writeFile(path.join(redirectDir, 'index.html'), redirectHtml, 'utf-8');
+    }
+
     // Auto-generate updated sitemap.xml in public/ and dist/
     function getPriority(route) {
         if (route === '/') return '1.0';

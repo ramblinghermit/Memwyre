@@ -95,7 +95,7 @@ Once connected, you can give your Dot instructions like:
 
 The Memwyre MCP server communicates via TLS 1.3 (HTTPS). Your API key is stored only in ChatGPT's connected apps configuration and is never stored on the Memwyre MCP server itself — it is sent as a Bearer token with each request.
 
-All memory data is encrypted at rest with AES-256. See [memwyre.tech/privacy](https://memwyre.tech/privacy) for full details.
+All memory data is encrypted at rest with AES-256. See [memwyre.tech/privacy-policy](https://memwyre.tech/privacy-policy) for full details.
 
 ## Frequently Asked Questions
 

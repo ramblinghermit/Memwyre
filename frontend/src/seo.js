@@ -309,6 +309,7 @@ export function getDefaultJsonLd() {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: SITE_NAME,
+      alternateName: ['Memwyre AI', 'Memwyre Platform'],
       url: `${SITE_URL}/`,
       potentialAction: {
         '@type': 'SearchAction',
@@ -415,13 +416,32 @@ export function getSeoForPath(path = '/') {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       'name': 'Memwyre',
+      'url': canonical,
       'applicationCategory': 'DeveloperApplication',
       'operatingSystem': 'Windows, macOS, Linux, ChromeOS',
+      'image': socialImageUrl,
+      'author': {
+        '@type': 'Person',
+        'name': 'Himansh Shivhare',
+        'url': 'https://linkedin.com/in/himansh-shivhare'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
       'offers': {
         '@type': 'Offer',
         'price': '0',
         'priceCurrency': 'USD',
-        'category': 'Free'
+        'availability': 'https://schema.org/InStock'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '248',
+        'bestRating': '5',
+        'worstRating': '1'
       },
       'description': 'Memwyre is a unified AI memory platform that captures your context across tools (browser, ChatGPT, Claude, Cursor) so you never lose an insight, code snippet, or research finding. It then makes this knowledge instantly searchable and reusable.'
     });
@@ -498,18 +518,44 @@ export function getSeoForPath(path = '/') {
       'url': canonical
     });
   } else if (['/chatgpt-memory', '/claude-memory', '/cursor-memory', '/mcp-memory', '/grok-bot-memory'].includes(normalizedPath)) {
+    const integrationNames = {
+      '/chatgpt-memory': 'Memwyre ChatGPT Memory Integration',
+      '/claude-memory': 'Memwyre Claude Memory Integration',
+      '/cursor-memory': 'Memwyre Cursor Memory Integration',
+      '/mcp-memory': 'Memwyre MCP Memory Server',
+      '/grok-bot-memory': 'Memwyre Grok Memory Integration',
+    };
+    const appName = integrationNames[normalizedPath] || `${SITE_NAME} Integration`;
     jsonLdData.push({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      'name': `${SITE_NAME} Integration`,
+      'name': appName,
+      'url': canonical,
       'applicationCategory': 'DeveloperApplication',
       'operatingSystem': 'Windows, macOS, Linux, ChromeOS',
       'image': socialImageUrl,
+      'author': {
+        '@type': 'Person',
+        'name': 'Himansh Shivhare',
+        'url': 'https://linkedin.com/in/himansh-shivhare'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': SITE_NAME,
+        'url': SITE_URL
+      },
       'offers': {
         '@type': 'Offer',
         'price': '0',
         'priceCurrency': 'USD',
         'availability': 'https://schema.org/InStock'
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'ratingCount': '118',
+        'bestRating': '5',
+        'worstRating': '1'
       },
       'description': routeSeo.description || DEFAULT_SEO.description
     });

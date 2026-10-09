@@ -138,7 +138,7 @@
               Protected by Memwyre. By signing in, you agree to our
               <router-link to="/terms" class="underline hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Terms</router-link>
               and
-              <router-link to="/privacy" class="underline hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy</router-link>.
+              <router-link to="/privacy-policy" class="underline hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy</router-link>.
             </p>
           </form>
 

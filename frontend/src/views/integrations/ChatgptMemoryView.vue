@@ -765,7 +765,7 @@
                 <strong>1. Install Extension:</strong> Add the <router-link to="/extension" class="text-[#D97757] underline">Memwyre Extension</router-link> to Chrome, Edge, or Brave.
               </li>
               <li>
-                <strong>2. Generate API Key:</strong> Open your <router-link to="/memories" class="text-[#D97757] underline">Memwyre Dashboard</router-link> and generate a secure personal key.
+                <strong>2. Generate API Key:</strong> Open your <a href="https://app.memwyre.tech/memories" target="_blank" rel="noopener noreferrer" class="text-[#D97757] underline">Memwyre Dashboard</a> and generate a secure personal key.
               </li>
               <li>
                 <strong>3. Authenticate:</strong> Click the extension icon in your browser toolbar, paste your key, and click <em>Connect</em>.
