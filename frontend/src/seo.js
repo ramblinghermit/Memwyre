@@ -108,7 +108,7 @@ export const PUBLIC_ROUTE_SEO = {
       'Explore deep dives on Model Context Protocol (MCP), developer tools integration, vector databases, and workflow optimization from the Memwyre team.',
   },
   '/blog/shared-memory-chatgpt-claude-cursor': {
-    title: 'Maintain Consistent Memory Across ChatGPT, Claude Code, and Cursor | Memwyre Blog',
+    title: 'Shared Memory Across ChatGPT, Claude & Cursor | Memwyre',
     description:
       'Stop copy-pasting architecture context between ChatGPT, Claude Code, and Cursor. Build a synchronized cross-tool knowledge graph using Memwyre.',
     ogImage: '/blog-covers/shared-memory-chatgpt-claude-cursor.png',
@@ -126,7 +126,7 @@ export const PUBLIC_ROUTE_SEO = {
     ogImage: '/blog-covers/vscode-mcp-persistent-memory.png',
   },
   '/blog/claude-code-memory-ingestion': {
-    title: 'Building Persistent Terminal Sessions: Claude Code Memory | Memwyre Blog',
+    title: 'Claude Code Memory: Persistent CLI Sessions | Memwyre',
     description:
       'Integrate Memwyre lifecycle hooks into Anthropic\'s Claude Code CLI. Inject workspace context on startup and automatically ingest terminal chats on exit.',
     ogImage: '/blog-covers/claude-code-memory-ingestion.png',
@@ -151,25 +151,25 @@ export const PUBLIC_ROUTE_SEO = {
     ogImage: '/blog-covers/rag-vs-memory-long-term-knowledge.png',
   },
   '/blog/state-of-ai-memory-2026': {
-    title: 'State of AI Memory 2026: Shift from Stateless to Stateful | Memwyre Blog',
+    title: 'State of AI Memory 2026: Shift to Stateful | Memwyre',
     description:
       'An inspection of context window explosion and why stateless attention buffers create substantial financial and latency overheads for enterprise codebase scale.',
     ogImage: '/blog-covers/state-of-ai-memory-2026.png',
   },
   '/blog/best-ai-agent-memories': {
-    title: 'Best AI Agent Memory Systems in 2026: Architectures & Comparison | Memwyre Blog',
+    title: 'Best AI Agent Memory Systems in 2026 | Memwyre Blog',
     description:
       'Compare top AI agent memory architectures including Memwyre, Mem0, Letta, Zep, and LangMem. Benchmark retrieval latency, SPO triples, and token reduction.',
     ogImage: '/blog-covers/best-ai-agent-memories.png',
   },
   '/blog/best-alternatives-to-mem0': {
-    title: '5 Best Alternatives to Mem0 in 2026: Features, Tradeoffs & Benchmarks | Memwyre Blog',
+    title: '5 Best Alternatives to Mem0 in 2026 | Memwyre Blog',
     description:
       'Discover the top 5 alternatives to Mem0 for persistent AI memory. Compare Memwyre, Letta, Zep, LangMem, and Supermemory across benchmarks, MCP, and pricing.',
     ogImage: '/blog-covers/best-alternatives-to-mem0.png',
   },
   '/blog/how-to-vibe-code-without-hitting-daily-limits': {
-    title: 'How to Vibe Code Without Hitting Daily Limits: The Playbook | Memwyre Blog',
+    title: 'How to Vibe Code Without Daily Limits | Memwyre Blog',
     description:
       'Stop crushing Claude and Cursor daily request limits. Master the 5-step playbook using modular resets, token pruning, and external MCP memory.',
     ogImage: '/blog-covers/how-to-vibe-code-without-hitting-daily-limits.png',
@@ -263,7 +263,7 @@ export const PUBLIC_ROUTE_SEO = {
     description: 'Enable sub-300ms persistent memory for Cursor Composer and Chat. Save developer rules and databases context to avoid index rebuilding.',
   },
   '/research/vector-database-vs-agent-memory': {
-    title: 'Vector Database vs. AI Agent Memory: The Architectural Difference | Memwyre Research',
+    title: 'Vector Database vs AI Agent Memory | Memwyre Research',
     description:
       'A technical breakdown of vector databases vs AI agent memory systems. Why cosine similarity fails across sessions and why entity-profile routing provides better context.',
     canonical: 'https://memwyre.tech/research/vector-database-vs-agent-memory',
