@@ -268,7 +268,7 @@ const copyLink = () => {
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-0 pb-24">
         
         <!-- Left Sidebar (Author, Dynamic Ruler TOC, Related Links, Sharing) -->
-        <aside class="lg:col-span-3 lg:border-r border-gray-200 dark:border-gray-800 lg:pr-8 pt-4 text-left">
+        <aside class="hidden lg:block lg:col-span-3 lg:border-r border-gray-200 dark:border-gray-800 lg:pr-8 pt-4 text-left">
           <div class="sticky top-20 space-y-7 max-h-[calc(100vh-5.5rem)] overflow-y-auto pr-2">
             
             <!-- Author Card -->
@@ -455,8 +455,10 @@ const copyLink = () => {
             </slot>
 
             <!-- Read Time & Badges -->
-            <div v-if="formattedReadTime || badge" class="text-[10px] tracking-wider uppercase font-mono text-gray-400 dark:text-gray-500 pt-1">
+            <div v-if="formattedReadTime || badge || authorName" class="flex items-center gap-2 text-[10px] tracking-wider uppercase font-mono text-gray-400 dark:text-gray-500 pt-1">
               <span v-if="formattedReadTime">{{ formattedReadTime }}</span>
+              <span v-if="formattedReadTime && authorName" class="lg:hidden">·</span>
+              <span v-if="authorName" class="lg:hidden normal-case tracking-normal text-[11px] font-sans font-semibold text-gray-600 dark:text-gray-400">{{ authorName }}</span>
               <span v-if="formattedReadTime && badge"> · </span>
               <span v-if="badge">{{ badge }}</span>
             </div>
