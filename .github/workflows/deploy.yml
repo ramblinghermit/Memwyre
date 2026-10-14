@@ -8,7 +8,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: memwyre-backend
-  S3_BUCKET: memwyre.tech
+  S3_BUCKET: ${{ secrets.S3_BUCKET_NAME || 'memwyre-tech-site' }}
 
 jobs:
   # ─────────────────────────────────────────────
@@ -132,7 +132,7 @@ jobs:
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id E33X26FANBG9K9 \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID || 'EDGBA9X0FSM0V' }} \
             --paths "/*"
 
   # ─────────────────────────────────────────────
@@ -173,7 +173,7 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1
         env:
-          ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+          ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
           ECR_PASSWORD: ${{ steps.ecr-password.outputs.password }}
         with:
           host: ${{ secrets.EC2_HOST }}
