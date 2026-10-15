@@ -268,8 +268,8 @@ const copyLink = () => {
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-0 pb-24">
         
         <!-- Left Sidebar (Author, Dynamic Ruler TOC, Related Links, Sharing) -->
-        <aside class="hidden lg:block lg:col-span-3 lg:border-r border-gray-200 dark:border-gray-800 lg:pr-8 pt-4 text-left">
-          <div class="sticky top-20 space-y-7 max-h-[calc(100vh-5.5rem)] overflow-y-auto pr-2">
+        <aside class="hidden lg:block lg:col-span-3 lg:border-r border-gray-200 dark:border-gray-800 lg:pr-6 pt-4 text-left">
+          <div class="sticky top-20 space-y-7 max-h-[calc(100vh-5.5rem)] overflow-y-auto pr-4 custom-sidebar-scrollbar">
             
             <!-- Author Card -->
             <slot name="author">
@@ -303,15 +303,15 @@ const copyLink = () => {
                     class="flex items-start gap-3.5 transition-colors duration-150 py-0.5 group"
                     :class="isSectionOrChildActive(heading)
                       ? 'text-gray-950 dark:text-white font-semibold' 
-                      : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-zinc-100 font-normal'"
+                      : 'text-gray-500 hover:text-[#D97757] dark:text-gray-400 dark:hover:text-[#D97757] font-normal'"
                   >
                     <!-- Left Major Tick -->
                     <div class="w-8 shrink-0 flex items-center pt-[9px]">
                       <span
                         class="block transition-all duration-200"
                         :class="isSectionOrChildActive(heading)
-                          ? 'w-8 h-[2.5px] bg-[#0562ef]' 
-                          : 'w-4.5 h-[1.5px] bg-[#c9cbcc] dark:bg-zinc-600 group-hover:w-6 group-hover:bg-gray-600 dark:group-hover:bg-zinc-300'"
+                          ? 'w-8 h-[2.5px] bg-[#D97757]' 
+                          : 'w-4.5 h-[1.5px] bg-[#c9cbcc] dark:bg-zinc-600 group-hover:w-6 group-hover:bg-[#D97757]/70 dark:group-hover:bg-[#D97757]/80'"
                       ></span>
                     </div>
 
@@ -335,12 +335,12 @@ const copyLink = () => {
                         class="block h-[1.5px] transition-all duration-200"
                         :class="[
                           currentActiveSection === sub.slug
-                            ? 'w-6 bg-[#0562ef] h-[2px]'
+                            ? 'w-6 bg-[#D97757] h-[2px]'
                             : isSectionOrChildActive(heading)
-                              ? (subIdx === 0 ? 'w-5 bg-[#d1d5db] dark:bg-zinc-700 group-hover/sub:w-6 group-hover/sub:bg-[#0562ef]' :
-                                 subIdx === 1 ? 'w-4 bg-[#d1d5db] dark:bg-zinc-700 group-hover/sub:w-6 group-hover/sub:bg-[#0562ef]' :
-                                 subIdx === 2 ? 'w-3 bg-[#e5e7eb] dark:bg-zinc-800 group-hover/sub:w-6 group-hover/sub:bg-[#0562ef]' :
-                                                'w-2.5 bg-[#e5e7eb] dark:bg-zinc-800 group-hover/sub:w-6 group-hover/sub:bg-[#0562ef]')
+                              ? (subIdx === 0 ? 'w-5 bg-[#d1d5db] dark:bg-zinc-700 group-hover/sub:w-6 group-hover/sub:bg-[#D97757]' :
+                                 subIdx === 1 ? 'w-4 bg-[#d1d5db] dark:bg-zinc-700 group-hover/sub:w-6 group-hover/sub:bg-[#D97757]' :
+                                 subIdx === 2 ? 'w-3 bg-[#e5e7eb] dark:bg-zinc-800 group-hover/sub:w-6 group-hover/sub:bg-[#D97757]' :
+                                                'w-2.5 bg-[#e5e7eb] dark:bg-zinc-800 group-hover/sub:w-6 group-hover/sub:bg-[#D97757]')
                               : 'w-2.5 bg-[#e2e4e6] dark:bg-zinc-800 group-hover/sub:w-5 group-hover/sub:bg-gray-400 dark:group-hover/sub:bg-zinc-500'
                         ]"
                       ></span>
@@ -492,3 +492,39 @@ const copyLink = () => {
     <SiteFooter />
   </div>
 </template>
+
+<style scoped>
+.custom-sidebar-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
+}
+
+.custom-sidebar-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-sidebar-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.25);
+  border-radius: 9999px;
+}
+
+.custom-sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 0.45);
+}
+
+:global(.dark) .custom-sidebar-scrollbar {
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+:global(.dark) .custom-sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+:global(.dark) .custom-sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+</style>
