@@ -13,21 +13,36 @@ const isSolidNav = computed(() => {
 const isScrolled = ref(false);
 const navHidden = ref(false);
 let lastScrollY = 0;
+let accumulatedScrollUp = 0;
 
 const handleScroll = () => {
   if (typeof window !== 'undefined') {
-    const currentScrollY = window.scrollY;
+    const currentScrollY = Math.max(0, window.scrollY);
     isScrolled.value = currentScrollY > 20;
 
     // Hide/show on scroll direction — only on the landing page
     if (!isSolidNav.value) {
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        navHidden.value = true;
-      } else if (currentScrollY < lastScrollY - 10) {
+      if (currentScrollY <= 20) {
+        // At the top of the landing page, always show the transparent hero navbar
         navHidden.value = false;
+        accumulatedScrollUp = 0;
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling DOWN on the landing page:
+        // Always hide and reset scroll-up accumulator so it never flickers or reappears
+        navHidden.value = true;
+        accumulatedScrollUp = 0;
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling UP on the landing page:
+        // Accumulate scroll-up delta to prevent micro-jitters/bounces from triggering it
+        accumulatedScrollUp += (lastScrollY - currentScrollY);
+        if (accumulatedScrollUp > 60) {
+          navHidden.value = false;
+        }
       }
     } else {
+      // Everywhere else: navbar remains visible
       navHidden.value = false;
+      accumulatedScrollUp = 0;
     }
 
     lastScrollY = currentScrollY;
@@ -45,6 +60,8 @@ const scrollToSection = (hash) => {
   closeAll();
   isMobileMenuOpen.value = false;
   if (route.path === '/' || route.path === '') {
+    navHidden.value = true;
+    accumulatedScrollUp = 0;
     const el = document.querySelector(hash);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -125,6 +142,8 @@ watch(() => route.path, () => {
   closeAll();
   isMobileMenuOpen.value = false;
   navHidden.value = false;
+  accumulatedScrollUp = 0;
+  lastScrollY = typeof window !== 'undefined' ? Math.max(0, window.scrollY) : 0;
 });
 
 const products = [
@@ -238,12 +257,12 @@ const resourceSections = [
 
 <template>
   <header 
-    class="top-0 left-0 right-0 z-50 transition-all duration-300"
+    class="top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out"
     :class="[
       isSolidNav || isScrolled
         ? 'fixed bg-white border-b border-gray-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.02)]' 
         : (isMobileMenuOpen ? 'absolute bg-white shadow-xs' : 'absolute bg-transparent'),
-      navHidden && !isMobileMenuOpen ? '-translate-y-full' : 'translate-y-0'
+      navHidden && !isMobileMenuOpen ? '-translate-y-full pointer-events-none' : 'translate-y-0'
     ]"
   >
     <div class="w-full px-4 sm:px-6 lg:px-12">
