@@ -42,6 +42,8 @@ function upsertJsonLd(content) {
 }
 
 const APP_ROUTE_TITLES = {
+    'about': 'About Us & Founding Team',
+    'team': 'Founding Team & Leadership',
     'overview': 'Memories',
     'dashboard': 'Memories',
     'memories': 'Memories',
@@ -73,6 +75,8 @@ const APP_ROUTE_TITLES = {
 };
 
 const APP_PATH_TITLES = {
+    '/about': 'About Us & Founding Team',
+    '/team': 'Founding Team & Leadership',
     '/overview': 'Memories',
     '/dashboard': 'Memories',
     '/memories': 'Memories',
@@ -222,6 +226,18 @@ export function createAppRouter({ ssr = false } = {}) {
                         component: () => import('../views/ContactView.vue'),
                         meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/contact'] }
                     },
+                    {
+                        path: 'about',
+                        name: 'about',
+                        component: () => import('../views/AboutView.vue'),
+                        meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/about'] }
+                    },
+                    {
+                        path: 'team',
+                        name: 'team',
+                        redirect: '/about'
+                    },
+
                     {
                         path: 'connectors',
                         name: 'connectors',

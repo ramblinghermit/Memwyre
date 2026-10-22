@@ -229,6 +229,11 @@ const resourceSections = [
   {
     title: 'Learn & Compare',
     items: [
+        {
+        name: 'About & Team',
+        desc: 'Meet our founders, leadership, and open-source mission.',
+        to: '/about'
+      },
       {
         name: 'Engineering Blog',
         desc: 'Technical deep-dives, updates, and releases.',
@@ -497,6 +502,12 @@ const resourceSections = [
           >
             Pricing
           </router-link>
+          <router-link 
+            to="/about"
+            class="px-3 py-1.5 text-sm font-normal transition-colors rounded-lg text-neutral-800 hover:text-black hover:bg-black/[0.04]"
+          >
+            About
+          </router-link>
 
           <a 
             href="https://docs.memwyre.tech" 
@@ -618,6 +629,13 @@ const resourceSections = [
             @click="isMobileMenuOpen = false"
           >
             Pricing
+          </router-link>
+          <router-link 
+            to="/about"
+            class="block py-1 hover:text-black transition-colors"
+            @click="isMobileMenuOpen = false"
+          >
+            About &amp; Team
           </router-link>
         </div>
 

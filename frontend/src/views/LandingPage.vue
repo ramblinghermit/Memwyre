@@ -1466,6 +1466,135 @@
     
 <!-- Section Divider -->
     <div class="w-full h-px bg-gray-300/80 pointer-events-none select-none relative z-30"></div>
+    <!-- Founding Team & Leadership Section -->
+    <div id="team" data-theme="light" class="pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 bg-white relative z-25">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <!-- Header Row -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-12 text-left">
+          <div>
+            <div class="text-xs font-mono text-[#D97756] tracking-wider uppercase font-bold mb-2 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#D97756]"></span>
+              <span>// FOUNDING TEAM &amp; LEADERSHIP</span>
+            </div>
+            <h2 class="hero-serif text-2xl sm:text-4xl md:text-5xl tracking-[-0.02em] leading-[1.1] text-[rgb(1,1,16)]">
+              The team behind Memwyre.
+            </h2>
+          </div>
+          <router-link
+            to="/about"
+            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#D97756] hover:underline shrink-0"
+          >
+            <span>Learn more on our About page</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </router-link>
+        </div>
+
+        <!-- Founder Spotlight Card -->
+        <div class="border border-gray-200/90 rounded-2xl bg-white p-6 sm:p-8 lg:p-10 shadow-xs hover:shadow-md transition-shadow duration-300 text-left">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Left: Avatar & Badges -->
+            <div class="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left">
+              <div class="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border border-gray-200 shadow-sm mb-4 bg-gray-50">
+                <img
+                  src="https://avatars.githubusercontent.com/u/170114968?v=4"
+                  alt="Himansh Shivhare - Founder of Memwyre"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  @error="$event.target.src = 'https://ui-avatars.com/api/?name=Himansh+Shivhare&background=111827&color=ffffff&size=256'"
+                />
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Himansh Shivhare</h3>
+              <div class="text-[#D97756] font-semibold text-xs sm:text-sm mt-0.5 mb-1.5">Founder &amp; CEO, Lead Architect</div>
+              <div class="text-xs text-gray-500 font-mono mb-4">Bengaluru, India &bull; Remote-first</div>
+
+              <!-- Social Links -->
+              <div class="flex items-center gap-2">
+                <a
+                  href="https://linkedin.com/in/himansh-shivhare"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Himansh Shivhare LinkedIn"
+                  class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:text-black hover:border-gray-300 hover:bg-gray-50 transition-colors"
+                  title="LinkedIn"
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/ramblinghermit0403"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Himansh Shivhare GitHub"
+                  class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:text-black hover:border-gray-300 hover:bg-gray-50 transition-colors"
+                  title="GitHub"
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://x.com/Memwyre"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Memwyre on X"
+                  class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:text-black hover:border-gray-300 hover:bg-gray-50 transition-colors"
+                  title="X (Twitter)"
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+                <a
+                  href="mailto:himansh@memwyre.tech"
+                  aria-label="Email Himansh Shivhare"
+                  class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:text-[#D97756] hover:border-[#D97756]/40 hover:bg-[#D97756]/5 transition-colors"
+                  title="Email"
+                >
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: Bio & Highlights -->
+            <div class="lg:col-span-8 space-y-4 text-gray-600 text-xs sm:text-sm leading-relaxed">
+              <p>
+                <strong>Himansh Shivhare</strong> founded Memwyre to eliminate the persistent context amnesia hindering AI coding agents and LLM toolchains. With a deep background in distributed systems and AI retrieval architectures, he architected Memwyre's core decoupled persistent memory layer, Ebbinghaus logarithmic recency decay engine, and atomic SPO triple extraction pipelines.
+              </p>
+              <p>
+                Under Himansh's leadership, Memwyre published the comprehensive LoCoMo benchmark evaluation (demonstrating 73.5% accuracy vs 43.7% for standard flat vector RAG) and authored native Model Context Protocol (MCP) servers connecting Cursor, Claude Code, Grok, and custom multi-agent workflows.
+              </p>
+              
+              <div class="pt-3 border-t border-gray-100 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500 font-mono">
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  Founder &amp; CEO
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                  Apache 2.0 Open Source
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                  Google Cloud Startup Program
+                </span>
+                <router-link to="/about" class="text-[#D97756] hover:underline font-bold font-sans">
+                  Read full bio &amp; company background &rarr;
+                </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="w-full h-px bg-gray-300/80 pointer-events-none select-none relative z-30"></div>
+
 
     <div id="faq" data-theme="light" class="pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 bg-white relative z-25">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -2112,6 +2241,11 @@ onMounted(() => {
 
 // 3. FAQ accordion
 const faqs = ref([
+  {
+    question: "Who is behind Memwyre and how is it supported?",
+    answer: "Memwyre was founded by Himansh Shivhare, a distributed systems engineer and AI researcher who designed Memwyre's decoupled persistent memory protocol and dynamic Ebbinghaus context pruning engine. Memwyre is maintained under the Apache 2.0 open-source license with community contributors, alongside enterprise managed cloud tiers and developer integrations. You can learn more on our dedicated About & Team page.",
+    isOpen: false
+  },
   {
     question: "What exactly is Memwyre?",
     answer: "Memwyre is a unified AI memory platform that captures your context across tools (browser, ChatGPT, Claude, Cursor) so you never lose an insight, code snippet, or research finding. It makes this knowledge instantly searchable and reusable by any tool.",

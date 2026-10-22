@@ -3,6 +3,7 @@ export const SITE_NAME = 'Memwyre';
 export const DEFAULT_SOCIAL_IMAGE_PATH = '/sequence/ezgif-frame-015.png';
 export const PRERENDER_ROUTES = [
   '/',
+  '/about',
   '/use-cases',
   '/pricing',
   '/contact',
@@ -52,6 +53,55 @@ export const DEFAULT_SEO = {
 };
 
 export const PUBLIC_ROUTE_SEO = {
+  '/about': {
+    title: 'About Memwyre | Founding Team, Mission & Company Leadership',
+    description:
+      'Learn about Memwyre, our mission to build persistent shared memory for AI agents, and meet our founding team and leadership led by Himansh Shivhare.',
+    canonical: 'https://memwyre.tech/about',
+    ogTitle: 'About Memwyre — Founding Team & Company Leadership',
+    ogDescription:
+      'Meet the team behind Memwyre. Founded by Himansh Shivhare, Memwyre is building the unified persistent memory layer for AI agents and developer tools.',
+    ogType: 'website',
+    jsonLd: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      'headline': 'About Memwyre — Founding Team & Company Leadership',
+      'description': 'Meet the team behind Memwyre. Founded by Himansh Shivhare, Memwyre is building the unified persistent memory layer for AI agents and developer tools.',
+      'mainEntity': {
+        '@type': 'Organization',
+        'name': 'Memwyre',
+        'url': 'https://memwyre.tech',
+        'logo': 'https://memwyre.tech/image.svg',
+        'foundingDate': '2026',
+        'founder': {
+          '@type': 'Person',
+          'name': 'Himansh Shivhare',
+          'jobTitle': 'Founder & CEO',
+          'image': 'https://avatars.githubusercontent.com/u/170114968?v=4',
+          'email': 'himansh@memwyre.tech',
+          'url': 'https://linkedin.com/in/himansh-shivhare',
+          'sameAs': [
+            'https://linkedin.com/in/himansh-shivhare',
+            'https://github.com/ramblinghermit0403',
+            'https://x.com/Memwyre'
+          ]
+        },
+        'employee': [
+          {
+            '@type': 'Person',
+            'name': 'Himansh Shivhare',
+            'jobTitle': 'Founder & CEO'
+          }
+        ]
+      }
+    })
+  },
+  '/team': {
+    title: 'Founding Team & Leadership | Memwyre',
+    description:
+      'Meet the founders, leadership, and engineers building Memwyre persistent shared memory.',
+    canonical: 'https://memwyre.tech/about'
+  },
   '/contact': {
     title: 'Contact Us | Memwyre — Support, Sales & Partnerships',
     description:
@@ -303,7 +353,25 @@ export function getDefaultJsonLd() {
       name: SITE_NAME,
       url: `${SITE_URL}/`,
       logo: `${SITE_URL}/image.svg`,
-      sameAs: ['https://x.com/Memwyre'],
+      foundingDate: '2026',
+      founder: {
+        '@type': 'Person',
+        name: 'Himansh Shivhare',
+        jobTitle: 'Founder & CEO',
+        image: 'https://avatars.githubusercontent.com/u/170114968?v=4',
+        email: 'himansh@memwyre.tech',
+        url: 'https://linkedin.com/in/himansh-shivhare',
+        sameAs: [
+          'https://linkedin.com/in/himansh-shivhare',
+          'https://github.com/ramblinghermit0403',
+          'https://x.com/Memwyre'
+        ]
+      },
+      sameAs: [
+        'https://x.com/Memwyre',
+        'https://github.com/ramblinghermit0403/Memwyre',
+        'https://linkedin.com/in/himansh-shivhare'
+      ],
     },
     {
       '@context': 'https://schema.org',

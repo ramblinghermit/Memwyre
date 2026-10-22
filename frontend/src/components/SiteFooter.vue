@@ -104,7 +104,9 @@ const props = defineProps({
             :class="['text-sm font-medium transition-colors', (craftPaper || dark) ? 'text-zinc-300 hover:text-[#D97757]' : 'text-black hover:text-[#D97757]']">vs Zep</router-link>
         </div>
         <div class="flex flex-col gap-4">
-          <h4 :class="['text-xs font-bold uppercase tracking-widest', (craftPaper || dark) ? 'text-zinc-400' : 'text-black/40']">Support &amp; Legal</h4>
+          <h4 :class="['text-xs font-bold uppercase tracking-widest', (craftPaper || dark) ? 'text-zinc-400' : 'text-black/40']">Company &amp; Legal</h4>
+          <router-link to="/about"
+            :class="['text-sm font-medium transition-colors', (craftPaper || dark) ? 'text-zinc-300 hover:text-[#D97757]' : 'text-black hover:text-[#D97757]']">About &amp; Team</router-link>
            <a href="https://docs.memwyre.tech" target="_blank"
             :class="['text-sm font-medium transition-colors', (craftPaper || dark) ? 'text-zinc-300 hover:text-[#D97757]' : 'text-black hover:text-[#D97757]']">Documentation</a>
           <router-link to="/contact"
