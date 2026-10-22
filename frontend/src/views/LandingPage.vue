@@ -1580,7 +1580,7 @@
                 </span>
                 <span class="inline-flex items-center gap-1.5">
                   <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
-                  Google Cloud Startup Program
+                  Bengaluru, India
                 </span>
                 <router-link to="/about" class="text-[#D97756] hover:underline font-bold font-sans">
                   Read full bio &amp; company background &rarr;
