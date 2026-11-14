@@ -98,6 +98,7 @@ Memwyre provides multiple ways to ingest and retrieve information:
 *   **3. Model Context Protocol (MCP) Server**: A Python server mapping memory tools (`search_memory`, `save_memory`, `get_document`) directly into IDEs like Cursor and VS Code, or desktop assistants like Claude Desktop.
 *   **4. CLI Tool**: A Node-based Command Line Interface (`cli/`) providing terminal-level interaction, query testing, and batch document uploads.
 *   **5. OpenClaw Plugin**: A dedicated integration module (`openclaw-plugin/`) allowing multi-agent platforms to interface directly with the Memwyre memory vault.
+*   **6. Google Antigravity Plugin**: A native bundle (`antigravity-plugin/`) bringing automated lifecycle hooks (`SessionStart`, `Stop`), built-in MCP server, rules, and skills to Google Antigravity IDE and CLI.
 
 ---
 

@@ -184,6 +184,11 @@ async function prerender() {
     // Generate static redirect pages to prevent 404 on historical/external links
     const redirects = [
         { from: 'privacy', to: '/privacy-policy', title: 'Redirecting to Privacy Policy...' },
+        { from: 'terms-of-service', to: '/terms', title: 'Redirecting to Terms of Service...' },
+        { from: 'terms-of-use', to: '/terms', title: 'Redirecting to Terms of Service...' },
+        { from: 'contact-us', to: '/contact', title: 'Redirecting to Contact Us...' },
+        { from: 'support', to: '/contact', title: 'Redirecting to Support & Contact...' },
+        { from: 'team', to: '/about', title: 'Redirecting to About & Team...' },
         { from: 'memories', to: 'https://app.memwyre.tech/memories', title: 'Redirecting to Memwyre Dashboard...' },
     ];
     for (const { from, to, title } of redirects) {

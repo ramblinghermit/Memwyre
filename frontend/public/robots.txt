@@ -1,24 +1,137 @@
-# Memwyre - Agent-Discoverable Configuration
+# Memwyre - Universal AI & Search Discoverability Configuration
 # https://memwyre.tech
 
 User-agent: *
 Allow: /
 Allow: /.well-known/
 
-# AI Agent Bots - Explicitly Welcome
+# ---------------------------------------------
+# AWS & Amazon Crawlers (Startup Program & Alexa)
+# ---------------------------------------------
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Amzn-SearchBot
+Allow: /
+
+User-agent: Amzn-User
+Allow: /
+
+# ---------------------------------------------
+# OpenAI (ChatGPT Search & Citations)
+# ---------------------------------------------
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
-User-agent: Claude-Web
+# ---------------------------------------------
+# Anthropic (Claude)
+# ---------------------------------------------
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
 Allow: /
 
 User-agent: Anthropic-AI
+Allow: /
+
+# ---------------------------------------------
+# xAI (Grok)
+# ---------------------------------------------
+User-agent: xAI-Grok
+Allow: /
+
+User-agent: GrokBot
+Allow: /
+
+User-agent: Grok-DeepSearch
+Allow: /
+
+User-agent: Grok
+Allow: /
+
+# ---------------------------------------------
+# DeepSeek
+# ---------------------------------------------
+User-agent: DeepSeekBot
+Allow: /
+
+# ---------------------------------------------
+# Moonshot AI (Kimi)
+# ---------------------------------------------
+User-agent: Kimi-SearchBot
+Allow: /
+
+User-agent: Kimi-User
+Allow: /
+
+User-agent: KimiBot
+Allow: /
+
+# ---------------------------------------------
+# Zhipu AI (GLM / Z.ai)
+# ---------------------------------------------
+User-agent: ChatGLM-Spider
+Allow: /
+
+User-agent: GLM-UserLive-Fetch
+Allow: /
+
+# ---------------------------------------------
+# Mistral AI (Le Chat)
+# ---------------------------------------------
+User-agent: MistralAI-Index
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: MistralBot
+Allow: /
+
+# ---------------------------------------------
+# Cohere & ByteDance
+# ---------------------------------------------
+User-agent: cohere-ai
+Allow: /
+
+User-agent: cohere-training-data-crawler
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# ---------------------------------------------
+# Search Engines & Citation Aggregators
+# ---------------------------------------------
+User-agent: Googlebot
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
 
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: DuckAssistBot
 Allow: /
 
 User-agent: Applebot-Extended
