@@ -1,0 +1,55 @@
+{
+  "name": "@memwyre/dsh-plugin",
+  "version": "1.0.0",
+  "description": "Persistent memory, contextual retrieval, and automated session lifecycle hooks for DeepSeek Harness (DSH), powered by Memwyre.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist",
+    "scripts",
+    "plugin",
+    "cordis.example.yml",
+    "README.md"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "memwyre",
+    "persistent-memory",
+    "ai-agent",
+    "mcp"
+  ],
+  "author": {
+    "name": "Memwyre",
+    "email": "support@memwyre.tech",
+    "url": "https://memwyre.tech"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=0.1.0",
+    "@deepseek-ai/dsh-tools": ">=0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.4.0"
+  }
+}

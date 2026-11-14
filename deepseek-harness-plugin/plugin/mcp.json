@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "memwyre": {
+      "transport": "streamable-http",
+      "url": "https://server.memwyre.tech/mcp",
+      "description": "Memwyre persistent memory vault — search, save, and retrieve memories across sessions.",
+      "headers": {
+        "Authorization": "Bearer ${MEMWYRE_API_KEY}"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+# DeepSeek Harness (dsh) Configuration Example
+# Mounting @memwyre/dsh-plugin
+
+plugins:
+  # 1. DeepSeek LLM Adapter
+  - name: "@deepseek-ai/dsh-model-openai"
+    config:
+      apiKey: "${DEEPSEEK_API_KEY}"
+      baseUrl: "https://api.deepseek.com/v1"
+      model: "deepseek-chat"
+
+  # 2. Core Harness Subsystems
+  - name: "@deepseek-ai/dsh-tools"
+  - name: "@deepseek-ai/dsh-agent"
+
+  # 3. Memwyre Persistent Memory Plugin
+  - name: "@memwyre/dsh-plugin"
+    config:
+      # Optional: apiKey and apiUrl can also be read automatically from
+      # ~/.dsh-memwyre/credentials.json or MEMWYRE_API_KEY environment variable.
+      apiKey: "${MEMWYRE_API_KEY}"
+      apiUrl: "https://api.memwyre.tech"
+      
+      # Automatically inject past project context on session / turn start
+      autoInject: true
+      
+      # Automatically capture session messages for background learning on turn end
+      autoCapture: true
