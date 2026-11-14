@@ -1,0 +1,2202 @@
+[
+  {
+    "text": "You asked, we delivered. Today we're open sourcing the company brain harness.\n\n\nhttps://\ngithub.com/supermemoryai/\ncompany-brain\n…\n\nIt's one click to deploy and fully Open source! Enjoy and own your intelligence :)",
+    "datetime": "2026-09-26T02:09:30.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103668253688226271",
+    "metrics": {
+      "reply": "19",
+      "retweet": "27",
+      "like": "525"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "DAMN! \n\nWe're trending on twitter and github \n\nAnd it's just been one day. 500+ stars!!! \n\nI guess we should open source more stuff",
+    "datetime": "2026-09-27T06:24:55.000Z",
+    "url": "https://x.com/DhravyaShah/status/2104094920265064622",
+    "metrics": {
+      "reply": "6",
+      "retweet": "2",
+      "like": "33"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "this is the way",
+    "datetime": "2026-09-26T20:32:39.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103945871742373969",
+    "metrics": {
+      "reply": "5",
+      "retweet": "1",
+      "like": "39"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is so true \n\nliterally so true",
+    "datetime": "2026-09-26T19:45:15.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103933943460601917",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "29"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Fun fact: You don't even need to use supermemory for this. \n\nYou could use a self hosted version of supermemory, some other service, or your own thing.\n\nBTW it also supports \n@Openrouter\n now thx to \n@mvanhorn",
+    "datetime": "2026-09-26T18:30:51.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103915218036539456",
+    "metrics": {
+      "reply": "5",
+      "retweet": "1",
+      "like": "60"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "you can just build amazing things, make a lot of money, open source your work\n\nAnd enjoy life at the same time",
+    "datetime": "2026-09-26T06:06:13.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103727822879719832",
+    "metrics": {
+      "reply": "15",
+      "retweet": "3",
+      "like": "200"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I would say, i'm quite proud of the thoughtfulness we had put into this project \n\nalso proud of the fact that it's all open source knowledge now that people can build upon",
+    "datetime": "2026-09-26T04:58:26.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103710768588083240",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "56"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "We're open sourcing the company brain, a multi-player slack harness that we worked on for months, it's an AI employee with all the knowledge of your company. \nYou can deploy it with one click in minutes.\n\nI go over the full architecture, in this blog!",
+    "datetime": "2026-09-26T02:08:42.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103668051468300701",
+    "metrics": {
+      "reply": "83",
+      "retweet": "135",
+      "like": "1.5K"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "everyone's gonna make money\n\nbut did you make something good?",
+    "datetime": "2026-09-26T00:39:47.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103645676194467944",
+    "metrics": {
+      "reply": "2",
+      "retweet": "2",
+      "like": "27"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "if you're working on agents at all \n@supermemory\n is the best account to follow, for all sorts of ai memory stuff",
+    "datetime": "2026-09-26T00:09:41.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103638102178992132",
+    "metrics": {
+      "reply": "5",
+      "retweet": "2",
+      "like": "64"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "who's the greatest devrel to exist on this platform?\n\ntag them here pls, wanna learn",
+    "datetime": "2026-09-25T23:13:50.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103624045220753815",
+    "metrics": {
+      "reply": "55",
+      "retweet": "3",
+      "like": "136"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "my pick is \n@BenjDicken\n \n@mattyp",
+    "datetime": "2026-09-25T23:17:25.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103624945662341162",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "24"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "What's interesting to me is that despite Jev being insanely cool, a lot of the benchmarks / evals people are running are implicitly favored towards Jev bring 'better'\n\nJev is definitely not the better option in everything, but it is in many things",
+    "datetime": "2026-09-25T23:13:17.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103623906762657811",
+    "metrics": {
+      "reply": "4",
+      "retweet": "1",
+      "like": "41"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Insane. Been a happy customer of warp since the inception of the company \n\nNever had a single complaint with Warp.",
+    "datetime": "2026-09-25T22:25:05.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103611775291920533",
+    "metrics": {
+      "reply": "4",
+      "retweet": "6",
+      "like": "153"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "so good.\n\nbuilt with \n@supermemory",
+    "datetime": "2026-09-25T20:50:12.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103587898314600726",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "15"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "this is partly why we unlaunched a lot of products last month",
+    "datetime": "2026-09-25T16:58:23.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103529561367650662",
+    "metrics": {
+      "reply": "2",
+      "retweet": "1",
+      "like": "22"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "i'm biased but the supermemory dev console is the best console in the market rn\n\nProve me wrong \nhttps://\nconsole.supermemory.ai",
+    "datetime": "2026-09-25T16:57:07.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103529242671845678",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "49"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "dreaming is super powerful \n\nI don't think systems should do it on cron etc basis (lots of spiky traffic on infra). one interesting thing about supermemorys infrastructure is that dreaming is dynamic. \n\nSupermemory automatically decides when is the right time to dream and learn",
+    "datetime": "2026-09-25T16:30:16.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103522483630739793",
+    "metrics": {
+      "reply": "4",
+      "retweet": "",
+      "like": "43"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "real AI memory has not been tried yet.",
+    "datetime": "2026-09-25T06:53:35.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103377358975910048",
+    "metrics": {
+      "reply": "15",
+      "retweet": "5",
+      "like": "51"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "one more highly technical post \n\nwill keep this going, LOTS of blog ideas and things to writ",
+    "datetime": "2026-09-25T02:46:56.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103315283943563286",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "50"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I wrote about how \n@typesafeai\n Jev can be helpful in improving AI memory.\n\nI go over all the approaches, in quite detail, with a bunch of benchmarks and cool things in the middle :)\n\n(a great evening read)",
+    "datetime": "2026-09-25T02:45:17.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103314870548701583",
+    "metrics": {
+      "reply": "9",
+      "retweet": "7",
+      "like": "144"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Shoutout to \n@sohamdaga22\n and \n@_prasanna_ap\n for helping out with the research and a lot of the data here",
+    "datetime": "2026-09-25T02:43:38.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103314457384702043",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "11"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I have the chamath cloth",
+    "datetime": "2026-09-25T02:23:43.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103309443173859532",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "13"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "LFG (my coaching was \"just be real and post bro\") \n\nanyways check out the new cut",
+    "datetime": "2026-09-24T23:24:35.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103264364388307091",
+    "metrics": {
+      "reply": "12",
+      "retweet": "",
+      "like": "69"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "memory mentioned",
+    "datetime": "2026-09-24T16:26:44.000Z",
+    "url": "https://x.com/DhravyaShah/status/2103159205930951151",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "104"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This applies to muse too... Blog coming tomorrow",
+    "datetime": "2026-09-24T04:31:06.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102979113871089677",
+    "metrics": {
+      "reply": "7",
+      "retweet": "2",
+      "like": "82"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "memory mentioned",
+    "datetime": "2026-09-24T00:13:00.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102914160300539914",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "57"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This guy is the reason i got the taste of SF when I first landed here. \n\nI crashed at his place every time i wanted to visit and he would happily welcome me\n\nso happy to see prateek killing it and becoming a member of SFP!",
+    "datetime": "2026-09-23T16:24:43.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102796313561895167",
+    "metrics": {
+      "reply": "6",
+      "retweet": "7",
+      "like": "223"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Yeah, it's been pretty good",
+    "datetime": "2026-09-23T02:22:19.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102584313099530670",
+    "metrics": {
+      "reply": "2",
+      "retweet": "2",
+      "like": "40"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "have you considered being yourself on linkedin",
+    "datetime": "2026-09-23T02:15:27.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102582588103913674",
+    "metrics": {
+      "reply": "8",
+      "retweet": "2",
+      "like": "65"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Thinking of replacing \"Container Tags\" to \"namespaces\" in supermemory\n\nin supermemory, all data is in container tags. Each containertag can be one user, project, workspace, agent, etc.\n\nBut it's neither a container, nor a tag, it's more of a ... namespace\n\nwdyt?",
+    "datetime": "2026-09-23T00:48:31.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102560709418832338",
+    "metrics": {
+      "reply": "12",
+      "retweet": "1",
+      "like": "53"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This has been one of the most powerful thing we use with cloudflare that is helping us move REALLY fast with agents. \n\nAgents do things -> we review it in the preview URL -> we merge \n\ni can essentially test every commit on every branch \n\nA few months ago this was my biggest",
+    "datetime": "2026-09-22T15:46:05.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102424200782979313",
+    "metrics": {
+      "reply": "3",
+      "retweet": "6",
+      "like": "110"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Opened the \n@Cloudflare\n dashboard in light mode and... wow\n\n\n@burcs\n i did not recognize your game. This is insanely good",
+    "datetime": "2026-09-22T01:16:43.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102205418756092348",
+    "metrics": {
+      "reply": "22",
+      "retweet": "7",
+      "like": "318"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "game gets game",
+    "datetime": "2026-09-21T22:47:30.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102167864765722731",
+    "metrics": {
+      "reply": "5",
+      "retweet": "1",
+      "like": "113"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Supermemory: \"Hey here's some interesting stuff about memory we think you'll like! maybe you should use us, but we're here to provide value. we love memory!\"\n\nOthers: Let me spam the internet by paying people to comment everywhere with a link, surely that will convince people",
+    "datetime": "2026-09-21T20:00:55.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102125943024447752",
+    "metrics": {
+      "reply": "4",
+      "retweet": "2",
+      "like": "22"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "maintaining a changelog is so hard, but so rewarding\n\n\nhttps://\nsupermemory.ai/changelog has almost all the changes we have done since the start of the year now!\n\nInsane shipping by a very small and mighty team. Never bet against \n@supermemory",
+    "datetime": "2026-09-21T19:00:05.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102110635140190512",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "44"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "memory memory memory memor-",
+    "datetime": "2026-09-21T18:24:59.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102101803651437028",
+    "metrics": {
+      "reply": "6",
+      "retweet": "",
+      "like": "121"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I will make good memory for AI \n\nand I will be a happy man",
+    "datetime": "2026-09-21T16:35:51.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102074338543538514",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "23"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Many blog ideas...",
+    "datetime": "2026-09-21T16:33:09.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102073658370036028",
+    "metrics": {
+      "reply": "4",
+      "retweet": "",
+      "like": "12"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This post went banger! \n\nOne of the design decisions at supermemory has been \"how do we make something that's frontier at most use cases?\" \n\nI have studied and obsessed about this for years. So, you can implement instincts memory in supermemory (and better at some fronts!)",
+    "datetime": "2026-09-21T16:29:45.000Z",
+    "url": "https://x.com/DhravyaShah/status/2102072803998777439",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "79"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "wtf is fortune cookies \n\nI only know how memory works in AI\n\nfollow me for more memory",
+    "datetime": "2026-09-21T07:05:02.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101930688857739724",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "60"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "The value of the post is directly proportional to the likes to save ratio\n\npeople really want to hear and learn about memory in products they love",
+    "datetime": "2026-09-20T20:26:58.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101770110839222338",
+    "metrics": {
+      "reply": "5",
+      "retweet": "2",
+      "like": "92"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "BTW if you're building an agent, we're happy to help with agent memory :)",
+    "datetime": "2026-09-20T20:25:02.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101769628141879453",
+    "metrics": {
+      "reply": "14",
+      "retweet": "3",
+      "like": "138"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is the most i've ever worked on, on a blogpost \n\nAnd likely the most in depth study of Instinct's memory system",
+    "datetime": "2026-09-20T18:50:18.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101745784865882520",
+    "metrics": {
+      "reply": "29",
+      "retweet": "25",
+      "like": "607"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I spent 3 days reverse-engineering Instinct's memory. It's beautifully simple, and works extremely well. \n\ni also wrote about how you can implement the same in supermemory in 60 lines of code!",
+    "datetime": "2026-09-20T18:49:22.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101745550752428340",
+    "metrics": {
+      "reply": "104",
+      "retweet": "171",
+      "like": "2.2K"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "ngl hats off to \n@noahrshinn\n on the incredible engineer and thoughtfulness you guys have put into the product!\n\nInstinct really didn't want to be reverse-engineered",
+    "datetime": "2026-09-20T18:56:34.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101747362121302372",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "53"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "we added this \"setup prompt\" section to the page, because everyone wants their AGENTS to figure out if we're the right fit anyways. not themselves, their agents.\n\nso human can easily just forward supermemory to their beloved agent and implement supermemory nicely. and we can try",
+    "datetime": "2026-09-20T18:00:05.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101733147545395279",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "44"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "markdown vs \n@supermemory\n\n\nin markdown only memory systems, the agent may have to look through and traverse files to answer things. This is wasteful and slow! The files also get stale really fast, and there's no forgetfulness, updates, etc. The agent has to just look through",
+    "datetime": "2026-09-20T04:54:13.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101535378557874196",
+    "metrics": {
+      "reply": "11",
+      "retweet": "4",
+      "like": "87"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "good memory and continual learning is the next big and important inflection point in AI\n\nintelligence is important to push, but pretty saturated and you can't feel the difference between models anymore\n\nto make models more magical, they need to learn. improve. memory. supermemory",
+    "datetime": "2026-09-20T00:00:05.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101461359200551274",
+    "metrics": {
+      "reply": "8",
+      "retweet": "",
+      "like": "21"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Probably nothing\n\nThe office is beautiful from inside and food is great :)",
+    "datetime": "2026-09-19T20:00:03.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101400949843755187",
+    "metrics": {
+      "reply": "9",
+      "retweet": "",
+      "like": "150"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "hello beautiful sir/mam,\n\nmay I interest you with some really good AI memory?\n\nAnyways, made few updates to the docs. as always, beautifully simple. as it should be.",
+    "datetime": "2026-09-19T18:57:02.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101385091067093484",
+    "metrics": {
+      "reply": "7",
+      "retweet": "",
+      "like": "64"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I went to ASU for a few years and dropped out\n\nNo one has ever, ever asked me my college in sf. They do ask \"what are you building\", \"how much have you raised\" and \"how big is the team\", to decide how cool you are.\n\nand my answer is always \nhttps://\nwhatareyoubuilding.com.",
+    "datetime": "2026-09-19T18:12:22.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101373850604782034",
+    "metrics": {
+      "reply": "21",
+      "retweet": "3",
+      "like": "413"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Hello, memory guy here. do you want memory? i have memory for you",
+    "datetime": "2026-09-19T08:40:14.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101229871179739555",
+    "metrics": {
+      "reply": "8",
+      "retweet": "",
+      "like": "47"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This guy is just 𝘴𝘰𝘮𝘦𝘵𝘩𝘪𝘯𝘨",
+    "datetime": "2026-09-19T07:17:55.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101209154455277955",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "50"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "honored to be in this room it was insane",
+    "datetime": "2026-09-19T07:16:38.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101208830508208396",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "39"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "The models are getting so good\n\nPeople have been asking me what's the pipeline, scripting, strategy for the videos we've been posting lately.\n\nEg: video below we posted was quite literally two shotted with just prompts by me and \n@_prasanna_ap\n\n\ninsane capability overhang with what",
+    "datetime": "2026-09-19T06:00:03.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101189557282865380",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "19"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "all this to say, there's beauty in simple",
+    "datetime": "2026-09-19T01:02:41.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101114724339614119",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "11"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "every day I'm even more bullish on how beautifully simple and composable supermemory's architecture is. And this is with incremental improvements throughout years of being with customers and really really caring about THEIR products.\n\n\n@supermemory\n will be the default way to do",
+    "datetime": "2026-09-19T00:00:04.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101098965479637456",
+    "metrics": {
+      "reply": "7",
+      "retweet": "6",
+      "like": "65"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "ngl this \n@cloudflare\n website looking a bit too vibe coded to me \n\n\nhttps://\ntry.cloudflare.com",
+    "datetime": "2026-09-18T21:33:27.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101062065972748748",
+    "metrics": {
+      "reply": "69",
+      "retweet": "10",
+      "like": "274"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "oh, you like sex?\n\nyou haven't felt the beautiful feeling of graphs going down on \n@planetscale",
+    "datetime": "2026-09-18T21:32:16.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101061771335434694",
+    "metrics": {
+      "reply": "24",
+      "retweet": "6",
+      "like": "230"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "more changes to our landing page",
+    "datetime": "2026-09-18T19:00:15.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101023514329514423",
+    "metrics": {
+      "reply": "6",
+      "retweet": "",
+      "like": "69"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "end of an era",
+    "datetime": "2026-09-18T18:22:55.000Z",
+    "url": "https://x.com/DhravyaShah/status/2101014119000498246",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "123"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Quite literally the final boss",
+    "datetime": "2026-09-18T16:32:51.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100986419649094046",
+    "metrics": {
+      "reply": "5",
+      "retweet": "1",
+      "like": "171"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "@CompleteSkeptic\n is Jev ready for production use? We might need help with the ratelimits!",
+    "datetime": "2026-09-18T00:43:59.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100747628615229928",
+    "metrics": {
+      "reply": "7",
+      "retweet": "",
+      "like": "41"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "My roommate out here finding bugs in a 30 year old software that the whole world practically runs on ... postgres\n\nAnd i'm trying to figure out why astra isn't doing the thing i'm asking it to do ￼",
+    "datetime": "2026-09-18T00:38:59.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100746370475077751",
+    "metrics": {
+      "reply": "7",
+      "retweet": "5",
+      "like": "246"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Tomorrow's news\n\nInstinct is in talks to raise about $1 trillion at a roughly $10 trillion valuation, a month after raising $250 billion at a $2.25 trillion pre-money valuation.\n\nThe 23-year-old founder Noah Shinn is building a personal AI agent that can operate software and",
+    "datetime": "2026-09-18T00:09:12.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100738877107659169",
+    "metrics": {
+      "reply": "15",
+      "retweet": "2",
+      "like": "154"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "probably nothing",
+    "datetime": "2026-09-18T00:00:04.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100736576745873720",
+    "metrics": {
+      "reply": "8",
+      "retweet": "1",
+      "like": "114"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "A combination of \n@capydotai\n, \n@polylanehq\n and instinct has made mine (and team's) lives much easier",
+    "datetime": "2026-09-17T23:58:52.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100736276752380412",
+    "metrics": {
+      "reply": "6",
+      "retweet": "9",
+      "like": "76"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "or dare i say... solved most of my problems in life. \n\nlife is so much better with agents man i love it",
+    "datetime": "2026-09-18T00:13:53.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100740052708155790",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "4"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "RAG is actually so back",
+    "datetime": "2026-09-17T23:47:14.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100733348415250757",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "90"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "\"embeddings instead of more tokens which is a powerful new way\"\n\nI'm sorry, embeddings is absolutely not the \"new\" way, in fact it might as well be the de facto old way\n(i'm in support of embeddings!)\n\nalready a big thing in 2023 when supermemory started doing it \n the whole",
+    "datetime": "2026-09-17T21:42:57.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100702069305004185",
+    "metrics": {
+      "reply": "7",
+      "retweet": "1",
+      "like": "47"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Correct\n\nsupermemory supports webmcp in a very beautiful way :)",
+    "datetime": "2026-09-17T20:57:55.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100690736178221095",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "21"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is the right call",
+    "datetime": "2026-09-17T20:43:06.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100687010847666647",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "25"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is literally the best and most different coding interface i've seen \n\nAlso, powered by \n@supermemory\n!",
+    "datetime": "2026-09-17T20:28:22.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100683301476520287",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "60"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Introducing the supermemory plugin for Muse code!",
+    "datetime": "2026-09-17T16:41:12.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100626134702641471",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "26"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Made my first payment through instinct\n\nit's all downhill from here",
+    "datetime": "2026-09-17T07:39:01.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100489686544478278",
+    "metrics": {
+      "reply": "6",
+      "retweet": "1",
+      "like": "100"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Real AI memory has not been tried",
+    "datetime": "2026-09-17T07:06:30.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100481503650337042",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "18"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "When you get the taste of memory in coding agents, you can literally never go back. this is the most joy i've had while coding",
+    "datetime": "2026-09-17T06:46:32.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100476479557800079",
+    "metrics": {
+      "reply": "8",
+      "retweet": "2",
+      "like": "39"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Specimen 2. prevented me from hours of debugging",
+    "datetime": "2026-09-17T06:55:27.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100478723292369262",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "3"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "sounds on",
+    "datetime": "2026-09-17T03:09:49.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100421943476506636",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "9"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "video two shotted with fable. i love it so much because it's beautifully simple",
+    "datetime": "2026-09-17T02:02:45.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100405061994324168",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "27"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Fun fact: In supermemory we not only learn memories, but automatically index the conversations as well.\n\nBelow is an example of how \n@supermemory\n works in the Vercel \n@eve\n harness.\n\neverything works together in a harmony. Memories are formed in a coherent manner (even for things",
+    "datetime": "2026-09-17T01:56:23.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100403461796003887",
+    "metrics": {
+      "reply": "11",
+      "retweet": "3",
+      "like": "94"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "https://\nsupermemory.ai/docs/integrati\nons/eve\n… docs for implementing something like this!",
+    "datetime": "2026-09-17T01:56:26.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100403474228007349",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "4"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "AI that has memory",
+    "datetime": "2026-09-16T23:59:53.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100374144848388234",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "16"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "A lot of complex algorithms will eventually be condensed down to specific intelligence",
+    "datetime": "2026-09-16T23:18:18.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100363677463716290",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "39"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I would use Grok \n@bot\n every day if not for the grok models not being good... :(",
+    "datetime": "2026-09-16T03:10:20.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100059684141158471",
+    "metrics": {
+      "reply": "20",
+      "retweet": "",
+      "like": "64"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I can't be the only one... right? there's no way",
+    "datetime": "2026-09-16T02:53:49.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100055528894611700",
+    "metrics": {
+      "reply": "17",
+      "retweet": "",
+      "like": "219"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "ngl \n@cloudflare\n durable objects is an underrated piece of technology. \n\nPeople have built Git, Redis, games, CRDT servers, dashboards, complex agent harnesses, distributed coordination systems like queues, and god-knows-what on durable objects\n\ninsane",
+    "datetime": "2026-09-16T01:29:17.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100034251739820360",
+    "metrics": {
+      "reply": "13",
+      "retweet": "28",
+      "like": "549"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "(re) Introducing Radish, it's a redis server completely inside a \n@Cloudflare\n durable object.\n\nthis weekend I did an experiment to see how good GPT-6 Astra and Fable are now, at systems and database design by revamping Radish (one of my old projects). it was terrible back then lol",
+    "datetime": "2026-09-16T01:25:22.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100033267487715342",
+    "metrics": {
+      "reply": "17",
+      "retweet": "28",
+      "like": "250"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "code here",
+    "datetime": "2026-09-16T01:25:25.000Z",
+    "url": "https://x.com/DhravyaShah/status/2100033280573882683",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "28"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Also you guys have no idea just how much a CLI can do.\n\neven without giving it permissions...",
+    "datetime": "2026-09-15T21:13:31.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099969887175430187",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "36"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "A lot has changed, and not changed, in the last two years \n\nfound this gem while i was packing for the \n@solofounders\n retreat. Back then there were barely 2 companies using us\n\nNow, thousands of apps and startups rely on us every day. and this is just the beginning",
+    "datetime": "2026-09-14T23:30:17.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099641918795977118",
+    "metrics": {
+      "reply": "12",
+      "retweet": "7",
+      "like": "110"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "new landing page.\n\nfor this version, I cut out all the FUD. all i want people to know is:\n- we're working on something very important\n- we're the best at it\n- we're really fast\n- can be deployed anywhere\n- very secure\n- you can be an enterprise customer",
+    "datetime": "2026-09-14T19:05:18.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099575233334419717",
+    "metrics": {
+      "reply": "30",
+      "retweet": "6",
+      "like": "177"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "It's here",
+    "datetime": "2026-09-14T19:05:43.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099575339437760901",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "4"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "some of our customers are getting REALLY big!",
+    "datetime": "2026-09-14T19:00:13.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099573952024891889",
+    "metrics": {
+      "reply": "8",
+      "retweet": "1",
+      "like": "123"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Below is a chart of the territory of memory benchmarks (it's actually even longer than that, but this is the main ones)\n\nThe big problem is that memory is quite non-deterministic. Unlike coding, where it's \"go and solve a task\", even though the path to solving it is different,",
+    "datetime": "2026-09-14T18:48:02.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099570889012711488",
+    "metrics": {
+      "reply": "16",
+      "retweet": "1",
+      "like": "54"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Agreed",
+    "datetime": "2026-09-14T18:35:23.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099567703438860526",
+    "metrics": {
+      "reply": "5",
+      "retweet": "",
+      "like": "43"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This book is genuinely the best thing that happened to me. It's so good.",
+    "datetime": "2026-09-14T05:57:39.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099377015145242697",
+    "metrics": {
+      "reply": "5",
+      "retweet": "5",
+      "like": "186"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is, quite literally, the best take I've seen on the AI discourse.\n\nAND it was written 3 years ago. Marc Andreessen knows his shit",
+    "datetime": "2026-09-13T07:21:26.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099035711383167444",
+    "metrics": {
+      "reply": "7",
+      "retweet": "",
+      "like": "89"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "My thread of random sidequests",
+    "datetime": "2026-09-13T06:37:56.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099024765440929950",
+    "metrics": {
+      "reply": "7",
+      "retweet": "1",
+      "like": "131"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "dancing is really really, really really hard",
+    "datetime": "2026-09-13T07:45:45.000Z",
+    "url": "https://x.com/DhravyaShah/status/2099041830289711134",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "24"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "One thing that's interesting about our new console: an agents page. \n\nDetailed instructions for MCP, CLI, or native plugins into any integration :)",
+    "datetime": "2026-09-12T22:27:09.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098901253426446749",
+    "metrics": {
+      "reply": "4",
+      "retweet": "3",
+      "like": "36"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is genuinely the best developer console you'll see... \n@MaheshtheDev\n and \n@Parthivdzns",
+    "datetime": "2026-09-12T19:37:39.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098858599401603205",
+    "metrics": {
+      "reply": "4",
+      "retweet": "4",
+      "like": "47"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "i do feel like i'm starting to do that implicitly",
+    "datetime": "2026-09-12T06:38:16.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098662458726690984",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "26"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "SF is a magical place to be.\n\nSo many beautiful stories. Hard working people. Some of the smartest people I know are here.\n\nCongrats to Aditya for getting into both YC",
+    "datetime": "2026-09-12T05:54:18.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098651397470490813",
+    "metrics": {
+      "reply": "11",
+      "retweet": "2",
+      "like": "167"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Thank you so much for the increasingly positive response on this. \n\nevery DM, comment and message was appreciated :)\n\nIf you're building an agent, use \n@supermemory\n for it's memory. That's it",
+    "datetime": "2026-09-11T23:01:52.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098547604334465269",
+    "metrics": {
+      "reply": "6",
+      "retweet": "",
+      "like": "59"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "one more\nperson for today's lunch",
+    "datetime": "2026-09-11T18:28:29.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098478803660243119",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "15"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This guy is my roommate \n\none of the smartest people i know tbh",
+    "datetime": "2026-09-11T18:26:24.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098478281913925978",
+    "metrics": {
+      "reply": "3",
+      "retweet": "4",
+      "like": "414"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "mic drop marketing\n\ninsanely good",
+    "datetime": "2026-09-11T05:09:04.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098277624070242388",
+    "metrics": {
+      "reply": "3",
+      "retweet": "2",
+      "like": "209"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "i met this guy too \n\nhe is the singularity. how have so many people seen him?",
+    "datetime": "2026-09-11T04:28:54.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098267514484752412",
+    "metrics": {
+      "reply": "4",
+      "retweet": "1",
+      "like": "34"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Ben \n@BenjDicken\n actually had a slide that was kinda like balls \n\nBut we didnt see balls today. Disappointing\n\n(amazing event today at \n@PlanetScale\n  they are a truly inspiring company)",
+    "datetime": "2026-09-11T04:24:01.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098266285826338965",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "28"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "The agent had an incredible run  and it taught us a few things too!",
+    "datetime": "2026-09-11T00:52:36.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098213083307270361",
+    "metrics": {
+      "reply": "6",
+      "retweet": "3",
+      "like": "102"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "We are discontinuing our company brain and personal brain products. Everyone affected will be refunded\n\nNow, all the focus is to continue to build our frontier memory API for agents.",
+    "datetime": "2026-09-11T00:49:01.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098212180831473840",
+    "metrics": {
+      "reply": "56",
+      "retweet": "21",
+      "like": "372"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Wow. delightful read. if you're into tech articles just open and read this\n\nthere's like great infographics in here. Impressed",
+    "datetime": "2026-09-10T22:39:29.000Z",
+    "url": "https://x.com/DhravyaShah/status/2098179581140484479",
+    "metrics": {
+      "reply": "1",
+      "retweet": "2",
+      "like": "36"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "this was my quote of the day today",
+    "datetime": "2026-09-10T02:57:57.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097882240466464817",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "64"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Honestly i think they should have said the same thing but with glass half full perspective \n\nWe thought AI could kill humans, but i think it's 90% chance it's not gonna happen. And for the rest 10%, we are working on it and will figure it out",
+    "datetime": "2026-09-10T02:39:26.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097877578656956430",
+    "metrics": {
+      "reply": "7",
+      "retweet": "",
+      "like": "19"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "customers of ... you guessed it.",
+    "datetime": "2026-09-10T02:33:48.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097876161250611308",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "82"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "The best companies all use \n@supermemory",
+    "datetime": "2026-09-10T02:36:10.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097876759295524989",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "5"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Thanks i hate it",
+    "datetime": "2026-09-10T01:16:29.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097856706407723091",
+    "metrics": {
+      "reply": "5",
+      "retweet": "",
+      "like": "46"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "this is quite literally the future of humanity",
+    "datetime": "2026-09-10T01:16:00.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097856583699198103",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "71"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "i have more than 50 people now... time to do a big lunch i guess!",
+    "datetime": "2026-09-10T00:13:57.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097840966967382425",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "26"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Hosting a small lunch in SF tomorrow/day after\n\n7-8 people. Fun conversations, non-bouji non-sales just a lunch with friends in SF\n\nWho wants to join?",
+    "datetime": "2026-09-09T21:04:14.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097793223456633132",
+    "metrics": {
+      "reply": "63",
+      "retweet": "3",
+      "like": "111"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Because of my beautiful writing skills and humility, some people thought supermemory is not a good enough product and that users are churning. \n\nno, no one is churning. i was just describing my general direction + thought process.\n\nSupermemory is the best it has ever been (and in",
+    "datetime": "2026-09-09T20:46:46.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097788829965128029",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "38"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "We built a native \n@supermemory\n integration for Eve, and it's available for everyone today!\n\nWe always put a lot of thought into the harness specific considerations for these plugins. So we worked hard and are co-lauching as one of the first memory providers available on eve.",
+    "datetime": "2026-09-09T20:07:10.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097778862935699649",
+    "metrics": {
+      "reply": "7",
+      "retweet": "7",
+      "like": "98"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "You can use and read more about it here-",
+    "datetime": "2026-09-09T20:07:10.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097778865087398175",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "6"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is literally so interesting... why did no one think of it before?",
+    "datetime": "2026-09-09T16:46:40.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097728404850442548",
+    "metrics": {
+      "reply": "21",
+      "retweet": "8",
+      "like": "360"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "my gf just called me and told me about how she overheard a guy talking on phone about our new launch/ model in a safeway\n\nOn one hand, this implies that supermemory is now officially available \"outside of the bubble\"! Yay! People talk about us now?\n\nOn another hand, the guy",
+    "datetime": "2026-09-09T05:54:56.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097564391290150922",
+    "metrics": {
+      "reply": "12",
+      "retweet": "",
+      "like": "111"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "would love to see a world where things like this are just built into the model \n\nwhy aren't the labs post training on tone? Or are they overfitting on the wrong thing",
+    "datetime": "2026-09-09T05:35:04.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097559390429835565",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "18"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I wanna make a platform worthy enough that everyone uses it\n\nmany people have used, loved, hated, stayed, and churned from supermemory \n\nin about a month, there will be no reason not to use us... for any memory / learning agent",
+    "datetime": "2026-09-09T05:19:08.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097555381753176380",
+    "metrics": {
+      "reply": "11",
+      "retweet": "2",
+      "like": "118"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "There's a small list of companies i think actually are changing the world \n\ncloudflare is one of them",
+    "datetime": "2026-09-09T04:44:55.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097546772755394889",
+    "metrics": {
+      "reply": "5",
+      "retweet": "3",
+      "like": "70"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is respectable to me, you can only work on a problem if you know it exists. \n\nIt's actually more dangerous to think you do have a solution even if its 50% there",
+    "datetime": "2026-09-09T04:40:54.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097545761433247759",
+    "metrics": {
+      "reply": "2",
+      "retweet": "2",
+      "like": "15"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "pls let me in \n@jxnlco",
+    "datetime": "2026-09-08T22:50:06.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097457478510551208",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "65"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Devday too \nhttps://\ndevday.openai.com plssss",
+    "datetime": "2026-09-08T22:51:33.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097457844266389973",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "3"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "SUPERMEMORY x Keiki!!!",
+    "datetime": "2026-09-08T02:53:50.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097156429081911574",
+    "metrics": {
+      "reply": "5",
+      "retweet": "",
+      "like": "50"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "We think the path to useful AI is to scale in-context continuous learning that works with any model, any harness and for all the varieties of use cases.\n\nIntelligence is no longer a constraint. pre-training and post-training, scaling on data and compute will continue to push",
+    "datetime": "2026-09-07T18:58:58.000Z",
+    "url": "https://x.com/DhravyaShah/status/2097036925827973437",
+    "metrics": {
+      "reply": "11",
+      "retweet": "6",
+      "like": "116"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "When \n@Parthivdzns\n joined us a few months ago, he said he can't code.\n\nnow with agents and \n@MaheshtheDev\n...",
+    "datetime": "2026-09-05T21:01:46.000Z",
+    "url": "https://x.com/DhravyaShah/status/2096343053355356196",
+    "metrics": {
+      "reply": "5",
+      "retweet": "3",
+      "like": "55"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "someone should pls figure out copy on write worktrees",
+    "datetime": "2026-09-05T18:33:37.000Z",
+    "url": "https://x.com/DhravyaShah/status/2096305767452422155",
+    "metrics": {
+      "reply": "13",
+      "retweet": "1",
+      "like": "70"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is the best change ever brought to cloudflare...",
+    "datetime": "2026-09-04T21:36:56.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095989514384937446",
+    "metrics": {
+      "reply": "6",
+      "retweet": "",
+      "like": "34"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "me: man we have a lot of work to do\n\n\n@_prasanna_ap\n: hold my beer",
+    "datetime": "2026-09-04T20:18:43.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095969828989464990",
+    "metrics": {
+      "reply": "5",
+      "retweet": "",
+      "like": "46"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "met Steven in 2023, my first trip to SF, one of the first people I met. \n\nI had been learning his incredible Devrel work at Vercel from afar, which inspired me to also do Devrel at cloudflare and keep building cool things! \n\nNow, i've been watching his insane work at Dub and he",
+    "datetime": "2026-09-04T19:38:27.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095959697413357860",
+    "metrics": {
+      "reply": "4",
+      "retweet": "1",
+      "like": "63"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "supermemory team meetings",
+    "datetime": "2026-09-04T16:46:23.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095916395741761724",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "52"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "X money is cool. \n\nwhy does it think im in vegas",
+    "datetime": "2026-09-04T03:52:10.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095721559084437507",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "25"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "supermemory learns 20 memories per second",
+    "datetime": "2026-09-04T03:42:09.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095719034797093264",
+    "metrics": {
+      "reply": "5",
+      "retweet": "1",
+      "like": "58"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is harness engineering today!",
+    "datetime": "2026-09-04T03:03:14.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095709243827765396",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "56"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "to whoever concerned \n@supermemory\n is trademarked btw",
+    "datetime": "2026-09-03T23:24:21.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095654159307686198",
+    "metrics": {
+      "reply": "4",
+      "retweet": "",
+      "like": "76"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is true. here's a tip: \n\nUse \n@beeper\n, and inside \n@bot\n's computer, login to beeper. It syncs everything including messages and inside the grok bot, and can also webhook!\n\nThen, ask it to use \n@supermemory\n, and learn things\n\nmagical experience that's been handling my life.",
+    "datetime": "2026-09-03T23:11:42.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095650976086827199",
+    "metrics": {
+      "reply": "5",
+      "retweet": "3",
+      "like": "26"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Especially useful for understanding tone. \n\nGrok bot is terrible at writing. I have an agent called \"Writer\" that is essentially working with supermemory, which is connected across all my agents to tune my writing habits and get the agents to follow it",
+    "datetime": "2026-09-03T23:12:57.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095651291251048863",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "1"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I posted a similar tweet looking for a cofounder a few years ago. \n\nA wise man, totally random to me on twitter, gave me this invaluable advice.\n\nI went ahead and wasted some time anyways, only to realize he was right. \n\nHe co-led my round, 6 months after that.",
+    "datetime": "2026-09-03T22:08:15.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095635008354676911",
+    "metrics": {
+      "reply": "6",
+      "retweet": "6",
+      "like": "237"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Sometimes the things I do / say sound so ambitious and far-fetched enough that it's hard to believe we can even do it.\nAnd then we do it. again and again.\n\nIn the AI and information age, truly anything can be done.\n\nYou can just go out and learn distributed systems, post",
+    "datetime": "2026-09-03T22:03:57.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095633924231946371",
+    "metrics": {
+      "reply": "6",
+      "retweet": "5",
+      "like": "117"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Congrats on the launch \n@tibo_maker\n and \n@pbteja1998\n, undoubtedly great concept. \n\nIt's the only model agnostic, independent  Grok bot alternate that I know of.\n\nand it's powered by \n@supermemory\n!",
+    "datetime": "2026-09-03T21:21:24.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095623215867642192",
+    "metrics": {
+      "reply": "7",
+      "retweet": "3",
+      "like": "94"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "The fact that people (including us) immediately thought it must be cloudflare powering the world's inference, in itself, is a flex for cloudflare \n$NET",
+    "datetime": "2026-09-03T21:18:51.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095622575078682768",
+    "metrics": {
+      "reply": "4",
+      "retweet": "1",
+      "like": "171"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Everyone should use \n@dotenvx\n. \n\n- Everything is more secure. Compromised NPM packages typically look at your env files. but, in this case, you literally don't have an env file.\n- Makes cloud agents easier (just one key needed to onboard any cloud agent)\n- Makes deployments easier",
+    "datetime": "2026-09-03T01:05:37.000Z",
+    "url": "https://x.com/DhravyaShah/status/2095317255399801149",
+    "metrics": {
+      "reply": "20",
+      "retweet": "12",
+      "like": "260"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "We have a lot of big changes coming to \n@supermemory\n. Excited for this next chapter.",
+    "datetime": "2026-09-02T03:55:33.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094997634784370714",
+    "metrics": {
+      "reply": "8",
+      "retweet": "3",
+      "like": "94"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "the rise of Suds",
+    "datetime": "2026-09-02T02:38:11.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094978163176833307",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "58"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "@supermemory\n is now live on the \n@cursor_ai\n marketplace!!!\n\njust do /add-plugin cursor-supermemory\n\nNow, supermemory can plug into:\nPi, Opencode, Claude Code, Codex, Hermes, Amp, Google Antigravity, Grok bot, Grok build and now Cursor!!!\n\ninsane work by the team",
+    "datetime": "2026-09-02T01:34:08.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094962042365222918",
+    "metrics": {
+      "reply": "8",
+      "retweet": "2",
+      "like": "64"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Here it is",
+    "datetime": "2026-09-02T01:34:28.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094962129686462873",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "3"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "We have done a lot of harness work on our plugins that we will talk more about. \n\nBlog coming later today about the same",
+    "datetime": "2026-09-01T22:47:29.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094920105952202835",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "24"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Supermemory has a Grok bot plugin now!\n\nmagical, shared, (super)memory for your agents everywhere\n\nTell \n@bot\n to add supermemory, that's it.",
+    "datetime": "2026-09-01T22:30:31.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094915837476082048",
+    "metrics": {
+      "reply": "12",
+      "retweet": "11",
+      "like": "114"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "The supermemory mafia is unbeatable. There's a short list of people who have left, and all of them go on to do great things \n\n- @TejasKumarrr to YC\n- \n@shreyansj\n and \n@NamanBansal0611\n to YC\n- \n@nexxeln\n to Opencode\n- Early cofounder of \n@better_auth\n made our original landing page",
+    "datetime": "2026-09-01T21:13:53.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094896551311331446",
+    "metrics": {
+      "reply": "17",
+      "retweet": "6",
+      "like": "269"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Always love supporting fellow founders and underdogs. congrats @TejasKumarrr!",
+    "datetime": "2026-09-01T21:17:52.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094897551724224591",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "9"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "literally executor and \n@supermemory",
+    "datetime": "2026-08-31T05:31:29.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094296998224760981",
+    "metrics": {
+      "reply": "8",
+      "retweet": "",
+      "like": "41"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "i wonder who owns \nhttps://\nwhatareyoubuilding.com...",
+    "datetime": "2026-08-30T19:43:59.000Z",
+    "url": "https://x.com/DhravyaShah/status/2094149148249616806",
+    "metrics": {
+      "reply": "11",
+      "retweet": "1",
+      "like": "98"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "yes \nhttps://\nx.com/jjacky/status/\n/jjacky/status/2093174321157947822\n…",
+    "datetime": "2026-08-28T04:12:27.000Z",
+    "url": "https://x.com/DhravyaShah/status/2093189946953842885",
+    "metrics": {
+      "reply": "6",
+      "retweet": "1",
+      "like": "16"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Another banger from shardul\n\nfeaturing \n@thdxr",
+    "datetime": "2026-08-26T20:45:54.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092715178945290671",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "52"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is such an amazing concept...\n\nPowered by, you guessed it - \n@supermemory",
+    "datetime": "2026-08-26T17:19:23.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092663207014076437",
+    "metrics": {
+      "reply": "8",
+      "retweet": "3",
+      "like": "121"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "supermemory is genuinely so freaking useful bro",
+    "datetime": "2026-08-25T19:58:09.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092340776969928885",
+    "metrics": {
+      "reply": "6",
+      "retweet": "",
+      "like": "55"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Yesterday, I watched my non technical friends vibe code their entire new business idea in two hours with Fable.\n\nNo connection to tech, and straight out of college, were trying to figure out what to do in life, decided to just give it their all.\n\nAnd they went and got 5 customers",
+    "datetime": "2026-08-25T19:00:01.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092326145941508123",
+    "metrics": {
+      "reply": "130",
+      "retweet": "35",
+      "like": "1.2K"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "If you're a youtuber, please reach out to us!!",
+    "datetime": "2026-08-25T16:41:31.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092291293460447584",
+    "metrics": {
+      "reply": "2",
+      "retweet": "1",
+      "like": "23"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "This is how \n@CompanyBrain_\n also handles protectiveness!",
+    "datetime": "2026-08-25T06:10:32.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092132498818134105",
+    "metrics": {
+      "reply": "2",
+      "retweet": "3",
+      "like": "51"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Grok bot with \n@supermemory\n is genuinely AGI feeling",
+    "datetime": "2026-08-25T06:03:07.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092130631635656742",
+    "metrics": {
+      "reply": "6",
+      "retweet": "1",
+      "like": "40"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "sick design for our trust center on \n@TrustVanta\n\n\ninspired from the famous cicada 3301 puzzle",
+    "datetime": "2026-08-25T00:00:09.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092039288649290178",
+    "metrics": {
+      "reply": "6",
+      "retweet": "1",
+      "like": "37"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "everyone should be using supermemory for this",
+    "datetime": "2026-08-24T23:42:40.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092034890879607258",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "8"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Nothing beats the Unforgettable Pants",
+    "datetime": "2026-08-24T22:48:10.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092021173035114678",
+    "metrics": {
+      "reply": "7",
+      "retweet": "",
+      "like": "63"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "very real",
+    "datetime": "2026-08-24T23:00:39.000Z",
+    "url": "https://x.com/DhravyaShah/status/2092024315734892958",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "1"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I think the console needs a big refresh. It still uses our old design language and not very inviting.\n\nAny design tips?",
+    "datetime": "2026-08-24T21:00:17.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091994025096286339",
+    "metrics": {
+      "reply": "7",
+      "retweet": "",
+      "like": "17"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Literally tried this and no one could do it...",
+    "datetime": "2026-08-24T20:04:07.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091979891726242081",
+    "metrics": {
+      "reply": "4",
+      "retweet": "",
+      "like": "63"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "OK i am going to continue questioning this:\n\nsupermemory dot ai is all our current stuff\nwe have supermemory dot com\n\ntrust . supermemory .com\nor trust. supermemory .ai?",
+    "datetime": "2026-08-24T19:57:53.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091978320305098827",
+    "metrics": {
+      "reply": "23",
+      "retweet": "1",
+      "like": "78"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "so far i think our claude code plugin sucked. now it is magical\n\nit was not very clear when it was being helpful\nit felt like it's kinda ruining the context\n\nIt's highly loved and recepted, we have thousands of people using the claude code plugin every day, with many stars on",
+    "datetime": "2026-08-24T19:44:29.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091974947568783858",
+    "metrics": {
+      "reply": "6",
+      "retweet": "3",
+      "like": "35"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "use it here -",
+    "datetime": "2026-08-24T19:44:32.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091974959547785287",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "1"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "OK THIS IS HYPE\n\nwe are extremely close to hitting 30k stars on Github. But what's an even bigger flex is that our community is growing and there's hundreds of PRs that we're combing through right now\n\nSupermemory is the best context engine on the planet",
+    "datetime": "2026-08-24T19:00:20.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091963837524373552",
+    "metrics": {
+      "reply": "7",
+      "retweet": "1",
+      "like": "75"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "At",
+    "datetime": "2026-08-24T19:40:07.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091973850892501438",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "1"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "OH and and a much-wanted feature is now shipped, supermemory local has a mini console where you can inspect and look at the memories too.\n\nthis was legit the #1 feature request",
+    "datetime": "2026-08-24T18:48:36.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091960887175528671",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "29"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I make mistakes\n\nwhen we launched the first version of supermemory local, it was working, but pretty much broken in a lot of ways\n\nSo we worked with the community and shipped a new version of supermemory-server. I think you'll love it now.",
+    "datetime": "2026-08-24T17:58:37.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091948306385748291",
+    "metrics": {
+      "reply": "4",
+      "retweet": "1",
+      "like": "24"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I genuinely think every agent should use \n@supermemory\n \n\nIt's dead cheap and will probably decrease your total cost\nYou can configure it for personalization, self improvement, both. whatever you wanna do\n\nYou can self host it",
+    "datetime": "2026-08-24T17:52:56.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091946877482938523",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "26"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "bro 150 comments is insaneee",
+    "datetime": "2026-08-24T17:47:44.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091945568906142127",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "19"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "The hills in dolores park are meant to roll upon\n\nhighly recommend",
+    "datetime": "2026-08-24T17:28:16.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091940668767867096",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "39"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "The wrangler CLI is so underrated and so good. lots of little things everywhere (Eg: Auto installs skills)",
+    "datetime": "2026-08-24T17:27:41.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091940521853984903",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "44"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "When using \n@supermemory\n with any agent, it really feels like I'm training the model to do certain things better in real time.\n\neg: the series in which i want it to run tool calls. \n\nliterally feels so cool",
+    "datetime": "2026-08-24T15:18:50.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091908095488455084",
+    "metrics": {
+      "reply": "6",
+      "retweet": "1",
+      "like": "45"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Ummm \n@siliconmania\n \n@bryan_johnson",
+    "datetime": "2026-08-24T03:32:23.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091730314007863717",
+    "metrics": {
+      "reply": "6",
+      "retweet": "1",
+      "like": "152"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I love agentmail",
+    "datetime": "2026-08-23T00:48:28.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091326671039377743",
+    "metrics": {
+      "reply": "4",
+      "retweet": "",
+      "like": "26"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "there's literally so much of this in the context and tool use space now.\n\nmostly AI generated papers that are written for the sake of it \n\nand this is because we forget that end of the day, it's all about - is the task being completed? How does the user feel?",
+    "datetime": "2026-08-22T20:45:41.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091265574454386986",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "38"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "alright bois i'm back on X the everything app \n\nLast few weeks, the entire team \n@supermemory\n was focusing on engineering, product and I personally was mainly doing enterprise customer success (which now feels fun!)\n\nwas trying to find the magic. we have it now :) some insane",
+    "datetime": "2026-08-22T20:40:43.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091264325583532105",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "174"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "Always be having fun \n\nhahaha",
+    "datetime": "2026-08-22T20:37:01.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091263393126908278",
+    "metrics": {
+      "reply": "4",
+      "retweet": "",
+      "like": "64"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I FINALLY CAN DO LINEDKIN SALES!",
+    "datetime": "2026-08-22T20:33:40.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091262550512218175",
+    "metrics": {
+      "reply": "3",
+      "retweet": "2",
+      "like": "195"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "I tweeted something and immediately 3 accounts with AI responses showed up \n\nWhat has happened",
+    "datetime": "2026-08-22T20:33:22.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091262475866198248",
+    "metrics": {
+      "reply": "4",
+      "retweet": "",
+      "like": "18"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "100k over 20 fucking years ￼‍",
+    "datetime": "2026-08-22T20:10:02.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091256602515132574",
+    "metrics": {
+      "reply": "7",
+      "retweet": "1",
+      "like": "43"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "That's so less. I'd rather have 20 coffees a day and be more productive",
+    "datetime": "2026-08-22T20:50:28.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091266778299236592",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "8"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "sama used an emdash \n\nbut with --",
+    "datetime": "2026-08-22T04:23:43.000Z",
+    "url": "https://x.com/DhravyaShah/status/2091018453125837071",
+    "metrics": {
+      "reply": "4",
+      "retweet": "2",
+      "like": "114"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "supermemory plugins are now FREE TO USE!\n\nMagical unified memory that is automatic, that works across agents and teams.\n\njust do `npx supermemory plugin` to set up.\n\nThis is powered by a new engine we're working on and many breakthroughs in making the plugins feel magical.",
+    "datetime": "2026-08-20T02:18:06.000Z",
+    "url": "https://x.com/DhravyaShah/status/2090262068138279358",
+    "metrics": {
+      "reply": "15",
+      "retweet": "13",
+      "like": "178"
+    },
+    "author": "DhravyaShah"
+  },
+  {
+    "text": "new CTO of exa, 10 years ago:",
+    "datetime": "2026-08-18T23:20:55.000Z",
+    "url": "https://x.com/DhravyaShah/status/2089855087510249553",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "45"
+    },
+    "author": "DhravyaShah"
+  }
+]

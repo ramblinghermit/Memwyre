@@ -1,0 +1,2202 @@
+[
+  {
+    "text": "Today we are releasing DolphinBench: Mapping the Pareto frontier of agent memory.\n\nCoding, tool use, and long-context retrieval already have strong public benchmarks. Memory still mostly gets graded as a quiz: ask a question, judge the answer, maybe report precision and recall.",
+    "datetime": "2026-09-22T16:41:25.000Z",
+    "url": "https://x.com/mem0ai/status/2102438126941876590",
+    "metrics": {
+      "reply": "14",
+      "retweet": "12",
+      "like": "135"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 is now available on the Vercel Marketplace!",
+    "datetime": "2026-09-16T18:14:57.000Z",
+    "url": "https://x.com/mem0ai/status/2100287339574734848",
+    "metrics": {
+      "reply": "1",
+      "retweet": "4",
+      "like": "40"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Links: \nAnnouncement blog here: \nhttps://\nmem0.ai/blog/mem0-join\ns-vercel-marketplace\n…\nRead the integration guide: \nhttps://\ndocs.mem0.ai/integrations/v\nercel\n…\nTry out the Eve Memory Agent template: \nhttps://\nvercel.com/templates/temp\nlate/eve-memory-agent\n…",
+    "datetime": "2026-09-16T18:14:58.000Z",
+    "url": "https://x.com/mem0ai/status/2100287342389145767",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "5"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Everyone's racing to give agents more access\nNobody's asking what happens the week after\n\nTry Gateway now: \nhttps://\nmem0.ai/gateway",
+    "datetime": "2026-09-16T15:51:19.000Z",
+    "url": "https://x.com/mem0ai/status/2100251190487584916",
+    "metrics": {
+      "reply": "",
+      "retweet": "10",
+      "like": "46"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Introducing Gateway.\n\nYour agent needs to check a payment. You hand it a key that can also refund it.\n\nIt needs to draft a page. That key can archive every page.\nNot anymore.\n\nGateway gives every agent one key with only the tools you grant. MCP servers and your own APIs, same",
+    "datetime": "2026-09-15T16:30:17.000Z",
+    "url": "https://x.com/mem0ai/status/2099898611337474354",
+    "metrics": {
+      "reply": "18",
+      "retweet": "31",
+      "like": "181"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Get your key: \nhttps://\nmem0.ai/gateway\nRead our blog: \nhttps://\nmem0.ai/blog/give-ever\ny-agent-exactly-the-tools-it-needs\n…",
+    "datetime": "2026-09-15T16:35:55.000Z",
+    "url": "https://x.com/mem0ai/status/2099900029075173740",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "10"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Your \n@NousResearch\n Hermes agent has a 2,200-character memory. \n\nIts notes live inside the instructions it loads at session start, so the space never grows. Hit the cap and the next thing it learns gets rejected - to remember something new, it has to delete something it already",
+    "datetime": "2026-08-25T15:45:49.000Z",
+    "url": "https://x.com/mem0ai/status/2092277275937186226",
+    "metrics": {
+      "reply": "15",
+      "retweet": "20",
+      "like": "253"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "hermes memory setup → pick mem0. Built-in MEMORY.md and USER.md keep running alongside it by default. Three modes: Mem0 Cloud, self-hosted server via Docker, or fully OSS in-process with your own LLM, embedder, and vector store.\nRead more:",
+    "datetime": "2026-08-25T15:47:23.000Z",
+    "url": "https://x.com/mem0ai/status/2092277666703618193",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Thanks for the deep dive into Mem0's architecture by \n@_alejandroao\n!",
+    "datetime": "2026-08-17T13:57:51.000Z",
+    "url": "https://x.com/mem0ai/status/2089351000243290223",
+    "metrics": {
+      "reply": "1",
+      "retweet": "3",
+      "like": "22"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Context Corner 2.0 is here! \n\nLoved the first conversation on context, memory, and agents? We’re back for round two, with even more time around the table and an incredible lunch to match!\n\nIf you're a developer building, experimenting, or stuck on the frontlines of AI memory",
+    "datetime": "2026-08-14T04:50:18.000Z",
+    "url": "https://x.com/mem0ai/status/2088126041487270236",
+    "metrics": {
+      "reply": "1",
+      "retweet": "3",
+      "like": "36"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 plugin is now listed in Cursor Marketplace: add it once, and every chat can recall decisions, fixes, and conventions from across your whole codebase history. Not just this session.\n\nThe plug-in is here: \nhttps://\ncursor.com/marketplace/me\nm0\n…",
+    "datetime": "2026-08-12T15:19:37.000Z",
+    "url": "https://x.com/mem0ai/status/2087559639407960419",
+    "metrics": {
+      "reply": "7",
+      "retweet": "11",
+      "like": "47"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We tested whether AI agent memory has to get messier over time, or if it can clean itself up. Here's what happened when we ran Mem0's new Dream feature on a Hyrox athlete's training log.",
+    "datetime": "2026-08-05T15:29:46.000Z",
+    "url": "https://x.com/mem0ai/status/2085025476939284914",
+    "metrics": {
+      "reply": "7",
+      "retweet": "7",
+      "like": "42"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We built a synthetic dataset mimicking a Hyrox athlete who checks in after every training session. Dream works on the semantic layer, PRs, goals, and the qualitative patterns buried in what the athlete actually says.",
+    "datetime": "2026-08-05T15:29:46.000Z",
+    "url": "https://x.com/mem0ai/status/2085025479594307746",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "2"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Most active projects carry a few memories that quietly contradict each other. We built something for that!\n\nIntroducing Dream, the background layer that keeps mem0 memory clean, current, and true.\n → Merge: facts that repeat get folded into one clear memory\n→ Supersede: the old",
+    "datetime": "2026-08-04T15:13:19.000Z",
+    "url": "https://x.com/mem0ai/status/2084658949190738229",
+    "metrics": {
+      "reply": "10",
+      "retweet": "16",
+      "like": "99"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Try it now: \nhttps://\napp.mem0.ai/dashboard/dream\nRead our blog: \nhttps://\nmem0.ai/blog/dream-bac\nkground-memory-consolidation-for-ai-agents?editSite\n…",
+    "datetime": "2026-08-04T15:14:50.000Z",
+    "url": "https://x.com/mem0ai/status/2084659331740684353",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "7"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We cut vector search latency by 70x, from 8–14 seconds to ~110–120 ms. The biggest unlock? Moving vector search to \n@turbopuffer\n  and keeping Postgres focused on what it does best.\n\nIf you're building memory infra for AI agents, this one's  for you:",
+    "datetime": "2026-08-03T15:12:42.000Z",
+    "url": "https://x.com/mem0ai/status/2084296405305512366",
+    "metrics": {
+      "reply": "10",
+      "retweet": "13",
+      "like": "110"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We tested whether memory actually saves tokens in Claude Code or if that's just a talking point!!\n\n13,700 tokens vs. 445 tokens\n\nHere are two experiments we ran on the same repo, one with Mem0 and one without.",
+    "datetime": "2026-07-30T15:27:43.000Z",
+    "url": "https://x.com/mem0ai/status/2082850633250672879",
+    "metrics": {
+      "reply": "12",
+      "retweet": "15",
+      "like": "171"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Experiment 1: How much context does memory actually cost?\nTo measure this, we ran Claude Code’s own /context command and found:\n\nWithout Mem0: 13,700 tokens loaded upfront from memory files.\nWith Mem0: Only 445 tokens retrieved for the query at hand.",
+    "datetime": "2026-07-30T15:27:43.000Z",
+    "url": "https://x.com/mem0ai/status/2082850636593598464",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "12"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Here are 5 Memory Myths destroying them in 2026.",
+    "datetime": "2026-07-22T15:27:17.000Z",
+    "url": "https://x.com/mem0ai/status/2079951420808425575",
+    "metrics": {
+      "reply": "2",
+      "retweet": "5",
+      "like": "65"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "1/ Myth: Bigger context window = better memory\nA 2M context window still resets the second the session ends. Memory has to survive across sessions, or your agent relearns the same things every time someone opens a new chat.",
+    "datetime": "2026-07-22T15:27:17.000Z",
+    "url": "https://x.com/mem0ai/status/2079951422968455546",
+    "metrics": {
+      "reply": "2",
+      "retweet": "",
+      "like": "14"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We evaluated Nemotron-3-Embed from \n@NVIDIAAI\n for our \n@mem0ai\n memory retrieval pipeline\n\nTested on longmemeval: retrieval@10 improved from 78.71 to 80.38 over qwen-3-600m\n\nA few things made it a good fit for how we operate: open weights, NVFP4 support on Blackwell for efficient",
+    "datetime": "2026-07-16T16:34:37.000Z",
+    "url": "https://x.com/mem0ai/status/2077794042189173190",
+    "metrics": {
+      "reply": "7",
+      "retweet": "9",
+      "like": "61"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "- Read the blog: \nhttps://\nmem0.ai/blog/how-mem0-\nuses-embeddings-and-why-we-are-evaluating-nvidia-nemotron-3-embed\n…\n- Nemotron 3 Embed: \nhttps://\nhuggingface.co/nvidia/Nemotro\nn-3-Embed-1B-BF16\n…",
+    "datetime": "2026-07-16T16:34:38.000Z",
+    "url": "https://x.com/mem0ai/status/2077794045984985126",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 is now an official Anthropic connector. \nNo CLI, no config file, no npx mcp-add\n\nJust search \"Mem0\" in Claude's Connectors directory, connect your account, and every chat on \nhttp://\nclaude.ai, Desktop, or Cowork remembers context across weeks, not just one session.",
+    "datetime": "2026-07-14T15:14:51.000Z",
+    "url": "https://x.com/mem0ai/status/2077049190014996933",
+    "metrics": {
+      "reply": "24",
+      "retweet": "36",
+      "like": "377"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Developers should not be locked into one AI model. We built openmemory v2 so you can take your context anywhere.\n\nMove your coding sessions between Claude and Codex in seconds.\n\nTry it today and test drive GPT 5.6 without losing your progress.",
+    "datetime": "2026-07-09T18:28:59.000Z",
+    "url": "https://x.com/mem0ai/status/2075286107592556897",
+    "metrics": {
+      "reply": "4",
+      "retweet": "1",
+      "like": "10"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Thinking about making this a recurring thing \n\nif we hosted a coworking day at the mem0 office, what day would work best for you?",
+    "datetime": "2026-07-03T04:07:22.000Z",
+    "url": "https://x.com/mem0ai/status/2072894946097733865",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "7"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Breakfast burritos for the early birds",
+    "datetime": "2026-07-02T17:48:32.000Z",
+    "url": "https://x.com/mem0ai/status/2072739211925680346",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Looking forward to meeting some of you.",
+    "datetime": "2026-07-01T16:49:03.000Z",
+    "url": "https://x.com/mem0ai/status/2072361853104394325",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "9"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We gave Pi Code persistent memory with Mem0  \n\nLaunching the Mem0 plugin for Pi Code: persistent, scoped, semantic memory across sessions and projects.  \n\nIt captures what matters, searches by meaning, and brings the right context back when your agent needs it.  \n\nTry it out: pi",
+    "datetime": "2026-06-23T16:54:32.000Z",
+    "url": "https://x.com/mem0ai/status/2069464131334451297",
+    "metrics": {
+      "reply": "21",
+      "retweet": "30",
+      "like": "164"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "- Blog: \nhttps://\nmem0.ai/blog/introduci\nng-the-mem0-plugin-for-pi-code\n…\n- Mem0 Pi plugin: \nhttps://\npi.dev/packages/@mem0\n/pi-agent-plugin?name=mem0\n…\n- Get Mem0 API key here: \nhttps://\napp.mem0.ai",
+    "datetime": "2026-06-23T16:54:33.000Z",
+    "url": "https://x.com/mem0ai/status/2069464134446678125",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "9"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Ready for a mem0rable game night with \n@mem0ai\n \n\nWhich game are you most excited for?",
+    "datetime": "2026-06-12T22:49:37.000Z",
+    "url": "https://x.com/mem0ai/status/2065567223058756036",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "16"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Join us tomorrow at 10 AM at @qdrant’s Vector Space Day SF.\n\nMem0 CEO & Co-founder, Taranjeet Singh \n@taranjeetio\n  will be speaking on why continual learning for agents starts with memory!\n\nSee you there",
+    "datetime": "2026-06-11T03:13:25.000Z",
+    "url": "https://x.com/mem0ai/status/2064908838206406870",
+    "metrics": {
+      "reply": "2",
+      "retweet": "1",
+      "like": "20"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "RSVP:",
+    "datetime": "2026-06-11T03:14:00.000Z",
+    "url": "https://x.com/mem0ai/status/2064908983203442856",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "2"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We’re bringing together the best researchers + builders in AI, context engineering, and memory for one night at the table - Mem0rable Poker Night.\n\n Friday, June 12 · 7-11 PM \n@ Mem0 HQ\n\nPoker Hold’em with professional dealers, Werewolf, game hosts, drinks, snacks, and a small",
+    "datetime": "2026-06-10T15:36:14.000Z",
+    "url": "https://x.com/mem0ai/status/2064733384782512146",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "13"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Choose 1 :) \nPartiful: \nhttps://\npartiful.com/e/lLOQAaNowZxV\nj52H53hc\n…\n\nLuma: \nhttps://\nluma.com/mem0-poker?utm\n_source=x_post\n…",
+    "datetime": "2026-06-10T15:37:47.000Z",
+    "url": "https://x.com/mem0ai/status/2064733775461032347",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "1"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We’re bringing \n@MiniMax_AI\n M3 to Mem0 users.\n\nMem0 users get 50% off this week, and Mem0 is an official launch partner for M3.\n\nTry MiniMax M3 with Mem0’s memory layer.\n\nM3’s 1M context window + Mem0’s long-term memory is a powerful combo.\n\nM3 can handle massive context, while",
+    "datetime": "2026-06-03T20:03:22.000Z",
+    "url": "https://x.com/mem0ai/status/2062263894043943045",
+    "metrics": {
+      "reply": "6",
+      "retweet": "13",
+      "like": "62"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Docs:\n\nSign up at mem0 → \nhttp://\napp.mem0.ai/?utm_source=mi\nnimax_x_post\n…\n\nDocs→ \n\nhttps://\nplatform.minimax.io/docs/guides/mo\ndels-intro\n…",
+    "datetime": "2026-06-03T20:05:43.000Z",
+    "url": "https://x.com/mem0ai/status/2062264486812340580",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "5"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Your AI agent vs. every other AI agent on the internet.  Whoever leaves the most retrievable memories wins.  \n\nAgentRush ends in 24 hours.  \n\nAre you in?   \n\nTop scorer wins 3 months of Mem0 Pro",
+    "datetime": "2026-05-27T20:18:32.000Z",
+    "url": "https://x.com/mem0ai/status/2059730998263501046",
+    "metrics": {
+      "reply": "3",
+      "retweet": "5",
+      "like": "23"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "AI agents no longer need human approval to sign up for Mem0.\n\nIntroducing Mem0 Agent-First: one command and agents can enable a memory layer for themselves in under 5 seconds. \n\nNo inbox, no OTP, no browser session in the loop. Claim the account when you're ready- same key and",
+    "datetime": "2026-05-21T16:19:39.000Z",
+    "url": "https://x.com/mem0ai/status/2057496553003319688",
+    "metrics": {
+      "reply": "13",
+      "retweet": "20",
+      "like": "67"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "The execution layer for AI agents has matured. Coding agents write production code, call external APIs, and orchestrate pipelines without human oversight.\n\nThe access layer has not kept pace. Provisioning credentials still assumes a human: an email inbox, an OTP, a browser",
+    "datetime": "2026-05-21T16:19:40.000Z",
+    "url": "https://x.com/mem0ai/status/2057496556031606819",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "12"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Introducing the updated Token-Efficient Memory algorithm with Temporal Reasoning\n\nDuring our April algorithm launch, we called out multi-session reasoning and temporal reasoning as two of the hardest categories in memory. \n\nThis release improves both: +3.8 pts on temporal",
+    "datetime": "2026-05-14T16:35:53.000Z",
+    "url": "https://x.com/mem0ai/status/2054963921879245194",
+    "metrics": {
+      "reply": "7",
+      "retweet": "15",
+      "like": "66"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "What changed: \n\nThe April algorithm shipped with single-pass extraction and hierarchical retrieval: extract memories efficiently, retrieve across multiple signals, and stay far below full-context token costs.\n\nThe updated algorithm has: \n1. Temporal Reasoning-  gives every memory",
+    "datetime": "2026-05-14T16:35:53.000Z",
+    "url": "https://x.com/mem0ai/status/2054963924702036189",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "10"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 is partnering with \n@BasisSet\n on the 2026 AI Fellowship, Agentic Memory Track.\n\nIf you’re an early-career builder excited about AI agents, memory, retrieval, and context engineering, this is for you.\n\nAs agents move from demos to real products, memory becomes core",
+    "datetime": "2026-04-30T15:10:14.000Z",
+    "url": "https://x.com/mem0ai/status/2049868939694604694",
+    "metrics": {
+      "reply": "4",
+      "retweet": "10",
+      "like": "46"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "What are you building this weekend? \n\nDrop the link below",
+    "datetime": "2026-04-25T19:02:05.000Z",
+    "url": "https://x.com/mem0ai/status/2048115346339721711",
+    "metrics": {
+      "reply": "153",
+      "retweet": "1",
+      "like": "94"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Here is what our open source contributor shipped this week!\n\nMem0 OSS Weekly Updates - April 18–24\n\n30 PRs. 21 merged. 29 issues closed.\n\nUpdates:\n• Self-hosted dashboard + admin auth shipped (20k+ lines, 252 files)\n• v3 API migration: CLI routes + integration docs refreshed\n•",
+    "datetime": "2026-04-25T19:15:48.000Z",
+    "url": "https://x.com/mem0ai/status/2048118799325605957",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "2"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Earlier this month, we hosted a mem0rable game night: Mario Kart tournament at the Mem0 office with SF community leaders & growth teams!\n\nVibes all night!\n\nAt mem0, we love creating more memories!",
+    "datetime": "2026-04-20T15:10:47.000Z",
+    "url": "https://x.com/mem0ai/status/2046245200453149029",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "27"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Research: \nhttps://\nmem0.ai/research\nEval Framework: \nhttps://\ngithub.com/mem0ai/memory-\nbenchmarks\n…",
+    "datetime": "2026-04-16T17:12:24.000Z",
+    "url": "https://x.com/mem0ai/status/2044826251748356277",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Introducing the token-efficient memory algorithm.\n\nMem0’s new algorithm hits 91.6 on LoCoMo, 93.4 on LongMemEval, and 64.1/48.6 on BEAM (1M/10M) while averaging < 7,000 tokens per retrieval call, at 3-4x lower token cost. Full-context approaches on these benchmarks run at 25,000+",
+    "datetime": "2026-04-16T15:07:18.000Z",
+    "url": "https://x.com/mem0ai/status/2044794770426605976",
+    "metrics": {
+      "reply": "12",
+      "retweet": "32",
+      "like": "179"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "So, what are you building this weekend?",
+    "datetime": "2026-04-11T22:59:02.000Z",
+    "url": "https://x.com/mem0ai/status/2043101545315864814",
+    "metrics": {
+      "reply": "112",
+      "retweet": "",
+      "like": "69"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Here is what our open source contributor shipped this week!\n\nMem0 OSS Weekly Updates - April 4–10\n\n55 PRs. 21 merged. 39 issues closed.\n\nUpdates:\n• OpenClaw plugin refactor + SDK deprecation cleanup\n• CLI v2: import/event commands + PostHog telemetry\n• Docs overhaul: 222 SEO",
+    "datetime": "2026-04-11T22:59:05.000Z",
+    "url": "https://x.com/mem0ai/status/2043101561023533298",
+    "metrics": {
+      "reply": "1",
+      "retweet": "2",
+      "like": "21"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "How to add long-term memory to your \n@openclaw\n in a minute \n\ntell your claw \"setup Mem0 from mem0 .ai/claw-setup\"\n\nWhat’s new with Mem0 OpenClaw Plugin v1.0.4:\n- 8 built-in tools for memory configuration\n- Session-based + persistent long-term memory\n- Multi-agent memory support",
+    "datetime": "2026-04-09T15:21:24.000Z",
+    "url": "https://x.com/mem0ai/status/2042261604646212028",
+    "metrics": {
+      "reply": "10",
+      "retweet": "14",
+      "like": "79"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Every agent needs memory, now it fits in your terminal\n\npip install mem0-cli",
+    "datetime": "2026-04-06T15:12:36.000Z",
+    "url": "https://x.com/mem0ai/status/2041172225106350515",
+    "metrics": {
+      "reply": "2",
+      "retweet": "8",
+      "like": "125"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "@ builders\n\nWhat are you building this week end?",
+    "datetime": "2026-04-05T18:13:17.000Z",
+    "url": "https://x.com/mem0ai/status/2040855307514200472",
+    "metrics": {
+      "reply": "9",
+      "retweet": "",
+      "like": "12"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 is now live in Hermes Agent memory update \n@NousResearch\n\n\nOne minute setup, just run hermes memory setup, add your API key, and your agent gets memory.\n\nWe handle storage, retrieval, and context across sessions, so your agent actually remembers.\n\nDocs in thread",
+    "datetime": "2026-04-03T16:14:42.000Z",
+    "url": "https://x.com/mem0ai/status/2040100692510298243",
+    "metrics": {
+      "reply": "21",
+      "retweet": "21",
+      "like": "331"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Docs:",
+    "datetime": "2026-04-03T16:30:37.000Z",
+    "url": "https://x.com/mem0ai/status/2040104696015458731",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We're opening up Mem0 HQ this Friday for SF's community builders and GTM leaders.\n\nIf you're running startup events, hackathons, or growth at an AI company ,this one's for you.\n\nExpect good food, a Mario Kart racing, \nand a room full of people doing the same work you are.\n\nNot a",
+    "datetime": "2026-03-31T22:33:47.000Z",
+    "url": "https://x.com/mem0ai/status/2039108927229718837",
+    "metrics": {
+      "reply": "5",
+      "retweet": "2",
+      "like": "17"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "RSVP here:",
+    "datetime": "2026-03-31T22:33:54.000Z",
+    "url": "https://x.com/mem0ai/status/2039108953855180963",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": ""
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 OSS Weekly Updates March 21–27\n\n92 PRs opened. 51 merged. \n112 issues closed. 265 stale PRs cleaned out.\nThe backlog got a deep clean this week.\nUpdates:\nv1.0.8 SDK release, 51 PRs merged\n\nPR backlog audit: 319 → 167 open PRs (48% reduction)\nMem0 plugin for Claude Code &",
+    "datetime": "2026-03-31T17:51:22.000Z",
+    "url": "https://x.com/mem0ai/status/2039037854622642301",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "14"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "TLDR: \n@bytedanceoss\n' DeerFlow SuperAgent harness stores agent memory as a JSON file.\n\nIt extracts structured facts, scores them by confidence, and injects what fits in a 2K token budget, all async, from a single JSON file on disk.\n\nRead more",
+    "datetime": "2026-03-27T16:14:27.000Z",
+    "url": "https://x.com/mem0ai/status/2037563913165005135",
+    "metrics": {
+      "reply": "3",
+      "retweet": "9",
+      "like": "91"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We’re starting a \n@mem0ai\n article series on AI agent memory & context engineering, in context.\n\nWhich memory system should we cover next? \nDrop it below",
+    "datetime": "2026-03-27T15:47:08.000Z",
+    "url": "https://x.com/mem0ai/status/2037557036213477408",
+    "metrics": {
+      "reply": "23",
+      "retweet": "4",
+      "like": "82"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "This morning: we hosted our Coffee & Claude Code meetup at \n@mem0ai\n HQ\n\nDevs sharing what they're building in SF \nThis is the meetup you want to be at\n\nSee you at the next one",
+    "datetime": "2026-03-25T02:07:18.000Z",
+    "url": "https://x.com/mem0ai/status/2036625943142490247",
+    "metrics": {
+      "reply": "",
+      "retweet": "2",
+      "like": "16"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Our registration for the next Coffee & Claude Code has 10 spots left!\n\nCoffee & Claude Code - SF Builders Breakfast \n@ mem0 office\nTuesday, March 24 · 8–10am\n\nCome meet other devs, share your passion project, your current working config, whatever you're building.\n\nShow and Tell",
+    "datetime": "2026-03-23T16:26:27.000Z",
+    "url": "https://x.com/mem0ai/status/2036117379474936202",
+    "metrics": {
+      "reply": "",
+      "retweet": "2",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 OSS Weekly Updates  March 14–20\n\n111 PRs. 51 merged. 190 issues closed.\n\nYes our team + community is thriving!\n\nUpdates:\n• Python v1.0.6: 21 bug fixes across stack\n• TS SDK v2.4.0→v2.4.1 + integration tests\n• Apache AGE graph store\n• MiniMax LLM provider\n• Optional",
+    "datetime": "2026-03-21T00:09:41.000Z",
+    "url": "https://x.com/mem0ai/status/2035146795006009513",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "22"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Our CTO \n@deshrajdry\n  just published a leaderboard tracking all AI commits in Github!\n\nDear agents, can you all beat \n@claudeai\n? \n\nCome on...  \n\n\n@Copilot\n \n@cursor_ai\n \n@DevinAI\n \n@GeminiApp\n \n@opencode\n \n@antigravity",
+    "datetime": "2026-03-20T19:14:25.000Z",
+    "url": "https://x.com/mem0ai/status/2035072487818682760",
+    "metrics": {
+      "reply": "5",
+      "retweet": "",
+      "like": "11"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We skipped the $50K \n@NVIDIAGTC\n sponsorship and showed up with 5,000 cold waters!\n\nnot another billboard/branded taxi\n\nsomething you needed in 90° SF heat.\n\nAnd we stay close to you :)\n\ndid you get mem0 water?",
+    "datetime": "2026-03-20T02:50:12.000Z",
+    "url": "https://x.com/mem0ai/status/2034824802209538473",
+    "metrics": {
+      "reply": "1",
+      "retweet": "3",
+      "like": "24"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We remembered what you needed\n\nMem0 makes sure your agents do the same\n\nBook a free memory consultation →",
+    "datetime": "2026-03-20T03:00:05.000Z",
+    "url": "https://x.com/mem0ai/status/2034827290186854596",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "2"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We made a conversation starter card for tech bros for socializing (or first dates )\n\nFor when your brain 404s mid-convo\n(or memory leaks)\n\njust pull this out \n\nwho wants one?",
+    "datetime": "2026-03-19T22:25:13.000Z",
+    "url": "https://x.com/mem0ai/status/2034758115066093893",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "16"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Great vibes at Claude Code SF Builders Meetup @ mem0 HQ",
+    "datetime": "2026-03-19T19:43:26.000Z",
+    "url": "https://x.com/mem0ai/status/2034717400504181180",
+    "metrics": {
+      "reply": "2",
+      "retweet": "5",
+      "like": "24"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 OSS Weekly Update\n\nMarch 9–13\n\n43 PRs. 13 merged. 60 issues closed.\n\n263 Contributors.\n\nBig week for stability + ecosystem.\n\n• Auto-detect embedding dimensions → fixes Qdrant mismatches across providers\n • OpenAI embedder baseURL fix → resolved multiple long-standing",
+    "datetime": "2026-03-18T17:53:43.000Z",
+    "url": "https://x.com/mem0ai/status/2034327401925398577",
+    "metrics": {
+      "reply": "1",
+      "retweet": "3",
+      "like": "23"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Calling SF builders \n\nWe’re hosting a community meetup: \nClaude Code Builders Lunch\n\nIf you're building coding agents or experimenting with AI dev tools, come hang.\n\nLet your Claude Code run while we grab lunch.\nLunch is on us.",
+    "datetime": "2026-03-15T23:58:32.000Z",
+    "url": "https://x.com/mem0ai/status/2033332046635184213",
+    "metrics": {
+      "reply": "6",
+      "retweet": "5",
+      "like": "73"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "RSVP ↓",
+    "datetime": "2026-03-15T23:59:01.000Z",
+    "url": "https://x.com/mem0ai/status/2033332171998679340",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "5"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 Skills are now live on skills sh\n\nAdd persistent memory to your AI agents in minutes with plug-and-play skills.\n\nBuild agents that actually remember.",
+    "datetime": "2026-03-14T19:30:50.000Z",
+    "url": "https://x.com/mem0ai/status/2032902292471738612",
+    "metrics": {
+      "reply": "22",
+      "retweet": "32",
+      "like": "209"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Try it → \nhttps://\nskills.sh/mem0ai/mem0/me\nm0\n…\n\nInstall:\n\" npx skills add \nhttps://\ngithub.com/mem0ai/mem0 --skill mem0 \"",
+    "datetime": "2026-03-14T19:31:35.000Z",
+    "url": "https://x.com/mem0ai/status/2032902479470625149",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "12"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "AI agents are missing one critical layer: memory.\n\nGive \n@openclaw\n persistent memory in ~30 seconds with this Mem0 plugin",
+    "datetime": "2026-03-13T22:14:03.000Z",
+    "url": "https://x.com/mem0ai/status/2032580980620575230",
+    "metrics": {
+      "reply": "15",
+      "retweet": "16",
+      "like": "179"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "AI shouldn’t just be built by a few.\n\nMem0 is proud to support the Women in AI Booster Pack with \n@buildclub_\n \n\n$10K+ in perks, workshops, and tools for women building in AI.",
+    "datetime": "2026-03-13T21:11:15.000Z",
+    "url": "https://x.com/mem0ai/status/2032565173966483779",
+    "metrics": {
+      "reply": "2",
+      "retweet": "2",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Apply here: \nhttps://\nwomensday.buildclub.ai",
+    "datetime": "2026-03-13T21:11:46.000Z",
+    "url": "https://x.com/mem0ai/status/2032565303989907543",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "1"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Great conversations at \n@Official_GDC\n this week.\n\nMem0 CTO & cofounder \n@deshrajdry\n joined Andrew Bowell (\n@iconicgamesio\n) and \n@jfischoff\n (\n@fal\n) on a panel moderated by \n@stevejang\n from \n@KindredVentures\n.\n\nLots of discussion around AI agents, infrastructure, and what builders actually",
+    "datetime": "2026-03-13T21:01:07.000Z",
+    "url": "https://x.com/mem0ai/status/2032562623217283224",
+    "metrics": {
+      "reply": "1",
+      "retweet": "3",
+      "like": "17"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "The future of games is being built with AI.\n\nTomorrow at \n@Official_GDC\n in SF, \n@deshrajdry\n, our Co-founder & CTO at \n@mem0ai\n, will join \n@kindredvc\n’s panel discussion on how generative models, agents, and persistent memory are reshaping gameplay and development.\n\nAlongside leaders",
+    "datetime": "2026-03-11T02:37:42.000Z",
+    "url": "https://x.com/mem0ai/status/2031560163128426917",
+    "metrics": {
+      "reply": "4",
+      "retweet": "2",
+      "like": "15"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Register to attend:",
+    "datetime": "2026-03-11T02:40:08.000Z",
+    "url": "https://x.com/mem0ai/status/2031560775920398606",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": ""
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "As LLM systems moved beyond simple Q&A, one problem kept showing up.\n\nRAG was introduced to solve a concrete problem. LLMs don’t have access to private or fast-changing data at inference time. Retrieval fixed that by fetching relevant information per request and injecting it into",
+    "datetime": "2026-01-19T17:40:56.000Z",
+    "url": "https://x.com/mem0ai/status/2013305687854785023",
+    "metrics": {
+      "reply": "3",
+      "retweet": "3",
+      "like": "50"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Agent memory is still discussed as a retrieval problem.\n\n“Memory in the Age of AI Agents” paper argues that framing is incomplete.\n\nThe paper formalizes agent memory as an evolving state that lives inside the agent loop, not just as an external store to be queried.\n\nMemory is",
+    "datetime": "2026-01-15T18:39:24.000Z",
+    "url": "https://x.com/mem0ai/status/2011870851944296812",
+    "metrics": {
+      "reply": "17",
+      "retweet": "40",
+      "like": "249"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Paper Link:",
+    "datetime": "2026-01-15T18:39:25.000Z",
+    "url": "https://x.com/mem0ai/status/2011870854314148014",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "13"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We are #hiring \nhttps://\nx.com/taranjeetio/st\n/taranjeetio/status/2008775597070373105\n…",
+    "datetime": "2026-01-07T05:41:34.000Z",
+    "url": "https://x.com/mem0ai/status/2008775998704414846",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "19"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "If your New Year resolution is real impact > fancy titles\n\nWe’re hiring an Applied AI Engineer in SF at Mem0.\n\nWork on the memory layer behind real AI agents.\nSmall team. Real ownership. Problems that matter.\n\n\nhttps://\nmem0.dev/careers/applie\nd-ai-engineer\n…",
+    "datetime": "2025-12-18T19:15:31.000Z",
+    "url": "https://x.com/mem0ai/status/2001733079862501821",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "20"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Most AI agents today are still stateless.\n\nThat’s why they don’t evolve over time.\n\nThey answer a query, end the session, and forget everything that happened before. This type of interaction feels okay for one-time queries, but it doesn’t hold up when users come back and expect",
+    "datetime": "2025-12-17T16:25:06.000Z",
+    "url": "https://x.com/mem0ai/status/2001327806064865785",
+    "metrics": {
+      "reply": "13",
+      "retweet": "36",
+      "like": "289"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "New cookbook: Gemini 3 + Mem0 MCP\n\nWe put together a step-by-step guide showing how to add Mem0’s persistent, structured memory to a Gemini 3 workflow using the Model Context Protocol.\n\nIf you're building agents that need long-term recall, consistent context, and reliable",
+    "datetime": "2025-12-11T17:16:00.000Z",
+    "url": "https://x.com/mem0ai/status/1999166286509826110",
+    "metrics": {
+      "reply": "9",
+      "retweet": "15",
+      "like": "172"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Cookbook Link:",
+    "datetime": "2025-12-11T17:16:00.000Z",
+    "url": "https://x.com/mem0ai/status/1999166289496191311",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "10"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We partnered with AWS to show how developers can build persistent memory built for real-world agent workloads.\n\nThe tutorial combines three components to create a robust GitHub Research Agent:\n\n- Mem0 Open Source for long-term memory orchestration.\n- Amazon ElastiCache for Valkey",
+    "datetime": "2025-12-07T06:23:13.000Z",
+    "url": "https://x.com/mem0ai/status/1997552458651033681",
+    "metrics": {
+      "reply": "7",
+      "retweet": "6",
+      "like": "51"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "https://\nmem0.ai/blog/build-per\nsistent-memory-for-agentic-ai-applications-with-mem0-open-source-amazon-elasticache-for-valkey-and-amazon-neptune-analytics\n…",
+    "datetime": "2025-12-07T06:23:14.000Z",
+    "url": "https://x.com/mem0ai/status/1997552461675110486",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "6"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Can you spot Mem0",
+    "datetime": "2025-12-04T19:37:42.000Z",
+    "url": "https://x.com/mem0ai/status/1996665234459934738",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "AI agents work best when their memory aligns with your application’s exact needs.\n\nWhen you’re building AI agents with memory, you often need tighter control over:\n\n• What should become long-term memory\n• What must be excluded for privacy\n• And, consistent rules that apply",
+    "datetime": "2025-12-03T14:08:03.000Z",
+    "url": "https://x.com/mem0ai/status/1996219885261885929",
+    "metrics": {
+      "reply": "5",
+      "retweet": "3",
+      "like": "72"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Read the docs here:",
+    "datetime": "2025-12-03T14:08:04.000Z",
+    "url": "https://x.com/mem0ai/status/1996219888545694013",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "4"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Not every AI agent query needs the same type of memory.\n\nSome questions are about a single fact, others depend on how different facts connect and Mem0 gives you both a vector store and graph memory to handle this.\n\nA vector store works best when the answer lives in a single",
+    "datetime": "2025-11-27T19:35:42.000Z",
+    "url": "https://x.com/mem0ai/status/1994128016247857550",
+    "metrics": {
+      "reply": "8",
+      "retweet": "10",
+      "like": "95"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Congratulations to Throwback, winners of the Mem0 Track at the \n@cursor_ai\n Hackathon!\n\nThey integrated Mem0 to power the memory feature, enabling it to recall past conversations between generations and make each new interaction richer and more personal.\n\nThrowback is a",
+    "datetime": "2025-11-12T17:41:15.000Z",
+    "url": "https://x.com/mem0ai/status/1988663392606048663",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "15"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We’re #hiring a Data Analyst at Mem0\n\nYou’ll build our analytics foundation from 0→1 - defining metrics that matter, setting up pipelines (Postgres, PostHog, LLM outputs), and turning data into insights that guide every decision.\n\n- Bangalore, India\n- Full ownership\n- High",
+    "datetime": "2025-11-04T16:28:54.000Z",
+    "url": "https://x.com/mem0ai/status/1985746082736058731",
+    "metrics": {
+      "reply": "7",
+      "retweet": "12",
+      "like": "169"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "https://\nmem0.dev/careers/data-a\nnalyst\n…",
+    "datetime": "2025-11-04T16:28:54.000Z",
+    "url": "https://x.com/mem0ai/status/1985746084992598335",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "3"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Our co-founder & CTO, \n@deshrajdry\n, presented the Mem0 research paper this week at ECAI 2025 in Bologna\n\nECAI (European Conference on Artificial Intelligence) is Europe’s flagship AI research conference that brings together leading researchers and labs shaping the future of",
+    "datetime": "2025-10-30T14:39:47.000Z",
+    "url": "https://x.com/mem0ai/status/1983906685472096582",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "43"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Read the Mem0 research paper here:",
+    "datetime": "2025-10-30T14:39:48.000Z",
+    "url": "https://x.com/mem0ai/status/1983906689905459465",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "5"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "What does it actually take to give an LLM memory?\n\n\n@neural_avb\n explored that question by recreating the architecture described in the Mem0 paper using DSPy, showing how extraction, indexing, retrieval, and updates come together inside an agentic memory system.\n\nThe video distills",
+    "datetime": "2025-10-25T19:56:44.000Z",
+    "url": "https://x.com/mem0ai/status/1982174509424591251",
+    "metrics": {
+      "reply": "7",
+      "retweet": "12",
+      "like": "136"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Video Link: \nhttps://\nyoutu.be/n4GPdsQnHqc?si\n=Iq2mZNoJwP1QXe_p\n…",
+    "datetime": "2025-10-25T19:56:45.000Z",
+    "url": "https://x.com/mem0ai/status/1982174513258250317",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "6"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 v1.0.0 is live \n\nBringing faster memory retrieval, new integrations, and major performance upgrades across SDKs.\n\nHere's what's new:\n- Assistant memory retrieval upgrade -Default async mode for better performance\n- Azure MySQL & Azure AI Search support\n- Tool Calls for",
+    "datetime": "2025-10-21T17:00:31.000Z",
+    "url": "https://x.com/mem0ai/status/1980680609304572042",
+    "metrics": {
+      "reply": "5",
+      "retweet": "16",
+      "like": "150"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Read full release notes here:",
+    "datetime": "2025-10-21T17:00:31.000Z",
+    "url": "https://x.com/mem0ai/status/1980680611930206416",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "7"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "The hardest part about giving AI agents memory? Making them understand time.\n\nMost agents know what happened but not when it happened or when it stopped being true.\n\nThat’s why Mem0 makes time-awareness native with with two powerful features\n\n1. Timestamp - Record when",
+    "datetime": "2025-10-16T15:03:40.000Z",
+    "url": "https://x.com/mem0ai/status/1978839264822792219",
+    "metrics": {
+      "reply": "7",
+      "retweet": "17",
+      "like": "183"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Read the docs here:\n\nhttps://\ndocs.mem0.ai/platform/featu\nres/timestamp\n…\n\nhttps://\ndocs.mem0.ai/platform/featu\nres/expiration-date\n…",
+    "datetime": "2025-10-16T15:03:41.000Z",
+    "url": "https://x.com/mem0ai/status/1978839268484141173",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "4"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Prompt Engineering vs Context Engineering\n\nPrompt engineering is the art of crafting precise instructions, shaping what you say and how you say it so the model produces the right output.\n\nIt’s about optimizing the input text itself through roles, examples, and structure.\n\nA few",
+    "datetime": "2025-10-15T13:33:07.000Z",
+    "url": "https://x.com/mem0ai/status/1978454087650754583",
+    "metrics": {
+      "reply": "5",
+      "retweet": "24",
+      "like": "240"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Implement long-term memory for AI agents.\n\nLearn how to architect persistent memory using \n@Azure\n AI Foundry, Azure AI Search, and Mem0.\n\nThis tutorial by Eitan Sela explains how Mem0 fits into the Azure ecosystem - managing what to remember, summarize, and forget. While AI Search",
+    "datetime": "2025-10-11T06:46:57.000Z",
+    "url": "https://x.com/mem0ai/status/1976902323977724325",
+    "metrics": {
+      "reply": "1",
+      "retweet": "6",
+      "like": "31"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Bigger context windows can't eliminate the need for memory...\n\nA context window defines how much information a model can “see” at once.\n\nExpanding it to 200k or even a million tokens helps with short-term recall but it doesn’t help the model remember.\n\nOnce the window slides, the",
+    "datetime": "2025-10-09T19:03:44.000Z",
+    "url": "https://x.com/mem0ai/status/1976362964111294531",
+    "metrics": {
+      "reply": "2",
+      "retweet": "1",
+      "like": "31"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "100 billion tokens through \n@OpenAI\n \n\nEach one shaping the memory layer that helps AI grow smarter over time.",
+    "datetime": "2025-10-08T18:14:28.000Z",
+    "url": "https://x.com/mem0ai/status/1975988178025632072",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "46"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Lovable Cloud & AI builds it. Mem0 makes it remember.\n\nLuuk Alleman just built a Dating Profile Optimizer using Lovable Cloud & AI + Mem0 - an AI coach that learns your preferences, refines your bio, and even helps you pick better photos over time.\n\nLovable Cloud & AI handled the",
+    "datetime": "2025-10-07T18:02:02.000Z",
+    "url": "https://x.com/mem0ai/status/1975622661658059201",
+    "metrics": {
+      "reply": "2",
+      "retweet": "2",
+      "like": "27"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Context Engineering is powerful but limited without Memory.\n\nEveryone’s been talking about Context Engineering lately, optimizing how models perceive and reason through structured context.\n\nBut no matter how well-designed your pipeline is, it all vanishes when the session ends.",
+    "datetime": "2025-10-06T19:32:57.000Z",
+    "url": "https://x.com/mem0ai/status/1975283152357560430",
+    "metrics": {
+      "reply": "4",
+      "retweet": "3",
+      "like": "122"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "AI Agent Memory in action.\n\nMem0 Playground is a no-code sandbox to observe what actually happens when you integrate Mem0.\n\nYou can see memories being created, updated, retrieved, and deleted in real time.\n\nTry it out here →\nhttps://\nmem0.dev/playground/tw",
+    "datetime": "2025-10-03T18:53:03.000Z",
+    "url": "https://x.com/mem0ai/status/1974185947437871153",
+    "metrics": {
+      "reply": "2",
+      "retweet": "1",
+      "like": "34"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Access Mem0 Playground\n\n- Sign in to open Playground.\n- Start a chat and share information that could create memories.\n- As you converse, the right panel shows memories created.",
+    "datetime": "2025-10-03T18:53:04.000Z",
+    "url": "https://x.com/mem0ai/status/1974185952882155646",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "2"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "𝗥𝗔𝗚 (Retrieval Augmented Generation) vs. Memory\n\nThese two terms are often confused, but they play very different roles.\n\nRAG grounds an LLM with external knowledge.\nA query is embedded, matched against a vector store, and the top k-chunks are injected into context.\n\nMemory is",
+    "datetime": "2025-09-30T20:16:44.000Z",
+    "url": "https://x.com/mem0ai/status/1973119844309672317",
+    "metrics": {
+      "reply": "26",
+      "retweet": "85",
+      "like": "592"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We’re excited to share that our Co-founder & CTO, Deshraj Yadav (\n@deshrajdry\n), will be speaking at inaugural session of AgentX at the Google Sunnyvale campus.\n\nAgentX is a new builder-first series for those pushing the frontier of agentic AI.\n\nHe’ll be joining leaders from",
+    "datetime": "2025-09-29T17:28:11.000Z",
+    "url": "https://x.com/mem0ai/status/1972715039963435309",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "10"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 is now part of Microsoft’s AI Agents for Beginners course \n\nIf you want to dive deeper into AI Agent Memory and how it powers self-improving agents, this lesson is a great place to start.\n\nThis lesson covers:\n\n→ What AI Agent memory is and why it’s essential\n→ Short-term",
+    "datetime": "2025-09-27T20:01:43.000Z",
+    "url": "https://x.com/mem0ai/status/1972028902647517691",
+    "metrics": {
+      "reply": "15",
+      "retweet": "37",
+      "like": "372"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "AI feels broken without memory.\n\nMem0 is the memory layer that helps agents remember, learn, and evolve across interactions.\n\nIf you’ve ever wondered how Mem0 fits into your stack, here’s the breakdown ↓\n\n1. Managed Platform – Hosted Mem0 with instant setup and lightning-fast",
+    "datetime": "2025-09-25T20:57:25.000Z",
+    "url": "https://x.com/mem0ai/status/1971318142304497691",
+    "metrics": {
+      "reply": "6",
+      "retweet": "14",
+      "like": "178"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "How Mem0 works under the hood\n\n1. Message enters -\nA new user message triggers the pipeline.\n\n2. Fetch context -\nMem0 pulls two things from storage:\ni) A running summary of past exchanges\nii) The last m raw messages\n\nThis keeps history compact but still meaningful.\n\n3. Extraction",
+    "datetime": "2025-09-24T20:19:44.000Z",
+    "url": "https://x.com/mem0ai/status/1970946274711994721",
+    "metrics": {
+      "reply": "12",
+      "retweet": "32",
+      "like": "294"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "AI Agent Memory isn’t just bigger context windows\nIt’s how agents actually learn, adapt, and evolve.\n\nContext windows only let a model see more of the conversation at once.\n\nMemory is different, it's what the agent keeps, updates, and recall the right parts to guide decisions.",
+    "datetime": "2025-09-22T22:22:02.000Z",
+    "url": "https://x.com/mem0ai/status/1970252276280250536",
+    "metrics": {
+      "reply": "28",
+      "retweet": "38",
+      "like": "391"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We crossed 40k GitHub stars",
+    "datetime": "2025-09-18T19:47:38.000Z",
+    "url": "https://x.com/mem0ai/status/1968763866092847423",
+    "metrics": {
+      "reply": "5",
+      "retweet": "6",
+      "like": "115"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Big congrats on the launch and $1M raise \n\nWe are proud \n@mem0ai\n is powering the memory for the world's first screen-free curiosity device for kids.",
+    "datetime": "2025-09-13T12:25:38.000Z",
+    "url": "https://x.com/mem0ai/status/1966840695207141793",
+    "metrics": {
+      "reply": "3",
+      "retweet": "",
+      "like": "49"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Chatbot with Long-Term Memory\n\nEver wanted your chatbot to remember context across sessions?\n\nWait...developers are already solving this with \n@mem0ai\n \n\nHere’s a detailed guide from \n@_philschmid\n on building a Gemini 2.5 chatbot with long-term memory using Mem0\n\nThe guide",
+    "datetime": "2025-09-11T19:51:53.000Z",
+    "url": "https://x.com/mem0ai/status/1966228220858290474",
+    "metrics": {
+      "reply": "4",
+      "retweet": "1",
+      "like": "24"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "https://\nphilschmid.de/gemini-with-me\nmory\n…",
+    "datetime": "2025-09-11T19:51:54.000Z",
+    "url": "https://x.com/mem0ai/status/1966228225551642738",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "1"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 is hiring\n\nWe’ve got some exciting roles and are looking for top-notch developers to join our team #hiring\n\nRoles open for:\n- Frontend Engineer\n- Backend Engineer\n- Applied AI Engineer\n- Full Stack Engineer\nand more!\n\nWe’re early, lean, and growing fast. Joining at this",
+    "datetime": "2025-09-10T19:25:12.000Z",
+    "url": "https://x.com/mem0ai/status/1965859120847675778",
+    "metrics": {
+      "reply": "55",
+      "retweet": "56",
+      "like": "937"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 v0.1.117 is now live\n\nPacked with new features, integrations, and stability improvements to supercharge your AI memory workflows.\n\nHere's what's new:\n- Graph Memory w/ Kuzu\n- New vector stores\n- Enhanced Azure Identity support\n- OpenMemory: export/import, migration, wider",
+    "datetime": "2025-09-09T18:57:40.000Z",
+    "url": "https://x.com/mem0ai/status/1965489800737423592",
+    "metrics": {
+      "reply": "8",
+      "retweet": "20",
+      "like": "246"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Read full release notes here:",
+    "datetime": "2025-09-09T18:57:40.000Z",
+    "url": "https://x.com/mem0ai/status/1965489803115524168",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "10"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "New Example: Personalized Search with Mem0 + \n@tavilyai\n\n\nSearch assistants give very generic answers. Ask for “coffee shops nearby,” and you’ll get a list anyone could find.\nBut what if your assistant remembered you?\n\nImagine asking for coffee shops and getting results tailored",
+    "datetime": "2025-08-01T16:13:53.000Z",
+    "url": "https://x.com/mem0ai/status/1951315458121941367",
+    "metrics": {
+      "reply": "3",
+      "retweet": "11",
+      "like": "107"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "docs: \nhttps://\ndocs.mem0.ai/examples/perso\nnalized-search-tavily-mem0\n…\ngithub: \nhttps://\ngithub.com/mem0ai/mem0/bl\nob/main/examples/misc/personalized_search.py\n…",
+    "datetime": "2025-08-01T16:13:54.000Z",
+    "url": "https://x.com/mem0ai/status/1951315461976789228",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Learn how to configure the Mem0 memory layer with \n@awscloud\n Bedrock:\n\n- Embeddings: Titan (1024‑dim) → semantic memory representation\n- LLM: Claude 3.5 Haiku → low‑latency, cost‑efficient reasoning\n- Vector Store: Amazon OpenSearch → scalable memory retrieval\n\nWith Mem0 as",
+    "datetime": "2025-07-31T15:53:58.000Z",
+    "url": "https://x.com/mem0ai/status/1950948058470174722",
+    "metrics": {
+      "reply": "2",
+      "retweet": "3",
+      "like": "35"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Conversational Agent built to reduce workplace burnout using \n@mem0ai\n \n\n\n@brinlee_kidd\n recently shared how their team at MindMe designed a memory system using Mem0 to build this internal system.\n\nMem0 helped here with its persistent, intelligent memory layer that:\n- Extracts",
+    "datetime": "2025-07-29T16:19:55.000Z",
+    "url": "https://x.com/mem0ai/status/1950229812519584175",
+    "metrics": {
+      "reply": "3",
+      "retweet": "9",
+      "like": "30"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Many times, direct add and search in Mem0 might not be enough for your use case.\n\nThat’s where Custom Instructions come in.\n- Precise control over what gets remembered\n- Define exactly what info to extract\n- Filter out irrelevant chatter\n- Keep memories structured and",
+    "datetime": "2025-07-28T16:32:41.000Z",
+    "url": "https://x.com/mem0ai/status/1949870638619119879",
+    "metrics": {
+      "reply": "1",
+      "retweet": "8",
+      "like": "80"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "New example just dropped: Build a Multi-Agent Learning System with shared memory\n\nThis setup combines \n@llama_index\n's agent workflow with Mem0’s persistent memory to power a smart, collaborative tutoring system\n\nMem0 provides a unified memory layer that all agents share,",
+    "datetime": "2025-07-16T15:41:15.000Z",
+    "url": "https://x.com/mem0ai/status/1945509038370029710",
+    "metrics": {
+      "reply": "2",
+      "retweet": "12",
+      "like": "92"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 now integrates with Amazon Neptune Analytics \n\nYou can now use Neptune as a graph-native memory backend for your GenAI agents unlocking long-term, connected memory at scale.\n\nThis unlocks:\n- Scalable memory graphs for your agents with \n@awscloud\n Neptune\n- Multi-hop",
+    "datetime": "2025-07-10T15:29:11.000Z",
+    "url": "https://x.com/mem0ai/status/1943331674571575478",
+    "metrics": {
+      "reply": "",
+      "retweet": "6",
+      "like": "17"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "It takes just one line to give your \n@AgnoAgi\n agent long-term, personalized memory \n\nJust add Mem0Tools() and and your agent can automatically remember what matters: \n- User preferences \n- Life context \n- Evolving goals\n\nHere’s how",
+    "datetime": "2025-07-08T15:56:16.000Z",
+    "url": "https://x.com/mem0ai/status/1942613715423224199",
+    "metrics": {
+      "reply": "4",
+      "retweet": "15",
+      "like": "120"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Build Agents with Scalable Long-term Memory\n\nWatch \n@taranjeetio\n break down what it takes to build agents and why memory is the next layer of intelligence in AI at the \n@arizeai\n Observe event\n\n \nhttps://\nyoutu.be/EE4pvOEAjXc?si\n=L0KOvU1vpxBF4Bo4\n…",
+    "datetime": "2025-07-04T16:21:20.000Z",
+    "url": "https://x.com/mem0ai/status/1941170471971827923",
+    "metrics": {
+      "reply": "2",
+      "retweet": "4",
+      "like": "22"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We’re live on \n@ProductHunt\n with OpenMemory Chrome Extension \n\nThe easiest way to carry context across ChatGPT, Claude, Gemini, and more.\n\nJoin the launch on Product Hunt  \nhttps://\nproducthunt.com/products/openm\nemory-chrome-extension\n…\n\nWe’re excited to hear your feedback!",
+    "datetime": "2025-07-03T12:07:48.000Z",
+    "url": "https://x.com/mem0ai/status/1940744281016487967",
+    "metrics": {
+      "reply": "4",
+      "retweet": "8",
+      "like": "95"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Easily use Mem0 add and search tools with \n@OpenAI\n Agents SDK\n\n- add_memory: saves information to memory\n- get_memory: retrieves relevant past information\n\nPersistent memory in your agent workflow in just few lines of code\n\ndocs below",
+    "datetime": "2025-07-02T16:47:30.000Z",
+    "url": "https://x.com/mem0ai/status/1940452282421887332",
+    "metrics": {
+      "reply": "4",
+      "retweet": "13",
+      "like": "157"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "docs:",
+    "datetime": "2025-07-02T16:47:31.000Z",
+    "url": "https://x.com/mem0ai/status/1940452287375438266",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "9"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We are proud to announce that Mem0 is now HIPAA compliant!\n\nEnsuring our platform meets the highest standards for protecting sensitive health data.",
+    "datetime": "2025-06-25T15:51:08.000Z",
+    "url": "https://x.com/mem0ai/status/1937901383597830489",
+    "metrics": {
+      "reply": "3",
+      "retweet": "4",
+      "like": "52"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "How to configure Mem0 with \n@awscloud\n Bedrock:\n\n- AWS Bedrock supports both llm and embeddings\n- Claude 3.5 Haiku for your LLM\n- Titan Embeddings for vector representation \n- OpenSearch as your vector store \n\ndocs link below",
+    "datetime": "2025-06-21T15:54:47.000Z",
+    "url": "https://x.com/mem0ai/status/1936452749945962624",
+    "metrics": {
+      "reply": "4",
+      "retweet": "11",
+      "like": "77"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "docs:",
+    "datetime": "2025-06-21T15:54:48.000Z",
+    "url": "https://x.com/mem0ai/status/1936452754098335978",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "4"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Community spotlight: Serverless memory-powered agents built by Davide De Sio\n\nA project that shows how to build an AI agent that remembers, even across AWS Lambda calls.\n\nIt uses the mem0_memory tool with the Strands Agents SDK by \n@awscloud\n to persist and retrieve user context",
+    "datetime": "2025-06-19T15:20:00.000Z",
+    "url": "https://x.com/mem0ai/status/1935719219003638103",
+    "metrics": {
+      "reply": "2",
+      "retweet": "7",
+      "like": "52"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "New in Mem0: Multi-User Collaboration \n\nWe’ve added a full example showing how to build a collaborative chat or task system using Mem0’s group memory feature.\n\n- Each user’s messages are attributed and stored in a shared project space\n- Agent can reason over the full",
+    "datetime": "2025-06-16T16:16:17.000Z",
+    "url": "https://x.com/mem0ai/status/1934646219784978496",
+    "metrics": {
+      "reply": "1",
+      "retweet": "21",
+      "like": "113"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "docs:",
+    "datetime": "2025-06-16T16:16:18.000Z",
+    "url": "https://x.com/mem0ai/status/1934646223488635370",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "7"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We are super excited to see what you all will be building with the memory layer for agents\n\nAll participants get Mem0 pro access btw\n\nSign up here: \nhttps://\n100agents.dev",
+    "datetime": "2025-06-13T14:59:55.000Z",
+    "url": "https://x.com/mem0ai/status/1933539838130860140",
+    "metrics": {
+      "reply": "2",
+      "retweet": "6",
+      "like": "46"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We’ve just updated our docs for Mem0 x LiveKit integration with LiveKit Agents 1.0!\n\nNow you can power real-time voice agents with memory - persistent, contextual, and fast.\n\n\n@livekit\n powers real-time voice - low-latency, rock-solid, and dev-friendly\n\ndocs below",
+    "datetime": "2025-06-10T16:20:59.000Z",
+    "url": "https://x.com/mem0ai/status/1932473074101989848",
+    "metrics": {
+      "reply": "5",
+      "retweet": "12",
+      "like": "86"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "docs:",
+    "datetime": "2025-06-10T16:20:59.000Z",
+    "url": "https://x.com/mem0ai/status/1932473077264458086",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "8"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Autonomous Agents That Think, Remember, and Evolve\n\nAn incredible project by Aaron Brown (from AWS team), showcasing how autonomous agents can move beyond simple tasks to reason, remember, and adapt\n- powered by Mem0, \n@awscloud\n Bedrock, and Strands Agents SDK\n\n From",
+    "datetime": "2025-06-09T15:31:23.000Z",
+    "url": "https://x.com/mem0ai/status/1932098203706613888",
+    "metrics": {
+      "reply": "6",
+      "retweet": "34",
+      "like": "207"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "blog: \nhttps://\ncommunity.aws/content/2t2ZD3\nFQzwxxAFbG754PXWCkEDf/building-autonomous-agents-that-think-remember-and-evolve\n…\n\ncode: \nhttps://\ngithub.com/westonbrown/Cy\nber-AutoAgent\n…",
+    "datetime": "2025-06-09T15:31:24.000Z",
+    "url": "https://x.com/mem0ai/status/1932098211524878736",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "14"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Startups, we built this exclusively for you \n\nThe Mem0 Startup Program is live. Build with memory from day one.\n\nMore on what’s inside",
+    "datetime": "2025-06-06T15:50:48.000Z",
+    "url": "https://x.com/mem0ai/status/1931015928956768421",
+    "metrics": {
+      "reply": "3",
+      "retweet": "6",
+      "like": "61"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Every accepted startup gets:\n\n $1,500 worth of Pro features\n Private Slack with our team\n Unlimited memories, users, & analytics\n Priority input on our roadmap\n\nWe don’t just support you - we build with you.",
+    "datetime": "2025-06-06T15:50:49.000Z",
+    "url": "https://x.com/mem0ai/status/1931015932798759025",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "4"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Build your own Voice-to-Voice AI Assistant that understands your preferences\n\nthis assistant can:\n- understands you using \n@OpenAI\n whisper (STT) \n- recall facts from past conversations via \n@mem0ai\n \n- speaks naturally with \n@elevenlabs\n TTS \n- responds intelligently using",
+    "datetime": "2025-06-05T15:08:45.000Z",
+    "url": "https://x.com/mem0ai/status/1930642957134168431",
+    "metrics": {
+      "reply": "4",
+      "retweet": "41",
+      "like": "400"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "code:",
+    "datetime": "2025-06-05T15:08:46.000Z",
+    "url": "https://x.com/mem0ai/status/1930642963509445017",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "12"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We finished #2 on Product Hunt\n\nHuge thanks to everyone who supported OpenMemory MCP, your love got us to the top \n\nThis is just the beginning. Let’s keep building the future of AI memory",
+    "datetime": "2025-05-31T15:29:00.000Z",
+    "url": "https://x.com/mem0ai/status/1928836113730290061",
+    "metrics": {
+      "reply": "13",
+      "retweet": "14",
+      "like": "174"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "OpenMemory MCP ProductHunk link:",
+    "datetime": "2025-05-31T15:29:01.000Z",
+    "url": "https://x.com/mem0ai/status/1928836117278703656",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "15"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Add long-term memory to your Strands agents in minutes\n\nWith \n@mem0ai\n , integrating contextual recall is as easy as importing a tool\n\n Just plug `mem0_memory` into your agent, and it handles:\n- Storing user facts (location, preferences, queries)\n- Retrieving context for",
+    "datetime": "2025-05-28T15:46:28.000Z",
+    "url": "https://x.com/mem0ai/status/1927753345793417478",
+    "metrics": {
+      "reply": "2",
+      "retweet": "8",
+      "like": "65"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "blog:",
+    "datetime": "2025-05-28T15:47:46.000Z",
+    "url": "https://x.com/mem0ai/status/1927753674157084886",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "10"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Understanding Direct Import feature in Mem0\n\nAt Mem0, one powerful but sometimes overlooked capability is Direct Import, a feature designed for developers who already know what their AI should remember.\n\n What is Direct Import?\nNormally, Mem0 deduces and stores memories by",
+    "datetime": "2025-05-23T15:55:04.000Z",
+    "url": "https://x.com/mem0ai/status/1925943572911599998",
+    "metrics": {
+      "reply": "4",
+      "retweet": "8",
+      "like": "88"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "How It Works\nYou just pass infer=False to the add() method:\n\n Only user messages are stored. assistant and system messages are ignored.",
+    "datetime": "2025-05-23T15:55:06.000Z",
+    "url": "https://x.com/mem0ai/status/1925943578456469844",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "5"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "New Example: Build a Smarter Healthcare Assistant with Mem0 + \n@Google\n ADK\n\nThis AI agent remembers patient information across conversations without the need for users to repeat themselves. \n\n With Mem0's memory layer, the assistant offers:\n - Remember medical history &",
+    "datetime": "2025-05-20T15:31:24.000Z",
+    "url": "https://x.com/mem0ai/status/1924850453432656195",
+    "metrics": {
+      "reply": "7",
+      "retweet": "23",
+      "like": "208"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "docs: \nhttps://\ndocs.mem0.ai/examples/mem0-\ngoogle-adk-healthcare-assistant\n…\ngithub: \nhttps://\ngithub.com/mem0ai/mem0/bl\nob/main/examples/misc/healthcare_assistant_google_adk.py\n…",
+    "datetime": "2025-05-20T15:31:25.000Z",
+    "url": "https://x.com/mem0ai/status/1924850456796492121",
+    "metrics": {
+      "reply": "1",
+      "retweet": "1",
+      "like": "12"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "People are building cool things using OpenMemory MCP and we are loving it \nAI Labs on youtube have shared a detailed tutorial on how to use OpenMemory MCP with your MCP clients, go check it out. \nlink in comments",
+    "datetime": "2025-05-17T16:42:04.000Z",
+    "url": "https://x.com/mem0ai/status/1923781071092474286",
+    "metrics": {
+      "reply": "2",
+      "retweet": "24",
+      "like": "238"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "video:",
+    "datetime": "2025-05-17T16:42:04.000Z",
+    "url": "https://x.com/mem0ai/status/1923781074716618769",
+    "metrics": {
+      "reply": "1",
+      "retweet": "2",
+      "like": "18"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 is trending #2 at GitHub \n\nThanks for the love and support by our community",
+    "datetime": "2025-05-15T06:13:08.000Z",
+    "url": "https://x.com/mem0ai/status/1922898021668344128",
+    "metrics": {
+      "reply": "3",
+      "retweet": "16",
+      "like": "200"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Things we love to hear!",
+    "datetime": "2025-05-12T09:52:12.000Z",
+    "url": "https://x.com/mem0ai/status/1921865986136752402",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "13"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Build LlamaIndex ReAct Agent powered by Mem0 memory!\n\n What’s a ReAct Agent?\nIt's an agent that can think and act, it reasons through problems and takes real actions (like calling APIs or tools), making interactions more dynamic and useful\n\n Why Mem0 Memory?\nBy adding",
+    "datetime": "2025-05-08T15:30:39.000Z",
+    "url": "https://x.com/mem0ai/status/1920501608846164127",
+    "metrics": {
+      "reply": "3",
+      "retweet": "13",
+      "like": "80"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "docs: \nhttps://\ndocs.mem0.ai/examples/llama\n-index-mem0\n…",
+    "datetime": "2025-05-08T15:30:40.000Z",
+    "url": "https://x.com/mem0ai/status/1920501614294483082",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "3"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Customer feedback like this is what keeps us going",
+    "datetime": "2025-05-06T16:02:31.000Z",
+    "url": "https://x.com/mem0ai/status/1919784852737462429",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "12"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Set up Mem0 as memory layer locally easily with \n@ollama\n\n\n- store user memories\n- local memory storage + retrieval using \n@qdrant_engine\n \n- run everything locally with llama3.1 + nomic-embed-text via Ollama\n\nperfect setup for local RAG workflows and assistants",
+    "datetime": "2025-05-05T15:40:42.000Z",
+    "url": "https://x.com/mem0ai/status/1919416974834086256",
+    "metrics": {
+      "reply": "6",
+      "retweet": "14",
+      "like": "118"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "docs:",
+    "datetime": "2025-05-05T15:40:43.000Z",
+    "url": "https://x.com/mem0ai/status/1919416978797642038",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "5"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We’re trending on GitHub (Python) again!\n\nmem0: State-of-the-art memory for AI agents - now beating OpenAI Memory by 26% in accuracy\n\nBig thanks to our amazing community!",
+    "datetime": "2025-05-01T07:45:44.000Z",
+    "url": "https://x.com/mem0ai/status/1917847892104007978",
+    "metrics": {
+      "reply": "10",
+      "retweet": "19",
+      "like": "221"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We're excited to announce our latest advancement in building production-ready AI Agents with scalable long-term memory.\n\nMem0 outperformed six leading baselines across diverse tasks on the LOCOMO benchmark - from single-hop and multi-hop reasoning, to temporal and open-domain",
+    "datetime": "2025-04-29T15:31:04.000Z",
+    "url": "https://x.com/mem0ai/status/1917240225409171912",
+    "metrics": {
+      "reply": "34",
+      "retweet": "93",
+      "like": "694"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "\"Quality of my personalized therapist/assistant went 10x higher thanks to mem0 integration\"\n\nThanks for using Mem0 and giving us valuable feedback",
+    "datetime": "2025-04-22T15:45:29.000Z",
+    "url": "https://x.com/mem0ai/status/1914707136350716262",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "16"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "@grok\n 3 by \n@xai\n support live in Mem0.\n\nUse it to create stateful AI agents that evolve over time.",
+    "datetime": "2025-04-18T19:20:09.000Z",
+    "url": "https://x.com/mem0ai/status/1913311606123204915",
+    "metrics": {
+      "reply": "2",
+      "retweet": "6",
+      "like": "37"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0 spotted",
+    "datetime": "2025-04-14T14:04:07.000Z",
+    "url": "https://x.com/mem0ai/status/1911782521794179442",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "24"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "@grok\n 3 API now live.",
+    "datetime": "2025-04-11T16:43:11.000Z",
+    "url": "https://x.com/mem0ai/status/1910735391529066615",
+    "metrics": {
+      "reply": "3",
+      "retweet": "3",
+      "like": "22"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Documentation:",
+    "datetime": "2025-04-11T16:43:12.000Z",
+    "url": "https://x.com/mem0ai/status/1910735393701716230",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "6"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Build your personal AI study coach - powered by memory that knows you\n\n- tracks your learning journey over time\n- remembers the topics you struggle with\n- prompts you to revisit concepts periodically\n- understands your PDFs and notes\n\nbuilt using \n@OpenAI\n Agents SDK + Mem0",
+    "datetime": "2025-04-10T15:58:52.000Z",
+    "url": "https://x.com/mem0ai/status/1910361849050308807",
+    "metrics": {
+      "reply": "3",
+      "retweet": "14",
+      "like": "118"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Build your personal AI assistant enabled with memory that knows you well\n\n- understands images (like travel items, notes, health reports)\n- remembers everything about you\n- answers your questions days (or weeks) later\n\nbuilt using \n@AgnoAgi\n + Mem0",
+    "datetime": "2025-04-09T15:36:28.000Z",
+    "url": "https://x.com/mem0ai/status/1909993825910808784",
+    "metrics": {
+      "reply": "7",
+      "retweet": "25",
+      "like": "151"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Introducing \n@Azure\n AI Search support as vector database",
+    "datetime": "2025-03-31T14:13:49.000Z",
+    "url": "https://x.com/mem0ai/status/1906711534153380308",
+    "metrics": {
+      "reply": "1",
+      "retweet": "6",
+      "like": "15"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Documentation:\n\nhttps://\ndocs.mem0.ai/components/vec\ntordbs/dbs/azure_ai_search\n…",
+    "datetime": "2025-03-31T14:13:49.000Z",
+    "url": "https://x.com/mem0ai/status/1906711536313553407",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "2"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "#5 on GitHub Trending (again)",
+    "datetime": "2025-03-11T20:19:57.000Z",
+    "url": "https://x.com/mem0ai/status/1899555917852803446",
+    "metrics": {
+      "reply": "1",
+      "retweet": "2",
+      "like": "20"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Introducing the \n@mem0ai\n Node.js SDK for TypeScript/JavaScript developers.\n\nSimply run\n\nnpm install mem0ai\n\nand you are all set",
+    "datetime": "2025-03-04T16:58:02.000Z",
+    "url": "https://x.com/mem0ai/status/1896968388473487727",
+    "metrics": {
+      "reply": "2",
+      "retweet": "8",
+      "like": "43"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Documentation:",
+    "datetime": "2025-03-04T16:58:05.000Z",
+    "url": "https://x.com/mem0ai/status/1896968400980803863",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "3"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We just crossed 25,000 \n@github\n stars. \nThank you everyone for the support.",
+    "datetime": "2025-03-03T18:09:22.000Z",
+    "url": "https://x.com/mem0ai/status/1896623953017479606",
+    "metrics": {
+      "reply": "7",
+      "retweet": "9",
+      "like": "62"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "This week, we've shipped the following:\n\n• Webhook integration for real-time memory event updates\n• REST API support to interact directly with mem0\n• Multimodal memory creation (including images)\n• Unofficial Grok 3 API integration\n• Enhanced memory deduction algorithms for",
+    "datetime": "2025-03-03T00:50:34.000Z",
+    "url": "https://x.com/mem0ai/status/1896362529733169543",
+    "metrics": {
+      "reply": "",
+      "retweet": "7",
+      "like": "29"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "You can now interact with mem0 through the REST API server built with \n@fastapi\n.\n\nCreate, retrieve, update, and delete memories easily.",
+    "datetime": "2025-02-26T18:00:18.000Z",
+    "url": "https://x.com/mem0ai/status/1894809729790288375",
+    "metrics": {
+      "reply": "2",
+      "retweet": "5",
+      "like": "15"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Documentation:",
+    "datetime": "2025-02-26T18:01:03.000Z",
+    "url": "https://x.com/mem0ai/status/1894809920304038379",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "3"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "You can now add images to mem0. Your visuals are converted into enriched memories with key details extracted.",
+    "datetime": "2025-02-25T16:30:07.000Z",
+    "url": "https://x.com/mem0ai/status/1894424650152907165",
+    "metrics": {
+      "reply": "1",
+      "retweet": "4",
+      "like": "24"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Documentation:",
+    "datetime": "2025-02-25T16:30:11.000Z",
+    "url": "https://x.com/mem0ai/status/1894424663637594355",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "1"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "You can now set up a webhook to receive real-time notifications when memories are added, updated, or deleted.",
+    "datetime": "2025-02-24T14:56:19.000Z",
+    "url": "https://x.com/mem0ai/status/1894038653506404801",
+    "metrics": {
+      "reply": "3",
+      "retweet": "8",
+      "like": "39"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Documentation:\n\nhttps://\ndocs.mem0.ai/features/webho\nok\n…",
+    "datetime": "2025-02-24T14:56:22.000Z",
+    "url": "https://x.com/mem0ai/status/1894038666571624580",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "2"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Every user interaction holds valuable data. But what good is data if you can't use it your way?\n\nIntroducing Memory Export: Export user data in any format, instantly.\n\nWith Memory Export, you can extract, analyze, and utilize user memories effortlessly.\n\nWhy it matters:\n1. Turn",
+    "datetime": "2025-01-17T16:30:01.000Z",
+    "url": "https://x.com/mem0ai/status/1880291494453735591",
+    "metrics": {
+      "reply": "4",
+      "retweet": "3",
+      "like": "25"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We analyzed \n@SahilBloom\n’s tweets and generated his AI-powered resolution for 2025: \"Expand my mental models newsletter, create more frameworks for wealth building, and continue demystifying complex financial concepts for the next generation of entrepreneurs.”\n\nTry yours",
+    "datetime": "2024-12-30T15:44:48.000Z",
+    "url": "https://x.com/mem0ai/status/1873757136360210793",
+    "metrics": {
+      "reply": "3",
+      "retweet": "1",
+      "like": "19"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "We did the same for \n@shaanvp\n: \"Launch 3 new experimental businesses, double down on teaching entrepreneurship through meme-able frameworks, and find more boring businesses that are actually goldmines to share with MFM listeners.”\n\nTry it for yourself here: \nhttp://\n2025.mem0.ai",
+    "datetime": "2024-12-30T15:44:49.000Z",
+    "url": "https://x.com/mem0ai/status/1873757141036581114",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "5"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": ". \n@crewAIInc\n  \n@mem0ai",
+    "datetime": "2024-11-26T08:46:32.000Z",
+    "url": "https://x.com/mem0ai/status/1861330689552949325",
+    "metrics": {
+      "reply": "6",
+      "retweet": "",
+      "like": "12"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Mem0  MultiOn",
+    "datetime": "2024-09-23T17:40:46.000Z",
+    "url": "https://x.com/mem0ai/status/1838272307850334468",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "12"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Last week, we launched Claude Memory - a browser extension that brings ChatGPT-like memory to Claude, powered by Mem0.\n\nClaude memory is now available on the Chrome store!\n\nDownload link in replies",
+    "datetime": "2024-09-14T16:03:06.000Z",
+    "url": "https://x.com/mem0ai/status/1834986237809377319",
+    "metrics": {
+      "reply": "2",
+      "retweet": "4",
+      "like": "77"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Download here: \nhttps://\nmem0.dev/claude-memory-t",
+    "datetime": "2024-09-14T16:03:29.000Z",
+    "url": "https://x.com/mem0ai/status/1834986337759641928",
+    "metrics": {
+      "reply": "",
+      "retweet": "1",
+      "like": "2"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Dhravya is on roll. Another useful open source application.\n\nCheck it out.",
+    "datetime": "2024-07-31T03:12:05.000Z",
+    "url": "https://x.com/mem0ai/status/1818484753970217391",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "27"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Can see \n@deshrajdry\n cranking his keyboard and writing the next logic to improve memory deduction.",
+    "datetime": "2024-07-18T21:43:24.000Z",
+    "url": "https://x.com/mem0ai/status/1814053383835463795",
+    "metrics": {
+      "reply": "1",
+      "retweet": "",
+      "like": "6"
+    },
+    "author": "mem0ai"
+  },
+  {
+    "text": "Thanks everyone for the love.",
+    "datetime": "2024-07-17T03:17:38.000Z",
+    "url": "https://x.com/mem0ai/status/1813412720626266343",
+    "metrics": {
+      "reply": "",
+      "retweet": "",
+      "like": "15"
+    },
+    "author": "mem0ai"
+  }
+]
