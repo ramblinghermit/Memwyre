@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "memwyre": {
+      "command": "node",
+      "args": ["scripts/mcp-server.js"]
+    }
+  }
+}

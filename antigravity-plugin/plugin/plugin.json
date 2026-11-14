@@ -1,0 +1,12 @@
+{
+  "name": "memwyre",
+  "displayName": "Memwyre",
+  "version": "1.0.0",
+  "description": "Persistent shared memory and automated session lifecycle hooks for Antigravity, powered by Memwyre.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Search my Memwyre vault for past architecture decisions",
+    "Save the current discussion and conventions to Memwyre",
+    "Check Memwyre connection status and stored memories"
+  ]
+}

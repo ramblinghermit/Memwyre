@@ -1,0 +1,28 @@
+{
+  "name": "@memwyre/antigravity-plugin",
+  "version": "1.0.0",
+  "description": "Persistent memory and automated session lifecycle hooks for Google Antigravity, powered by Memwyre.",
+  "type": "commonjs",
+  "main": "plugin/scripts/mcp-server.js",
+  "bin": {
+    "memwyre-antigravity": "plugin/scripts/login.js"
+  },
+  "files": [
+    "plugin"
+  ],
+  "keywords": [
+    "antigravity",
+    "google-antigravity",
+    "agy",
+    "plugin",
+    "memwyre",
+    "memory",
+    "hooks",
+    "mcp"
+  ],
+  "author": "Memwyre",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
