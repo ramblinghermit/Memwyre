@@ -87,10 +87,10 @@ async def require_subscription(
     db: AsyncSession = Depends(get_db),
 ) -> User:
     """
-    Feature gate: requires an active subscription OR dev mode.
+    Feature gate: requires an active subscription OR dev mode OR admin email.
     Use this as a dependency on routers/endpoints that should be paywalled.
     """
-    if settings.DEV_MODE:
+    if settings.DEV_MODE or (current_user.email and current_user.email.lower() in settings.admin_email_list):
         return current_user
 
     from app.models.subscription import Subscription
@@ -115,7 +115,8 @@ async def verify_usage_limits(
     db: AsyncSession = Depends(get_db)
 ) -> bool:
     """Verifies that the user has not exceeded their quotas and content limits."""
-    if settings.DEV_MODE:
+    is_admin = bool(current_user.email and current_user.email.lower() in settings.admin_email_list)
+    if settings.DEV_MODE or is_admin:
         return True
     
     from app.models.subscription import Subscription
@@ -124,7 +125,7 @@ async def verify_usage_limits(
     # Check subscription
     result = await db.execute(select(Subscription).where(Subscription.user_id == current_user.id))
     sub = result.scalars().first()
-    is_pro = sub and sub.status == "active"
+    is_pro = (sub and sub.status == "active") or is_admin
 
     # Enforce Character Size Limits
     if doc_type == "memory":

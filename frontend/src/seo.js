@@ -26,6 +26,8 @@ export const PRERENDER_ROUTES = [
   '/mcp-memory',
   '/grok-bot-memory',
   '/opencode-memory',
+  '/cross-agent-coding-memory',
+  '/research/best-vector-databases-agent-memory',
   '/openclaw-memory',
   '/privacy-policy',
   '/terms',
@@ -275,8 +277,8 @@ export const PUBLIC_ROUTE_SEO = {
     })
   },
   '/ai-memory-benchmark-locomo': {
-    title: 'LoCoMo Benchmark Report | Evaluating AI Memory Networks',
-    description: 'Read the LoCoMo Benchmark Report: methodology, datasets, competitors, findings, and conclusions comparing Memwyre, Mem0, Zep, and Supermemory.',
+    title: 'LoCoMo Benchmark Report & Dataset | Evaluating AI Agent Memory Networks | Memwyre',
+    description: 'Explore the LoCoMo benchmark dataset and evaluation report: 1,986 questions across 10 long-term conversational histories comparing Memwyre, Mem0, and Zep.',
     ogImage: '/blog-covers/ai-memory-benchmark-locomo-v2.png',
   },
   '/research': {
@@ -300,8 +302,8 @@ export const PUBLIC_ROUTE_SEO = {
     description: 'Connect ChatGPT to a unified, long-term memory graph. Save developer guidelines, schemas, and context across all your browser chat sessions.',
   },
   '/claude-memory': {
-    title: 'Claude Memory | Persistent long-term memory for Claude Desktop & Code',
-    description: 'Setup persistent long-term memory for Anthropic Claude Desktop and Claude Code CLI. Secure, private context updates via remote MCP server gateway.',
+    title: 'Claude Code & Desktop Persistent Memory | CLI Session State | Memwyre',
+    description: 'Setup persistent long-term memory for Anthropic Claude Desktop and Claude Code CLI. Retain context across terminal sessions via remote MCP server gateway.',
   },
   '/grok-bot-memory': {
     title: 'Grok Bot Memory | Cross-Bot Shared Knowledge and Persistence',
@@ -309,20 +311,20 @@ export const PUBLIC_ROUTE_SEO = {
     ogImage: '/blog-covers/grok-bot-shared-memory.png',
   },
   '/cursor-memory': {
-    title: 'Cursor Memory | Long-Term Codebase Context for Cursor AI IDE',
-    description: 'Enable sub-300ms persistent memory for Cursor Composer and Chat. Save developer rules and databases context to avoid index rebuilding.',
+    title: 'Cursor Memory & Shared Context | Persistent Codebase Memory for Cursor AI',
+    description: 'Enable sub-300ms persistent memory for Cursor Composer and Chat. Retain developer rules, shared cross-session context, and schemas without re-indexing.',
   },
   '/research/vector-database-vs-agent-memory': {
-    title: 'Vector Database vs AI Agent Memory | Memwyre Research',
+    title: 'Vector Database vs AI Agent Memory: Can a Vector DB Be Agent Memory? | Memwyre',
     description:
-      'A technical breakdown of vector databases vs AI agent memory systems. Why cosine similarity fails across sessions and why entity-profile routing provides better context.',
+      'Can a vector database be agent memory? Compare vector databases (Pinecone, Qdrant, Weaviate) vs AI agent memory platforms on multi-hop reasoning, latency & benchmarks.',
     canonical: 'https://memwyre.tech/research/vector-database-vs-agent-memory',
     ogType: 'article',
   },
   '/opencode-memory': {
-    title: 'OpenCode Persistent Memory: Fix RAM Leaks & CLI Session State | Memwyre',
+    title: 'OpenCode Memory Plugin: Persistent Memory, RAM Fix & Session State | Memwyre',
     description:
-      'Eliminate OpenCode RAM bloat, V8 garbage collector freezes, and CLI session reset. Give OpenCode persistent long-term memory across terminal sessions with Memwyre.',
+      'The top-rated persistent memory plugin for OpenCode. Eliminate desktop GUI RAM leaks, V8 GC freezes, and CLI session reset. Persistent memory across runs with Memwyre.',
   },
   '/openclaw-memory': {
     title: 'OpenClaw Persistent Memory: Prevent Context Compaction Loss | Memwyre',
@@ -332,6 +334,20 @@ export const PUBLIC_ROUTE_SEO = {
   '/mcp-memory': {
     title: 'MCP Memory Server | Universal Context Layer for All MCP Clients',
     description: 'Link any Model Context Protocol (MCP) client to your personal memory layer. Secure, remote context gateway supporting Cursor, Claude, VS Code, and Windsurf.',
+  },
+  '/cross-agent-coding-memory': {
+    title: 'Cross-Agent Coding Memory: Synchronize OpenCode, Cursor & Claude Code | Memwyre',
+    description:
+      'Eliminate AI coding agent silos. Synchronize persistent memory across OpenCode CLI, Cursor Composer, and Claude Code with a single unified Memwyre vault.',
+    canonical: 'https://memwyre.tech/cross-agent-coding-memory',
+    ogType: 'article',
+  },
+  '/research/best-vector-databases-agent-memory': {
+    title: 'Best Vector Databases for AI Agent Memory in Production | Memwyre Research',
+    description:
+      'Comprehensive benchmark comparing Qdrant, Pinecone, Cloudflare Vectorize, and pgvector for AI agent memory workloads on latency, price/performance, and multi-hop reasoning.',
+    canonical: 'https://memwyre.tech/research/best-vector-databases-agent-memory',
+    ogType: 'article',
   },
 };
 

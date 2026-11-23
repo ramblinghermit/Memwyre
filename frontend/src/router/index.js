@@ -393,6 +393,38 @@ export function createAppRouter({ ssr = false } = {}) {
                         name: 'opencode-memory',
                         component: () => import('../views/integrations/OpenCodeMemoryView.vue'),
                         meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/opencode-memory'] }
+                    },
+                    {
+                        path: 'cross-agent-coding-memory',
+                        name: 'cross-agent-coding-memory',
+                        component: () => import('../views/integrations/CrossAgentMemoryView.vue'),
+                        meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/cross-agent-coding-memory'] }
+                    },
+                    {
+                        path: 'cross-agent-memory',
+                        redirect: '/cross-agent-coding-memory'
+                    },
+                    {
+                        path: 'opencode-claude-memory',
+                        redirect: '/cross-agent-coding-memory'
+                    },
+                    {
+                        path: 'cursor-shared-memory',
+                        redirect: '/cross-agent-coding-memory'
+                    },
+                    {
+                        path: 'research/best-vector-databases-agent-memory',
+                        name: 'best-vector-databases-agent-memory',
+                        component: () => import('../views/comparisons/VectorDatabasesForAgentMemoryView.vue'),
+                        meta: { requiresAuth: false, seo: PUBLIC_ROUTE_SEO['/research/best-vector-databases-agent-memory'] }
+                    },
+                    {
+                        path: 'best-vector-database-for-ai-agent-memory',
+                        redirect: '/research/best-vector-databases-agent-memory'
+                    },
+                    {
+                        path: 'best-vector-databases-agent-memory',
+                        redirect: '/research/best-vector-databases-agent-memory'
                     }
                 ]
             },

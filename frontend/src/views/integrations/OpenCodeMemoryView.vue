@@ -430,8 +430,59 @@
             <ul>
               <li><strong>OpenCode (plugin):</strong> hooks into session lifecycle. On start → retrieval API. On end → POST transcript.</li>
               <li><strong><router-link to="/claude-memory" class="text-[#D97757] hover:underline font-medium">Claude Code</router-link> / <router-link to="/cursor-memory" class="text-[#D97757] hover:underline font-medium">Cursor</router-link> / <router-link to="/mcp-memory" class="text-[#D97757] hover:underline font-medium">VS Code (MCP)</router-link> / Claude Desktop / <router-link to="/openclaw-memory" class="text-[#D97757] hover:underline font-medium">OpenClaw</router-link>:</strong> connect via MCP or their respective plugins to same vault.</li>
+              <li><strong>Cross-Agent Hub:</strong> Learn more in our dedicated <router-link to="/cross-agent-coding-memory" class="text-[#D97757] hover:underline font-semibold">Cross-Agent Coding Memory Guide</router-link>.</li>
               <li><strong>Same API key = same vault.</strong></li>
             </ul>
+
+            <h3 id="opencode-v2-memory">OpenCode v2 Memory Architecture &amp; Migration</h3>
+            <p>
+              With the release of <strong>OpenCode v2</strong>, the underlying runtime introduced modular plugin lifecycle events (<code>session:start</code>, <code>turn:before</code>, <code>session:end</code>). While OpenCode v2 dramatically improves terminal rendering and tool-call concurrency, it deliberately delegates persistent cross-session state to external memory providers.
+            </p>
+            <p>
+              The Memwyre plugin provides first-class, day-zero support for OpenCode v2:
+            </p>
+            <ul>
+              <li><strong>Zero-Config Auto-Registration:</strong> In OpenCode v2, plugins listed in <code>opencode.json</code> auto-bind to the daemon without requiring manual shell wrappers.</li>
+              <li><strong>Streaming Transcript Ingestion:</strong> Ingests execution transcripts asynchronously during turn idle cycles, ensuring large code refactors never block model streaming.</li>
+              <li><strong>Backward Compatibility:</strong> Automatically detects whether you are running OpenCode v1 or OpenCode v2 and mounts the corresponding database reader (native <code>node:sqlite</code> for v1 or IPC transport for v2).</li>
+            </ul>
+
+            <h3 id="opencode-mem-community">Memwyre vs. Community Scripts (opencode-mem, MemorySync &amp; Mnemosyne)</h3>
+            <p>
+              As developers searched for memory solutions, several community scripts emerged, including <code>opencode-mem</code>, <code>memorysync</code>, and <code>mnemosyne</code>. While these community prototypes proved the demand for persistent state, they suffer from critical architectural bottlenecks:
+            </p>
+            <div class="overflow-x-auto my-4">
+              <table class="w-full text-xs text-left border border-gray-200 dark:border-gray-800 rounded">
+                <thead class="bg-gray-50 dark:bg-zinc-900 uppercase font-mono font-bold text-gray-500">
+                  <tr>
+                    <th class="px-3 py-2 border-b">Feature</th>
+                    <th class="px-3 py-2 border-b">opencode-mem / Mnemosyne</th>
+                    <th class="px-3 py-2 border-b">MemorySync</th>
+                    <th class="px-3 py-2 border-b text-[#D97757]">Memwyre Plugin</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 dark:divide-zinc-800">
+                  <tr>
+                    <td class="px-3 py-2 font-semibold">Storage Layer</td>
+                    <td class="px-3 py-2">Local JSON / Markdown dump</td>
+                    <td class="px-3 py-2">Git commit commits / patches</td>
+                    <td class="px-3 py-2 font-bold text-[#D97757]">Cloud / Local SQLite Entity Graph</td>
+                  </tr>
+                  <tr>
+                    <td class="px-3 py-2 font-semibold">Contradiction Handling</td>
+                    <td class="px-3 py-2">None (Appends duplicates)</td>
+                    <td class="px-3 py-2">Git merge conflicts</td>
+                    <td class="px-3 py-2 font-bold text-[#D97757]">Automated entity reconciliation</td>
+                  </tr>
+                  <tr>
+                    <td class="px-3 py-2 font-semibold">IDE Cross-Sync</td>
+                    <td class="px-3 py-2">None (OpenCode CLI only)</td>
+                    <td class="px-3 py-2">Manual repo pull</td>
+                    <td class="px-3 py-2 font-bold text-[#D97757]">Cursor, Claude Code, VS Code MCP</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <h2 id="architecture">How the Memwyre OpenCode Plugin Works</h2>
 
@@ -749,6 +800,8 @@ const toc = [
     slug: 'comparison',
     children: [
       { text: 'Comparison Matrix', slug: 'comparison' },
+      { text: 'OpenCode v2 Architecture', slug: 'opencode-v2-memory' },
+      { text: 'Community Tools Comparison', slug: 'opencode-mem-community' },
       { text: 'LoCoMo Benchmark', slug: 'benchmark' },
       { text: 'Frequently Asked Questions', slug: 'faq' }
     ]
@@ -801,6 +854,14 @@ onUnmounted(() => {
 });
 
 const faqs = [
+  {
+    question: 'How does OpenCode v2 handle memory and plugin lifecycles?',
+    answer: 'OpenCode v2 introduces modular session lifecycle hooks (session:start, turn:idle, session:end). While the core v2 engine still runs stateless to keep the CLI fast and responsive, the Memwyre plugin leverages these v2 lifecycle events to auto-inject past architecture decisions on startup and persist newly learned facts asynchronously.'
+  },
+  {
+    question: 'How does Memwyre compare to community tools like opencode-mem, memorysync, and mnemosyne?',
+    answer: 'Community scripts like opencode-mem and mnemosyne rely on flat JSON or markdown files that append notes indefinitely, causing prompt token bloat and contradiction confusion. Memwyre uses an AST-aware knowledge graph that extracts concise entities, eliminates duplicate or obsolete rules using Ebbinghaus decay, and syncs seamlessly across OpenCode, Cursor, and Claude Code.'
+  },
   {
     question: 'Does OpenCode have persistent memory?',
     answer: 'No. OpenCode does not have native persistent long-term memory across sessions. By default, every time you close an OpenCode terminal or restart a session, all architectural decisions, debugging breakthroughs, and code patterns are flushed. Connecting the Memwyre OpenCode plugin equips OpenCode with cross-session long-term memory that auto-injects relevant context on start and saves learnings on exit.'

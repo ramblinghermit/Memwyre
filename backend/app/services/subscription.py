@@ -63,11 +63,11 @@ async def create_checkout_session(user: User, db: AsyncSession) -> dict:
 
 async def get_subscription_status(user: User, db: AsyncSession) -> dict:
     """Get the current subscription status for a user."""
-    # Dev mode bypass
-    if settings.DEV_MODE:
+    # Dev mode or admin bypass
+    if settings.DEV_MODE or (user.email and user.email.lower() in settings.admin_email_list):
         return {
             "plan": "pro",
-            "status": "dev_mode_active",
+            "status": "active",
             "is_active": True,
             "current_period_end": None,
         }
@@ -94,8 +94,8 @@ async def get_subscription_status(user: User, db: AsyncSession) -> dict:
 
 
 async def is_user_subscribed(user: User, db: AsyncSession) -> bool:
-    """Check if user has an active subscription (or dev mode is on)."""
-    if settings.DEV_MODE:
+    """Check if user has an active subscription (or dev mode is on, or user is admin)."""
+    if settings.DEV_MODE or (user.email and user.email.lower() in settings.admin_email_list):
         return True
 
     result = await db.execute(

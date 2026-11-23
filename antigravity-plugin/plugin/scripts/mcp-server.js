@@ -153,6 +153,15 @@ async function handleSave(args) {
     tags = ['antigravity'];
   }
 
+  // Derive a clean title if not provided
+  let title = args.title;
+  if (!title && typeof text === 'string') {
+    const firstLine = text.split('\n').map((l) => l.trim()).find((l) => l.length > 0) || 'Agent Memory';
+    title = firstLine.replace(/^#+\s*/, '').slice(0, 80).trim() || 'Agent Memory';
+  } else if (!title) {
+    title = 'Agent Memory';
+  }
+
   try {
     const res = await fetchJson(`${creds.apiUrl}/api/v1/memory/`, {
       method: 'POST',
@@ -162,6 +171,7 @@ async function handleSave(args) {
         'X-Plugin-Source': 'antigravity-mcp',
       },
       body: {
+        title,
         content: text,
         tags,
         source: 'antigravity',
@@ -175,7 +185,19 @@ async function handleSave(args) {
       return `Memory successfully saved to Memwyre Vault (${id}). Workspace: "${project}".`;
     }
 
-    return `Failed to save memory: ${res.data && (res.data.detail || res.data.message) ? (res.data.detail || res.data.message) : `HTTP ${res.status}`}`;
+    let errorDetail = `HTTP ${res.status}`;
+    if (res.data) {
+      if (typeof res.data.detail === 'string') {
+        errorDetail = res.data.detail;
+      } else if (Array.isArray(res.data.detail)) {
+        errorDetail = res.data.detail.map((d) => (d.msg ? `${d.loc ? d.loc.join('.') + ': ' : ''}${d.msg}` : JSON.stringify(d))).join('; ');
+      } else if (typeof res.data.detail === 'object') {
+        errorDetail = JSON.stringify(res.data.detail);
+      } else if (res.data.message) {
+        errorDetail = typeof res.data.message === 'string' ? res.data.message : JSON.stringify(res.data.message);
+      }
+    }
+    return `Failed to save memory: ${errorDetail}`;
   } catch (err) {
     return `Save request error: ${err.message}`;
   }
@@ -263,6 +285,10 @@ const TOOLS = [
     inputSchema: {
       type: 'object',
       properties: {
+        title: {
+          type: 'string',
+          description: 'Optional short summary title for the memory (auto-extracted from text if omitted).',
+        },
         text: {
           type: 'string',
           description: 'The memory or knowledge snippet to remember.',

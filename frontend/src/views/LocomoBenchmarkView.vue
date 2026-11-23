@@ -232,6 +232,31 @@
                 Because both evaluations were run under identical conditions across the complete dataset, the results confirm that Memwyre's performance is model-agnostic. Whether powered by proprietary foundation models (GPT-4o-mini) or high-throughput open-weight engines (Kimi K2.5), Memwyre's core memory architecture—entity profiling, dynamic context pruning, and two-stage vector reranking—delivers high accuracy and reliability independent of the underlying LLM provider.
               </p>
 
+              <h3 id="locomo-dataset" class="font-bold text-gray-950 dark:text-white text-lg pt-6">
+                LoCoMo Dataset Structure &amp; Evaluation Splits
+              </h3>
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                The official <strong>LoCoMo dataset</strong> (Long Conversational Memory, Snap Research) is partitioned into 10 multi-session conversational scenarios totaling 1,986 evaluated questions. It specifically stresses long-term conversational memory across four distinct challenge categories:
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 font-mono text-xs">
+                <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-lg border border-gray-200 dark:border-zinc-800">
+                  <div class="font-bold text-gray-900 dark:text-white mb-1">1. Multi-Session Fact Retrieval (Single-Hop)</div>
+                  <div class="text-gray-600 dark:text-gray-400">Direct recall of explicit facts stated in a session weeks prior. (Memwyre: 78.6% recall).</div>
+                </div>
+                <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-lg border border-gray-200 dark:border-zinc-800">
+                  <div class="font-bold text-gray-900 dark:text-white mb-1">2. Temporal &amp; Preference Evolution</div>
+                  <div class="text-gray-600 dark:text-gray-400">Handling updated preferences where past choices are explicitly modified or superseded.</div>
+                </div>
+                <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-lg border border-gray-200 dark:border-zinc-800">
+                  <div class="font-bold text-gray-900 dark:text-white mb-1">3. Multi-Hop Relational Correlation</div>
+                  <div class="text-gray-600 dark:text-gray-400">Connecting facts scattered across disconnected dialogue turns to synthesize a conclusion.</div>
+                </div>
+                <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-lg border border-gray-200 dark:border-zinc-800">
+                  <div class="font-bold text-gray-900 dark:text-white mb-1">4. Adversarial Non-Existent Memories (446 Questions)</div>
+                  <div class="text-gray-600 dark:text-gray-400">Questions about events that never occurred. The memory engine must refuse to hallucinate.</div>
+                </div>
+              </div>
+
               <h4 class="font-bold text-gray-950 dark:text-white text-base pt-4">Memwyre vs. Standard Long-Context Architecture Patterns</h4>
               <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
                 To put these benchmark results in perspective, standard long-term memory approaches in AI applications typically fall into two extremes, both with severe drawbacks:
@@ -616,7 +641,8 @@ const toc = [
     text: 'Methodology & Datasets',
     slug: 'methodology',
     children: [
-      { text: 'Evaluation Protocol', slug: 'methodology' }
+      { text: 'Evaluation Protocol', slug: 'methodology' },
+      { text: 'LoCoMo Dataset & Splits', slug: 'locomo-dataset' }
     ]
   },
   {

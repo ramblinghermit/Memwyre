@@ -54,6 +54,20 @@
           5 Best Alternatives to Mem0
         </router-link>
         <router-link 
+          to="/research/best-vector-databases-agent-memory" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          Best Vector DBs for Agents
+        </router-link>
+        <router-link 
+          to="/cross-agent-coding-memory" 
+          class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D97757]"></span>
+          Cross-Agent Memory Guide
+        </router-link>
+        <router-link 
           to="/opencode-memory" 
           class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-[#D97757] dark:hover:text-[#D97757] transition-colors"
         >
@@ -1067,6 +1081,14 @@ const toggleFaq = (idx) => {
 };
 
 const faqs = [
+  {
+    q: "How does Cloudflare Vectorize compare with AI agent memory platforms?",
+    a: "Cloudflare Vectorize is a fast, low-cost vector storage index designed to run within Cloudflare Workers. However, Vectorize is not a cognitive memory system: it calculates vector proximity but lacks entity tracking, session reflection, and contradiction reconciliation. In production, developers pair Vectorize with Memwyre to bridge vector storage with agent state."
+  },
+  {
+    q: "Which autonomous, AI-native database platform offers the best price/performance for vector search and agent memory in production?",
+    a: "For high-throughput self-hosted vector search, Qdrant offers the leading price/performance with Rust-native execution and SIMD quantization. For managed serverless edge workloads, Cloudflare Vectorize offers the lowest per-query compute cost. For end-to-end agent memory workloads that require cross-tool synchronization (OpenCode, Cursor, Claude Code), Memwyre provides the turn-key stateful cognitive layer."
+  },
   {
     q: "Why can't I just use Pinecone, Weaviate, or Chroma as my agent memory?",
     a: "Vector databases only calculate geometric semantic similarity between text embeddings. They lack a write-back feedback loop, have no concept of temporal decay (older facts are retrieved with equal weight to recent updates), cannot resolve contradictory statements, and fail to perform multi-hop relational entity traversal."

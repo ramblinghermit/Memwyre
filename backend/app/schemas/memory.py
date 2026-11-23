@@ -1,15 +1,25 @@
-from pydantic import BaseModel
-from typing import Optional, List
+from pydantic import BaseModel, model_validator
+from typing import Optional, List, Any
 from datetime import datetime
 
 
 class MemoryBase(BaseModel):
-    title: str
+    title: Optional[str] = None
     content: str
     tags: Optional[List[str]] = None
     project_id: Optional[int] = None
     interaction_type: Optional[str] = "conversation"
     source_app: Optional[str] = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def set_default_title(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if not data.get("title") and data.get("content"):
+                lines = [line.strip() for line in str(data["content"]).splitlines() if line.strip()]
+                first_line = lines[0] if lines else "Untitled Memory"
+                data["title"] = first_line[:80].lstrip("#").strip() or "Untitled Memory"
+        return data
 
 
 class MemoryCreate(MemoryBase):

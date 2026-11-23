@@ -160,14 +160,15 @@ async def send_message(
     # Note: AgentService handles db saves internally for messages.
     
     # Verify Usage Limit (for Free Tier)
-    if not settings.DEV_MODE:
+    is_admin = bool(current_user.email and current_user.email.lower() in settings.admin_email_list)
+    if not settings.DEV_MODE and not is_admin:
         from sqlalchemy import func
         from app.models.subscription import Subscription
         
         # Check subscription
         sub_result = await db.execute(select(Subscription).where(Subscription.user_id == current_user.id))
         sub = sub_result.scalars().first()
-        is_pro = sub and sub.status == "active"
+        is_pro = (sub and sub.status == "active") or is_admin
         
         if not is_pro:
             # Count user's total messages across all sessions
