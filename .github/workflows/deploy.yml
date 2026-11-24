@@ -217,6 +217,10 @@ jobs:
 
             # Health check
             sleep 10
-            curl -sf https://api.memwyre.tech/health || (echo "Health check failed!" && exit 1)
+            if ! curl -sf https://api.memwyre.tech/health; then
+              echo "Health check failed! Backend logs:"
+              sudo docker compose -f docker-compose.prod.yml --env-file .env.prod --env-file .env.ecr logs backend --tail 100
+              exit 1
+            fi
             echo "Deployment successful!"
 
