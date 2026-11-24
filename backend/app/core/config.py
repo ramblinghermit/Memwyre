@@ -28,7 +28,7 @@ class Settings(BaseSettings):
 
     # Auth Overrides
     ADMIN_EMAILS: str = ""
-    WHITELISTED_DOMAINS: str = ""
+    WHITELISTED_DOMAINS: str = "memwyre.tech"
 
     @property
     def admin_email_list(self) -> List[str]:
@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     AWS_ACCESS_KEY_ID: Optional[str] = None
     AWS_SECRET_ACCESS_KEY: Optional[str] = None
     AWS_REGION: str = "us-east-1"
-    AWS_SES_SENDER_EMAIL: Optional[str] = None
+    AWS_SES_SENDER_EMAIL: Optional[str] = "noreply@memwyre.tech"
 
     # SMTP Configuration (Fallback/Alternative to SES)
     SMTP_HOST: Optional[str] = None
@@ -50,7 +50,7 @@ class Settings(BaseSettings):
     SMTP_USER: Optional[str] = None
     SMTP_PASSWORD: Optional[str] = None
     SMTP_USE_TLS: bool = True
-    SMTP_SENDER_EMAIL: Optional[str] = None
+    SMTP_SENDER_EMAIL: Optional[str] = "noreply@memwyre.tech"
 
     # Cloudflare Turnstile
     TURNSTILE_SECRET_KEY: Optional[str] = None

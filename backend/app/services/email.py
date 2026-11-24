@@ -86,12 +86,13 @@ def _send_email_sync(to_email: str, subject: str, html_body: str, sender: str) -
 
 
 async def send_email(to_email: str, subject: str, html_body: str) -> bool:
-    """Send an email using AWS SES (non-blocking async wrapper)."""
-    base_sender = settings.AWS_SES_SENDER_EMAIL
-    if not base_sender:
-        logger.error("AWS_SES_SENDER_EMAIL is not configured.")
-        return False
-        
+    """Send an email using AWS SES (strictly using the verified memwyre.tech domain)."""
+    base_sender = settings.AWS_SES_SENDER_EMAIL or "noreply@memwyre.tech"
+    base_clean = base_sender.strip().lower()
+    if not base_clean.endswith("@memwyre.tech"):
+        local_part = base_clean.split("@")[0] if "@" in base_clean else "noreply"
+        base_sender = f"{local_part}@memwyre.tech"
+
     sender = f"Memwyre <{base_sender}>"
 
     loop = asyncio.get_event_loop()
