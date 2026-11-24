@@ -1,6 +1,7 @@
 import os
 import httpx
 import base64
+import urllib.parse
 from datetime import datetime, timedelta
 from jose import jwt
 from fastapi import APIRouter, Depends, HTTPException, Query, BackgroundTasks
@@ -78,12 +79,13 @@ async def notion_auth(
         raise HTTPException(status_code=400, detail="Notion Client ID not configured on server")
 
     redirect_uri = f"{settings.BACKEND_URL}{settings.API_V1_STR}/connectors/notion/callback"
+    encoded_redirect_uri = urllib.parse.quote(redirect_uri, safe='')
     auth_url = (
         f"https://api.notion.com/v1/oauth/authorize"
         f"?client_id={notion_client_id}"
         f"&response_type=code"
         f"&owner=user"
-        f"&redirect_uri={redirect_uri}"
+        f"&redirect_uri={encoded_redirect_uri}"
         f"&state={state}"
     )
     return RedirectResponse(auth_url)
