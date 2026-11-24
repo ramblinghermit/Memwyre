@@ -141,24 +141,42 @@ class VertexAIClient:
             temperature=temperature,
             system_instruction=system_instruction
         )
-        try:
-            response = client.models.generate_content(
-                model=model_name,
-                contents=prompt,
-                config=config
-            )
-            return response.text or ""
-        except Exception as e:
-            logger.warning(f"Vertex AI generate with {model_name} failed: {e}. Trying fallback client...")
-            fallback = self.get_fallback_client()
-            if fallback:
-                response = fallback.models.generate_content(
-                    model=model_name,
+        
+        # Similar to minimi orchestrator: try specified model then stable flash candidates
+        candidate_models = [model_name, "gemini-3.5-flash", "gemini-3.5-flash-lite"]
+        seen = set()
+        unique_candidates = [m for m in candidate_models if m and not (m in seen or seen.add(m))]
+
+        last_error = None
+        for cand in unique_candidates:
+            try:
+                response = client.models.generate_content(
+                    model=cand,
                     contents=prompt,
                     config=config
                 )
                 return response.text or ""
-            raise e
+            except Exception as e:
+                last_error = e
+                logger.warning(f"Vertex AI generate with {cand} failed: {e}. Trying next candidate...")
+
+        logger.warning(f"All Vertex candidates failed. Trying fallback client with {model_name}...")
+        fallback = self.get_fallback_client()
+        if fallback:
+            for cand in unique_candidates:
+                try:
+                    response = fallback.models.generate_content(
+                        model=cand,
+                        contents=prompt,
+                        config=config
+                    )
+                    return response.text or ""
+                except Exception as e:
+                    logger.warning(f"Fallback client with {cand} failed: {e}")
+        
+        if last_error:
+            raise last_error
+        raise RuntimeError("No LLM client was able to generate a response.")
 
     async def agenerate(
         self,

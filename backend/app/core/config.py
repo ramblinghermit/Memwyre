@@ -94,7 +94,7 @@ class Settings(BaseSettings):
     # Google Cloud Vertex AI
     GOOGLE_APPLICATION_CREDENTIALS: Optional[str] = None
     VERTEX_PROJECT: str = "memwyre"
-    VERTEX_LOCATION: str = "us-central1"
+    VERTEX_LOCATION: str = "global"
     VERTEX_MODEL: str = "gemini-2.5-flash"
     VERTEX_LITE_MODEL: str = "gemini-3.5-flash-lite"
     VERTEX_EMBEDDING_MODEL: str = "gemini-embedding-001"
