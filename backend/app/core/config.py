@@ -44,6 +44,14 @@ class Settings(BaseSettings):
     AWS_REGION: str = "us-east-1"
     AWS_SES_SENDER_EMAIL: Optional[str] = None
 
+    # SMTP Configuration (Fallback/Alternative to SES)
+    SMTP_HOST: Optional[str] = None
+    SMTP_PORT: int = 587
+    SMTP_USER: Optional[str] = None
+    SMTP_PASSWORD: Optional[str] = None
+    SMTP_USE_TLS: bool = True
+    SMTP_SENDER_EMAIL: Optional[str] = None
+
     # Cloudflare Turnstile
     TURNSTILE_SECRET_KEY: Optional[str] = None
 

@@ -1,6 +1,9 @@
 import asyncio
 import logging
 import functools
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 import boto3
 from botocore.exceptions import ClientError
 from app.core.config import settings
@@ -21,27 +24,65 @@ def get_ses_client():
     )
 
 
-def _send_email_sync(to_email: str, subject: str, html_body: str, sender: str) -> bool:
-    """Synchronous SES send — runs in a thread executor."""
-    client = get_ses_client()
-    if not client:
-        logger.error("SES client is not configured.")
+def _send_via_smtp_sync(to_email: str, subject: str, html_body: str, sender: str) -> bool:
+    """Synchronous SMTP send fallback."""
+    if not settings.SMTP_HOST or not settings.SMTP_USER:
+        return False
+    try:
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = subject
+        msg["From"] = sender
+        msg["To"] = to_email
+        msg.attach(MIMEText(html_body, "html", "utf-8"))
+
+        port = settings.SMTP_PORT or 587
+        server = smtplib.SMTP(settings.SMTP_HOST, port, timeout=10)
+        if settings.SMTP_USE_TLS:
+            server.starttls()
+        if settings.SMTP_PASSWORD:
+            server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+        server.sendmail(sender, [to_email], msg.as_string())
+        server.quit()
+        logger.info(f"Email sent successfully via SMTP to {to_email}")
+        return True
+    except Exception as e:
+        logger.error(f"Failed to send email via SMTP to {to_email}: {e}")
         return False
 
-    try:
-        response = client.send_email(
-            Destination={'ToAddresses': [to_email]},
-            Message={
-                'Body': {'Html': {'Charset': "UTF-8", 'Data': html_body}},
-                'Subject': {'Charset': "UTF-8", 'Data': subject},
-            },
-            Source=sender,
-        )
-        logger.info(f"Email sent successfully to {to_email}. Message ID: {response['MessageId']}")
-        return True
-    except ClientError as e:
-        logger.error(f"Failed to send email via SES to {to_email}: {e.response['Error']['Message']}")
-        return False
+
+def _send_email_sync(to_email: str, subject: str, html_body: str, sender: str) -> bool:
+    """Synchronous send — attempts SES first, falls back to SMTP."""
+    # 1. Attempt AWS SES
+    client = get_ses_client()
+    if client:
+        try:
+            response = client.send_email(
+                Destination={'ToAddresses': [to_email]},
+                Message={
+                    'Body': {'Html': {'Charset': "UTF-8", 'Data': html_body}},
+                    'Subject': {'Charset': "UTF-8", 'Data': subject},
+                },
+                Source=sender,
+            )
+            logger.info(f"Email sent successfully to {to_email}. Message ID: {response['MessageId']}")
+            return True
+        except ClientError as e:
+            err_msg = e.response['Error']['Message']
+            if "Email address is not verified" in err_msg or "MessageRejected" in err_msg:
+                logger.warning(
+                    f"AWS SES Sandbox Restriction: recipient '{to_email}' is not verified. "
+                    f"Verify recipient in AWS SES Console or request Production Access (Case 178507281500817)."
+                )
+            else:
+                logger.error(f"Failed to send email via SES to {to_email}: {err_msg}")
+
+    # 2. Attempt SMTP fallback if configured
+    if settings.SMTP_HOST:
+        smtp_sender = settings.SMTP_SENDER_EMAIL or sender
+        if _send_via_smtp_sync(to_email, subject, html_body, smtp_sender):
+            return True
+
+    return False
 
 
 async def send_email(to_email: str, subject: str, html_body: str) -> bool:
@@ -184,6 +225,7 @@ async def send_password_reset_email(to_email: str, reset_url: str):
 
 async def send_otp_email(to_email: str, otp: str):
     """Sends a 6-digit OTP for email verification."""
+    logger.info(f"🔑 [AUTH OTP] Verification OTP for {to_email}: {otp}")
     subject = f"Your Memwyre verification code is {otp}"
     body = f"""
     <!DOCTYPE html>
@@ -238,6 +280,7 @@ async def send_otp_email(to_email: str, otp: str):
 
 async def send_welcome_email(to_email: str, name: str):
     """Sends a welcome email to a new verified user."""
+    logger.info(f"📧 [WELCOME EMAIL] Sending welcome email to {to_email} (Name: {name})")
     subject = "Welcome to Memwyre"
     display_name = name if name else "there"
     body = f"""

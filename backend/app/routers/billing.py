@@ -42,6 +42,8 @@ async def create_checkout(
     try:
         result = await create_checkout_session(current_user, db)
         return result
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Checkout creation failed: {e}")
         raise HTTPException(status_code=500, detail="Failed to create checkout session")

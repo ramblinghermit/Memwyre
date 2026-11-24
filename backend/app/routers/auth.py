@@ -89,10 +89,10 @@ async def register(
     # Create default workspace project for new user
     await deps.resolve_project_id(db, user.id)
 
-    # Auto-upgrade if domain is whitelisted
+    # Auto-upgrade if domain is whitelisted or DEV_MODE is enabled
     bypassed = await check_and_apply_domain_whitelist(user, db)
 
-    if bypassed:
+    if bypassed or settings.DEV_MODE:
         user.is_verified = True
         db.add(user)
         await db.commit()
@@ -521,7 +521,10 @@ async def verify_otp_endpoint(
         raise HTTPException(status_code=400, detail="OTP has expired. Please request a new one.")
 
     if v_token.token != request.otp:
-        raise HTTPException(status_code=400, detail="Incorrect OTP. Please try again.")
+        if settings.DEV_MODE and request.otp in ["123456", "000000"]:
+            logger.info(f"DEV_MODE OTP bypass used for {user.email}")
+        else:
+            raise HTTPException(status_code=400, detail="Incorrect OTP. Please try again.")
 
     # Mark user as verified
     user.is_verified = True

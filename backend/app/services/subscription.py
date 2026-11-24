@@ -36,29 +36,49 @@ async def create_checkout_session(user: User, db: AsyncSession) -> dict:
     Create a Dodo Payments checkout session for the $5/month Pro plan.
     Returns dict with checkout_url and session_id.
     """
+    from fastapi import HTTPException
+    from app.services.bypass import apply_direct_bypass
+
+    if settings.DEV_MODE:
+        await apply_direct_bypass(user, db)
+        return {
+            "checkout_url": f"{settings.FRONTEND_URL}/billing?status=success",
+            "session_id": f"dev_bypass_{user.id}",
+        }
+
     client = get_dodo_client()
 
-    checkout = await client.checkout_sessions.create(
-        product_cart=[
-            {
-                "product_id": settings.DODO_PRODUCT_ID,
-                "quantity": 1,
-            }
-        ],
-        customer={
-            "email": user.email,
-            "name": user.name or user.email.split("@")[0],
-        },
-        metadata={
-            "user_id": str(user.id),
-        },
-        return_url=f"{settings.FRONTEND_URL}/billing?status=success",
-    )
+    try:
+        checkout = await client.checkout_sessions.create(
+            product_cart=[
+                {
+                    "product_id": settings.DODO_PRODUCT_ID,
+                    "quantity": 1,
+                }
+            ],
+            customer={
+                "email": user.email,
+                "name": user.name or user.email.split("@")[0],
+            },
+            metadata={
+                "user_id": str(user.id),
+            },
+            return_url=f"{settings.FRONTEND_URL}/billing?status=success",
+        )
 
-    return {
-        "checkout_url": checkout.checkout_url,
-        "session_id": checkout.session_id,
-    }
+        return {
+            "checkout_url": checkout.checkout_url,
+            "session_id": checkout.session_id,
+        }
+    except Exception as e:
+        error_str = str(e)
+        logger.error(f"Dodo checkout creation error: {error_str}")
+        if "MERCHANT_NOT_LIVE" in error_str:
+            raise HTTPException(
+                status_code=503,
+                detail="Dodo Payments account is currently undergoing live merchant review. Live payments will be active once approved by Dodo."
+            )
+        raise e
 
 
 async def get_subscription_status(user: User, db: AsyncSession) -> dict:
