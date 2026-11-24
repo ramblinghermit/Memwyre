@@ -59,8 +59,8 @@ class Settings(BaseSettings):
     YOUTUBE_PROXY_URL: Optional[str] = None
     
     # LLM Provider
-    DEFAULT_LLM_PROVIDER: str = "bedrock"
-    DEFAULT_EMBEDDING_PROVIDER: Optional[str] = None
+    DEFAULT_LLM_PROVIDER: str = "vertex"
+    DEFAULT_EMBEDDING_PROVIDER: Optional[str] = "vertex"
 
     # Database
     # Default to sqlite if not set in .env
