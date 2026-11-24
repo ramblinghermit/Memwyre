@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from datetime import datetime, timezone
 from sqlalchemy.orm import selectinload
+from app.core.config import settings
 from app.models.document import Chunk
 from app.services.vector_store_v2 import vector_store_v2 as vector_store
 

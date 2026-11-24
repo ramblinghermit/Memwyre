@@ -39,6 +39,8 @@ services:
         max-file: "3"
     env_file:
       - .env.prod
+    volumes:
+      - ./credentials:/app/credentials:ro
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - REDIS_URL=redis://redis:6379/0
@@ -64,6 +66,8 @@ services:
         max-file: "3"
     env_file:
       - .env.prod
+    volumes:
+      - ./credentials:/app/credentials:ro
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - REDIS_URL=redis://redis:6379/0
@@ -92,6 +96,8 @@ services:
         max-file: "3"
     env_file:
       - .env.prod
+    volumes:
+      - ./credentials:/app/credentials:ro
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - REDIS_URL=redis://redis:6379/0
