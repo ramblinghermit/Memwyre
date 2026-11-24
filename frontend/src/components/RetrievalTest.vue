@@ -34,9 +34,10 @@
         />
         <div class="absolute inset-y-0 right-0 flex items-center pr-2">
              <select v-model="provider" class="h-8 text-xs bg-transparent border-0 text-gray-400 focus:ring-0 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300">
+                <option value="vertex">Google Gemini 2.5 Flash</option>
                 <option value="bedrock">AWS Bedrock (Kimi K2.5)</option>
-                <option value="gemini">Gemini</option>
-                <option value="openai">GPT-3.5</option>
+                <option value="gemini">Gemini (AI Studio)</option>
+                <option value="openai">OpenAI (GPT-4o)</option>
              </select>
         </div>
       </div>
@@ -51,7 +52,7 @@
       <div v-if="response && !loading" class="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-4 border border-gray-100 dark:border-gray-700/50 animate-fade-in">
         <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-wide">
-                {{ provider === 'bedrock' ? 'Kimi K2.5 (Bedrock)' : (provider === 'gemini' ? 'Gemini' : 'OpenAI') }} Says
+                {{ provider === 'vertex' ? 'Gemini 2.5 Flash' : (provider === 'bedrock' ? 'Kimi K2.5 (Bedrock)' : (provider === 'gemini' ? 'Gemini' : 'OpenAI')) }} Says
             </span>
              <button @click="response = ''" class="text-gray-400 hover:text-gray-600">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -92,7 +93,7 @@ const query = ref('');
 const loading = ref(false);
 const response = ref('');
 const context = ref([]);
-const provider = ref('bedrock');
+const provider = ref('vertex');
 
 const search = async () => {
   if (!query.value) return;
@@ -103,7 +104,9 @@ const search = async () => {
 
   try {
     let apiKey = "";
-    if (provider.value === 'bedrock') {
+    if (provider.value === 'vertex') {
+      apiKey = "vertex-system";
+    } else if (provider.value === 'bedrock') {
       apiKey = "bedrock-system";
     } else if (provider.value === 'gemini') {
       apiKey = localStorage.getItem('gemini_key');
@@ -111,7 +114,7 @@ const search = async () => {
       apiKey = localStorage.getItem('openai_key');
     }
 
-    if (!apiKey && provider.value !== 'bedrock') {
+    if (!apiKey && provider.value !== 'vertex' && provider.value !== 'bedrock') {
       response.value = `Error: Please set your ${provider.value === 'gemini' ? 'Gemini' : 'OpenAI'} API key in Settings.`;
       loading.value = false;
       return;

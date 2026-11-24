@@ -55,9 +55,10 @@
       <!-- Provider Selection -->
       <div>
         <select v-model="selectedProvider" class="block w-full text-xs border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-gray-900/20 dark:focus:ring-white/20 focus:border-gray-900 dark:focus:border-white bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+          <option value="vertex">Google Gemini 2.5 Flash (System)</option>
           <option value="bedrock">AWS Bedrock (Kimi K2.5)</option>
-          <option value="gemini">Google Gemini</option>
-          <option value="openai">OpenAI (GPT-3.5)</option>
+          <option value="gemini">Google Gemini (AI Studio Key)</option>
+          <option value="openai">OpenAI (GPT-4o)</option>
         </select>
       </div>
 
@@ -103,7 +104,7 @@ const query = ref('');
 const messages = ref([]);
 const loading = ref(false);
 const messagesEnd = ref(null);
-const selectedProvider = ref('bedrock');
+const selectedProvider = ref('vertex');
 
 const scrollToBottom = async () => {
   await nextTick();
@@ -159,7 +160,9 @@ const sendMessage = async () => {
 
     const provider = selectedProvider.value;
     let apiKey = "";
-    if (provider === 'bedrock') {
+    if (provider === 'vertex') {
+      apiKey = "vertex-system";
+    } else if (provider === 'bedrock') {
       apiKey = "bedrock-system";
     } else if (provider === 'gemini') {
       apiKey = localStorage.getItem('gemini_key');
@@ -167,7 +170,7 @@ const sendMessage = async () => {
       apiKey = localStorage.getItem('openai_key');
     }
 
-    if (!apiKey && provider !== 'bedrock') {
+    if (!apiKey && provider !== 'vertex' && provider !== 'bedrock') {
       messages.value.push({ role: 'assistant', content: `Error: Please set your ${provider === 'gemini' ? 'Gemini' : 'OpenAI'} API key in Settings.` });
       loading.value = false;
       return;

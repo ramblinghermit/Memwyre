@@ -63,7 +63,7 @@ class Source(BaseModel):
 
 class ChatMessageCreate(BaseModel):
     content: str
-    model: str = "gpt-4o-mini"
+    model: str = "gemini-2.5-flash"
     temperature: float = 0.7
     max_tokens: int = 2800
     client_turn_id: str | None = None

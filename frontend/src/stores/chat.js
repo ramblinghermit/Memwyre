@@ -58,7 +58,7 @@ export const useChatStore = defineStore('chat', () => {
     const isLoading = ref(false);
     const error = ref(null);
     const thinking = ref(false);
-    const selectedModel = ref('moonshotai.kimi-k2.5');
+    const selectedModel = ref('gemini-2.5-flash');
     const currentContext = ref([]);
 
     const socket = ref(null);
@@ -69,13 +69,15 @@ export const useChatStore = defineStore('chat', () => {
     const turnProgressById = ref({});
 
     const storedModel = localStorage.getItem('chat-model');
-    if (storedModel && storedModel !== 'undefined') {
+    if (storedModel && storedModel !== 'undefined' && storedModel !== 'moonshotai.kimi-k2.5') {
         selectedModel.value = storedModel;
     } else {
-        selectedModel.value = 'moonshotai.kimi-k2.5';
+        selectedModel.value = 'gemini-2.5-flash';
     }
 
     const availableModels = [
+        { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash' },
+        { id: 'gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash-Lite' },
         { id: 'moonshotai.kimi-k2.5', name: 'Kimi K2.5' }
     ];
 

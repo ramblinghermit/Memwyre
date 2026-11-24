@@ -58,12 +58,19 @@ class MetadataExtractionService:
             # Fallback to System Keys if User Key not found
             if not api_key:
                 print("Metadata Extraction: No User API Key found. Checking System Keys...")
-                if settings.GEMINI_API_KEY:
+                from app.core.vertex_client import vertex_ai_client
+                if vertex_ai_client._resolve_credentials_path():
+                    api_key = "vertex-system"
+                    provider = "vertex"
+                elif settings.GEMINI_API_KEY:
                     api_key = settings.GEMINI_API_KEY
                     provider = "gemini (system)"
                 elif settings.OPENAI_API_KEY:
                     api_key = settings.OPENAI_API_KEY
                     provider = "openai (system)"
+                elif getattr(settings, "DEFAULT_LLM_PROVIDER", "").lower() == "bedrock":
+                    api_key = "bedrock-system"
+                    provider = "bedrock"
                 else:
                     print("Metadata Extraction: No System API Key found either.")
                     return

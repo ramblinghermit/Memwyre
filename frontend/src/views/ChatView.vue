@@ -219,7 +219,7 @@ function handleOpenSource(source) {
             <div class="px-2 pt-2 border-t border-gray-100 dark:border-zinc-800/80 flex justify-between items-center text-xs text-gray-500">
               <!-- Model Badge (Static / Disabled) -->
               <div class="inline-flex items-center px-2.5 py-1 rounded-lg bg-gray-100/70 dark:bg-zinc-800/60 border border-gray-200/50 dark:border-zinc-700/50 text-xs text-gray-700 dark:text-zinc-300 font-medium select-none pointer-events-none">
-                <span>Kimi K2.5</span>
+                <span>Gemini 2.5 Flash</span>
               </div>
 
               <div class="flex items-center space-x-3">
@@ -260,7 +260,7 @@ function handleOpenSource(source) {
             <div class="px-2 pt-2 border-t border-gray-100 dark:border-zinc-800/80 flex justify-between items-center text-xs text-gray-500">
               <!-- Model Badge (Static / Disabled) -->
               <div class="inline-flex items-center px-2.5 py-1 rounded-lg bg-gray-100/70 dark:bg-zinc-800/60 border border-gray-200/50 dark:border-zinc-700/50 text-xs text-gray-700 dark:text-zinc-300 font-medium select-none pointer-events-none">
-                <span>Kimi K2.5</span>
+                <span>Gemini 2.5 Flash</span>
               </div>
 
               <button

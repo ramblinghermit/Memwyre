@@ -84,14 +84,28 @@ class LLMService:
         llm = ChatBedrockConverse(**bedrock_kwargs)
         return wrap_llm_with_rate_limit(llm)
 
+    def _get_vertex_llm(self, model: Optional[str] = None, temperature: float = 0.7):
+        from app.core.vertex_client import VertexChatLLM
+        model_name = model or getattr(settings, "VERTEX_MODEL", "gemini-2.5-flash")
+        llm = VertexChatLLM(model=model_name, temperature=temperature)
+        return wrap_llm_with_rate_limit(llm)
+
+    def _get_vertex_lite_llm(self, temperature: float = 0.0):
+        from app.core.vertex_client import VertexChatLLM
+        model_name = getattr(settings, "VERTEX_LITE_MODEL", "gemini-3.5-flash-lite")
+        llm = VertexChatLLM(model=model_name, temperature=temperature)
+        return wrap_llm_with_rate_limit(llm)
+
     def _get_default_llm(self, temperature: float = 0, target_key: Optional[str] = None):
-        provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "openai").lower()
-        if provider == "bedrock":
+        provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "vertex").lower()
+        if provider in ["vertex", "gemini"]:
+            return self._get_vertex_llm(temperature=temperature)
+        elif provider == "bedrock":
             return self._get_bedrock_llm(temperature=temperature)
         else:
             return self._get_openai_llm(temperature=temperature, target_key=target_key)
         
-    async def generate_response(self, query: str, context: List[str], provider: str = "openai", api_key: Optional[str] = None, user_id: Optional[int] = None) -> str:
+    async def generate_response(self, query: str, context: List[str], provider: str = "vertex", api_key: Optional[str] = None, user_id: Optional[int] = None) -> str:
         # Respect provider parameter if passed, else fallback to settings
         req_provider = (provider or "").lower()
         api_key = api_key or self.api_key
@@ -113,7 +127,9 @@ class LLMService:
             f"Context:\n{context_str}"
         )
         
-        if req_provider in ["bedrock", "kimi"] or "kimi" in req_provider:
+        if req_provider in ["vertex", "gemini"]:
+            llm = self._get_vertex_llm(temperature=0.7)
+        elif req_provider in ["bedrock", "kimi"] or "kimi" in req_provider:
             llm = self._get_bedrock_llm(temperature=0.7)
         else:
             llm = self._get_default_llm(temperature=0.7, target_key=api_key)
@@ -219,18 +235,21 @@ Existing Tags Context:
         # Generate
         text = ""
         
-        provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "openai").lower()
-        if target_key or provider == "bedrock":
-             llm = self._get_default_llm(temperature=0, target_key=target_key)
-             messages = [
-                 SystemMessage(content=system_instruction),
-                 HumanMessage(content=user_message)
-             ]
-             async with self.semaphore:
-                 res = await llm.ainvoke(messages)
-             text = res.content
+        provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "vertex").lower()
+        if target_key or provider in ["bedrock", "vertex", "gemini"]:
+            if provider in ["vertex", "gemini"]:
+                llm = self._get_vertex_lite_llm(temperature=0)
+            else:
+                llm = self._get_default_llm(temperature=0, target_key=target_key)
+            messages = [
+                SystemMessage(content=system_instruction),
+                HumanMessage(content=user_message)
+            ]
+            async with self.semaphore:
+                res = await llm.ainvoke(messages)
+            text = res.content
         else:
-             return {}
+            return {}
 
         # Clean JSON
         text = text.replace("```json", "").replace("```", "").strip()
@@ -281,15 +300,18 @@ Rules:
 
         user_message = f"Chunk Content:\n{content}"
         
-        provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "openai").lower()
-        if target_key or provider == "bedrock":
-             llm = self._get_default_llm(temperature=0, target_key=target_key)
-             messages = [SystemMessage(content=system_prompt), HumanMessage(content=user_message)]
-             async with self.semaphore:
-                 res = await llm.ainvoke(messages)
-             text = res.content
+        provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "vertex").lower()
+        if target_key or provider in ["bedrock", "vertex", "gemini"]:
+            if provider in ["vertex", "gemini"]:
+                llm = self._get_vertex_lite_llm(temperature=0)
+            else:
+                llm = self._get_default_llm(temperature=0, target_key=target_key)
+            messages = [SystemMessage(content=system_prompt), HumanMessage(content=user_message)]
+            async with self.semaphore:
+                res = await llm.ainvoke(messages)
+            text = res.content
         else:
-             raise ValueError("No valid API Key found for chunk enrichment")
+            raise ValueError("No valid API Key found for chunk enrichment")
             
         import json
         import re
@@ -369,8 +391,8 @@ Rules:
         user_message = f"Text to Analyze:\n{text}"
         
         try:
-            provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "openai").lower()
-            if target_key or provider == "bedrock":
+            provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "vertex").lower()
+            if target_key or provider in ["bedrock", "vertex", "gemini"]:
                 llm = self._get_default_llm(temperature=0, target_key=target_key)
                 messages = [SystemMessage(content=system_prompt), HumanMessage(content=user_message)]
                 async with self.semaphore:
@@ -430,9 +452,12 @@ Rules:
                 text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
                 return text.strip()
 
-            provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "openai").lower()
-            if target_key or provider == "bedrock":
-                llm = self._get_default_llm(temperature=0.7, target_key=target_key)
+            provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "vertex").lower()
+            if target_key or provider in ["bedrock", "vertex", "gemini"]:
+                if provider in ["vertex", "gemini"]:
+                    llm = self._get_vertex_lite_llm(temperature=0.3)
+                else:
+                    llm = self._get_default_llm(temperature=0.7, target_key=target_key)
                 messages = [SystemMessage(content=system_prompt), HumanMessage(content=conversation_context)]
                 async with self.semaphore:
                     res = await llm.ainvoke(messages)
@@ -480,8 +505,8 @@ Example Output:
             import json
             import re
             
-            provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "openai").lower()
-            if target_key or provider == "bedrock":
+            provider = getattr(settings, "DEFAULT_LLM_PROVIDER", "vertex").lower()
+            if target_key or provider in ["bedrock", "vertex", "gemini"]:
                 llm = self._get_default_llm(temperature=0, target_key=target_key)
                 messages = [SystemMessage(content=system_prompt), HumanMessage(content=user_message)]
                 async with self.semaphore:

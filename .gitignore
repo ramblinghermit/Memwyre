@@ -68,3 +68,8 @@ litellm_config.yaml
 # Internal Documentation
 ai_brain_vault_srs.md
 system_design.md
+
+# GCP / Vertex AI Credentials
+*gcp-key*.json
+backend/credentials/
+credentials/

@@ -16,8 +16,8 @@ from app.core.rate_limiter import limiter
 
 class ChatRequest(BaseModel):
     query: str
-    provider: str = "openai"
-    api_key: str
+    provider: str = "vertex"
+    api_key: Optional[str] = None
     top_k: int = 5
     filter: Optional[dict] = None
 

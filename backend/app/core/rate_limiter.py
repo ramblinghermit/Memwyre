@@ -121,6 +121,29 @@ def wrap_llm_with_rate_limit(llm):
     return llm
 
 
+class VertexGenAIEmbeddings:
+    """LangChain-compatible Embeddings wrapper for Vertex AI gemini-embedding-001 (1024 dims)."""
+    def __init__(self, output_dimensionality: int = 1024, model: str = "gemini-embedding-001"):
+        self.output_dimensionality = output_dimensionality
+        self.model = model
+        from app.core.vertex_client import vertex_ai_client
+        self.client = vertex_ai_client
+
+    def embed_documents(self, texts: List[str]) -> List[List[float]]:
+        return self.client.embed_texts(texts, output_dimensionality=self.output_dimensionality, model=self.model)
+
+    def embed_query(self, text: str) -> List[float]:
+        results = self.client.embed_texts([text], output_dimensionality=self.output_dimensionality, model=self.model)
+        return results[0] if results else []
+
+    async def aembed_documents(self, texts: List[str]) -> List[List[float]]:
+        return await self.client.aembed_texts(texts, output_dimensionality=self.output_dimensionality, model=self.model)
+
+    async def aembed_query(self, text: str) -> List[float]:
+        results = await self.client.aembed_texts([text], output_dimensionality=self.output_dimensionality, model=self.model)
+        return results[0] if results else []
+
+
 def get_embeddings_instance():
     """
     Factory function to initialize and return the correct Embeddings instance,
@@ -132,15 +155,24 @@ def get_embeddings_instance():
     if provider:
         provider = provider.lower()
     else:
-        # Backwards-compatible auto-detection logic
-        if getattr(settings, "EMBEDDING_API_BASE", None):
+        # Check if Vertex credentials exist
+        from app.core.vertex_client import vertex_ai_client
+        if vertex_ai_client._resolve_credentials_path():
+            provider = "vertex"
+        elif getattr(settings, "EMBEDDING_API_BASE", None):
             provider = "nvidia"
         elif getattr(settings, "AZURE_OPENAI_API_KEY", None) or getattr(settings, "OPENAI_API_KEY", None):
             provider = "azure"
         else:
             provider = "bedrock"
 
-    if provider == "nvidia":
+    if provider in ["vertex", "gemini"]:
+        logger.info(f"Initializing Vertex AI Embeddings (model: {getattr(settings, 'VERTEX_EMBEDDING_MODEL', 'gemini-embedding-001')}, dims: 1024).")
+        raw_embeddings = VertexGenAIEmbeddings(
+            output_dimensionality=1024,
+            model=getattr(settings, "VERTEX_EMBEDDING_MODEL", "gemini-embedding-001")
+        )
+    elif provider == "nvidia":
         from langchain_openai import OpenAIEmbeddings
 
         class CustomNIMEmbeddings(OpenAIEmbeddings):

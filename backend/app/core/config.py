@@ -83,6 +83,14 @@ class Settings(BaseSettings):
     GOOGLE_API_KEY: Optional[str] = None
     GEMINI_API_KEY: Optional[str] = None
 
+    # Google Cloud Vertex AI
+    GOOGLE_APPLICATION_CREDENTIALS: Optional[str] = None
+    VERTEX_PROJECT: str = "memwyre"
+    VERTEX_LOCATION: str = "us-central1"
+    VERTEX_MODEL: str = "gemini-2.5-flash"
+    VERTEX_LITE_MODEL: str = "gemini-3.5-flash-lite"
+    VERTEX_EMBEDDING_MODEL: str = "gemini-embedding-001"
+
     # Custom OpenAI-compatible endpoints (default: Kimi K2.6 + NVIDIA NIM)
     # Both LLM and embeddings route through NVIDIA's integrate API
     EMBEDDING_API_BASE: Optional[str] = "https://integrate.api.nvidia.com/v1"
